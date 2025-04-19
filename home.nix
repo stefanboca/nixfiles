@@ -1,10 +1,19 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  nixgl,
+  pkgs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "doctorwho";
   home.homeDirectory = "/home/doctorwho";
+
+  fonts.fontconfig.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -15,9 +24,29 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  nixGL = {
+    packages = nixgl.packages;
+    vulkan.enable = true;
+    offloadWrapper = "nvidiaPrime";
+    installScripts = [
+      "mesa"
+      "mesaPrime"
+    ];
+    prime.installScript = "nvidia";
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.lilex
+
+    pkgs.difftastic
+
+    pkgs.devenv
+    pkgs.just
+    pkgs.dust
+    pkgs.zizmor
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -71,6 +100,83 @@
     # EDITOR = "emacs";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  home.shell = {
+    enableFishIntegration = true;
+  };
+
+  programs = {
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+
+    bottom.enable = true;
+
+    # git.enable = true;
+    # gh.enable = true;
+    jujutsu.enable = true;
+
+    bat.enable = true;
+    fd.enable = true;
+    jq.enable = true;
+    ripgrep.enable = true;
+    fzf = {
+      enable = true;
+      defaultOptions = [
+        "--cycle"
+        "--layout=reverse"
+        "--border"
+        "--height=-3"
+        "--preview-window=wrap"
+        "--highlight-line"
+        "--info=inline-right"
+        "--ansi"
+      ];
+      # tokyonight-moon
+      # TODO: refactor color schemes
+      colors = {
+        bg = "#1e2030";
+        "bg+" = "#2d3f76";
+        border = "#589ed7";
+        fg = "#c8d3f5";
+        gutter = "#1e2030";
+        header = "#ff966c";
+        hl = "#65bcff";
+        "hl+" = "#65bcff";
+        info = "#545c7e";
+        marker = "#ff007c";
+        pointer = "#ff007c";
+        prompt = "#65bcff";
+        query = "#c8d3f5:regular";
+        scrollbar = "#589ed7";
+        separator = "#ff966c";
+        spinner = "#ff007c";
+      };
+    };
+
+    eza.enable = true;
+    zoxide.enable = true;
+
+    tealdeer.enable = true;
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+
+      extraPackages = [
+        # nix
+        pkgs.nil
+        pkgs.nixfmt-rfc-style
+      ];
+    };
+
+    fish = {
+      enable = true;
+      preferAbbrs = true;
+    };
+    ghostty = {
+      enable = true;
+      package = (config.lib.nixGL.wrap pkgs.ghostty);
+      installVimSyntax = true;
+    };
+  };
 }
