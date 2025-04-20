@@ -25,9 +25,8 @@
       ...
     }:
     let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
     in
     {
       homeConfigurations.doctorwho = home-manager.lib.homeManagerConfiguration {
@@ -35,5 +34,7 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = { inherit inputs; };
       };
+
+      formatter."${system}" = pkgs.nixfmt-tree;
     };
 }
