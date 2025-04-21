@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO: use nixpkgs ghostty on 1.1.4 release
+    # use nightly for now because of strange goto_split behavior
+    ghostty.url = "github:ghostty-org/ghostty?ref=7ef9c24e3f200342b13be777718f1cf278dca1eb";
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +41,10 @@
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        overlays = [ inputs.fenix.overlays.default ];
+        overlays = [
+          inputs.fenix.overlays.default
+          inputs.ghostty.overlays.default
+        ];
       };
     in
     {
