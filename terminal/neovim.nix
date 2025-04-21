@@ -43,14 +43,15 @@
 
       # web
       pkgs.biome
-
-      # pkgs.prettier
+      pkgs.prettierd
       pkgs.svelte-language-server
       pkgs.tailwindcss-language-server
       pkgs.vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
       pkgs.vtsls
 
       # rust
+      # NOTE: rust-analyzer is managed by fenix
+      pkgs.graphviz # for crate graph visualtization
       # pkgs.codelldb # TODO: how to get
 
       # docker
@@ -64,6 +65,7 @@
       # lua
       pkgs.stylua
       pkgs.lua-language-server
+      inputs.emmylua-analyzer-rust.packages.${pkgs.system}.emmylua_ls
 
       # markdown
       pkgs.markdownlint-cli2

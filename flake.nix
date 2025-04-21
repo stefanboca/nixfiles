@@ -17,6 +17,11 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emmylua-analyzer-rust = {
+      # NOTE: pinned to avoid recompiling, needs manual update
+      url = "github:EmmyLuaLs/emmylua-analyzer-rust?ref=e112a77406ee982be94e6eb049d46e45255de19e";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +35,8 @@
       ...
     }:
     let
-      system = "x86_64-linux";
       pkgs = import nixpkgs {
-        inherit system;
+        system = "x86_64-linux";
         overlays = [ inputs.fenix.overlays.default ];
       };
     in
@@ -43,6 +47,6 @@
         extraSpecialArgs = { inherit inputs; };
       };
 
-      formatter."${system}" = pkgs.nixfmt-tree;
+      formatter.${pkgs.system} = pkgs.nixfmt-tree;
     };
 }
