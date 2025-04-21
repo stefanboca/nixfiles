@@ -3,12 +3,15 @@
 {
   home.sessionVariables.LESS = "-FRXS";
 
+  programs.pay-respects.enable = true;
+
   home.shell.enableFishIntegration = true;
   programs.fish = {
     enable = true;
     preferAbbrs = true;
 
     functions = {
+      # disable greeting
       fish_greeting = "";
       # Vi bindings that inherit emacs bindings in insert mode
       fish_user_key_bindings = ''

@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = [
@@ -6,12 +10,39 @@
     pkgs.sd # better sed
     pkgs.dust # better du
 
-    pkgs.difftastic # structural diff tool
+    pkgs.binsider # ELF analysis tool
+    pkgs.cargo-machete
+    pkgs.cargo-udeps
+    pkgs.cargo-cache
+    pkgs.cargo-nextest
+    pkgs.cargo-wizard
+    pkgs.cargo-watch
+    pkgs.hexyl
+    pkgs.hwatch
+    pkgs.kondo
+    pkgs.lazyjj
+    pkgs.ra-multiplex
+    pkgs.typst
+    pkgs.typos
+    pkgs.watchexec
+    pkgs.xh
+    pkgs.rnr
+
+    pkgs.ast-grep # syntax-aware structural grep
+    pkgs.difftastic # syntax-aware structural diff tool
+    pkgs.mergiraf # syntax-aware structural merge driver
     pkgs.just # command runner
 
     pkgs.devenv
     pkgs.zizmor # github actions static analysis tool
     # languages
+    (pkgs.fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
     pkgs.zig
   ];
 

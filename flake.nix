@@ -16,6 +16,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -26,7 +30,10 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ inputs.fenix.overlays.default ];
+      };
     in
     {
       homeConfigurations.doctorwho = home-manager.lib.homeManagerConfiguration {
