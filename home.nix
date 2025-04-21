@@ -5,7 +5,10 @@
 }:
 
 {
-  imports = [ ./terminal ];
+  imports = [
+    ./apps
+    ./terminal
+  ];
   home.username = "doctorwho";
   home.homeDirectory = "/home/doctorwho";
   home.preferXdgDirectories = true;
@@ -18,6 +21,7 @@
   # nix.settings.use-xdg-base-directories = true;
 
   nixGL.packages = inputs.nixgl.packages;
+  nixGL.vulkan.enable = true;
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;

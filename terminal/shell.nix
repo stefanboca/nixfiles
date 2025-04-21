@@ -32,6 +32,8 @@
       sc = "sudo systemctl --system";
       scu = "systemctl --user";
 
+      nsn = "nix search nixpkgs";
+
       se = "sudoedit";
       lj = "lazyjj";
       nv = "neovide";

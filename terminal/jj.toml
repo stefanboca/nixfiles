@@ -1,0 +1,90 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Stefan Boca"
+email = "stefan.r.boca@gmail.com"
+
+[ui]
+default-command = "log"
+editor = ["nvim", "-c", "let g:quit_on_write=1"]
+log-word-wrap = true
+paginate = "auto"
+conflict-marker-style = "snapshot"
+
+[aliases]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+
+rb = ["rebase"]
+d = ["diff"]
+dt = ["diff", "--tool=difft"]
+s = ["show", "-s"]
+sdt = ["show", "--tool=difft"]
+
+g = ["git"]
+gc = ["git", "clone", "--colocate"]
+gp = ["git", "push"]
+gf = ["git", "fetch"]
+gfar = ["git", "fetch", "--all-remotes"]
+gr = ["git", "remote"]
+grl = ["git", "remote", "list"]
+
+c = ["log", "-r", "current_branch()"]
+a = ["log", "-r", "all()"]
+
+[revset-aliases]
+"current_branch()" = "ancestors(immutable_heads()..@, 2)"
+"closest_bookmark(to)" = "heads(::to & bookmarks())"
+
+[merge-tools.nvim]
+program = "nvim"
+diff-args = ["-c", "DiffEditor $left $right"]
+edit-args = ["-c", "DiffEditor $left $right"]
+merge-tool-edits-conflict-markers = true
+conflict-marker-style = "snapshot"
+
+[merge-tools.mergiraf]
+program = "mergiraf"
+merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "--fast"]
+merge-conflict-exit-codes = [1]
+conflict-marker-style = "git"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+# TODO: nixify
+key = "~/.ssh/id_ed25519.pub"
+backends.ssh.allowed-signers = "~/.config/git/allowed_signers"
+
+[git]
+sign-on-push = true
+push-bookmark-prefix = "sb/push-"
+private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')"
+
+[core]
+core.fsmonitor = "none"
+watchman.register-snapshot-trigger = true
+
+[colors]
+description = "cyan"
+divergent = "magenta"
+hidden = "yellow"
+"diff files len" = "yellow"
+"diff stat total_added" = "green"
+"diff stat total_removed" = "red"
+
+[template-aliases]
+shell_prompt = """
+separate(" ",
+  change_id.shortest(),
+  commit_id.shortest(),
+  bookmarks.map(|x| truncate_end(10, x, label("bookmark", "…"))).join(" "),
+  tags.map(|x| truncate_end(10, x, label("tag", "…"))).join(" "),
+  truncate_end(24, description.first_line(), label("description", "…")),
+  if(diff.files().len() > 0, diff.files().len() ++ label("diff files len", "m")),
+  if(diff.stat().total_added() > 0, label("diff stat total_added", "+") ++ diff.stat().total_added()),
+  if(diff.stat().total_removed() > 0, label("diff stat total_removed", "-") ++ diff.stat().total_removed()),
+  label("conflict", if(conflict, "conflict")),
+  label("divergent", if(divergent, "divergent")),
+  label("hidden", if(hidden, "hidden")),
+)
+"""
