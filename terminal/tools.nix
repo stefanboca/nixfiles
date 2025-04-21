@@ -27,6 +27,7 @@
     pkgs.watchexec
     pkgs.xh
     pkgs.rnr
+    # pkgs.watchman # for jj
 
     pkgs.scc
 
@@ -73,7 +74,7 @@
         };
       };
     };
-    # gh.enable = true; # github CLI
+    gh.enable = true; # github CLI
     jujutsu.enable = true;
 
     # fuzzy finder
