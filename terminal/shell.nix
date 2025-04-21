@@ -28,7 +28,7 @@
     };
 
     shellAbbrs = {
-      # (roughly) sorted in order of laziness, least to greatest
+      # NOTE: (roughly) sorted in order of laziness, least to greatest
       sc = "sudo systemctl --system";
       scu = "systemctl --user";
 
@@ -47,8 +47,6 @@
       j = "jj";
 
       # TODO: remove on nixos
-      c = "chezmoi";
-
       dnfl = "dnf5 list";
       dnfli = "dnf5 list --installed";
       dnfmc = "dnf5 makecache";

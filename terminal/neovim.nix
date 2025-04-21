@@ -10,7 +10,7 @@
 
 {
   home.sessionVariables = {
-    SUDO_EDITOR = config.programs.neovim.package;
+    SUDO_EDITOR = config.programs.neovim.package; # TODO: why doesn't this work?
     VISUAL = "nvim";
   };
 
