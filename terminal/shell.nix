@@ -24,7 +24,7 @@
         command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
         _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
       '';
-      _tide_item_git = ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+      _tide_item_git_no_jj = ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
     };
 
     shellAbbrs = {
@@ -95,6 +95,6 @@
       echo y | fish_config theme save tokyonight_moon
       # setup tide prompt
       tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
-      set -U tide_left_prompt_items pwd git jj newline character
+      set -U tide_left_prompt_items pwd git_no_jj jj newline character
     "'';
 }
