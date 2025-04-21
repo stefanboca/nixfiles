@@ -1,3 +1,6 @@
+# Requires cloning nvim config manually
+# jj git clone --colocate git@github.com:stefanboca/nvim.git ~/.config/nvim
+
 {
   config,
   pkgs,
@@ -36,6 +39,7 @@
       # shell
       pkgs.shfmt
       pkgs.bash-language-server
+      pkgs.fish-lsp
 
       # web
       pkgs.biome
