@@ -82,6 +82,10 @@
         src = pkgs.fishPlugins.tide.src;
       }
     ];
+
+    interactiveShellInit = ''
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source # use fish for nix shells
+    '';
   };
 
   # TODO: theme
