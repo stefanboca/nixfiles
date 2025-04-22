@@ -32,10 +32,10 @@
     scheme = "Tokyonight Moon";
     base00 = "#222436";
     base01 = "#3b4261";
-    base02 = "#545c7e";
-    base03 = "#444a73";
-    base04 = "#737aa2";
-    base05 = "#828bb8";
+    base02 = "#636da6";
+    base03 = "#636da6";
+    base04 = "#fca7ea";
+    base05 = "#c8d3f5";
     base06 = "#b4f9f8";
     base07 = "#c8d3f5";
     base08 = "#ff757f";
@@ -45,7 +45,7 @@
     base0C = "#86e1fc";
     base0D = "#82aaff";
     base0E = "#c099ff";
-    base0F = "#fca7ea";
+    base0F = "#0db9d7";
   };
   stylix.targets.gtk.flatpakSupport.enable = false;
   stylix.targets.neovim.enable = false;
