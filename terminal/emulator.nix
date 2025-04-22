@@ -32,19 +32,6 @@
         "shift+left=goto_split:left"
         "shift+right=goto_split:right"
       ];
-
-      font-feature = (
-        if config.stylix.fonts.monospace.name == "Lilex" then
-          [
-            "cv09"
-            "cv10"
-            "cv11"
-            "ss01"
-            "ss03"
-          ]
-        else
-          [ ]
-      );
     };
   };
 }

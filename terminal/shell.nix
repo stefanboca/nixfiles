@@ -13,9 +13,11 @@
     functions = {
       # disable greeting
       fish_greeting = "";
-      # Vi bindings that inherit emacs bindings in insert mode
-      fish_user_key_bindings = ''
-        fish_default_key_bindings -M insert
+      # Vi-style bindings that inherit emacs-style bindings in all modes
+      fish_hybrid_key_bindings = ''
+        for mode in default insert visual
+          fish_default_key_bindings -M $mode
+        end
         fish_vi_key_bindings --no-erase insert
       '';
 
@@ -84,15 +86,21 @@
     ];
 
     interactiveShellInit = ''
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source # use fish for nix shells
+      set -g fish_key_bindings fish_hybrid_key_bindings
+
+      # use fish for nix shells
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+
+      if not set -q tide_prompt_configured
+        tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
+        set -U tide_left_prompt_items pwd git_no_jj jj newline character
+        tide reload
+        set -U tide_prompt_configured 1
+      end
     '';
   };
 
-  home.activation.configure-fish = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run --quiet ${pkgs.fish}/bin/fish -c "
-      set -U fish_key_bindings fish_user_key_bindings # needed for autopairs to work for some reason
-
-      # setup tide prompt
-      tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
-      set -U tide_left_prompt_items pwd git_no_jj jj newline character "'';
+  home.activation.resetFishPrompt = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run --quiet ${pkgs.fish}/bin/fish -c "set -e tide_prompt_configured"
+  '';
 }

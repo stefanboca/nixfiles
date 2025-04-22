@@ -7,9 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    catppuccin-fish = {
+      url = "github:catppuccin/fish";
+      flake = false;
     };
 
     # TODO: remove on nixos
