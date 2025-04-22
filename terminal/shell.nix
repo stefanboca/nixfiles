@@ -92,7 +92,6 @@
   home.activation.configure-fish = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run --quiet ${pkgs.fish}/bin/fish -c "
       set -U fish_key_bindings fish_user_key_bindings # needed for autopairs to work for some reason
-      echo y | fish_config theme save tokyonight_moon
 
       # setup tide prompt
       tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No

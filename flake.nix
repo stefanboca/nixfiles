@@ -7,6 +7,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # TODO: remove on nixos
     nixgl = {
       url = "github:nix-community/nixGL";
@@ -50,7 +55,10 @@
     {
       homeConfigurations.doctorwho = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [
+          inputs.stylix.homeManagerModules.stylix
+          ./home.nix
+        ];
         extraSpecialArgs = { inherit inputs; };
       };
 

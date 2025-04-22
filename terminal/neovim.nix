@@ -14,6 +14,8 @@
     VISUAL = "nvim";
   };
 
+  # TODO: set theme
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -92,19 +94,28 @@
       fork = true;
       frame = "none";
       title-hidden = true;
-      font = {
-        normal = [ { family = "lilex"; } ];
-        size = 10;
-        features = {
-          Lilex = [
-            "+cv09"
-            "+cv10"
-            "+cv11"
-            "+ss01"
-            "+ss03"
-          ];
+      font =
+        let
+          inherit (config.stylix) fonts;
+        in
+        {
+          normal = [ { family = fonts.monospace.name; } ];
+          size = fonts.sizes.terminal;
+          features = (
+            if fonts.monospace.name == "Lilex" then
+              {
+                Lilex = [
+                  "+cv09"
+                  "+cv10"
+                  "+cv11"
+                  "+ss01"
+                  "+ss03"
+                ];
+              }
+            else
+              { }
+          );
         };
-      };
     };
   };
 }
