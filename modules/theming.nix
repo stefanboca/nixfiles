@@ -48,26 +48,7 @@ let
     };
 
     tokyonight-day = {
-      scheme = {
-        slug = "tokyonight-day";
-        scheme = "Tokyonight Day";
-        base00 = "#e1e2e7";
-        base01 = "#a8aecb";
-        base02 = "#848cb5";
-        base03 = "#848cb5";
-        base04 = "#7847bd";
-        base05 = "#3760bf";
-        base06 = "#2e5857";
-        base07 = "#3760bf";
-        base08 = "#f52a65";
-        base09 = "#b15c00";
-        base0A = "#8c6c3e";
-        base0B = "#587539";
-        base0C = "#007197";
-        base0D = "#2e7de9";
-        base0E = "#9854f1";
-        base0F = "#07879d";
-      };
+      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_day.yaml";
       ghosttyTheme = "tokyonight_day";
       fishTheme.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_day.theme";
       neovimTheme = {
@@ -76,84 +57,27 @@ let
       };
     };
     tokyonight-moon = {
-      scheme = {
-        slug = "tokyonight-moon";
-        scheme = "Tokyonight Moon";
-        base00 = "#222436";
-        base01 = "#3b4261";
-        base02 = "#636da6";
-        base03 = "#636da6";
-        base04 = "#fca7ea";
-        base05 = "#c8d3f5";
-        base06 = "#b4f9f8";
-        base07 = "#c8d3f5";
-        base08 = "#ff757f";
-        base09 = "#ff966c";
-        base0A = "#ffc777";
-        base0B = "#c3e88d";
-        base0C = "#86e1fc";
-        base0D = "#82aaff";
-        base0E = "#c099ff";
-        base0F = "#0db9d7";
-      };
+      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_moon.yaml";
       ghosttyTheme = "tokyonight_moon";
-      fishTheme.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_moon.theme";
+      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_moon.theme";
       neovimTheme = {
         name = "tokyonight";
         style = "moon";
       };
     };
     tokyonight-night = {
-      scheme = {
-        slug = "tokyonight-night";
-        scheme = "Tokyonight Night";
-        base00 = "#1a1b26";
-        base01 = "#3b4261";
-        base02 = "#565f89";
-        base03 = "#565f89";
-        base04 = "#9d7cd8";
-        base05 = "#c0caf5";
-        base06 = "#b4f9f8";
-        base07 = "#c0caf5";
-        base08 = "#f7768e";
-        base09 = "#ff9e64";
-        base0A = "#e0af68";
-        base0B = "#9ece6a";
-        base0C = "#7dcfff";
-        base0D = "#7aa2f7";
-        base0E = "#bb9af7";
-        base0F = "#0db9d7";
-      };
+      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_night.yaml";
       ghosttyTheme = "tokyonight_night";
-      fishTheme.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_night.theme";
+      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_night.theme";
       neovimTheme = {
         name = "tokyonight";
         style = "night";
       };
     };
     tokyonight-storm = {
-      scheme = {
-        slug = "tokyonight-storm";
-        scheme = "Tokyonight Storm";
-        base00 = "#24283b";
-        base01 = "#3b4261";
-        base02 = "#565f89";
-        base03 = "#565f89";
-        base04 = "#9d7cd8";
-        base05 = "#c0caf5";
-        base06 = "#b4f9f8";
-        base07 = "#c0caf5";
-        base08 = "#f7768e";
-        base09 = "#ff9e64";
-        base0A = "#e0af68";
-        base0B = "#9ece6a";
-        base0C = "#7dcfff";
-        base0D = "#7aa2f7";
-        base0E = "#bb9af7";
-        base0F = "#0db9d7";
-      };
+      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_storm.yaml";
       ghosttyTheme = "tokyonight_storm";
-      fishTheme.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_storm.theme";
+      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_storm.theme";
       neovimTheme = {
         name = "tokyonight";
         style = "storm";
@@ -186,7 +110,10 @@ in
             package = pkgs.lilex;
             name = "Lilex";
           };
-          # TODO: find a good serif font
+          serif = {
+            package = pkgs.noto-fonts;
+            name = "Noto Serif";
+          };
           sansSerif = {
             package = pkgs.open-sans;
             name = "Open Sans";

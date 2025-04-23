@@ -904,6 +904,22 @@
         "type": "github"
       }
     },
+    "tokyonight-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745469021,
+        "narHash": "sha256-eDlBuGL6bicLlkfwYoX7Y16XKUGJxBimvoMVTXrkYKE=",
+        "owner": "stefanboca",
+        "repo": "tokyonight.nvim",
+        "rev": "a9d64e6302a9a427bb0242da2e4e5d3dc9810c68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stefanboca",
+        "repo": "tokyonight.nvim",
+        "type": "github"
+      }
+    },
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [

@@ -17,6 +17,10 @@
       flake = false;
     };
 
+    # TODO: remove once https://github.com/folke/tokyonight.nvim/pull/716 is merged, and use pkgs.vimPlugins.tokyonight-nvim instead
+    tokyonight-nvim.url = "github:stefanboca/tokyonight.nvim";
+    tokyonight-nvim.flake = false;
+
     # TODO: remove on nixos
     nixgl = {
       url = "github:nix-community/nixGL";
