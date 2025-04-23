@@ -244,15 +244,10 @@ in
           lib.mkIf (colorscheme.fishTheme ? src)
             colorscheme.fishTheme.src;
 
-        programs.fish.interactiveShellInit = ''
-          if not set -q fish_theme
-            echo y | fish_config theme save "${colorscheme.fishTheme.name or cfg.colorscheme}"
-            set -U fish_theme 1
-          end
-        '';
-        home.activation.resetFishTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          run --quiet ${pkgs.fish}/bin/fish -c "set -e fish_theme"
-        '';
+        home.activation.fishConfigureTheme = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
+          run --quiet ${pkgs.fish}/bin/fish -c "
+            echo y | fish_config theme save '${colorscheme.fishTheme.name or cfg.colorscheme}'
+          "'';
       })
     ]
   );

@@ -28,5 +28,5 @@
   nixGL.vulkan.enable = true;
 
   theming.enable = true;
-  theming.colorscheme = "catppuccin-mocha";
+  theming.colorscheme = "tokyonight-moon";
 }

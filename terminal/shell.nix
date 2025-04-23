@@ -86,21 +86,43 @@
     ];
 
     interactiveShellInit = ''
-      set -g fish_key_bindings fish_hybrid_key_bindings
 
       # use fish for nix shells
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
-
-      if not set -q tide_prompt_configured
-        tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
-        set -U tide_left_prompt_items pwd git_no_jj jj newline character
-        tide reload
-        set -U tide_prompt_configured 1
-      end
     '';
   };
 
-  home.activation.resetFishPrompt = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run --quiet ${pkgs.fish}/bin/fish -c "set -e tide_prompt_configured"
+  home.activation.configureFish = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
+    run --quiet ${pkgs.fish}/bin/fish -c "
+      set -U fish_key_bindings fish_hybrid_key_bindings
+      
+      # configure tide prompt
+      tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
+      # add jj to prompt
+      set -U tide_left_prompt_items pwd git_no_jj jj newline character
+      # use theme colors instead of hardcoded for most stuff (but use default colors for PWD)
+      set -U tide_character_color green
+      set -U tide_character_color_failure red
+      set -U tide_cmd_duration_color bryellow
+      set -U tide_context_color_default normal
+      set -U tide_context_color_root brred
+      set -U tide_context_color_ssh yellow
+      set -U tide_git_color_branch green
+      set -U tide_git_color_conflicted red
+      set -U tide_git_color_dirty yellow
+      set -U tide_git_color_operation red
+      set -U tide_git_color_staged yellow
+      set -U tide_git_color_stash green
+      set -U tide_git_color_untracked cyan
+      set -U tide_git_color_upstream green
+      set -U tide_private_mode_color normal
+      set -U tide_status_color brgreen
+      set -U tide_status_color_failure brred
+      set -U tide_time_color green
+      set -U tide_vi_mode_color_default blue
+      set -U tide_vi_mode_color_insert brgreen
+      set -U tide_vi_mode_color_replace bryellow
+      set -U tide_vi_mode_color_visual brmagenta
+    "
   '';
 }
