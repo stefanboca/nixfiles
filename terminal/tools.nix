@@ -45,6 +45,7 @@
       "rust-src"
       "rustc"
       "rustfmt"
+      "rust-analyzer"
     ])
     pkgs.zig
   ];
