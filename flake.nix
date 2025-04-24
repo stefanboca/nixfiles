@@ -6,20 +6,20 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # TODO: remove on nixos
+    nixgl.url = "github:nix-community/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-
     catppuccin-fish.url = "github:catppuccin/fish";
     catppuccin-fish.flake = false;
-
     # TODO: remove once https://github.com/folke/tokyonight.nvim/pull/716 is merged, and use pkgs.vimPlugins.tokyonight-nvim instead
     tokyonight-nvim.url = "github:stefanboca/tokyonight.nvim";
     tokyonight-nvim.flake = false;
 
-    # TODO: remove on nixos
-    nixgl.url = "github:nix-community/nixGL";
-    nixgl.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
@@ -49,6 +49,7 @@
           inputs.fenix.overlays.default
           inputs.ghostty.overlays.default
         ];
+        config.allowUnfree = true;
       };
     in
     {

@@ -27,6 +27,7 @@
     pkgs.watchexec
     pkgs.xh
     pkgs.rnr
+    pkgs.nix-tree
     # pkgs.watchman # for jj
 
     pkgs.scc

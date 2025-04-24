@@ -9,81 +9,43 @@
 let
   cfg = config.theming;
 
-  colorschemes = {
-    catppuccin-frappe = {
-      scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-      ghosttyTheme = "catppuccin-frappe";
-      fishTheme.src = "${inputs.catpucchin-fish}/themes/Catppuccin Frappe.theme";
-      neovimTheme = {
-        name = "catppuccin";
-        style = "frappe";
-      };
-    };
-    catppuccin-latte = {
-      scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
-      ghosttyTheme = "catppuccin-latte";
-      fishTheme.src = "${inputs.catpucchin-fish}/themes/Catppuccin Latte.theme";
-      neovimTheme = {
-        name = "catppuccin";
-        style = "latte";
-      };
-    };
-    catppuccin-macchiato = {
-      scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-      ghosttyTheme = "catppuccin-macchiato";
-      fishTheme.src = "${inputs.catpucchin-fish}/themes/Catppuccin Macchiato.theme";
-      neovimTheme = {
-        name = "catppuccin";
-        style = "macchiato";
-      };
-    };
-    catppuccin-mocha = {
-      scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-      ghosttyTheme = "catppuccin-mocha";
-      fishTheme.src = "${inputs.catppuccin-fish}/themes/Catppuccin Mocha.theme";
-      neovimTheme = {
-        name = "catppuccin";
-        style = "mocha";
-      };
-    };
-
-    tokyonight-day = {
-      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_day.yaml";
-      ghosttyTheme = "tokyonight_day";
-      fishTheme.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_day.theme";
-      neovimTheme = {
-        name = "tokyonight";
-        style = "day";
-      };
-    };
-    tokyonight-moon = {
-      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_moon.yaml";
-      ghosttyTheme = "tokyonight_moon";
-      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_moon.theme";
-      neovimTheme = {
-        name = "tokyonight";
-        style = "moon";
-      };
-    };
-    tokyonight-night = {
-      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_night.yaml";
-      ghosttyTheme = "tokyonight_night";
-      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_night.theme";
-      neovimTheme = {
-        name = "tokyonight";
-        style = "night";
-      };
-    };
-    tokyonight-storm = {
-      scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_storm.yaml";
-      ghosttyTheme = "tokyonight_storm";
-      fishTheme.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_storm.theme";
-      neovimTheme = {
-        name = "tokyonight";
-        style = "storm";
-      };
-    };
+  mkCatppucinColorscheme = style: {
+    scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${style}.yaml";
+    ghostty = "catppuccin-${style}";
+    fish.src = "${inputs.catpucchin-fish}/themes/Catppuccin ${pkgs.lib.strings.toSentenceCase style}.theme";
+    neovim.name = "catppuccin";
+    neovim.style = style;
+    spicetify.theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.catppuccin or null;
+    spicetify.colorScheme = style;
   };
+
+  mkTokyonightColorscheme = style: {
+    scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_${style}.yaml";
+    ghostty = "tokyonight${if (style == "moon" || style == "night") then "_" else "-"}${style}";
+    fish.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_${style}.theme";
+    neovim.name = "tokyonight";
+    neovim.style = style;
+  };
+
+  colorschemes = {
+    catppuccin-frappe = mkCatppucinColorscheme "frappe";
+    catppuccin-latte = mkCatppucinColorscheme "latte";
+    catppuccin-macchiato = mkCatppucinColorscheme "macchiato";
+    catppuccin-mocha = mkCatppucinColorscheme "mocha";
+
+    tokyonight-day = mkTokyonightColorscheme "day";
+    tokyonight-moon = mkTokyonightColorscheme "moon";
+    tokyonight-night = mkTokyonightColorscheme "night";
+    tokyonight-storm = mkTokyonightColorscheme "storm";
+  };
+
+  lilexFeatures = [
+    "cv09"
+    "cv10"
+    "cv11"
+    "ss01"
+    "ss03"
+  ];
 
   colorscheme = colorschemes.${cfg.colorscheme};
 in
@@ -102,9 +64,7 @@ in
         stylix.enable = true;
         stylix.targets.neovim.enable = false;
         stylix.targets.gtk.flatpakSupport.enable = false;
-
         stylix.base16Scheme = colorscheme.scheme;
-
         stylix.fonts = {
           monospace = {
             package = pkgs.lilex;
@@ -127,55 +87,49 @@ in
           };
         };
 
-        programs.neovim.extraLuaConfig = lib.mkIf (colorscheme ? neovimTheme) (
-          lib.mkBefore ''
-            vim.g.colorscheme = "${colorscheme.neovimTheme.name}"
-            ${
-              if (colorscheme.neovimTheme ? style) then
-                ''vim.g.colorscheme_style = "${colorscheme.neovimTheme.style}"''
-              else
-                ""
-            }
-          ''
-        );
-
         programs.neovide.settings.font = {
           normal = [ { family = config.stylix.fonts.monospace.name; } ];
           size = config.stylix.fonts.sizes.terminal;
-          features = lib.mkIf (config.stylix.fonts.monospace.name == "Lilex") {
-            Lilex = [
-              "+cv09"
-              "+cv10"
-              "+cv11"
-              "+ss01"
-              "+ss03"
-            ];
-          };
         };
-
-        programs.ghostty.settings.theme = lib.mkIf (colorscheme ? ghosttyTheme) (
-          lib.mkForce colorscheme.ghosttyTheme
-        );
-        programs.ghostty.settings.font-feature = lib.mkIf (config.stylix.fonts.monospace.name == "Lilex") [
-          "cv09"
-          "cv10"
-          "cv11"
-          "ss01"
-          "ss03"
-        ];
       }
 
-      (lib.mkIf (colorscheme ? fishTheme) {
+      (lib.mkIf (config.stylix.fonts.monospace.name == "Lilex") {
+        programs.neovide.settings.font.features.Lilex = builtins.map (str: "+" + str) lilexFeatures;
+        programs.ghostty.settings.font-feature = lilexFeatures;
+      })
+
+      (lib.mkIf (colorscheme ? ghostty) {
+        programs.ghostty.settings.theme = lib.mkForce colorscheme.ghostty;
+      })
+
+      (lib.mkIf (colorscheme ? fish) {
         stylix.targets.fish.enable = false;
-        xdg.configFile."fish/themes/${colorscheme.fishTheme.name or cfg.colorscheme}.theme".source =
-          lib.mkIf (colorscheme.fishTheme ? src)
-            colorscheme.fishTheme.src;
+        xdg.configFile."fish/themes/${colorscheme.fish.name or cfg.colorscheme}.theme".source = lib.mkIf (
+          colorscheme.fish ? src
+        ) colorscheme.fish.src;
 
         home.activation.fishConfigureTheme = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
           run --quiet ${pkgs.fish}/bin/fish -c "
-            echo y | fish_config theme save '${colorscheme.fishTheme.name or cfg.colorscheme}'
+            echo y | fish_config theme save '${colorscheme.fish.name or cfg.colorscheme}'
           "'';
       })
+
+      (lib.mkIf (colorscheme ? neovim) {
+        programs.neovim.extraLuaConfig = lib.mkBefore ''
+          vim.g.colorscheme = "${colorscheme.neovim.name}"
+          ${lib.strings.optionalString (
+            colorscheme.neovim ? style
+          ) ''vim.g.colorscheme = "${colorscheme.neovim.style}"''}
+        '';
+      })
+
+      (lib.mkIf (config.programs ? spicetify && colorscheme ? spicetify) (
+        lib.mkForce {
+          programs.spicetify.theme = colorscheme.spicetify.theme;
+          programs.spicetify.colorScheme = colorscheme.spicetify.colorScheme;
+        }
+      ))
+
     ]
   );
 }

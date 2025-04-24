@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ config, inputs, ... }:
 
 {
   imports = [
@@ -32,4 +28,6 @@
 
   theming.enable = true;
   theming.colorscheme = "tokyonight-moon";
+
+  gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 }
