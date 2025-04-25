@@ -2,7 +2,6 @@
 # jj git clone --colocate git@github.com:stefanboca/nvim.git ~/.config/nvim
 
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -10,7 +9,7 @@
 
 {
   home.sessionVariables = {
-    SUDO_EDITOR = config.programs.neovim.package; # TODO: why doesn't this work?
+    # SUDO_EDITOR = "${config.programs.neovim.package}/bin/nvim"; # TODO: set EDITOR globally
     VISUAL = "nvim";
   };
 

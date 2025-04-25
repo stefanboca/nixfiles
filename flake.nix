@@ -40,8 +40,9 @@
   outputs =
     {
       self,
-      home-manager,
       flake-parts,
+      home-manager,
+      nixpkgs,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -55,6 +56,15 @@
       systems = [ "x86_64-linux" ];
 
       flake = {
+        nixosConfigurations = {
+          # TODO: find a better hostname
+          laptop = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [ self.nixosModules.laptop ];
+          };
+        };
+
+        # TODO: remove on nixos
         homeConfigurations = {
           doctorwho = home-manager.lib.homeManagerConfiguration {
             pkgs = import inputs.nixpkgs {

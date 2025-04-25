@@ -1,15 +1,13 @@
 { self, inputs, ... }:
 
 let
+  allNixos = import ../nixos;
   allHomeManager = import ../home-manager;
 
   extraArgs =
     { pkgs, ... }:
     {
-      _module.args = {
-        inherit self inputs;
-        inherit (pkgs) system;
-      };
+      _module.args = { inherit self inputs; };
     };
 
   homeCommon = [
@@ -21,9 +19,36 @@ let
     # shared nixpkgs config for home-manager
     { config = { inherit (self.nixCfg) nix; }; }
   ] ++ builtins.attrValues allHomeManager;
+
+  nixosCommon = [
+    inputs.home-manager.nixosModules.home-manager
+
+    ../../hosts/common
+
+    extraArgs
+
+    # shared nixpkgs config for home-manager
+    {
+      config = {
+        inherit (self.nixCfg) nix nixpkgs;
+        home-manager = {
+          sharedModules = homeCommon;
+          useGlobalPkgs = true;
+        };
+      };
+    }
+  ] ++ builtins.attrValues allNixos;
 in
 {
   flake = {
+    nixosModules = {
+      common = nixosCommon;
+
+      # TODO: find a better hostname
+      laptop.imports = [ ] ++ nixosCommon;
+    } // allNixos;
+
+    # TODO: remove on nixos
     homeManagerModules = {
       common = homeCommon;
 
