@@ -63,7 +63,6 @@ in
       {
         stylix.enable = true;
         stylix.targets.neovim.enable = false;
-        stylix.targets.gtk.flatpakSupport.enable = false;
         stylix.base16Scheme = colorscheme.scheme;
         stylix.fonts = {
           monospace = {
@@ -119,7 +118,7 @@ in
           vim.g.colorscheme = "${colorscheme.neovim.name}"
           ${lib.strings.optionalString (
             colorscheme.neovim ? style
-          ) ''vim.g.colorscheme = "${colorscheme.neovim.style}"''}
+          ) ''vim.g.colorscheme_style = "${colorscheme.neovim.style}"''}
         '';
       })
 
