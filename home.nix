@@ -1,9 +1,13 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ./apps
-    ./modules
     ./terminal
   ];
   home.username = "doctorwho";
@@ -17,10 +21,7 @@
   xdg.enable = true;
   fonts.fontconfig.enable = true;
 
-  # TODO: enable on nixos
-  # nix.enable = true;
-  # nix.package = pkgs.nix;
-  # nix.settings.use-xdg-base-directories = true;
+  nix.package = pkgs.nix;
 
   # TODO: remove on nixos
   nixGL.packages = inputs.nixgl.packages;

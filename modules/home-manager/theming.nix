@@ -15,7 +15,7 @@ let
     fish.src = "${inputs.catpucchin-fish}/themes/Catppuccin ${pkgs.lib.strings.toSentenceCase style}.theme";
     neovim.name = "catppuccin";
     neovim.style = style;
-    spicetify.theme = inputs.spicetify-nix.legacyPackages.${pkgs.system}.themes.catppuccin or null;
+    spicetify.theme = pkgs.spicePkgs.themes.catppuccin;
     spicetify.colorScheme = style;
   };
 

@@ -17,7 +17,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = pkgs.neovim-nightly;
 
     extraLuaConfig = ''
       vim.loader.enable()

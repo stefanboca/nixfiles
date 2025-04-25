@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -37,31 +38,45 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      ...
-    }:
-    let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [
-          inputs.fenix.overlays.default
-          inputs.ghostty.overlays.default
-        ];
-        config.allowUnfree = true;
-      };
-    in
     {
-      homeConfigurations.doctorwho = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          inputs.stylix.homeManagerModules.stylix
-          ./home.nix
-        ];
-        extraSpecialArgs = { inherit inputs; };
+      self,
+      home-manager,
+      flake-parts,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        home-manager.flakeModules.home-manager
+        ./modules/flake/modules.nix
+        ./modules/flake/nix.nix
+        ./modules/flake/overlays.nix
+      ];
+
+      systems = [ "x86_64-linux" ];
+
+      flake = {
+        homeConfigurations = {
+          doctorwho = home-manager.lib.homeManagerConfiguration {
+            pkgs = import inputs.nixpkgs {
+              system = "x86_64-linux";
+              inherit (self.nixCfg.nixpkgs) config overlays;
+            };
+            modules = [ self.homeManagerModules.doctorwho ];
+          };
+        };
       };
 
-      formatter.${pkgs.system} = pkgs.nixfmt-tree;
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt-tree;
+        };
     };
 }

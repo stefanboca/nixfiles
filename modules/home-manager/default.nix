@@ -1,0 +1,3 @@
+{
+  theming = import ./theming.nix;
+}

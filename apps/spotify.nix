@@ -1,22 +1,14 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }:
 
-let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-in
 {
-  imports = [
-    inputs.spicetify-nix.homeManagerModules.spicetify
-  ];
-
   # TODO: stylix overrides
   programs.spicetify = {
     # enable = true; # see note below
-    enabledExtensions = with spicePkgs.extensions; [
+    enabledExtensions = with pkgs.spicePkgs.extensions; [
       adblockify
       bookmark
     ];
