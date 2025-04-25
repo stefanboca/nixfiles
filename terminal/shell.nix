@@ -35,6 +35,10 @@
       scu = "systemctl --user";
 
       nsn = "nix search nixpkgs";
+      hm = "home-manager";
+      hms = "home-manager -L switch";
+      hmb = "home-manager -L build";
+      hmd = "nix store diff-closures ~/.local/state/nix/profiles/home-manager ~/.config/home-manager/result/";
 
       se = "sudoedit";
       lj = "lazyjj";
