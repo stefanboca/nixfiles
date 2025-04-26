@@ -42,11 +42,9 @@ in
         sc = "sudo systemctl --system";
         scu = "systemctl --user";
 
-        nsn = "nix search nixpkgs";
-        hm = "home-manager";
-        hmb = "home-manager -L build";
-        hmd = "nix store diff-closures ~/.local/state/nix/profiles/home-manager ~/.config/home-manager/result/";
-        hms = "home-manager -L switch";
+        ns = "nh search";
+        nhb = "nh home build";
+        nhs = "nh home switch";
 
         se = "sudoedit";
         lj = "lazyjj";

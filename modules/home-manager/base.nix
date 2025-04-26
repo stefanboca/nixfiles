@@ -14,9 +14,6 @@ in
       homeDirectory = lib.mkDefault "/home/${config.home.username}";
       stateVersion = lib.mkDefault "25.05";
       preferXdgDirectories = true;
-      sessionVariables = {
-        FLAKE = "$HOME/data/nixfiles";
-      };
       language.base = "en_US.UTF-8";
     };
 

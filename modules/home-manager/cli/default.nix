@@ -60,6 +60,11 @@ in
         ];
       };
       jq.enable = true; # transform json
+      # TODO: move to nixos
+      nh = {
+        enable = true;
+        flake = lib.mkDefault "${config.home.homeDirectory}/data/nixfiles";
+      };
       ripgrep.enable = true; # better grep
       # cheatsheets for shell commands
       tealdeer = {
