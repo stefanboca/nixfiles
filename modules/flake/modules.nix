@@ -17,7 +17,7 @@ let
     extraArgs
 
     # shared nixpkgs config for home-manager
-    { config = { inherit (self.nixCfg) nix nixpkgs; }; }
+    { config = { inherit (self.nixCfg) nix; }; }
   ] ++ builtins.attrValues allHomeManager;
 
   nixosCommon = [
