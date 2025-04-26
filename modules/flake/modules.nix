@@ -17,7 +17,7 @@ let
     extraArgs
 
     # shared nixpkgs config for home-manager
-    { config = { inherit (self.nixCfg) nix; }; }
+    { config = { inherit (self.nixCfg) nix nixpkgs; }; }
   ] ++ builtins.attrValues allHomeManager;
 
   nixosCommon = [
@@ -52,7 +52,7 @@ in
     homeManagerModules = {
       common = homeCommon;
 
-      doctorwho.imports = [ ../../home.nix ] ++ homeCommon;
+      doctorwho.imports = [ ../../home/stefan/laptop.nix ] ++ homeCommon;
     } // allHomeManager;
   };
 }

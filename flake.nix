@@ -8,8 +8,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # TODO: remove on nixos
-    nixgl.url = "github:nix-community/nixGL";
-    nixgl.inputs.nixpkgs.follows = "nixpkgs";
+    nixGL.url = "github:nix-community/nixGL";
+    nixGL.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
@@ -66,13 +66,26 @@
 
         # TODO: remove on nixos
         homeConfigurations = {
-          doctorwho = home-manager.lib.homeManagerConfiguration {
-            pkgs = import inputs.nixpkgs {
-              system = "x86_64-linux";
-              inherit (self.nixCfg.nixpkgs) config overlays;
+          doctorwho =
+            let
+              pkgs = import inputs.nixpkgs {
+                system = "x86_64-linux";
+                inherit (self.nixCfg.nixpkgs) config overlays;
+              };
+            in
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              modules = [
+                self.homeManagerModules.doctorwho
+                {
+                  nix.package = pkgs.nix;
+                  home.username = "doctorwho";
+                  home.homeDirectory = "/home/doctorwho";
+                  nixGL.packages = inputs.nixGL.packages;
+                  nixGL.vulkan.enable = true;
+                }
+              ];
             };
-            modules = [ self.homeManagerModules.doctorwho ];
-          };
         };
       };
 
