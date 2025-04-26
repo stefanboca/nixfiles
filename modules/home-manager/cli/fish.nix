@@ -42,6 +42,8 @@ in
         sc = "sudo systemctl --system";
         scu = "systemctl --user";
 
+        nd = "nix develop -c fish";
+        nfu = "nix flake update";
         ns = "nh search";
         nhb = "nh home build";
         nhs = "nh home switch";
@@ -94,11 +96,6 @@ in
           src = pkgs.fishPlugins.tide.src;
         }
       ];
-
-      interactiveShellInit = ''
-        # use fish for nix shells
-        ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
-      '';
     };
 
     home.activation.configureFish = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''

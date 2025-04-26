@@ -25,7 +25,9 @@ in
       pkgs.ast-grep # syntax-aware structural grep
       pkgs.binsider # ELF analysis tool
       pkgs.devenv # developer environments
+      pkgs.duf # better df
       pkgs.dust # better du
+      pkgs.glow # render markdown in the terminal
       pkgs.hexyl # cli hex viewer
       pkgs.hwatch # better watch
       pkgs.just # command runner
@@ -37,6 +39,7 @@ in
       pkgs.sd # better sed
       pkgs.typos # source code spell checker
       pkgs.watchexec # execute commands in response to file modifications
+      pkgs.xdg-ninja # check for unwanted files and directories in $HOME
       pkgs.xh # cli http client
     ];
 

@@ -31,8 +31,8 @@ in
         "rust-src"
         "rustc"
         "rustfmt"
-        "rust-analyzer"
       ])
+      pkgs.rust-analyzer-nightly
 
       # zig
       pkgs.zig

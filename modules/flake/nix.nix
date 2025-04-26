@@ -28,6 +28,7 @@
           ];
           auto-optimise-store = true;
           use-xdg-base-directories = true;
+          allow-import-from-derivation = false;
           warn-dirty = false;
         };
 
