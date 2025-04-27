@@ -62,6 +62,7 @@ in
     lib.mkMerge [
       {
         stylix.enable = true;
+        stylix.overlays.enable = false;
         stylix.targets.neovim.enable = false;
         stylix.base16Scheme = colorscheme.scheme;
         stylix.fonts = {
