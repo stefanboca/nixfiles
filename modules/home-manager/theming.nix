@@ -22,7 +22,7 @@ let
   mkTokyonightColorscheme = style: {
     scheme = "${inputs.tokyonight-nvim}/extras/base24/tokyonight_${style}.yaml";
     ghostty = "tokyonight${if (style == "moon" || style == "night") then "_" else "-"}${style}";
-    fish.src = "${pkgs.vimPlugins.tokyonight-nvim}/extras/fish_themes/tokyonight_${style}.theme";
+    fish.src = "${inputs.tokyonight-nvim}/extras/fish_themes/tokyonight_${style}.theme";
     neovim.name = "tokyonight";
     neovim.style = style;
   };

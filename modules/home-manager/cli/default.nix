@@ -25,11 +25,13 @@ in
       pkgs.ast-grep # syntax-aware structural grep
       pkgs.binsider # ELF analysis tool
       pkgs.devenv # developer environments
+      pkgs.diskus # faster du -sh
       pkgs.duf # better df
       pkgs.dust # better du
       pkgs.glow # render markdown in the terminal
       pkgs.hexyl # cli hex viewer
       pkgs.hwatch # better watch
+      pkgs.hyperfine # cli benchmarking tool
       pkgs.just # command runner
       pkgs.kondo # clean build dependencies and artifacts
       pkgs.nix-tree # browse dependency graphs of nix derivations

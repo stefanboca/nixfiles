@@ -68,9 +68,9 @@ in
         pkgs.jdt-language-server
 
         # lua
-        pkgs.stylua
+        pkgs.emmylua_ls
         pkgs.lua-language-server
-        inputs.emmylua-analyzer-rust.packages.${pkgs.system}.emmylua_ls
+        pkgs.stylua
 
         # markdown
         pkgs.markdownlint-cli2

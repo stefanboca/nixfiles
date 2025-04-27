@@ -24,13 +24,13 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty?ref=7daabdddef7c0993df4bf13be2c11bd0723e47cf";
+    ghostty.url = "github:ghostty-org/ghostty?ref=ff536e34d6cf963596dcad42d544a533bf476aac";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust?ref=cbbd15c34a568aae9cb9dd917fb1b51a42956620";
+    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust?ref=9e681265e467fd434a0e19653d0823e1116a5240";
     emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";
@@ -47,7 +47,6 @@
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        home-manager.flakeModules.home-manager
         ./modules/flake/modules.nix
         ./modules/flake/nix.nix
         ./modules/flake/overlays.nix
@@ -75,18 +74,7 @@
             in
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
-              modules = [
-                self.homeManagerModules.doctorwho
-                # temporary settings while not on nixos
-                {
-                  nix.package = pkgs.nix;
-                  programs.nh.flake = "/home/doctorwho/.config/home-manager";
-                  home.username = "doctorwho";
-                  home.homeDirectory = "/home/doctorwho";
-                  nixGL.packages = inputs.nixGL.packages;
-                  nixGL.vulkan.enable = true;
-                }
-              ];
+              modules = [ self.homeManagerModules.doctorwho ];
             };
         };
       };

@@ -6,6 +6,7 @@
     ./users/stefan.nix
   ];
 
+  programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
   users.mutableUsers = false;
 }

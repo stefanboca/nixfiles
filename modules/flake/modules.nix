@@ -52,7 +52,21 @@ in
     homeManagerModules = {
       common = homeCommon;
 
-      doctorwho.imports = [ ../../home/stefan/laptop.nix ] ++ homeCommon;
+      doctorwho.imports = [
+        ../../home/stefan/laptop.nix
+
+        (
+          { pkgs, ... }:
+          {
+            nix.package = pkgs.nix;
+            programs.nh.flake = "/home/doctorwho/.config/home-manager";
+            home.username = "doctorwho";
+            home.homeDirectory = "/home/doctorwho";
+            nixGL.packages = inputs.nixGL.packages;
+            nixGL.vulkan.enable = true;
+          }
+        )
+      ] ++ homeCommon;
     } // allHomeManager;
   };
 }

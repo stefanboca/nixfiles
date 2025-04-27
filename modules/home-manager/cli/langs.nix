@@ -14,10 +14,14 @@ in
       # gh
       pkgs.zizmor # github actions static analysis tool
 
+      # lua
+      pkgs.emmylua_check
+
       # typst
       pkgs.typst
 
       # rust
+      pkgs.bugstalker # cli debugger
       pkgs.cargo-cache # rust cache cli
       pkgs.cargo-machete # find unused crates
       pkgs.cargo-nextest # better cargo test
