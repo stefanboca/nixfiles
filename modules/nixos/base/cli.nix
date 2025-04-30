@@ -34,7 +34,9 @@ in
       pkgs.jq
       pkgs.killall
       pkgs.lsb-release
+      pkgs.lshw
       pkgs.ripgrep
+      pkgs.vim
       pkgs.wget
     ];
   };

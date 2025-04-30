@@ -45,7 +45,18 @@ in
       common = nixosCommon;
 
       # TODO: find a better hostname
-      laptop.imports = [ ] ++ nixosCommon;
+      laptop.imports =
+        with inputs.nixos-hardware.nixosModules;
+        [
+          ../../hosts/laptop/default.nix
+
+          asus-battery
+          common-cpu-intel
+          common-gpu-intel
+          common-gpu-nvidia
+          common-pc-ssd
+        ]
+        ++ nixosCommon;
     } // allNixos;
 
     # TODO: remove on nixos

@@ -25,6 +25,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+    systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+
+    services.xserver.enable = false;
+
+    fonts.enableDefaultPackages = true;
     fonts.fontconfig.enable = true;
     fonts.fontDir.enable = true;
 
@@ -35,7 +41,7 @@ in
       alsa.enable = lib.mkDefault true;
       alsa.support32Bit = lib.mkDefault true;
       pulse.enable = lib.mkDefault true;
-      # jack.enable = true;
+      jack.enable = lib.mkDefault true;
 
       wireplumber = {
         extraConfig."10-bluez" = {
@@ -54,6 +60,12 @@ in
       };
     };
 
+    hardware = {
+      bluetooth.enable = true;
+      graphics.enable = true;
+    };
+    services.blueman.enable = true;
+
     systemd.user.services.mpris-proxy = lib.mkIf config.hardware.bluetooth.enable {
       description = "Mpris proxy";
       after = [
@@ -64,9 +76,11 @@ in
       serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     };
 
-    services.power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
-    services.auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
     services.thermald.enable = true;
+    services.power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
+    services.tlp.enable = lib.mkIf cfg.isLaptop false;
+    services.auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
+    services.upower.enable = lib.mkIf cfg.isLaptop true;
 
     services.udev.extraRules = lib.concatStringsSep "\n" [
       # rules for allowing users in the video group to change the backlight brightness

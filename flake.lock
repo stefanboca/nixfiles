@@ -636,6 +636,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1745955289,
+        "narHash": "sha256-mmV2oPhQN+YF2wmnJzXX8tqgYmUYXUj3uUUBSTmYN5o=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "72081c9fbbef63765ae82bff9727ea79cc86bd5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1745930157,
@@ -732,6 +747,7 @@
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixGL": "nixGL",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
@@ -821,11 +837,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1745962538,
-        "narHash": "sha256-UmQxI4ocPZUVHuxtaQN3zNNBU8KLK9x2gXl2kWUhMKY=",
+        "lastModified": 1746058677,
+        "narHash": "sha256-EahqvqHIp2at0ZtUQaq60YdgBtuOHV2hwj127rC0A7w=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "764fd32955e79f2742a7975f0150175f93add2fb",
+        "rev": "e11bc9a59d45c36c7e5e47f4ff0fab21a1f52f8c",
         "type": "github"
       },
       "original": {

@@ -1,13 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = config.base;
 in
 {
-  imports = [
-    ./cli.nix
-    ./gpu.nix
-  ];
+  imports = [ ./cli.nix ];
 
   options.base = {
     enable = lib.mkEnableOption "Enable the base system module";
@@ -31,13 +32,40 @@ in
 
   config = lib.mkIf cfg.enable {
     boot = lib.mkIf cfg.boot.enable {
-      initrd.systemd.enable = true;
+      loader = {
+        systemd-boot = {
+          enable = true;
+          configurationLimit = lib.mkDefault 3;
+          consoleMode = "max";
+        };
+        timeout = lib.mkDefault 1;
+        efi.canTouchEfiVariables = true;
+      };
+
+      initrd = {
+        verbose = false;
+        systemd.enable = true;
+      };
+
+      plymouth = {
+        enable = true;
+        # TODO: integrate
+        # theme = "colorful_loop";
+        # themePackages = [ pkgs.adi1090x-plymouth-themes ];
+      };
+
       tmp.useTmpfs = true;
+
       binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+      supportedFilesystems = [ "btrfs" ];
     };
     systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
+    console.useXkbConfig = true;
+
     time.timeZone = cfg.tz;
+    i18n.defaultLocale = "en_US.UTF-8";
 
     networking = {
       networkmanager = {
@@ -49,7 +77,6 @@ in
     # needed for iwd
     services.gnome.gnome-keyring.enable = true;
 
-    services.fstrim.enable = true;
     services.irqbalance.enable = true;
 
     zramSwap = {

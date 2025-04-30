@@ -1,7 +1,12 @@
 { ... }:
 
 {
-  imports = [ ];
+  imports = [
+    ./filesystem.nix
+    ./hardware-configuration.nix
+  ];
+
+  networking.hostName = "laptop";
 
   base.enable = true;
 
