@@ -7,7 +7,9 @@ let
   extraArgs =
     { pkgs, ... }:
     {
-      _module.args = { inherit self inputs; };
+      _module.args = {
+        inherit self inputs;
+      };
     };
 
   homeCommon = [
@@ -34,12 +36,15 @@ let
         home-manager = {
           sharedModules = homeCommon;
           useGlobalPkgs = true;
+          useUserPackages = true;
         };
       };
     }
   ] ++ builtins.attrValues allNixos;
 in
 {
+  imports = [ inputs.home-manager.flakeModules.home-manager ];
+
   flake = {
     nixosModules = {
       common = nixosCommon;

@@ -39,6 +39,8 @@
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

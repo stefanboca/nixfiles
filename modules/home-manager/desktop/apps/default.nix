@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ./browser/firefox.nix
     ./spotify.nix
     ./term/ghostty.nix
   ];
