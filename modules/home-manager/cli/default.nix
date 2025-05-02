@@ -48,6 +48,7 @@ in
     programs = {
       bat.enable = true; # better cat
       bottom.enable = true; # system monitor
+      btop.enable = true; # system monitor
       eza.enable = true; # better ls
       fd.enable = true; # better find
       # fuzzy finder

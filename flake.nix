@@ -14,6 +14,7 @@
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.inputs.home-manager.follows = "home-manager";
     catppuccin-fish.url = "github:catppuccin/fish";
     catppuccin-fish.flake = false;
     # TODO: remove once https://github.com/folke/tokyonight.nvim/pull/716 is merged, and use pkgs.vimPlugins.tokyonight-nvim instead
@@ -25,13 +26,15 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty?ref=ff536e34d6cf963596dcad42d544a533bf476aac";
+    ghostty.url = "github:ghostty-org/ghostty/ff536e34d6cf963596dcad42d544a533bf476aac";
+    ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
 
     # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust?ref=9e681265e467fd434a0e19653d0823e1116a5240";
+    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/9e681265e467fd434a0e19653d0823e1116a5240";
     emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";

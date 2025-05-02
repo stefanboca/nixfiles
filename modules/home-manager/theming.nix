@@ -176,7 +176,7 @@ in
         xdg.configFile."fish/themes/${lib.defaultTo cfg.colorscheme colorscheme.fish.name}.theme".source =
           colorscheme.fish.src;
 
-        home.activation.fishConfigureTheme = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
+        home.activation.configureFishTheme = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
           run --quiet ${pkgs.fish}/bin/fish -c "
             echo y | fish_config theme save '${lib.defaultTo cfg.colorscheme colorscheme.fish.name}'
           "'';
