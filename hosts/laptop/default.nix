@@ -9,6 +9,7 @@
   networking.hostName = "laptop";
 
   base.enable = true;
+  base.boot.enable = true;
 
   desktop = {
     enable = true;

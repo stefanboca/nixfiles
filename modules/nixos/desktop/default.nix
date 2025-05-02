@@ -29,7 +29,9 @@ in
     # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
     # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 
-    services.xserver.enable = false;
+    # TODO: xdg portal integration w/ base system
+
+    services.xserver.enable = false; # disable wayland
 
     fonts.enableDefaultPackages = true;
     fonts.fontconfig.enable = true;
