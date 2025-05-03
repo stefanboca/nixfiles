@@ -12,8 +12,9 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.difftastic # syntax-aware structural diff tool
-      pkgs.mergiraf # syntax-aware structural merge driver
+      pkgs.jjui # TUI for jujutsu
       pkgs.lazyjj # TUI for jujutsu
+      pkgs.mergiraf # syntax-aware structural merge driver
     ];
 
     programs = {
@@ -25,14 +26,10 @@ in
         signing = {
           signByDefault = true;
           format = "ssh";
-          key = "~/.ssh/id_ed25519.pub"; # TODO: nixify
+          key = "~/.ssh/id_ed25519_github.pub";
         };
         extraConfig = {
-          gpg = {
-            ssh = {
-              allowedSignersFile = "~/.config/git/allowed_signers"; # TODO: nixify
-            };
-          };
+          gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
           init = {
             defautlBranch = "main";
           };
@@ -51,9 +48,10 @@ in
         .jj
         *.scratch.*
       '';
-      "git/allowed_signers".text =
-        ''stefan.r.boca@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9wCJxy/++oRXAekKU/R6byETPBBOOfHpaoYje3r+Ci doctorwho@pc-doctorwho-ux8402'';
       "jj/config.toml".source = ./jj.toml; # TODO: port to nix?
     };
+
+    home.file.".ssh/allowed_signers".text =
+      "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_github.pub}";
   };
 }

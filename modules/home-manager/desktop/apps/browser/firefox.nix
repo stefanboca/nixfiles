@@ -28,6 +28,7 @@
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.showWeather" = false;
           "browser.newtabpage.activity-stream.telemetry" = false;
+          "browser.startup.page" = 3;
           "browser.ping-centre.telemetry" = false;
           "browser.tabs.closeWindowWithLastTab" = false;
           "browser.toolbars.bookmarks.visibility" = false;
@@ -93,7 +94,7 @@
               definedAliases = [ "np" ];
             };
             "Nix Options" = {
-              urls = [ { template = "https://search.nixos.org/options?channel=unstable&search={searchTerms}"; } ];
+              urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "no" ];
             };

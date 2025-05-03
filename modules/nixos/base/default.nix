@@ -8,7 +8,10 @@ let
   cfg = config.base;
 in
 {
-  imports = [ ./cli.nix ];
+  imports = [
+    ./cli.nix
+    ./ssh.nix
+  ];
 
   options.base = {
     enable = lib.mkEnableOption "Enable the base system module";

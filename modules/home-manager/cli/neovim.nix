@@ -67,6 +67,9 @@ in
         # java
         pkgs.jdt-language-server
 
+        # just
+        pkgs.just-lsp
+
         # lua
         pkgs.emmylua_ls
         pkgs.lua-language-server

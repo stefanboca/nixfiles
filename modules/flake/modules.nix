@@ -13,6 +13,7 @@ let
     };
 
   homeCommon = [
+    inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.stylix.homeManagerModules.stylix
 
@@ -24,6 +25,7 @@ let
 
   nixosCommon = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
 
     ../../hosts/common
 

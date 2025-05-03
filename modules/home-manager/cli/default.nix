@@ -13,6 +13,7 @@ in
     ./fish.nix
     ./langs.nix
     ./neovim.nix
+    ./ssh.nix
     ./vcs.nix
   ];
 
@@ -22,6 +23,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
+      pkgs.age # encryption
       pkgs.ast-grep # syntax-aware structural grep
       pkgs.binsider # ELF analysis tool
       pkgs.devenv # developer environments
@@ -39,6 +41,7 @@ in
       pkgs.rnr # batch rename files and directories
       pkgs.scc # count lines of code
       pkgs.sd # better sed
+      pkgs.sops # secrets manager
       pkgs.typos # source code spell checker
       pkgs.watchexec # execute commands in response to file modifications
       pkgs.xdg-ninja # check for unwanted files and directories in $HOME

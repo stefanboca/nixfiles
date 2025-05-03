@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./shared.nix ];
+  imports = [
+    ./shared.nix
+    ./sops.nix
+  ];
 
   desktop.enable = true;
 

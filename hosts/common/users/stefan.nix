@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   users.users.stefan = {
@@ -10,9 +10,11 @@
       "video"
     ];
     password = "temporarypassword"; # FIXME:
+
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ../../../home/stefan/keys/ssh.pub)
+    ];
   };
 
-  # FIXME: using a hardcoded hostname for now, for testing in vm
-  home-manager.users.stefan = import ../../../home/stefan/laptop.nix;
-  # home-manager.users.stefan = import ../../../home/stefan/${config.networking.hostName}.nix;
+  home-manager.users.stefan = import ../../../home/stefan/${config.networking.hostName}.nix;
 }
