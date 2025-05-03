@@ -9,7 +9,7 @@ in
     # ensure public keys are present
     home.file = {
       ".ssh/id_ed25519.pub".source = ../../../home/stefan/keys/id_ed25519.pub;
-      ".ssh/id_ed25519_github.pub".source = ../../../home/stefan/keys/id_ed25519_github.pub;
+      ".ssh/id_ed25519_git.pub".source = ../../../home/stefan/keys/id_ed25519_git.pub;
     };
 
     programs.ssh = {
@@ -18,7 +18,7 @@ in
         "github.com" = {
           hostname = "github.com";
           user = "git";
-          identityFile = "~/.ssh/id_ed25519_github";
+          identityFile = "~/.ssh/id_ed25519_git";
           identitiesOnly = true;
         };
       };

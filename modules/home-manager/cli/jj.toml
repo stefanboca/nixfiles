@@ -51,7 +51,7 @@ conflict-marker-style = "git"
 [signing]
 behavior = "own"
 backend = "ssh"
-key = "~/.ssh/id_ed25519_github.pub"
+key = "~/.ssh/id_ed25519_git.pub"
 backends.ssh.allowed-signers = "~/.ssh/allowed_signers"
 
 [git]

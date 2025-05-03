@@ -26,7 +26,7 @@ in
         signing = {
           signByDefault = true;
           format = "ssh";
-          key = "~/.ssh/id_ed25519_github.pub";
+          key = "~/.ssh/id_ed25519_git.pub";
         };
         extraConfig = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
@@ -52,6 +52,6 @@ in
     };
 
     home.file.".ssh/allowed_signers".text =
-      "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_github.pub}";
+      "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
 }
