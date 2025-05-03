@@ -1,8 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   users.users.root = {
     shell = pkgs.fish;
-    password = "temporarypassword"; # FIXME:
+    hashedPasswordFile = config.sops.secrets.root-pw.path;
+
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ../../../home/stefan/keys/ssh.pub)
+    ];
   };
+
+  sops.secrets.root-pw.neededForUsers = true;
 }

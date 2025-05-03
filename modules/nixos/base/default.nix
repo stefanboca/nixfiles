@@ -50,12 +50,12 @@ in
         systemd.enable = true;
       };
 
-      plymouth = {
-        enable = true;
-        # TODO: integrate
-        # theme = "colorful_loop";
-        # themePackages = [ pkgs.adi1090x-plymouth-themes ];
-      };
+      # TODO: enable and theme
+      # plymouth = {
+      #   enable = true;
+      #   theme = "colorful_loop";
+      #   themePackages = [ pkgs.adi1090x-plymouth-themes ];
+      # };
 
       tmp.useTmpfs = true;
 
