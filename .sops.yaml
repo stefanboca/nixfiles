@@ -2,7 +2,7 @@ keys:
   users:
     - &stefan age1unw3p2hvz2azffj2kv45f2tl9tty4g4ggz9w4ga9hv5tnfx5xses3txuan
   hosts:
-    # - &laptop # TODO: this key should go in /etc/ssh/ssh_host_ed25519_key on nixos
+    # - &laptop # TODO: this key should come from /etc/ssh/ssh_host_ed25519_key on nixos
 
 creation_rules:
   - path_regex: hosts/common/secrets\.(ya?ml|json|env|ini)$

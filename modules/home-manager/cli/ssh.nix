@@ -22,6 +22,7 @@ in
           identitiesOnly = true;
         };
       };
+      extraConfig = ''SetEnv TERM=xterm-256color'';
     };
   };
 }

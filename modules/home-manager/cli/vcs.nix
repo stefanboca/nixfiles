@@ -35,6 +35,9 @@ in
         };
         extraConfig = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+          url."ssh://git@github.com" = {
+            insteadOf = "https://github.com";
+          };
           init = {
             defautlBranch = "main";
           };
