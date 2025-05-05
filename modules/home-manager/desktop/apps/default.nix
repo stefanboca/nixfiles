@@ -21,7 +21,6 @@ in
       builtins.map (pkg: (config.lib.nixGL.wrap pkg)) [
         pkgs.bitwarden
         pkgs.calibre
-        pkgs.discord
         pkgs.easyeffects
         pkgs.gnome-decoder
         pkgs.xournalpp
@@ -31,5 +30,7 @@ in
         pkgs.zotero
       ]
     );
+
+    programs.vesktop.enable = true;
   };
 }
