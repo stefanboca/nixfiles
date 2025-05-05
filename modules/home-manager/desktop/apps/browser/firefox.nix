@@ -83,6 +83,11 @@
           force = true;
           default = "ddg";
           engines = {
+            "Github" = {
+              urls = [ { template = "https://github.com/search?type=repositories&q={searchTerms}"; } ];
+              icon = "https://github.com/favicon.png";
+              definedAliases = [ "gh" ];
+            };
             "NixOS Wiki" = {
               urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
               icon = "https://nixos.wiki/favicon.png";

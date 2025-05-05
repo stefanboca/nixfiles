@@ -25,8 +25,7 @@ in
     };
 
     systemd.services.sshd = {
-      enable = lib.mkDefault false; # disable the unit
-      masked = lib.mkDefault true; # prevent accidental starts
+      enable = lib.mkDefault false;
     };
   };
 }

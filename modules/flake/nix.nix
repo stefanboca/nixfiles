@@ -9,6 +9,7 @@
   flake = {
     nixCfg = {
       nix = {
+        # TODO: access-tokens in a sops-managed secret file (using !include)
         settings = {
           trusted-users = [
             "root"
