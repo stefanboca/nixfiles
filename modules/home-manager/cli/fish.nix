@@ -43,6 +43,7 @@ in
         scu = "systemctl --user";
 
         nd = "nix develop -c fish";
+        nf = "nix flake";
         nfu = "nix flake update";
         ns = "nh search";
         nhb = "nh home build";
