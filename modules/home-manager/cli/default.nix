@@ -74,6 +74,7 @@ in
         enable = true;
         flake = lib.mkDefault "${config.home.homeDirectory}/data/nixfiles";
       };
+      numbat.enable = true; # scientific calculator with physical units
       ripgrep.enable = true; # better grep
       # cheatsheets for shell commands
       tealdeer = {

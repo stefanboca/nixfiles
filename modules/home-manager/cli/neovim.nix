@@ -3,7 +3,6 @@
 
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -32,6 +31,9 @@ in
       extraPackages = [
         pkgs.harper
 
+        # cmake
+        pkgs.neocmakelsp
+
         # python
         pkgs.basedpyright
         pkgs.ruff
@@ -40,6 +42,7 @@ in
         # nix
         pkgs.nil
         pkgs.nixfmt-rfc-style
+        pkgs.statix
 
         # shell
         pkgs.shfmt
@@ -57,10 +60,8 @@ in
         # rust
         # NOTE: rust-analyzer is managed by fenix
         pkgs.graphviz # for crate graph visualtization
-        # pkgs.codelldb # TODO: how to get
 
         # docker
-        pkgs.docker-compose-language-service
         pkgs.docker-language-server
         pkgs.hadolint
 
@@ -91,6 +92,14 @@ in
 
         # zig
         pkgs.zls
+      ];
+
+      extraWrapperArgs = [
+        # codelldb for rust
+        "--suffix"
+        "PATH"
+        ":"
+        "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
       ];
     };
 
