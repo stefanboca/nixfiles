@@ -77,7 +77,6 @@ in
           { pkgs, ... }:
           {
             nix.package = pkgs.nix;
-            programs.nh.flake = "/home/doctorwho/.config/home-manager";
             home.username = "doctorwho";
             home.homeDirectory = "/home/doctorwho";
             nixGL.packages = inputs.nixGL.packages;
