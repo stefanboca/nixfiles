@@ -49,9 +49,8 @@
         root = {
           size = "100%";
           content = {
-            type = "filesystem";
-            format = "btrfs";
-            mountpoint = "/";
+            type = "btrfs";
+            mountpoint = "/partition-root";
             # Subvolume name is different from mountpoint
             subvolumes = {
               "/rootfs" = {
