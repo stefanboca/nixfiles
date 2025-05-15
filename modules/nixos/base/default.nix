@@ -46,8 +46,8 @@ in
       };
 
       initrd = {
-        verbose = false;
-        systemd.enable = true;
+        verbose = true; # TODO: revert to false
+        # systemd.enable = true;
       };
 
       # TODO: enable and theme
