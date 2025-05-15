@@ -31,7 +31,7 @@
 
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/sdb"; # TODO: change
+    device = "/dev/sda"; # TODO: change
     content = {
       type = "gpt";
       partitions = {
