@@ -83,6 +83,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747274630,
+        "narHash": "sha256-87RJwXbfOHyzTB9LYagAQ6vOZhszCvd8Gvudu+gf3qo=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "ec7c109a4f794fce09aad87239eab7f66540b888",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "emmylua-analyzer-rust": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -775,6 +795,7 @@
     "root": {
       "inputs": {
         "catppuccin-fish": "catppuccin-fish",
+        "disko": "disko",
         "emmylua-analyzer-rust": "emmylua-analyzer-rust",
         "fenix": "fenix",
         "firefox-nightly": "firefox-nightly",
@@ -897,11 +918,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1747271033,
-        "narHash": "sha256-FFJoRbdbJQK4LERw1e2LKvYQsO05H4ZQlpjcQmmVqDA=",
+        "lastModified": 1747277033,
+        "narHash": "sha256-CXlOnolot/OYiDoG391q2dQVmdtuznpDRlsY+m55oHo=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "71f8b1166b88751e59648c94ff919cfb94966b3d",
+        "rev": "b460904a6fc6273345d5e2525dc89ec033d68be9",
         "type": "github"
       },
       "original": {

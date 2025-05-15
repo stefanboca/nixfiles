@@ -62,6 +62,8 @@ in
           common-gpu-intel
           common-gpu-nvidia
           common-pc-ssd
+
+          inputs.disko.nixosModules.disko
         ]
         ++ nixosCommon;
     } // allNixos;

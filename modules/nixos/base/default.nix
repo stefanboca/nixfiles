@@ -61,7 +61,9 @@ in
 
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-      supportedFilesystems = [ "btrfs" ];
+      supportedFilesystems = {
+        btrfs = true;
+      };
     };
     systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
