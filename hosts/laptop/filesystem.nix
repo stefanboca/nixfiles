@@ -30,8 +30,9 @@
   # };
 
   disko.devices.disk.main = {
+    # TODO: s/main/primary
     type = "disk";
-    device = "/dev/sda"; # TODO: change
+    device = "/dev/sda"; # TODO: change to /dev/nvme0n1
     content = {
       type = "gpt";
       partitions = {
