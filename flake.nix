@@ -66,6 +66,7 @@
         ./modules/flake/modules.nix
         ./modules/flake/nix.nix
         ./modules/flake/overlays.nix
+        ./modules/flake/shell.nix
       ];
 
       systems = [ "x86_64-linux" ];
