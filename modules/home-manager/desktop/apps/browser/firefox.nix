@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.sessionVariables = rec {
@@ -8,7 +8,7 @@
 
   programs.firefox = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox-nightly;
+    package = pkgs.firefox-nightly;
 
     profiles = {
       stefan = {

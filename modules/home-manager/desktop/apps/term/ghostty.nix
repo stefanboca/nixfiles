@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -12,7 +11,6 @@ in
   config = lib.mkIf cfg.enable {
     programs.ghostty = {
       enable = true;
-      package = (config.lib.nixGL.wrap pkgs.ghostty);
       installVimSyntax = true;
       installBatSyntax = true;
 

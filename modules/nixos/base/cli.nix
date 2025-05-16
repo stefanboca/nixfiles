@@ -14,6 +14,7 @@ in
 
     programs = {
       fish.enable = true;
+      command-not-found.enable = false;
 
       nh = {
         enable = true;
@@ -21,23 +22,28 @@ in
       };
     };
 
-    environment.systemPackages = [
-      pkgs.bat
-      pkgs.curl
-      pkgs.eza
-      pkgs.fd
-      pkgs.ffmpeg
-      pkgs.file
-      pkgs.fzf
-      pkgs.git
-      pkgs.home-manager
-      pkgs.jq
-      pkgs.killall
-      pkgs.lsb-release
-      pkgs.lshw
-      pkgs.ripgrep
-      pkgs.vim
-      pkgs.wget
+    environment.systemPackages = with pkgs; [
+      age
+      bat
+      curl
+      eza
+      fd
+      ffmpeg
+      file
+      fzf
+      gcc
+      git
+      gnumake
+      home-manager
+      imagemagick
+      jq
+      killall
+      lsb-release
+      lshw
+      nix-index
+      ripgrep
+      vim
+      wget
     ];
   };
 }

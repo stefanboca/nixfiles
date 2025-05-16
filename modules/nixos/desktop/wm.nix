@@ -11,11 +11,13 @@ in
 {
   options.desktop.wm = {
     enableGnome = lib.mkEnableOption "Enable Gnome DE.";
-    enableCosmic = lib.mkEnableOption "Enable Gnome DE.";
+    enableCosmic = lib.mkEnableOption "Enable Cosmic DE.";
   };
 
   config = {
     services = {
+      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
+
       xserver.desktopManager.gnome.enable = lib.mkIf cfg.enableGnome true;
       desktopManager.cosmic.enable = lib.mkIf cfg.enableCosmic true;
 

@@ -17,11 +17,6 @@ in
       language.base = "en_US.UTF-8";
     };
 
-    programs.home-manager = {
-      enable = true;
-      path = lib.mkForce "${config.home.homeDirectory}/data/nixfiles";
-    };
-
     xdg.enable = true;
     fonts.fontconfig.enable = true;
 

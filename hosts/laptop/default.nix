@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -11,10 +11,12 @@
   base.enable = true;
   base.boot.enable = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   desktop = {
     enable = true;
     isLaptop = true;
-    dm = "cosmic-greeter";
+    dm = "gdm";
     wm.enableGnome = true;
     wm.enableCosmic = true;
   };

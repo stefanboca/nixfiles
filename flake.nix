@@ -14,9 +14,6 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # TODO: remove on nixos
-    nixGL.url = "github:nix-community/nixGL";
-    nixGL.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix = {
       url = "github:danth/stylix";
@@ -34,7 +31,7 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty/a090e8eeeda7015f7cadbd4aa0ea4654a8026a71";
+    ghostty.url = "github:ghostty-org/ghostty/a6466c5ca0d14f68a93c560cb5f987bbf6d7f327";
     ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
 
     neovim-nightly-overlay = {
@@ -44,14 +41,12 @@
     };
 
     # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/61ea1ca9b9b706419a23e0b82cb1776e87e18ac8";
+    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/de6002460e388112d73558664385bedd9021f0ee";
     emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    zen-browser.url = "github:youwen5/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
   };

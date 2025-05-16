@@ -46,8 +46,8 @@ in
       };
 
       initrd = {
-        verbose = true; # TODO: revert to false
-        # systemd.enable = true;
+        verbose = false;
+        systemd.enable = true;
       };
 
       # TODO: enable and theme
@@ -79,18 +79,20 @@ in
       };
       nftables.enable = true;
     };
-    # needed for iwd
-    services.gnome.gnome-keyring.enable = true;
 
-    services.irqbalance.enable = true;
+    services = {
+      irqbalance.enable = true;
+      dbus.implementation = "broker";
+
+      # needed for iwd
+      gnome.gnome-keyring.enable = true;
+    };
 
     zramSwap = {
       enable = true;
       algorithm = "lzo-rle";
       memoryPercent = 25;
     };
-
-    services.dbus.implementation = "broker";
 
     # use newer switch-to-configuration
     system.switch = {

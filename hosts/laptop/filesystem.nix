@@ -6,33 +6,28 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
     fsType = "btrfs";
-    options = [ "subvol=/rootfs" ];
+    options = [ "subvol=rootfs" ];
   };
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
-    fsType = "btrfs";
-    options = [
-      "subvol=/home"
-      "compress=zstd:1"
-    ];
-  };
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
-    fsType = "btrfs";
-    options = [
-      "subvol=/nix"
-      "compress=zstd:1"
-      "noatime"
-    ];
-  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/2602-4870";
     fsType = "vfat";
     options = [ "umask=0077" ];
   };
 
-  # disko.devices.disk.main = {
-  #   # TODO: s/main/primary
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
+    fsType = "btrfs";
+    options = [ "subvol=nix" ];
+  };
+
+  # disko.devices.disk.primary = {
   #   type = "disk";
   #   device = "/dev/sda"; # TODO: change to /dev/nvme0n1
   #   content = {

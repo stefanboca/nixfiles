@@ -16,20 +16,13 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    # TODO: remove nixGL on nixos
-    home.packages = (
-      builtins.map (pkg: (config.lib.nixGL.wrap pkg)) [
-        pkgs.bitwarden
-        pkgs.calibre
-        pkgs.easyeffects
-        pkgs.gnome-decoder
-        pkgs.xournalpp
-        pkgs.signal-desktop
-        pkgs.telegram-desktop
-        pkgs.zen-browser # TODO: move to global on nixos
-        pkgs.zotero
-      ]
-    );
+    home.packages = with pkgs; [
+      bitwarden
+      easyeffects
+      gnome-decoder
+      signal-desktop
+      telegram-desktop
+    ];
 
     programs.vesktop.enable = true;
   };

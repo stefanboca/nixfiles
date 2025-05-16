@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -8,30 +8,39 @@
 
   desktop.enable = true;
 
-  home.packages = builtins.map (pkg: (config.lib.nixGL.wrap pkg)) [
-    pkgs.blender
-    pkgs.geogebra6
-    pkgs.jetbrains.idea-community
-    pkgs.musescore
-    pkgs.prusa-slicer
-    pkgs.rnote
+  home.packages = with pkgs; [
+    blender
+    calibre
+    geogebra6
+    jetbrains.idea-community
+    musescore
+    prusa-slicer
+    rnote
+    xournalpp
+    zotero
   ];
 
-  programs.obs-studio = {
-    enable = true;
-    package = (config.lib.nixGL.wrap pkgs.obs-studio);
-  };
+  programs.obs-studio.enable = true;
 
   theming.enable = true;
   theming.colorscheme = "tokyonight-moon";
 
   dconf = {
     enable = true;
-    # map screenpad touchscreen to correct display
-    settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = [
-      "BOE"
-      "0x0a8d"
-      "0x00000000"
-    ];
+    settings = {
+      # map screenpad touchscreen to correct display
+      "org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = [
+        "BOE"
+        "0x0a8d"
+        "0x00000000"
+      ];
+      "org/gnome/mutter".experimental-features = [
+        "autoclose-xwayland"
+        "kms-modifiers"
+        "scale-monitor-framebuffer"
+        "variable-refresh-rate"
+        "xwayland-native-scaling"
+      ];
+    };
   };
 }
