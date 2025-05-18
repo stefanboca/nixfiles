@@ -19,6 +19,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+      inputs.flake-parts.follows = "flake-parts";
     };
     catppuccin-fish.url = "github:catppuccin/fish";
     catppuccin-fish.flake = false;
