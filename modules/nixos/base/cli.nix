@@ -44,6 +44,7 @@ in
       lsb-release
       lshw
       nix-index
+      nmap
       parted
       ripgrep
       sops
