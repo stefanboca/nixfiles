@@ -10,5 +10,7 @@ in
     enable = lib.mkEnableOption "Enable Desktop configuration";
   };
 
-  config = lib.mkIf cfg.enable { };
+  config = lib.mkIf cfg.enable {
+    xdg.mimeApps.enable = true;
+  };
 }

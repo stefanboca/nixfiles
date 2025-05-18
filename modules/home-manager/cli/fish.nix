@@ -13,7 +13,6 @@ in
     home.shell.enableFishIntegration = true;
 
     programs = {
-      pay-respects.enable = true;
       zoxide.enable = true;
       fish = {
         enable = true;
@@ -57,10 +56,6 @@ in
           nv = "neovide";
           n = "nvim";
           o = "open";
-
-          sl = "eza -l";
-          sa = "eza -la";
-          s = "eza";
 
           j = "jj";
         };

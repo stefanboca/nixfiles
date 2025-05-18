@@ -26,7 +26,10 @@ in
       age
       bat
       curl
+      e2fsprogs
+      efibootmgr
       eza
+      fatresize
       fd
       ffmpeg
       file
@@ -41,7 +44,10 @@ in
       lsb-release
       lshw
       nix-index
+      parted
       ripgrep
+      sops
+      ssh-to-age
       vim
       wget
     ];

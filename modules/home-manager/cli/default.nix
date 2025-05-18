@@ -41,7 +41,6 @@ in
       rnr # batch rename files and directories
       scc # count lines of code
       sd # better sed
-      sops # secrets manager
       typos # source code spell checker
       watchexec # execute commands in response to file modifications
       wl-clipboard # cli clipboard utils

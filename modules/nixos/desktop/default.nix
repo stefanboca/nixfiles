@@ -25,12 +25,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: consider disabling these
-    # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-    # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
-
-    # TODO: xdg portal integration w/ base system
-
     fonts = {
       enableDefaultPackages = true;
       fontconfig.enable = true;
@@ -43,6 +37,12 @@ in
     };
 
     security.rtkit.enable = true;
+
+    # fix shutdown taking a long time
+    systemd.extraConfig = ''
+      DefaultTimeoutStopSec=10s
+      DefaultTimeoutStartSec=10s
+    '';
 
     services = {
       pulseaudio.enable = false;
@@ -69,11 +69,10 @@ in
           };
         };
       };
-      blueman.enable = true;
       thermald.enable = true;
-      power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
-      tlp.enable = lib.mkIf cfg.isLaptop false;
-      auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
+      # power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
+      # tlp.enable = lib.mkIf cfg.isLaptop false;
+      # auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
       upower.enable = lib.mkIf cfg.isLaptop true;
 
       udev.extraRules = lib.concatStringsSep "\n" [
@@ -86,16 +85,5 @@ in
         ''
       ];
     };
-
-    # TODO: is this actually needed?
-    # systemd.user.services.mpris-proxy = lib.mkIf config.hardware.bluetooth.enable {
-    #   description = "Mpris proxy";
-    #   after = [
-    #     "network.target"
-    #     "sound.target"
-    #   ];
-    #   wantedBy = [ "default.target" ];
-    #   serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-    # };
   };
 }

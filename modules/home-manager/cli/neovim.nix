@@ -40,6 +40,7 @@ in
         # snacks.image
         imagemagick
         mermaid-cli
+        ghostscript
 
         harper
 
