@@ -101,15 +101,16 @@ in
         LESS = "-FRXS";
 
         # make stuff xdg compliant
-        CUDA_CACHE_PATH = "${cacheHome}/nv";
-        GNUPGHOME = "${dataHome}/gnupg";
-        NPM_CONFIG_PREFIX = "${dataHome}/npm";
-        NPM_CONFIG_CACHE = "${cacheHome}/npm";
         CARGO_HOME = "${configHome}/cargo";
-        RUSTUP_HOME = "${dataHome}/rust";
-        PYTHON_HISTORY = "${stateHome}/python_history";
-        SQLITE_HISTORY = "${stateHome}/sqlite_history";
+        CUDA_CACHE_PATH = "${cacheHome}/nv"; # TODO: make global
+        GNUPGHOME = "${dataHome}/gnupg";
         HISTFILE = "${stateHome}/bash_history";
+        NPM_CONFIG_CACHE = "${cacheHome}/npm";
+        NPM_CONFIG_PREFIX = "${dataHome}/npm";
+        PLATFORMIO_CORE_DIR = "${dataHome}/platformio";
+        PYTHON_HISTORY = "${stateHome}/python_history";
+        RUSTUP_HOME = "${dataHome}/rust";
+        SQLITE_HISTORY = "${stateHome}/sqlite_history";
       };
   };
 }

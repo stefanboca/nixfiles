@@ -8,18 +8,23 @@
 
   desktop.enable = true;
 
-  home.packages = builtins.map (pkg: (config.lib.nixGL.wrap pkg)) [
-    pkgs.blender
-    pkgs.geogebra6
-    pkgs.jetbrains.idea-community
-    pkgs.musescore
-    pkgs.prusa-slicer
-    pkgs.rnote
-  ];
+  home.packages =
+    with pkgs;
+    [
+      esphome
+    ]
+    ++ (builtins.map (pkg: config.lib.nixGL.wrap pkg) [
+      blender
+      geogebra6
+      jetbrains.idea-community
+      musescore
+      prusa-slicer
+      rnote
+    ]);
 
   programs.obs-studio = {
     enable = true;
-    package = (config.lib.nixGL.wrap pkgs.obs-studio);
+    package = config.lib.nixGL.wrap pkgs.obs-studio;
   };
 
   theming.enable = true;
