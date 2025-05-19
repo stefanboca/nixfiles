@@ -45,7 +45,7 @@ in
         nd = "nix develop -c fish";
         nf = "nix flake";
         nfu = "nix flake update";
-        ns = "nh search";
+        nsn = "nix search nixpkgs";
         nhb = "nh home build";
         nhs = "nh home switch";
 
