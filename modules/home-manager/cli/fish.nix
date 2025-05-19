@@ -12,91 +12,130 @@ in
   config = lib.mkIf cfg.enable {
     home.shell.enableFishIntegration = true;
 
-    programs.pay-respects.enable = true;
-    programs.zoxide.enable = true;
-    programs.fish = {
-      enable = true;
-      preferAbbrs = true;
+    programs = {
+      pay-respects.enable = true;
+      zoxide.enable = true;
 
-      functions = {
-        # disable greeting
-        fish_greeting = "";
-        # Vi-style bindings that inherit emacs-style bindings in all modes
-        fish_hybrid_key_bindings = ''
-          for mode in default insert visual
-            fish_default_key_bindings -M $mode
-          end
-          fish_vi_key_bindings --no-erase insert
-        '';
-
-        # jj integration for tide
-        _tide_item_jj = ''
-          command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
-          _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
-        '';
-        _tide_item_git_no_jj = ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+      atuin = {
+        enable = true;
+        flags = [ "--disable-up-arrow" ];
+        settings = {
+          ctrl_n_shortcuts = true;
+          enter_accept = true;
+          sync.records = true;
+          workspaces = true;
+          stats = {
+            # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+            common_subcommands = [
+              "cargo"
+              "docker"
+              "git"
+              "ip"
+              "jj"
+              "nix"
+              "nmcli"
+              "npm"
+              "pnpm"
+              "podman"
+              "port"
+              "systemctl"
+            ];
+            # Set commands that should be totally stripped and ignored from stats
+            common_prefix = [ "sudo" ];
+          };
+        };
       };
 
-      shellAbbrs = {
-        # NOTE: (roughly) sorted in order of laziness, least to greatest
-        sc = "sudo systemctl --system";
-        scu = "systemctl --user";
+      fish = {
+        enable = true;
+        preferAbbrs = true;
 
-        nd = "nix develop -c fish";
-        nf = "nix flake";
-        nfu = "nix flake update";
-        nsn = "nix search nixpkgs";
-        nhb = "nh home build";
-        nhs = "nh home switch";
+        functions = {
+          # disable greeting
+          fish_greeting = "";
+          # Vi-style bindings that inherit emacs-style bindings in all modes
+          fish_hybrid_key_bindings = ''
+            for mode in default insert visual
+              fish_default_key_bindings -M $mode
+            end
+            fish_vi_key_bindings --no-erase insert
+          '';
 
-        se = "sudoedit";
-        lj = "lazyjj";
-        nv = "neovide";
-        n = "nvim";
-        o = "open";
+          # jj integration for tide
+          _tide_item_jj = ''
+            command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
+            _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
+          '';
+          _tide_item_git_no_jj = ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+        };
 
-        sl = "eza -l";
-        sa = "eza -la";
-        s = "eza";
+        shellAbbrs = {
+          # NOTE: (roughly) sorted in order of laziness, least to greatest
+          sc = "sudo systemctl --system";
+          scu = "systemctl --user";
 
-        j = "jj";
+          nd = "nix develop";
+          nf = "nix flake";
+          nfu = "nix flake update";
+          nsn = "nix search nixpkgs";
+          nhb = "nh home build";
+          nhs = "nh home switch";
 
-        # TODO: remove on nixos
-        dnfl = "dnf5 list";
-        dnfli = "dnf5 list --installed";
-        dnfmc = "dnf5 makecache";
-        dnfp = "dnf5 info";
-        dnfs = "dnf5 search";
-        dnfrq = "dnf5 repoquery";
+          se = "sudoedit";
+          lj = "lazyjj";
+          nv = "neovide";
+          n = "nvim";
+          o = "open";
 
-        dnfu = "sudo dnf5 upgrade";
-        dnfi = "sudo dnf5 install";
-        dnfri = "sudo dnf5 reinstall";
-        dnfsw = "sudo dnf5 swap";
-        dnfr = "sudo dnf5 remove";
-        dnfc = "sudo dnf5 clean all";
+          sl = "eza -l";
+          sa = "eza -la";
+          s = "eza";
+
+          ju = "jjui";
+          j = "jj";
+
+          # TODO: remove on nixos
+          dnfl = "dnf5 list";
+          dnfli = "dnf5 list --installed";
+          dnfmc = "dnf5 makecache";
+          dnfp = "dnf5 info";
+          dnfs = "dnf5 search";
+          dnfrq = "dnf5 repoquery";
+
+          dnfu = "sudo dnf5 upgrade";
+          dnfi = "sudo dnf5 install";
+          dnfri = "sudo dnf5 reinstall";
+          dnfsw = "sudo dnf5 swap";
+          dnfr = "sudo dnf5 remove";
+          dnfc = "sudo dnf5 clean all";
+        };
+
+        # TODO: why does fish override devshell packages with home-manger packages?
+        # interactiveShellInit = ''
+        #   ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+        # '';
+
+        plugins = [
+          {
+            name = "autopair";
+            inherit (pkgs.fishPlugins.autopair) src;
+          }
+          {
+            name = "git-abbr";
+            inherit (pkgs.fishPlugins.git-abbr) src;
+          }
+          # text expansions such as .., !! and others
+          {
+            name = "puffer";
+            inherit (pkgs.fishPlugins.puffer) src;
+          }
+          # prompt
+          {
+            name = "tide";
+            inherit (pkgs.fishPlugins.tide) src;
+          }
+        ];
       };
-
-      plugins = [
-        {
-          name = "autopair";
-          src = pkgs.fishPlugins.autopair.src;
-        }
-        {
-          name = "git-abbr";
-          src = pkgs.fishPlugins.git-abbr.src;
-        }
-        # text expansions such as .., !! and others
-        {
-          name = "puffer";
-          src = pkgs.fishPlugins.puffer.src;
-        }
-        # prompt
-        {
-          name = "tide";
-          src = pkgs.fishPlugins.tide.src;
-        }
-      ];
     };
 
     home.activation.configureFish = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''

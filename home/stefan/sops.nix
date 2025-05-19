@@ -8,6 +8,7 @@
     secrets = {
       nix-access-tokens = { };
       ssh-extra-config = { };
+      atuin-key.path = "${config.xdg.dataHome}/atuin/key";
     };
   };
 

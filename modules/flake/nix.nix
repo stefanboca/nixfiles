@@ -9,7 +9,6 @@
   flake = {
     nixCfg = {
       nix = {
-        # TODO: access-tokens in a sops-managed secret file (using !include)
         settings = {
           trusted-users = [
             "root"
@@ -35,7 +34,9 @@
 
         # add each flake input as a registry
         # to make nix3 commands consistent with the flake
-        registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+        registry = (lib.mapAttrs (_: value: { flake = value; }) inputs) // {
+          n.flake = inputs.nixpkgs;
+        };
       };
 
       nixpkgs = {
