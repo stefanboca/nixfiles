@@ -10,36 +10,35 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [
+    home.packages = with pkgs; [
       # gh
-      pkgs.zizmor # github actions static analysis tool
+      zizmor # github actions static analysis tool
 
       # lua
-      pkgs.emmylua_check
+      emmylua_check
 
       # typst
-      pkgs.typst
+      typst
 
       # rust
-      pkgs.bugstalker # cli debugger
-      pkgs.cargo-cache # rust cache cli
-      pkgs.cargo-machete # find unused crates
-      pkgs.cargo-nextest # better cargo test
-      pkgs.cargo-udeps # find unused crates
-      pkgs.cargo-watch # run cargo commands on project changes
-      pkgs.cargo-wizard # configure cargo projects for best performance
-      pkgs.ra-multiplex # run a single rust-analyzer instance
-      (pkgs.fenix.complete.withComponents [
+      bugstalker # cli debugger
+      cargo-cache # rust cache cli
+      cargo-nextest # better cargo test
+      cargo-shear # find unused dependencies
+      cargo-watch # run cargo commands on project changes
+      cargo-wizard # configure cargo projects for best performance
+      ra-multiplex # run a single rust-analyzer instance
+      (fenix.complete.withComponents [
         "cargo"
         "clippy"
         "rust-src"
         "rustc"
         "rustfmt"
       ])
-      pkgs.rust-analyzer-nightly
+      rust-analyzer-nightly
 
       # zig
-      pkgs.zig
+      zig
     ];
 
     programs = {

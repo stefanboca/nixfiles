@@ -94,7 +94,7 @@
             in
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
-              modules = [ self.homeManagerModules.doctorwho ];
+              modules = [ self.homeModules.doctorwho ];
             };
         };
       };

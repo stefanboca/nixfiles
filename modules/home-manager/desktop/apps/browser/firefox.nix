@@ -8,7 +8,7 @@
 
   programs.firefox = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox-nightly;
+    package = config.lib.nixGL.wrap pkgs.firefox-nightly-bin;
 
     profiles = {
       stefan = {

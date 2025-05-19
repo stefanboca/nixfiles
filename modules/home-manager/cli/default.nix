@@ -22,30 +22,30 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.age # encryption
-      pkgs.ast-grep # syntax-aware structural grep
-      pkgs.binsider # ELF analysis tool
-      pkgs.devenv # developer environments
-      pkgs.diskus # faster du -sh
-      pkgs.duf # better df
-      pkgs.dust # better du
-      pkgs.glow # render markdown in the terminal
-      pkgs.hexyl # cli hex viewer
-      pkgs.hwatch # better watch
-      pkgs.hyperfine # cli benchmarking tool
-      pkgs.just # command runner
-      pkgs.kondo # clean build dependencies and artifacts
-      pkgs.nix-tree # browse dependency graphs of nix derivations
-      pkgs.procs # better ps
-      pkgs.rnr # batch rename files and directories
-      pkgs.scc # count lines of code
-      pkgs.sd # better sed
-      pkgs.sops # secrets manager
-      pkgs.typos # source code spell checker
-      pkgs.watchexec # execute commands in response to file modifications
-      pkgs.xdg-ninja # check for unwanted files and directories in $HOME
-      pkgs.xh # cli http client
+    home.packages = with pkgs; [
+      age # encryption
+      ast-grep # syntax-aware structural grep
+      binsider # ELF analysis tool
+      devenv # developer environments
+      diskus # faster du -sh
+      duf # better df
+      dust # better du
+      glow # render markdown in the terminal
+      hexyl # cli hex viewer
+      hwatch # better watch
+      hyperfine # cli benchmarking tool
+      just # command runner
+      kondo # clean build dependencies and artifacts
+      nix-tree # browse dependency graphs of nix derivations
+      procs # better ps
+      rnr # batch rename files and directories
+      scc # count lines of code
+      sd # better sed
+      sops # secrets manager
+      typos # source code spell checker
+      watchexec # execute commands in response to file modifications
+      xdg-ninja # check for unwanted files and directories in $HOME
+      xh # cli http client
     ];
 
     programs = {

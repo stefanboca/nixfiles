@@ -21,23 +21,23 @@ in
       };
     };
 
-    environment.systemPackages = [
-      pkgs.bat
-      pkgs.curl
-      pkgs.eza
-      pkgs.fd
-      pkgs.ffmpeg
-      pkgs.file
-      pkgs.fzf
-      pkgs.git
-      pkgs.home-manager
-      pkgs.jq
-      pkgs.killall
-      pkgs.lsb-release
-      pkgs.lshw
-      pkgs.ripgrep
-      pkgs.vim
-      pkgs.wget
+    environment.systemPackages = with pkgs; [
+      bat
+      curl
+      eza
+      fd
+      ffmpeg
+      file
+      fzf
+      git
+      home-manager
+      jq
+      killall
+      lsb-release
+      lshw
+      ripgrep
+      vim
+      wget
     ];
   };
 }

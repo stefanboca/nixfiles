@@ -32,13 +32,14 @@ in
     };
 
     environment.systemPackages =
-      [ pkgs.dconf-editor ]
+      with pkgs;
+      [ dconf-editor ]
       ++ (lib.optionals cfg.enableCosmic [
-        pkgs.cosmic-bg
+        cosmic-bg
       ])
       ++ (lib.optionals cfg.enableGnome [
-        pkgs.gnome-tweaks
-        pkgs.gnome-backgrounds
+        gnome-tweaks
+        gnome-backgrounds
       ]);
   };
 }

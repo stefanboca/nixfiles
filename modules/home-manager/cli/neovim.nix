@@ -28,70 +28,70 @@ in
         require("config.lazy");
       '';
 
-      extraPackages = [
-        pkgs.harper
+      extraPackages = with pkgs; [
+        harper
 
         # cmake
-        pkgs.neocmakelsp
+        neocmakelsp
 
         # python
-        pkgs.basedpyright
-        pkgs.ruff
-        pkgs.python313Packages.debugpy
+        basedpyright
+        ruff
+        python313Packages.debugpy
 
         # nix
-        pkgs.nil
-        pkgs.nixfmt-rfc-style
-        pkgs.statix
+        nil
+        nixfmt-rfc-style
+        statix
 
         # shell
-        pkgs.shfmt
-        pkgs.bash-language-server
-        pkgs.fish-lsp
+        shfmt
+        bash-language-server
+        fish-lsp
 
         # web
-        pkgs.biome
-        pkgs.prettierd
-        pkgs.svelte-language-server
-        pkgs.tailwindcss-language-server
-        pkgs.vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
-        pkgs.vtsls
+        biome
+        prettierd
+        svelte-language-server
+        tailwindcss-language-server
+        vscode-langservers-extracted # vscode-{css, eslint, html, json, markdown}-language-server
+        vtsls
 
         # rust
         # NOTE: rust-analyzer is managed by fenix
-        pkgs.graphviz # for crate graph visualtization
+        graphviz # for crate graph visualtization
 
         # docker
-        pkgs.docker-language-server
-        pkgs.hadolint
+        docker-language-server
+        hadolint
 
         # java
-        pkgs.jdt-language-server
+        jdt-language-server
 
         # just
-        pkgs.just-lsp
+        just-lsp
 
         # lua
-        pkgs.emmylua_ls
-        pkgs.lua-language-server
-        pkgs.stylua
+        emmylua_ls
+        lua-language-server
+        stylua
 
         # markdown
-        pkgs.markdownlint-cli2
-        pkgs.marksman
+        markdownlint-cli2
+        marksman
 
         # toml
-        pkgs.taplo
+        taplo
 
         # typst
-        pkgs.typstyle
-        pkgs.tinymist
+        typstyle
+        tinymist
 
         # yaml
-        pkgs.yaml-language-server
+        yaml-language-server
 
         # zig
-        pkgs.zls
+        zls
       ];
 
       extraWrapperArgs = [

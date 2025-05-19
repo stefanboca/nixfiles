@@ -13,11 +13,10 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.difftastic # syntax-aware structural diff tool
-      pkgs.jjui # TUI for jujutsu
-      pkgs.lazyjj # TUI for jujutsu
-      pkgs.mergiraf # syntax-aware structural merge driver
+    home.packages = with pkgs; [
+      difftastic # syntax-aware structural diff tool
+      jjui # TUI for jujutsu
+      mergiraf # syntax-aware structural merge driver
     ];
 
     programs = {
