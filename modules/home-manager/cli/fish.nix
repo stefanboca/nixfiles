@@ -23,6 +23,7 @@ in
           ctrl_n_shortcuts = true;
           enter_accept = true;
           sync.records = true;
+          sync_frequency = "1h";
           workspaces = true;
           stats = {
             # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
@@ -39,9 +40,17 @@ in
               "podman"
               "port"
               "systemctl"
+              "uv"
             ];
             # Set commands that should be totally stripped and ignored from stats
             common_prefix = [ "sudo" ];
+            # Set commands that will be completely ignored from stats
+            ignored_commands = [
+              "cd"
+              "ls"
+              "z"
+              "eza"
+            ];
           };
         };
       };
