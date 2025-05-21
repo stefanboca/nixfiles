@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   sops = {
@@ -12,9 +17,13 @@
     };
   };
 
-  nix.extraOptions = ''
-    !include ${config.sops.secrets.nix-access-tokens.path}
-  '';
+  nix = {
+    settings.plugin-files = "${pkgs.nix-plugins}/lib/nix/plugins";
+    settings.extra-builtins-file = [ ../../modules/nix/extra-builtins.nix ];
+    extraOptions = ''
+      !include ${config.sops.secrets.nix-access-tokens.path}
+    '';
+  };
 
   programs.ssh.includes = [ config.sops.secrets.ssh-extra-config.path ];
 }
