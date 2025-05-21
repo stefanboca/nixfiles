@@ -4,9 +4,18 @@
   imports = [
     ./users/root.nix
     ./users/stefan.nix
+    (builtins.extraBuiltins.readSops ./secrets.nix)
   ];
 
-  sops.defaultSopsFile = ./secrets.yaml;
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+
+    secrets = {
+      nix-secrets-common = {
+        sopsFile = ./secrets.nix;
+      };
+    };
+  };
 
   nix.channel.enable = false;
 
