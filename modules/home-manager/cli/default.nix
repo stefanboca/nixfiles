@@ -26,7 +26,6 @@ in
       age # encryption
       ast-grep # syntax-aware structural grep
       binsider # ELF analysis tool
-      devenv # developer environments
       diskus # faster du -sh
       duf # better df
       dust # better du

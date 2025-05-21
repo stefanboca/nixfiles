@@ -33,6 +33,7 @@ in
               "git"
               "ip"
               "jj"
+              "nh"
               "nix"
               "nmcli"
               "npm"
@@ -83,10 +84,12 @@ in
           sc = "sudo systemctl --system";
           scu = "systemctl --user";
 
-          nd = "nix develop";
+          nd = "nix develop -c fish";
           nf = "nix flake";
           nfu = "nix flake update";
-          nsn = "nix search nixpkgs";
+          ns = "nix search";
+          nsh = "nix shell";
+          nr = "nix run";
           nhb = "nh home build";
           nhs = "nh home switch";
 
@@ -118,11 +121,6 @@ in
           dnfr = "sudo dnf5 remove";
           dnfc = "sudo dnf5 clean all";
         };
-
-        # TODO: why does fish override devshell packages with home-manger packages?
-        # interactiveShellInit = ''
-        #   ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
-        # '';
 
         plugins = [
           {

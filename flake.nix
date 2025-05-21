@@ -34,7 +34,7 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty/a090e8eeeda7015f7cadbd4aa0ea4654a8026a71";
+    ghostty.url = "github:ghostty-org/ghostty/a2f52b08e5ad43420aab4e5cf5b2733cefb05845";
     ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
 
     neovim-nightly-overlay = {
@@ -67,6 +67,7 @@
         ./modules/flake/modules.nix
         ./modules/flake/nix.nix
         ./modules/flake/overlays.nix
+        ./modules/flake/packages.nix
         ./modules/flake/shell.nix
       ];
 

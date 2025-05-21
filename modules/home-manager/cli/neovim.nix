@@ -32,6 +32,7 @@ in
         harper
 
         # cmake
+        cmake-lint
         neocmakelsp
 
         # python
