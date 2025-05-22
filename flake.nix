@@ -2,7 +2,7 @@
   description = "Home Manager configuration of doctorwho";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -44,7 +44,7 @@
     };
 
     # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/61ea1ca9b9b706419a23e0b82cb1776e87e18ac8";
+    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/d66423a2ac41adfff32572daa4ff371ca6cb7260";
     emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";
