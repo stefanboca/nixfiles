@@ -25,7 +25,7 @@ in
 
       extraLuaConfig = ''
         vim.loader.enable()
-        require("config.lazy");
+        require("my.config.lazy");
       '';
 
       extraPackages = with pkgs; [
