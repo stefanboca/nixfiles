@@ -27,6 +27,7 @@ in
       ast-grep # syntax-aware structural grep
       binsider # ELF analysis tool
       diskus # faster du -sh
+      dua # disk usage analyzer
       duf # better df
       dust # better du
       glow # render markdown in the terminal
