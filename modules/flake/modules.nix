@@ -20,7 +20,7 @@ let
     extraArgs
 
     # shared nixpkgs config for home-manager
-    { config = { inherit (self.nixCfg) nix; }; }
+    { inherit (self.nixCfg) nix; }
   ] ++ builtins.attrValues allHomeManager;
 
   nixosCommon = [
@@ -33,13 +33,11 @@ let
 
     # shared nixpkgs config for home-manager
     {
-      config = {
-        inherit (self.nixCfg) nix nixpkgs;
-        home-manager = {
-          sharedModules = homeCommon;
-          useGlobalPkgs = true;
-          useUserPackages = true;
-        };
+      inherit (self.nixCfg) nix nixpkgs;
+      home-manager = {
+        sharedModules = homeCommon;
+        useGlobalPkgs = true;
+        useUserPackages = true;
       };
     }
   ] ++ builtins.attrValues allNixos;
@@ -78,6 +76,7 @@ in
         (
           { pkgs, ... }:
           {
+            inherit (self.nixCfg) nixpkgs;
             nix.package = pkgs.nix;
             home.username = "doctorwho";
             home.homeDirectory = "/home/doctorwho";

@@ -29,6 +29,9 @@ in
       '';
 
       extraPackages = with pkgs; [
+        nodejs
+        tree-sitter
+
         harper
 
         # cmake
