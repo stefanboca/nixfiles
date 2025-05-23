@@ -99,6 +99,8 @@ in
           n = "nvim";
           o = "open";
 
+          c = "cargo";
+
           sl = "eza -l";
           sa = "eza -la";
           s = "eza";

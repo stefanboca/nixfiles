@@ -89,18 +89,13 @@ in
 
     home.sessionVariables =
       let
-        inherit (config.xdg)
-          cacheHome
-          configHome
-          dataHome
-          stateHome
-          ;
+        inherit (config.xdg) cacheHome dataHome stateHome;
       in
       {
         LESS = "-FRXS";
 
         # make stuff xdg compliant
-        CARGO_HOME = "${configHome}/cargo";
+        CARGO_HOME = "${dataHome}/cargo";
         CUDA_CACHE_PATH = "${cacheHome}/nv"; # TODO: make global
         GNUPGHOME = "${dataHome}/gnupg";
         HISTFILE = "${stateHome}/bash_history";

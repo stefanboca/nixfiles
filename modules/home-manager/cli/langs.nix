@@ -52,11 +52,8 @@ in
       };
     };
 
-    xdg.configFile = {
-      "cargo/config.toml".text = ''
-        [net]
-        git-fetch-with-cli = true
-      '';
+    xdg.dataFile."cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
+      net.git-fetch-with-cli = true;
     };
   };
 }
