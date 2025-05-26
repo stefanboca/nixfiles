@@ -81,7 +81,7 @@ in
         enable = true;
         enableAutoUpdates = false; # disable systemd auto-update service
         settings = {
-          update = {
+          updates = {
             auto_update = true; # enable auto-update upon running command
           };
         };

@@ -34,7 +34,7 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty/a2f52b08e5ad43420aab4e5cf5b2733cefb05845";
+    ghostty.url = "github:ghostty-org/ghostty/3f6c02b49e08aed51e4be85d87b79b9dbea34a85";
     ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
 
     neovim-nightly-overlay = {
@@ -44,7 +44,7 @@
     };
 
     # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/d66423a2ac41adfff32572daa4ff371ca6cb7260";
+    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/6be0f9458a05a6912e5a9cd3afca36d1ab76ac23";
     emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";
