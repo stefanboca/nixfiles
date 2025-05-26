@@ -4,7 +4,10 @@ let
   cfg = config.desktop;
 in
 {
-  imports = [ ./apps ];
+  imports = [
+    ./apps
+    ./wm
+  ];
 
   options.desktop = {
     enable = lib.mkEnableOption "Enable Desktop configuration";
