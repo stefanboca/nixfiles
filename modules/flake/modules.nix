@@ -4,20 +4,10 @@ let
   allNixos = import ../nixos;
   allHomeManager = import ../home-manager;
 
-  extraArgs =
-    { pkgs, ... }:
-    {
-      _module.args = {
-        inherit self inputs;
-      };
-    };
-
   homeCommon = [
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.stylix.homeModules.stylix
-
-    extraArgs
 
     # shared nixpkgs config for home-manager
     { inherit (self.nixCfg) nix; }
@@ -30,12 +20,11 @@ let
 
     ../../hosts/common
 
-    extraArgs
-
     # shared nixpkgs config for home-manager
     {
       inherit (self.nixCfg) nix nixpkgs;
       home-manager = {
+        extraSpecialArgs = { inherit self inputs; };
         sharedModules = homeCommon;
         useGlobalPkgs = true;
         useUserPackages = true;

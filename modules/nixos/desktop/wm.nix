@@ -50,7 +50,6 @@ in
       ++ (lib.optionals cfg.enableNiri [
         xwayland-satellite-unstable
         waybar
-        centerpiece
       ]);
   };
 }

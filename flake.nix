@@ -37,6 +37,12 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    centerpiece = {
+      url = "github:friedow/centerpiece";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
     ghostty.url = "github:ghostty-org/ghostty/76a3612195bb3d67e67a1e824fb3cbdb4d339735";
@@ -84,6 +90,7 @@
           laptop = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [ self.nixosModules.laptop ];
+            specialArgs = { inherit self inputs; };
           };
         };
       };
