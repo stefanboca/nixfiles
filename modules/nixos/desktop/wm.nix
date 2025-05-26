@@ -30,12 +30,29 @@ in
       };
     };
 
+    xdg.portal.enable = true;
+
     programs.niri = lib.mkIf cfg.enableNiri {
       enable = true;
       package = pkgs.niri-unstable;
     };
 
-    xdg.portal.enable = true;
+    systemd.user.services = lib.mkIf cfg.enableNiri {
+      niri-flake-polkit.enable = false;
+      polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+    };
 
     environment.systemPackages =
       with pkgs;

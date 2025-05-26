@@ -112,7 +112,11 @@ in
         };
         "Mod+D" = {
           hotkey-overlay.title = "Application Launcher";
-          action = spawn "centerpiece";
+          action = spawn [
+            "env"
+            "WGPU_POWER_PREF=low"
+            "centerpiece"
+          ];
         };
 
         XF86AudioRaiseVolume = {
