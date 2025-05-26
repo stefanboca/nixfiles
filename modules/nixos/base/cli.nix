@@ -48,6 +48,7 @@ in
       nix-index
       nmap
       parted
+      pciutils
       ripgrep
       sops
       ssh-to-age

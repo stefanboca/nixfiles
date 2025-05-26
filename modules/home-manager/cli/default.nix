@@ -93,7 +93,6 @@ in
 
         # make stuff xdg compliant
         CARGO_HOME = "${dataHome}/cargo";
-        CUDA_CACHE_PATH = "${cacheHome}/nv"; # TODO: make global / check if needed
         GNUPGHOME = "${dataHome}/gnupg";
         HISTFILE = "${stateHome}/bash_history";
         NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
