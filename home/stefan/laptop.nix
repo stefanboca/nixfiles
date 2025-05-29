@@ -16,6 +16,7 @@
     ++ (builtins.map (pkg: config.lib.nixGL.wrap pkg) [
       blender
       geogebra6
+      helvum
       jetbrains.idea-community
       musescore
       prusa-slicer
