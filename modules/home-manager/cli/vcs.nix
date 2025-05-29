@@ -17,6 +17,7 @@ in
       difftastic # syntax-aware structural diff tool
       jjui # TUI for jujutsu
       mergiraf # syntax-aware structural merge driver
+      meld # Visual diff and merge tool
     ];
 
     programs = {
@@ -37,12 +38,8 @@ in
           url."ssh://git@github.com" = {
             insteadOf = "https://github.com";
           };
-          init = {
-            defautlBranch = "main";
-          };
-          pull = {
-            rebase = true;
-          };
+          init.defautlBranch = "main";
+          pull.rebase = true;
         };
       };
 
@@ -51,21 +48,17 @@ in
         enable = true;
 
         settings = {
-          "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json";
-
           user = { inherit name email; };
 
           ui = {
-
-            default-command = "log";
+            conflict-marker-style = "snapshot";
+            diff.tool = "difft"; # TODO: s/diff.tool/diff-formatter/ in 0.30.0
             editor = [
               "nvim"
               "--cmd"
               "let g:quit_on_write=1"
             ];
             log-word-wrap = true;
-            paginate = "auto";
-            conflict-marker-style = "snapshot";
           };
 
           aliases = {
@@ -80,18 +73,8 @@ in
 
             rb = [ "rebase" ];
             d = [ "diff" ];
-            dt = [
-              "diff"
-              "--tool=difft"
-            ];
-            s = [
-              "show"
-              "-s"
-            ];
-            sdt = [
-              "show"
-              "--tool=difft"
-            ];
+            s = [ "show" ];
+            n = [ "new" ];
 
             g = [ "git" ];
             gc = [
@@ -107,19 +90,9 @@ in
               "git"
               "fetch"
             ];
-            gfar = [
-              "git"
-              "fetch"
-              "--all-remotes"
-            ];
             gr = [
               "git"
               "remote"
-            ];
-            grl = [
-              "git"
-              "remote"
-              "list"
             ];
 
             c = [
@@ -187,7 +160,6 @@ in
           };
 
           git = {
-            sign-on-push = true;
             push-bookmark-prefix = "sb/push-";
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };
@@ -232,10 +204,6 @@ in
       .jj
       *.scratch.*
     '';
-
-    xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml { }).generate "jjui-config" {
-      preview.extra_args = [ "--tool=difft" ];
-    };
 
     home.file.".ssh/allowed_signers".text =
       "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
