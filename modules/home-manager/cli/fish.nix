@@ -13,7 +13,6 @@ in
     home.shell.enableFishIntegration = true;
 
     programs = {
-      pay-respects.enable = true;
       zoxide.enable = true;
 
       atuin = {
@@ -91,38 +90,20 @@ in
           nhb = "nh home build";
           nhs = "nh home switch";
           nr = "nix run";
+          nrr = "nh os repl";
+          nrs = "nh os switch";
           ns = "nix search";
           nsh = "nix shell";
 
           se = "sudoedit";
-          lj = "lazyjj";
           nv = "neovide";
           n = "nvim";
           o = "open";
 
           c = "cargo";
 
-          sl = "eza -l";
-          sa = "eza -la";
-          s = "eza";
-
           ju = "jjui";
           j = "jj";
-
-          # TODO: remove on nixos
-          dnfl = "dnf5 list";
-          dnfli = "dnf5 list --installed";
-          dnfmc = "dnf5 makecache";
-          dnfp = "dnf5 info";
-          dnfs = "dnf5 search";
-          dnfrq = "dnf5 repoquery";
-
-          dnfu = "sudo dnf5 upgrade";
-          dnfi = "sudo dnf5 install";
-          dnfri = "sudo dnf5 reinstall";
-          dnfsw = "sudo dnf5 swap";
-          dnfr = "sudo dnf5 remove";
-          dnfc = "sudo dnf5 clean all";
         };
 
         plugins = [
@@ -151,7 +132,7 @@ in
     home.activation.configureFish = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
       run --quiet ${pkgs.fish}/bin/fish -c "
         set -U fish_key_bindings fish_hybrid_key_bindings
-        
+
         # configure tide prompt
         tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Lightest --prompt_spacing=Sparse --icons='Few icons' --transient=No
         # add jj to prompt

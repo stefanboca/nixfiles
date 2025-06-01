@@ -4,42 +4,41 @@
   # TODO: double check
 
   # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/bd86b4f9-f7a4-4fac-bea5-2f7bdbaaaa32";
+  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
   #   fsType = "btrfs";
-  #   options = [ "subvol=root" ];
+  #   options = [ "subvol=rootfs" ];
+  # };
+  #
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/2602-4870";
+  #   fsType = "vfat";
+  #   options = [ "umask=0077" ];
   # };
   #
   # fileSystems."/home" = {
-  #   device = "/dev/disk/by-uuid/bd86b4f9-f7a4-4fac-bea5-2f7bdbaaaa32";
+  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
   #   fsType = "btrfs";
   #   options = [ "subvol=home" ];
   # };
   #
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/c8e28de4-6d7c-475b-987c-e874ac1430c2";
-  #   fsType = "ext4";
-  # };
-  #
-  # fileSystems."/boot/efi" = {
-  #   device = "/dev/disk/by-uuid/E5FC-833C";
-  #   fsType = "vfat";
-  #   options = [
-  #     "fmask=0077"
-  #     "dmask=0077"
-  #   ];
+  # fileSystems."/nix" = {
+  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=nix" ];
   # };
 
   disko.devices.disk.main = {
-    # TODO: s/main/primary
     type = "disk";
-    device = "/dev/sda"; # TODO: change to /dev/nvme0n1
+    device = "/dev/nvme0n1";
     content = {
       type = "gpt";
       partitions = {
         ESP = {
           type = "EF00";
+          priority = 1;
           start = "1M";
           end = "4G";
+          size = "100%";
           content = {
             type = "filesystem";
             format = "vfat";
@@ -48,6 +47,7 @@
           };
         };
         root = {
+          start = "4G";
           size = "100%";
           content = {
             type = "btrfs";

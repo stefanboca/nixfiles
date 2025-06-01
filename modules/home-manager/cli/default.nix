@@ -23,13 +23,14 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      age # encryption
       ast-grep # syntax-aware structural grep
       binsider # ELF analysis tool
+      devenv # developer environments
       diskus # faster du -sh
       dua # disk usage analyzer
       duf # better df
       dust # better du
+      fastfetch # system info (I use nixos btw)
       glow # render markdown in the terminal
       hexyl # cli hex viewer
       hwatch # better watch
@@ -41,9 +42,9 @@ in
       rnr # batch rename files and directories
       scc # count lines of code
       sd # better sed
-      sops # secrets manager
       typos # source code spell checker
       watchexec # execute commands in response to file modifications
+      wl-clipboard # cli clipboard utils
       xdg-ninja # check for unwanted files and directories in $HOME
       xh # cli http client
     ];
@@ -69,11 +70,6 @@ in
         ];
       };
       jq.enable = true; # transform json
-      # TODO: move to nixos
-      nh = {
-        enable = true;
-        flake = lib.mkDefault "${config.home.homeDirectory}/data/nixfiles";
-      };
       numbat.enable = true; # scientific calculator with physical units
       ripgrep.enable = true; # better grep
       # cheatsheets for shell commands

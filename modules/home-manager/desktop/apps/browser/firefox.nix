@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.sessionVariables = rec {
@@ -8,7 +8,7 @@
 
   programs.firefox = {
     enable = true;
-    package = config.lib.nixGL.wrap pkgs.firefox-nightly-bin;
+    package = pkgs.firefox-nightly-bin;
 
     profiles = {
       stefan = {
@@ -135,6 +135,21 @@
       };
     };
   };
+
+  xdg.mimeApps.defaultApplications =
+    let
+      firefox = "firefox-nightly.desktop";
+    in
+    {
+      "text/html" = [ firefox ];
+      "text/xml" = [ firefox ];
+      "x-scheme-handler/http" = [ firefox ];
+      "x-scheme-handler/https" = [ firefox ];
+
+      "x-scheme-handler/about" = [ firefox ];
+      "x-scheme-handler/unknown" = [ firefox ];
+      "x-scheme-handler/webcal" = [ firefox ];
+    };
 
   stylix.targets.firefox.profileNames = [ "stefan" ];
 }
