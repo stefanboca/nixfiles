@@ -52,6 +52,7 @@ in
 
           ui = {
             conflict-marker-style = "snapshot";
+            default-command = "log";
             diff.tool = "difft"; # TODO: s/diff.tool/diff-formatter/ in 0.30.0
             editor = [
               "nvim"
