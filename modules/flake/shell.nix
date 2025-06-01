@@ -26,6 +26,7 @@
             neovim
             nh
             nix
+            parted
             ripgrep
             sops
             ssh-to-age
