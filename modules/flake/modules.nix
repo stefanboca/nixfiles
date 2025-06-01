@@ -66,25 +66,8 @@ in
         ++ nixosCommon;
     } // allNixos;
 
-    # TODO: remove on nixos
     homeModules = {
       common = homeCommon;
-
-      doctorwho.imports = [
-        ../../home/stefan/laptop.nix
-
-        (
-          { pkgs, ... }:
-          {
-            inherit (self.nixCfg) nixpkgs;
-            nix.package = pkgs.nix;
-            home.username = "doctorwho";
-            home.homeDirectory = "/home/doctorwho";
-            nixGL.packages = inputs.nixGL.packages;
-            nixGL.vulkan.enable = true;
-          }
-        )
-      ] ++ homeCommon;
     } // allHomeManager;
   };
 }

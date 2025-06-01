@@ -10,22 +10,15 @@ in
 {
   config = lib.mkIf cfg.enable {
     services.openssh = {
-      enable = true; # enable to generate keys
-      hostKeys = [
-        {
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-        {
-          path = "/etc/ssh/ssh_host_rsa_key";
-          type = "rsa";
-          bits = 4096;
-        }
-      ];
+      enable = true; # enable to generate ssh keys
+      startWhenNeeded = true;
+      openFirewall = false;
     };
 
-    systemd.services.sshd = {
-      enable = lib.mkDefault false;
+    # disable sshd
+    systemd.sockets.sshd = {
+      enable = lib.mkForce false;
+      wantedBy = lib.mkForce [ ];
     };
   };
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -8,24 +8,19 @@
 
   desktop.enable = true;
 
-  home.packages =
-    with pkgs;
-    [
-      esphome
-    ]
-    ++ (builtins.map (pkg: config.lib.nixGL.wrap pkg) [
-      blender
-      geogebra6
-      helvum
-      musescore
-      prusa-slicer
-      rnote
-    ]);
+  home.packages = with pkgs; [
+    esphome
+    blender
+    calibre
+    geogebra6
+    musescore
+    prusa-slicer
+    rnote
+    xournalpp
+    zotero
+  ];
 
-  programs.obs-studio = {
-    enable = true;
-    package = config.lib.nixGL.wrap pkgs.obs-studio;
-  };
+  programs.obs-studio.enable = true;
 
   theming.enable = true;
   theming.colorscheme = "tokyonight-moon";

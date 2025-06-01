@@ -14,7 +14,6 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
-      # SUDO_EDITOR = "${config.programs.neovim.package}/bin/nvim"; # TODO: set EDITOR globally
       VISUAL = "nvim";
     };
 
@@ -30,10 +29,24 @@ in
         '';
 
       extraPackages = with pkgs; [
+        wl-clipboard
+        # treesitter
         nodejs
         tree-sitter
+        gcc
+        # luasnip
+        gnumake
+        # peek.nvim
+        deno
+        # snacks.image
+        imagemagick
+        mermaid-cli
+        ghostscript
 
         harper
+
+        # c/cpp
+        clang-tools
 
         # cmake
         cmake-lint
@@ -105,7 +118,16 @@ in
         "PATH"
         ":"
         "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
+        # for snacks frecency db
+        "--suffix"
+        "LD_LIBRARY_PATH"
+        ":"
+        (lib.makeLibraryPath [ pkgs.sqlite ])
       ];
+
+      withNodeJs = false;
+      withPython3 = false;
+      withRuby = false;
     };
 
     programs.neovide = {

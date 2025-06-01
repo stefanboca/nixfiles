@@ -16,20 +16,16 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    # TODO: remove nixGL on nixos
-    home.packages =
-      with pkgs;
-      builtins.map (pkg: (config.lib.nixGL.wrap pkg)) [
-        bitwarden
-        calibre
-        easyeffects
-        gnome-decoder
-        xournalpp
-        signal-desktop
-        telegram-desktop
-        zotero
-      ];
+    home.packages = with pkgs; [
+      bitwarden
+      easyeffects
+      gnome-decoder
+      helvum
+      signal-desktop
+      telegram-desktop
+    ];
 
     programs.vesktop.enable = true;
+    xdg.mimeApps.defaultApplications."x-scheme-handler/discord" = "vesktop.desktop";
   };
 }

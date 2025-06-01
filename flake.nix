@@ -14,14 +14,12 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # TODO: remove on nixos
-    nixGL.url = "github:nix-community/nixGL";
-    nixGL.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+      inputs.flake-parts.follows = "flake-parts";
     };
     catppuccin-fish.url = "github:catppuccin/fish";
     catppuccin-fish.flake = false;
@@ -80,21 +78,6 @@
             system = "x86_64-linux";
             modules = [ self.nixosModules.laptop ];
           };
-        };
-
-        # TODO: remove on nixos
-        homeConfigurations = {
-          doctorwho =
-            let
-              pkgs = import inputs.nixpkgs {
-                system = "x86_64-linux";
-                inherit (self.nixCfg.nixpkgs) config overlays;
-              };
-            in
-            home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              modules = [ self.homeModules.doctorwho ];
-            };
         };
       };
 
