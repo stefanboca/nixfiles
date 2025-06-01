@@ -16,8 +16,10 @@ in
 
   config = {
     services = {
-      xserver.desktopManager.gnome.enable = lib.mkIf cfg.enableGnome true;
-      desktopManager.cosmic.enable = lib.mkIf cfg.enableCosmic true;
+      desktopManager = {
+        gnome.enable = lib.mkIf cfg.enableGnome true;
+        cosmic.enable = lib.mkIf cfg.enableCosmic true;
+      };
 
       libinput = {
         enable = true;

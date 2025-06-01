@@ -31,11 +31,11 @@
             ssh-to-age
           ];
 
-          env.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+          env.NIX_CONFIG = "experimental-features = nix-command flakes";
 
-          # shellHook = ''
-          #   exec fish
-          # '';
+          shellHook = ''
+            exec fish
+          '';
         };
       };
     };
