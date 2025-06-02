@@ -206,6 +206,13 @@ in
       *.scratch.*
     '';
 
+    xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml { }).generate "jjui-config" {
+      preview.extra_args = [
+        "--config"
+        ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]''
+      ];
+    };
+
     home.file.".ssh/allowed_signers".text =
       "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
