@@ -130,29 +130,32 @@ in
           tokyonight-storm = mkTokyonightColorscheme "storm";
         };
 
-        stylix.enable = true;
-        stylix.overlays.enable = false;
-        stylix.targets.neovim.enable = false;
-        stylix.base16Scheme = colorscheme.scheme;
-        stylix.fonts = {
-          monospace = {
-            package = pkgs.lilex;
-            name = "Lilex";
-          };
-          serif = {
-            package = pkgs.noto-fonts;
-            name = "Noto Serif";
-          };
-          sansSerif = {
-            package = pkgs.open-sans;
-            name = "Open Sans";
-          };
+        stylix = {
+          enable = true;
+          overlays.enable = false;
+          targets.blender.enable = false;
+          targets.neovim.enable = false;
+          base16Scheme = colorscheme.scheme;
+          fonts = {
+            monospace = {
+              package = pkgs.lilex;
+              name = "Lilex";
+            };
+            serif = {
+              package = pkgs.noto-fonts;
+              name = "Noto Serif";
+            };
+            sansSerif = {
+              package = pkgs.open-sans;
+              name = "Open Sans";
+            };
 
-          sizes = {
-            terminal = 10;
-            desktop = 11;
-            popups = 11;
-            applications = 11;
+            sizes = {
+              terminal = 10;
+              desktop = 11;
+              popups = 11;
+              applications = 11;
+            };
           };
         };
 
