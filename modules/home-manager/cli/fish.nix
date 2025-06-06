@@ -84,14 +84,15 @@ in
           sc = "sudo systemctl --system";
           scu = "systemctl --user";
 
+          nb = "nix build";
           nd = "nix develop -c fish";
           nf = "nix flake";
           nfu = "nix flake update";
-          ns = "nix search";
-          nsh = "nix shell";
-          nr = "nix run";
           nhb = "nh home build";
           nhs = "nh home switch";
+          nr = "nix run";
+          ns = "nix search";
+          nsh = "nix shell";
 
           se = "sudoedit";
           lj = "lazyjj";
