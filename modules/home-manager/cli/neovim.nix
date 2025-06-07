@@ -23,10 +23,11 @@ in
       defaultEditor = true;
       package = pkgs.neovim-nightly;
 
-      extraLuaConfig = ''
-        vim.loader.enable()
-        require("my.config.lazy");
-      '';
+      extraLuaConfig = # lua
+        ''
+          vim.loader.enable()
+          require("my.config.lazy");
+        '';
 
       extraPackages = with pkgs; [
         nodejs
