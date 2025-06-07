@@ -97,15 +97,18 @@ in
 
         # make stuff xdg compliant
         CARGO_HOME = "${dataHome}/cargo";
-        CUDA_CACHE_PATH = "${cacheHome}/nv"; # TODO: make global
+        CUDA_CACHE_PATH = "${cacheHome}/nv"; # TODO: make global / check if needed
         GNUPGHOME = "${dataHome}/gnupg";
         HISTFILE = "${stateHome}/bash_history";
+        NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
         NPM_CONFIG_CACHE = "${cacheHome}/npm";
         NPM_CONFIG_PREFIX = "${dataHome}/npm";
         PLATFORMIO_CORE_DIR = "${dataHome}/platformio";
         PYTHON_HISTORY = "${stateHome}/python_history";
         RUSTUP_HOME = "${dataHome}/rust";
         SQLITE_HISTORY = "${stateHome}/sqlite_history";
+        WINEPREFIX = "${dataHome}/wine";
+        _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${dataHome}/java";
       };
   };
 }

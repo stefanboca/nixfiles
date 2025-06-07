@@ -133,8 +133,6 @@ in
         stylix = {
           enable = true;
           overlays.enable = false;
-          targets.blender.enable = false;
-          targets.neovim.enable = false;
           base16Scheme = colorscheme.scheme;
           fonts = {
             monospace = {
@@ -156,6 +154,13 @@ in
               popups = 11;
               applications = 11;
             };
+          };
+          targets = {
+            blender.enable = false;
+            gtk.flatpakSupport.enable = false;
+            neovim.enable = false;
+            sxiv.enable = false;
+            xresources.enable = false;
           };
         };
 
