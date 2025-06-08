@@ -17,7 +17,6 @@
       blender
       geogebra6
       helvum
-      jetbrains.idea-community
       musescore
       prusa-slicer
       rnote
