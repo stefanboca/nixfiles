@@ -32,11 +32,20 @@
 
   dconf = {
     enable = true;
-    # map screenpad touchscreen to correct display
-    settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = [
-      "BOE"
-      "0x0a8d"
-      "0x00000000"
-    ];
+    settings = {
+      # map screenpad touchscreen to correct display
+      "org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = [
+        "BOE"
+        "0x0a8d"
+        "0x00000000"
+      ];
+      "org/gnome/mutter".experimental-features = [
+        "autoclose-xwayland"
+        "kms-modifiers"
+        "scale-monitor-framebuffer"
+        "variable-refresh-rate"
+        "xwayland-native-scaling"
+      ];
+    };
   };
 }
