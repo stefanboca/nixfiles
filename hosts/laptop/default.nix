@@ -8,6 +8,11 @@
 
   networking.hostName = "laptop";
 
+  sops.secrets.smbcredentials = {
+    mode = "0600";
+    sopsFile = ./secrets.yaml;
+  };
+
   base.enable = true;
   base.boot.enable = true;
 

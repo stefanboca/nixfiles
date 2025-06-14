@@ -1,32 +1,6 @@
 { ... }:
 
 {
-  # TODO: double check
-
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=rootfs" ];
-  # };
-  #
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/2602-4870";
-  #   fsType = "vfat";
-  #   options = [ "umask=0077" ];
-  # };
-  #
-  # fileSystems."/home" = {
-  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=home" ];
-  # };
-  #
-  # fileSystems."/nix" = {
-  #   device = "/dev/disk/by-uuid/00626c1f-4272-4958-a9b3-90d9338534ee";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=nix" ];
-  # };
-
   disko.devices.disk.main = {
     type = "disk";
     device = "/dev/nvme0n1";
