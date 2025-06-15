@@ -12,7 +12,6 @@
           priority = 1;
           start = "1M";
           end = "4G";
-          size = "100%";
           content = {
             type = "filesystem";
             format = "vfat";
@@ -21,7 +20,6 @@
           };
         };
         root = {
-          start = "4G";
           size = "100%";
           content = {
             type = "btrfs";
