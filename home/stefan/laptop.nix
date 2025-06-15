@@ -6,7 +6,10 @@
     ./sops.nix
   ];
 
-  desktop.enable = true;
+  desktop = {
+    enable = true;
+    wm.enableNiri = true;
+  };
 
   home.packages = with pkgs; [
     esphome

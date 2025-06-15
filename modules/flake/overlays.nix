@@ -10,8 +10,9 @@
         spicePkgs = inputs.spicetify-nix.legacyPackages.${final.system};
       };
 
-      ghostty = inputs.ghostty.overlays.default;
+      inherit (inputs.niri.overlays) niri;
       fenix = inputs.fenix.overlays.default;
+      ghostty = inputs.ghostty.overlays.default;
     };
   };
 }

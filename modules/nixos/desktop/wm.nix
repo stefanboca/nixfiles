@@ -10,8 +10,9 @@ let
 in
 {
   options.desktop.wm = {
-    enableGnome = lib.mkEnableOption "Enable Gnome DE.";
-    enableCosmic = lib.mkEnableOption "Enable Cosmic DE.";
+    enableCosmic = lib.mkEnableOption "Enable Cosmic DE";
+    enableGnome = lib.mkEnableOption "Enable Gnome DE";
+    enableNiri = lib.mkEnableOption "Enable niri WM";
   };
 
   config = {
@@ -29,6 +30,11 @@ in
       };
     };
 
+    programs.niri = lib.mkIf cfg.enableNiri {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
+
     xdg.portal.enable = true;
 
     environment.systemPackages =
@@ -40,6 +46,11 @@ in
       ++ (lib.optionals cfg.enableGnome [
         gnome-tweaks
         gnome-backgrounds
+      ])
+      ++ (lib.optionals cfg.enableNiri [
+        xwayland-satellite-unstable
+        waybar
+        centerpiece
       ]);
   };
 }

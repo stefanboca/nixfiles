@@ -22,8 +22,11 @@
     enable = true;
     isLaptop = true;
     dm = "gdm";
-    wm.enableGnome = true;
-    wm.enableCosmic = true;
+    wm = {
+      enableGnome = true;
+      enableCosmic = true;
+      enableNiri = true;
+    };
   };
 
   system.stateVersion = "25.11";

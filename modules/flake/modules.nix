@@ -25,6 +25,7 @@ let
 
   nixosCommon = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.niri.nixosModules.niri
     inputs.sops-nix.nixosModules.sops
 
     ../../hosts/common
