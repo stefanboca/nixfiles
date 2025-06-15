@@ -18,7 +18,7 @@ in
 
       nh = {
         enable = true;
-        flake = "/home/${config.base.primaryUser}/data/nixfiles";
+        flake = "/home/${config.base.primaryUser}/src/nixfiles";
       };
     };
 
