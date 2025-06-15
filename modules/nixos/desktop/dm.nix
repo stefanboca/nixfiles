@@ -17,15 +17,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.cosmic-greeter.enable = lib.mkIf (cfg.dm == "cosmic-greeter") true;
-    services.displayManager.sddm = lib.mkIf (cfg.dm == "sddm") {
-      enable = true;
-      wayland.enable = true;
-    };
+    services = {
+      displayManager = {
+        cosmic-greeter.enable = lib.mkIf (cfg.dm == "cosmic-greeter") true;
+        sddm = lib.mkIf (cfg.dm == "sddm") {
+          enable = true;
+          wayland.enable = true;
+        };
 
-    services.xserver.displayManager.gdm = lib.mkIf (cfg.dm == "gdm") {
-      enable = true;
-      wayland = true;
+        gdm = lib.mkIf (cfg.dm == "gdm") {
+          enable = true;
+          wayland = true;
+        };
+      };
     };
   };
 }
