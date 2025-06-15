@@ -99,7 +99,7 @@ in
           se = "sudoedit";
           nv = "neovide";
           n = "nvim";
-          o = "open";
+          o = "xdg-open";
 
           c = "cargo";
 

@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.sessionVariables = rec {
-    BROWSER = "firefox-nightly";
-    FIREFOX = BROWSER;
-  };
-
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-nightly-bin;
@@ -135,21 +130,6 @@
       };
     };
   };
-
-  xdg.mimeApps.defaultApplications =
-    let
-      firefox = "firefox-nightly.desktop";
-    in
-    {
-      "text/html" = [ firefox ];
-      "text/xml" = [ firefox ];
-      "x-scheme-handler/http" = [ firefox ];
-      "x-scheme-handler/https" = [ firefox ];
-
-      "x-scheme-handler/about" = [ firefox ];
-      "x-scheme-handler/unknown" = [ firefox ];
-      "x-scheme-handler/webcal" = [ firefox ];
-    };
 
   stylix.targets.firefox.profileNames = [ "stefan" ];
 }
