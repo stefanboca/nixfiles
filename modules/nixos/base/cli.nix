@@ -27,6 +27,7 @@ in
       bat
       cifs-utils
       curl
+      dnsutils
       e2fsprogs
       efibootmgr
       eza
