@@ -27,6 +27,6 @@ in
       html.enable = true;
       json.enable = lib.mkDefault true;
     };
-    programs.man.generateCaches = false;
+    programs.man.generateCaches = true;
   };
 }

@@ -10,7 +10,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    documentation.man.generateCaches = false;
+    documentation.man.generateCaches = true;
 
     programs = {
       fish.enable = true;
