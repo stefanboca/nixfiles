@@ -92,11 +92,5 @@ in
       algorithm = "lzo-rle";
       memoryPercent = 25;
     };
-
-    # use newer switch-to-configuration
-    system.switch = {
-      enable = false;
-      enableNg = true;
-    };
   };
 }
