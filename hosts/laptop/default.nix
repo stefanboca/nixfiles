@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -33,6 +38,11 @@
       enableCosmic = true;
       enableNiri = true;
     };
+  };
+
+  # TODO: remove on https://github.com/NixOS/nixpkgs/pull/419588/files
+  security.pam.services = lib.mkIf config.security.polkit.enable {
+    systemd-run0 = { };
   };
 
   system.stateVersion = "25.11";
