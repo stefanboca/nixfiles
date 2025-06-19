@@ -14,6 +14,7 @@ in
     settings = {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
+      hotkey-overlay.skip-at-startup = true;
 
       input = {
         keyboard = {
@@ -27,9 +28,8 @@ in
           natural-scroll = true;
           click-method = "clickfinger";
         };
-        touch.map-to-output = "eDP-1";
 
-        warp-mouse-to-focus = true;
+        warp-mouse-to-focus.enable = true;
       };
 
       outputs = rec {
@@ -101,8 +101,6 @@ in
         }
       ];
 
-      hotkey-overlay.skip-at-startup = true;
-
       binds = with config.lib.niri.actions; {
         "Mod+Shift+Slash".action = show-hotkey-overlay;
 
@@ -156,6 +154,25 @@ in
           ];
         };
 
+        XF86MonBrightnessUp = {
+          allow-when-locked = true;
+          action = spawn [
+            "brightnessctl"
+            "--class=backlight"
+            "set"
+            "+10%"
+          ];
+        };
+        XF86MonBrightnessDown = {
+          allow-when-locked = true;
+          action = spawn [
+            "brightnessctl"
+            "--class=backlight"
+            "set"
+            "10%-"
+          ];
+        };
+
         "Mod+O" = {
           repeat = false;
           action = toggle-overview;
@@ -189,6 +206,8 @@ in
         "Mod+Shift+I".action = move-window-to-workspace-up;
         "Mod+Ctrl+U".action = move-workspace-down;
         "Mod+Ctrl+I".action = move-workspace-up;
+        "Mod+Ctrl+Shift+U".action = move-workspace-to-monitor-down;
+        "Mod+Ctrl+Shift+I".action = move-workspace-to-monitor-up;
 
         "Mod+1".action = focus-workspace 1;
         "Mod+2".action = focus-workspace 2;
@@ -232,9 +251,6 @@ in
         "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
         "Mod+W".action = toggle-column-tabbed-display;
-
-        "Mod+Space".action = switch-layout "next";
-        "Mod+Shift+Space".action = switch-layout "prev";
 
         "Print".action = screenshot;
         "Shift+Print".action = screenshot-window;

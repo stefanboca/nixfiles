@@ -51,7 +51,6 @@ in
           user = { inherit name email; };
 
           ui = {
-            conflict-marker-style = "snapshot";
             default-command = "log";
             diff-formatter = "difft";
             editor = [
@@ -161,6 +160,7 @@ in
           };
 
           git = {
+            sign-on-push = true;
             push-bookmark-prefix = "sb/push-";
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };

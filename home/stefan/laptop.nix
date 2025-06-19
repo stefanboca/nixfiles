@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -27,6 +32,29 @@
 
   theming.enable = true;
   theming.colorscheme = "tokyonight-moon";
+
+  programs.niri.settings = {
+    input.tablet.map-to-output = "eDP-1";
+    input.touch.map-to-output = "eDP-1";
+    binds = with config.lib.niri.actions; {
+      XF86MonBrightnessUp = lib.mkForce {
+        allow-when-locked = true;
+        action = spawn [
+          "sh"
+          "-c"
+          "brightnessctl -d intel_backlight set +10%; brightnessctl -d asus_screenpad set +10%"
+        ];
+      };
+      XF86MonBrightnessDown = lib.mkForce {
+        allow-when-locked = true;
+        action = spawn [
+          "sh"
+          "-c"
+          "brightnessctl -d intel_backlight set 10%-; brightnessctl -d asus_screenpad set 10%-"
+        ];
+      };
+    };
+  };
 
   dconf = {
     enable = true;

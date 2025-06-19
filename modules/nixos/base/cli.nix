@@ -43,6 +43,7 @@ in
       imagemagick
       jq
       killall
+      libinput
       lsb-release
       lshw
       nix-index

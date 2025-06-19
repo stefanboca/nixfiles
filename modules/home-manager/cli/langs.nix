@@ -24,6 +24,7 @@ in
       bugstalker # cli debugger
       cargo-auditable # make production Rust binaries auditable
       cargo-cache # rust cache cli
+      cargo-insta # snapshot testing tool
       cargo-nextest # better cargo test
       cargo-shear # find unused dependencies
       cargo-watch # run cargo commands on project changes

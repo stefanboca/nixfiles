@@ -56,8 +56,12 @@ in
 
     environment.systemPackages =
       with pkgs;
-      [ dconf-editor ]
+      [
+        brightnessctl
+        dconf-editor
+      ]
       ++ (lib.optionals cfg.enableCosmic [
+        dconf-editor
         cosmic-bg
       ])
       ++ (lib.optionals cfg.enableGnome [
