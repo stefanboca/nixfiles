@@ -30,13 +30,13 @@ in
       dnsutils
       e2fsprogs
       efibootmgr
+      evtest
       eza
       fatresize
       fd
       ffmpeg
       file
       fzf
-      gcc
       git
       gnumake
       home-manager
@@ -46,7 +46,6 @@ in
       libinput
       lsb-release
       lshw
-      nix-index
       nmap
       parted
       pciutils
@@ -54,6 +53,7 @@ in
       sops
       ssh-to-age
       vim
+      wev
       wget
     ];
   };

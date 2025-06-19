@@ -5,6 +5,7 @@ let
   allHomeManager = import ../home-manager;
 
   homeCommon = [
+    inputs.nix-index-database.hmModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.stylix.homeModules.stylix

@@ -13,7 +13,8 @@ in
     home.shell.enableFishIntegration = true;
 
     programs = {
-      pay-respects.enable = true;
+      nix-index-database.comma.enable = true;
+
       zoxide.enable = true;
 
       atuin = {
