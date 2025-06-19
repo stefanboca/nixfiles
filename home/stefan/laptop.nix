@@ -28,6 +28,10 @@
     zotero
   ];
 
+  xdg.mimeApps.defaultApplications = {
+    "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+  };
+
   programs.obs-studio.enable = true;
 
   theming.enable = true;
