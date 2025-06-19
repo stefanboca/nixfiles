@@ -18,6 +18,11 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   desktop = {
     enable = true;
     isLaptop = true;
