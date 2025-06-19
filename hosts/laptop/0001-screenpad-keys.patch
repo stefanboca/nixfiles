@@ -1,0 +1,28 @@
+diff --git a/drivers/platform/x86/asus-nb-wmi.c b/drivers/platform/x86/asus-nb-wmi.c
+index 3f8b2a324e..b47349cec0 100644
+--- a/drivers/platform/x86/asus-nb-wmi.c
++++ b/drivers/platform/x86/asus-nb-wmi.c
+@@ -557,6 +557,7 @@
+ 	{ KE_KEY, 0x2a, { KEY_SELECTIVE_SCREENSHOT } },
+ 	{ KE_IGNORE, 0x2b, }, /* PrintScreen (also send via PS/2) on newer models */
+ 	{ KE_IGNORE, 0x2c, }, /* CapsLock (also send via PS/2) on newer models */
++	{ KE_KEY, 0x2D, { KEY_SWITCHVIDEOMODE } },
+ 	{ KE_KEY, 0x30, { KEY_VOLUMEUP } },
+ 	{ KE_KEY, 0x31, { KEY_VOLUMEDOWN } },
+ 	{ KE_KEY, 0x32, { KEY_MUTE } },
+@@ -585,6 +586,7 @@
+ 	{ KE_KEY, 0x65, { KEY_SWITCHVIDEOMODE } }, /* SDSP LCD + TV */
+ 	{ KE_KEY, 0x66, { KEY_SWITCHVIDEOMODE } }, /* SDSP CRT + TV */
+ 	{ KE_KEY, 0x67, { KEY_SWITCHVIDEOMODE } }, /* SDSP LCD + CRT + TV */
++	{ KE_KEY, 0x6A, { KEY_DISPLAYTOGGLE } },
+ 	{ KE_KEY, 0x6B, { KEY_TOUCHPAD_TOGGLE } },
+ 	{ KE_IGNORE, 0x6E, },  /* Low Battery notification */
+ 	{ KE_KEY, 0x71, { KEY_F13 } }, /* General-purpose button */
+@@ -609,6 +611,7 @@
+ 	{ KE_KEY, 0x93, { KEY_SWITCHVIDEOMODE } }, /* SDSP LCD + CRT + TV + DVI */
+ 	{ KE_KEY, 0x95, { KEY_MEDIA } },
+ 	{ KE_KEY, 0x99, { KEY_PHONE } }, /* Conflicts with fan mode switch */
++	{ KE_KEY, 0x9C, { KEY_PROG2 } },
+ 	{ KE_KEY, 0xA0, { KEY_SWITCHVIDEOMODE } }, /* SDSP HDMI only */
+ 	{ KE_KEY, 0xA1, { KEY_SWITCHVIDEOMODE } }, /* SDSP LCD + HDMI */
+ 	{ KE_KEY, 0xA2, { KEY_SWITCHVIDEOMODE } }, /* SDSP CRT + HDMI */
