@@ -15,6 +15,9 @@ in
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
+      spawn-at-startup = [
+        { command = [ "mako" ]; }
+      ];
 
       input = {
         keyboard = {
@@ -72,6 +75,7 @@ in
           proportion = 0.5;
         };
 
+        background-color = "transparent";
         focus-ring = {
           width = 2;
         };
@@ -79,6 +83,13 @@ in
           enable = true;
         };
       };
+
+      layer-rules = [
+        {
+          matches = [ { namespace = "^wallpaper$"; } ];
+          place-within-backdrop = true;
+        }
+      ];
 
       window-rules = [
         {
@@ -107,6 +118,10 @@ in
         "Mod+T" = {
           hotkey-overlay.title = "Open Ghostty";
           action = spawn "ghostty";
+        };
+        "Mod+B" = {
+          hotkey-overlay.title = "Open Browser";
+          action = spawn "firefox-nightly";
         };
         "Mod+D" = {
           hotkey-overlay.title = "Application Launcher";

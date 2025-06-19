@@ -69,8 +69,13 @@ in
         gnome-backgrounds
       ])
       ++ (lib.optionals cfg.enableNiri [
-        xwayland-satellite-unstable
+        fuzzel
+        mako
+        swaybg
+        swayidle
+        swaylock
         waybar
+        xwayland-satellite-unstable
       ]);
   };
 }
