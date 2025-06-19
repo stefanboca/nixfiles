@@ -100,6 +100,7 @@ in
 
         # toml
         taplo
+        tombi
 
         # typst
         typstyle

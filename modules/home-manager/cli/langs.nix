@@ -11,6 +11,8 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      gcc
+
       # gh
       zizmor # github actions static analysis tool
 
