@@ -10,8 +10,8 @@ in
 {
   options.desktop.wm.enableNiri = lib.mkEnableOption "niri WM";
 
-  config.programs.niri = lib.mkIf cfg.enableNiri {
-    settings = {
+  config = lib.mkIf cfg.enableNiri {
+    programs.niri.settings = {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
@@ -125,11 +125,8 @@ in
         };
         "Mod+D" = {
           hotkey-overlay.title = "Application Launcher";
-          action = spawn [
-            "env"
-            "WGPU_POWER_PREF=low"
-            "centerpiece"
-          ];
+          action = spawn [ "fuzzel" ];
+          # action = spawn [ "env" "WGPU_POWER_PREF=low" "centerpiece" ];
         };
 
         XF86AudioRaiseVolume = {
@@ -148,6 +145,20 @@ in
             "set-volume"
             "@DEFAULT_AUDIO_SINK@"
             "0.1-"
+          ];
+        };
+        XF86AudioNext = {
+          allow-when-locked = true;
+          action = spawn [
+            "playerctl"
+            "next"
+          ];
+        };
+        XF86AudioPrev = {
+          allow-when-locked = true;
+          action = spawn [
+            "playerctl"
+            "previous"
           ];
         };
         XF86AudioMute = {
@@ -280,6 +291,13 @@ in
 
         "Mod+Shift+E".action = quit;
         "Ctrl+Alt+Delete".action = quit;
+      };
+    };
+
+    services.mako = {
+      enable = true;
+      settings = {
+        default-timeout = 10000; # 10 seconds
       };
     };
   };
