@@ -160,7 +160,6 @@ in
           };
 
           git = {
-            sign-on-push = true;
             push-bookmark-prefix = "sb/push-";
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };
@@ -195,7 +194,6 @@ in
                 label("hidden", if(hidden, "hidden")),
               )
             '';
-
           };
         };
       };

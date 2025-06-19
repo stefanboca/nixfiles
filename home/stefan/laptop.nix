@@ -19,13 +19,14 @@
   home.packages = with pkgs; [
     esphome
     blender
-    calibre
+    # calibre
+    freecad
     geogebra6
-    musescore
+    # musescore
     prusa-slicer
     rnote
-    xournalpp
-    zotero
+    # xournalpp
+    # zotero
   ];
 
   xdg.mimeApps.defaultApplications = {

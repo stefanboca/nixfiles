@@ -28,6 +28,7 @@
           "browser.tabs.closeWindowWithLastTab" = false;
           "browser.toolbars.bookmarks.visibility" = false;
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.urlbar.update2.engineAliasRefresh" = false;
           "cookiebanners.bannerClicking.enabled" = true;
           "cookiebanners.service.mode" = 1;
           "cookiebanners.service.privateBrowsing.mode" = 1;

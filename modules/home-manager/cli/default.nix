@@ -25,7 +25,7 @@ in
     home.packages = with pkgs; [
       ast-grep # syntax-aware structural grep
       binsider # ELF analysis tool
-      devenv # developer environments
+      # devenv # developer environments
       diskus # faster du -sh
       dua # disk usage analyzer
       duf # better df

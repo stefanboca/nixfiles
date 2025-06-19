@@ -64,19 +64,22 @@ in
           # disable greeting
           fish_greeting = "";
           # Vi-style bindings that inherit emacs-style bindings in all modes
-          fish_hybrid_key_bindings = ''
-            for mode in default insert visual
-              fish_default_key_bindings -M $mode
-            end
-            fish_vi_key_bindings --no-erase insert
-          '';
+          fish_hybrid_key_bindings = # fish
+            ''
+              for mode in default insert visual
+                fish_default_key_bindings -M $mode
+              end
+              fish_vi_key_bindings --no-erase insert
+            '';
 
           # jj integration for tide
-          _tide_item_jj = ''
-            command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
-            _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
-          '';
-          _tide_item_git_no_jj = ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+          _tide_item_jj = # fish
+            ''
+              command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
+              _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
+            '';
+          _tide_item_git_no_jj = # fish
+            ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
         };
 
         shellAbbrs = {

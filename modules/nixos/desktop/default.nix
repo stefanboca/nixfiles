@@ -76,12 +76,13 @@ in
       upower.enable = lib.mkIf cfg.isLaptop true;
 
       udev.extraRules = lib.concatStringsSep "\n" [
-        # rules for allowing users in the video group to change the backlight brightness
         ''
-          ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-          ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-          ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-          ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+          # allow users in the video group to change the backlight brightness and power
+          ACTION=="add", SUBSYSTEM=="backlight", \
+            RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", \
+            RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness", \
+            RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/bl_power", \
+            RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/bl_power"
         ''
       ];
     };
