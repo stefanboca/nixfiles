@@ -4,6 +4,7 @@
   imports = [
     ./filesystem.nix
     ./hardware-configuration.nix
+    ./screenpad.nix
   ];
 
   networking.hostName = "laptop";
