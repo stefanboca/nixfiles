@@ -37,7 +37,18 @@ let
     (
       { config, lib, ... }:
       {
-        home-manager.sharedModules = [ { config.theming = lib.mkDefault config.theming; } ];
+        home-manager.sharedModules = [
+          {
+            config.theming = {
+              inherit (config.theming)
+                enable
+                flavor
+                accent
+                fonts
+                ;
+            };
+          }
+        ];
       }
     )
   ] ++ builtins.attrValues allNixos;

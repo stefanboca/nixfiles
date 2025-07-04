@@ -110,6 +110,18 @@ in
         };
       };
     };
+
+    fontPackages = mkOption {
+      description = "All font packages";
+      type = types.listOf types.package;
+      readOnly = true;
+    };
+
+    palette = mkOption {
+      description = "The current palette";
+      type = types.attrs;
+      readOnly = true;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -128,6 +140,17 @@ in
         sansSerif = [ sansSerif.name ];
         emoji = [ emoji.name ];
       };
+    };
+
+    theming = {
+      fontPackages = with cfg.fonts; [
+        monospace.package
+        serif.package
+        sansSerif.package
+        emoji.package
+      ];
+
+      palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${cfg.flavor}.colors;
     };
   };
 }

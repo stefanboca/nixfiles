@@ -18,12 +18,7 @@ in
       };
     };
 
-    environment.systemPackages = with cfg.fonts; [
-      monospace.package
-      serif.package
-      sansSerif.package
-      emoji.package
-    ];
+    environment.systemPackages = cfg.fontPackages;
 
     console = {
       font = cfg.fonts.monospace.name;

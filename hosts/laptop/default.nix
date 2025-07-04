@@ -20,8 +20,6 @@
   };
 
   base.enable = true;
-  base.boot.enable = true;
-
   theming.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

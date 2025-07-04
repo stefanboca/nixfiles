@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -15,6 +16,7 @@ in
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
+      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
       spawn-at-startup = [
         { command = [ "mako" ]; }
       ];
@@ -33,34 +35,6 @@ in
         };
 
         warp-mouse-to-focus.enable = true;
-      };
-
-      outputs = rec {
-        eDP-1 = {
-          mode = {
-            width = 2800;
-            height = 1800;
-            refresh = 120.016;
-          };
-          scale = 1.25;
-          focus-at-startup = true;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-        DP-1 = {
-          mode = {
-            width = 2880;
-            height = 864;
-            refresh = 60.008;
-          };
-          scale = 1.25;
-          position = {
-            x = 0;
-            y = builtins.ceil (eDP-1.mode.height / eDP-1.scale);
-          };
-        };
       };
 
       layout = {

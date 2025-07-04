@@ -33,6 +33,11 @@
     "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
   };
 
+  theming.niri.outputs = [
+    "DP-1"
+    "eDP-1"
+  ];
+
   programs = {
     obs-studio.enable = true;
     aerc.enable = true;
@@ -64,6 +69,34 @@
         "XF86Launch2".action = focus-monitor-previous;
         "Shift+XF86Launch2".action = move-window-to-monitor-previous;
         "Ctrl+XF86Launch2".action = move-workspace-to-monitor-previous;
+      };
+
+      outputs = rec {
+        eDP-1 = {
+          mode = {
+            width = 2800;
+            height = 1800;
+            refresh = 120.016;
+          };
+          scale = 1.25;
+          focus-at-startup = true;
+          position = {
+            x = 0;
+            y = 0;
+          };
+        };
+        DP-1 = {
+          mode = {
+            width = 2880;
+            height = 864;
+            refresh = 60.008;
+          };
+          scale = 1.25;
+          position = {
+            x = 0;
+            y = builtins.ceil (eDP-1.mode.height / eDP-1.scale);
+          };
+        };
       };
     };
   };

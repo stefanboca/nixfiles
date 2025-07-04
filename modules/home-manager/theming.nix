@@ -11,18 +11,29 @@ in
 {
   imports = [ ../common/theming.nix ];
 
+  options.theming = with lib; {
+    niri.outputs = mkOption {
+      description = "A list of niri outputs to theme";
+      type = types.listOf types.str;
+      default = [ ];
+    };
+  };
+
   config = lib.mkIf cfg.enable {
     catppuccin = {
       gtk.enable = true;
+      cursors.enable = true;
       nvim.enable = false;
     };
 
-    home.packages = with cfg.fonts; [
-      monospace.package
-      serif.package
-      sansSerif.package
-      emoji.package
-    ];
+    home.packages = cfg.fontPackages;
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      dotIcons.enable = false;
+    };
+    xresources.path = "${config.xdg.configHome}/X11/xresources";
 
     gtk.enable = true;
     programs = {
@@ -46,6 +57,25 @@ in
           ''
             vim.g.catppuccin_flavor = ${config.catppuccin.flavor}
           '';
+
+      niri.settings = {
+        layout = {
+          background-color = cfg.palette.mantle.hex;
+          focus-ring = {
+            inactive.color = cfg.palette.overlay1.hex;
+            active.color = cfg.palette.${cfg.accent}.hex;
+            urgent.color = cfg.palette.red.hex;
+          };
+          shadow = {
+            color = cfg.palette.crust.hex;
+            inactive-color = cfg.palette.crust.hex;
+          };
+        };
+        outputs = lib.genAttrs cfg.niri.outputs (_: {
+          background-color = cfg.palette.mantle.hex;
+          backdrop-color = cfg.palette.crust.hex;
+        });
+      };
     };
   };
 }
