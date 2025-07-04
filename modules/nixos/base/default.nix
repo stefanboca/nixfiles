@@ -36,10 +36,9 @@ in
   config = lib.mkIf cfg.enable {
     boot = lib.mkIf cfg.boot.enable {
       loader = {
-        systemd-boot = {
+        limine = {
           enable = true;
-          configurationLimit = lib.mkDefault 3;
-          consoleMode = "max";
+          enableEditor = true;
         };
         timeout = lib.mkDefault 1;
         efi.canTouchEfiVariables = true;
