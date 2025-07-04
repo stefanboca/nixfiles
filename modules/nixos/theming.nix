@@ -128,5 +128,9 @@ in
       cfg.fonts.sansSerif.package
     ];
 
+    console = {
+      font = cfg.fonts.monospace.name;
+      packages = [ cfg.fonts.monospace.package ];
+    };
   };
 }

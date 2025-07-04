@@ -62,7 +62,10 @@ in
     };
     systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
-    console.useXkbConfig = true;
+    console = {
+      earlySetup = true;
+      useXkbConfig = true;
+    };
 
     time.timeZone = cfg.tz;
     i18n.defaultLocale = "en_US.UTF-8";
