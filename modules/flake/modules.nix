@@ -22,7 +22,7 @@ let
 
     ../../hosts/common
 
-    # shared nixpkgs config for home-manager
+    # share nix and nixpkgs config with home-manager
     {
       inherit (self.nixCfg) nix nixpkgs;
       home-manager = {
@@ -32,6 +32,14 @@ let
         useUserPackages = true;
       };
     }
+
+    # share select config with home-manager
+    (
+      { config, lib, ... }:
+      {
+        home-manager.sharedModules = [ { config.theming = lib.mkDefault config.theming; } ];
+      }
+    )
   ] ++ builtins.attrValues allNixos;
 in
 {

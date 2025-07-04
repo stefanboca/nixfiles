@@ -33,8 +33,6 @@
     "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
   };
 
-  theming.enable = true;
-
   programs = {
     obs-studio.enable = true;
     aerc.enable = true;
