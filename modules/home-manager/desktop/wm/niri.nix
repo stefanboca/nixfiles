@@ -17,8 +17,24 @@ in
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
+      cursor = {
+        hide-when-typing = true;
+        hide-after-inactive-ms = 10000;
+      };
       spawn-at-startup = [
-        { command = [ "mako" ]; }
+        { command = [ (lib.getExe pkgs.mako) ]; }
+        {
+          command = [
+            (lib.getExe pkgs.swaylock)
+            "-w"
+            "timeout"
+            "300"
+            "loginctl lock-session"
+            "timeout"
+            "301"
+            "niri msg action power-off-monitors"
+          ];
+        }
       ];
 
       input = {
@@ -49,7 +65,6 @@ in
           proportion = 0.5;
         };
 
-        background-color = "transparent";
         focus-ring = {
           width = 2;
         };
@@ -91,15 +106,18 @@ in
 
         "Mod+T" = {
           hotkey-overlay.title = "Open Ghostty";
-          action = spawn "ghostty";
+          action = spawn [
+            (lib.getExe config.programs.ghostty.package)
+            "--launched-from=desktop"
+          ];
         };
         "Mod+B" = {
           hotkey-overlay.title = "Open Browser";
-          action = spawn "firefox-nightly";
+          action = spawn (lib.getExe config.programs.firefox.package);
         };
         "Mod+D" = {
           hotkey-overlay.title = "Application Launcher";
-          action = spawn [ "fuzzel" ];
+          action = spawn (lib.getExe pkgs.fuzzel);
           # action = spawn [ "env" "WGPU_POWER_PREF=low" "centerpiece" ];
         };
 
@@ -266,6 +284,10 @@ in
         "Mod+Shift+E".action = quit;
         "Ctrl+Alt+Delete".action = quit;
       };
+    };
+
+    programs = {
+      swaylock.enable = true;
     };
 
     services.mako = {

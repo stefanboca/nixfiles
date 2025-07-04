@@ -59,6 +59,10 @@ in
           '';
 
       niri.settings = {
+        cursor = {
+          theme = config.home.pointerCursor.name;
+          inherit (config.home.pointerCursor) size;
+        };
         layout = {
           background-color = cfg.palette.mantle.hex;
           focus-ring = {
