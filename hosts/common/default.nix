@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -7,6 +12,10 @@
   ];
 
   sops.defaultSopsFile = ./secrets.yaml;
+
+  sops.secrets.dnsmasq-hosts = lib.mkIf (config.networking.networkmanager.dns == "dnsmasq") {
+    path = "/etc/NetworkManager/dnsmasq.d/hosts";
+  };
 
   nix.channel.enable = false;
 

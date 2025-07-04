@@ -13,9 +13,9 @@
   ];
 
   networking.hostName = "laptop";
+  networking.networkmanager.dns = "dnsmasq";
 
   sops.secrets.smbcredentials = {
-    mode = "0600";
     sopsFile = ./secrets.yaml;
   };
 
