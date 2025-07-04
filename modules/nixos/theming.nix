@@ -107,15 +107,11 @@ in
       flavor = lib.mkDefault "mocha";
       accent = lib.mkDefault "teal";
 
-      gtk = {
-        enable = true;
-        gnomeShellTheme = true;
+      sddm = {
+        font = cfg.fonts.sansSerif.name;
+        fontSize = builtins.toString cfg.fonts.sizes.desktop;
       };
-
-      nvim.enable = false;
     };
-
-    gtk.enable = true;
 
     fonts.fontconfig = {
       enable = true;
@@ -126,33 +122,11 @@ in
         emoji = [ emoji.name ];
       };
     };
-    home.packages = [
+    environment.systemPackages = [
       cfg.fonts.monospace.package
       cfg.fonts.serif.package
       cfg.fonts.sansSerif.package
     ];
 
-    programs = {
-      ghostty.settings = {
-        font-family = cfg.fonts.monospace.name;
-        font-size = cfg.fonts.sizes.terminal;
-        font-feature = cfg.fonts.monospace.features;
-      };
-      spicetify = {
-        theme = pkgs.spicePkgs.themes.catppuccin;
-        colorScheme = config.catppuccin.flavor;
-      };
-      neovide.settings.font = {
-        normal = [ { family = cfg.fonts.monospace.name; } ];
-        size = cfg.fonts.sizes.terminal;
-        features.${cfg.fonts.monospace.name} = builtins.map (str: "+" + str) cfg.fonts.monospace.features;
-      };
-
-      neovim.extraLuaConfig =
-        lib.mkBefore # lua
-          ''
-            vim.g.catppuccin_flavor = ${config.catppuccin.flavor}
-          '';
-    };
   };
 }

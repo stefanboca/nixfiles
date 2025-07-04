@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.desktop;
@@ -20,9 +25,11 @@ in
     services = {
       displayManager = {
         cosmic-greeter.enable = lib.mkIf (cfg.dm == "cosmic-greeter") true;
+
         sddm = lib.mkIf (cfg.dm == "sddm") {
           enable = true;
           wayland.enable = true;
+          package = pkgs.kdePackages.sddm;
         };
 
         gdm = lib.mkIf (cfg.dm == "gdm") {

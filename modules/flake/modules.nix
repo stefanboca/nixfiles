@@ -5,16 +5,17 @@ let
   allHomeManager = import ../home-manager;
 
   homeCommon = [
+    inputs.catppuccin.homeModules.catppuccin
     inputs.nix-index-database.hmModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify
-    inputs.stylix.homeModules.stylix
 
     # shared nixpkgs config for home-manager
     { inherit (self.nixCfg) nix; }
   ] ++ builtins.attrValues allHomeManager;
 
   nixosCommon = [
+    inputs.catppuccin.nixosModules.catppuccin
     inputs.home-manager.nixosModules.home-manager
     inputs.niri.nixosModules.niri
     inputs.sops-nix.nixosModules.sops

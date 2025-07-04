@@ -9,6 +9,7 @@
       stefan = {
         name = "Stefan";
         isDefault = true;
+        extensions.force = true;
 
         settings = {
           "browser.aboutConfig.showWarning" = false;
@@ -26,6 +27,7 @@
           "browser.startup.page" = 3;
           "browser.ping-centre.telemetry" = false;
           "browser.tabs.closeWindowWithLastTab" = false;
+          "browser.tabs.groups.smart.userEnabled" = false;
           "browser.toolbars.bookmarks.visibility" = false;
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;
           "browser.urlbar.update2.engineAliasRefresh" = false;
@@ -132,5 +134,5 @@
     };
   };
 
-  stylix.targets.firefox.profileNames = [ "stefan" ];
+  catppuccin.firefox.profiles.stefan.enable = true;
 }

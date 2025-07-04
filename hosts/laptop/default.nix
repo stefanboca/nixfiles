@@ -22,6 +22,8 @@
   base.enable = true;
   base.boot.enable = true;
 
+  theming.enable = true;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.appimage = {
@@ -32,10 +34,9 @@
   desktop = {
     enable = true;
     isLaptop = true;
-    dm = "gdm";
+    dm = "sddm";
     wm = {
       enableGnome = true;
-      enableCosmic = true;
       enableNiri = true;
     };
   };

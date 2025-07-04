@@ -32,11 +32,13 @@ in
 
     xdg.portal.enable = true;
 
+    xdg.portal.extraPortals = lib.mkIf cfg.enableNiri [
+      pkgs.xdg-desktop-portal-gtk
+    ];
     programs.niri = lib.mkIf cfg.enableNiri {
       enable = true;
       package = pkgs.niri-unstable;
     };
-
     systemd.user.services = lib.mkIf cfg.enableNiri {
       niri-flake-polkit.enable = false;
       polkit-gnome-authentication-agent-1 = {
@@ -71,6 +73,7 @@ in
       ++ (lib.optionals cfg.enableNiri [
         fuzzel
         mako
+        adwaita-icon-theme
         swaybg
         swayidle
         swaylock

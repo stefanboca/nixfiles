@@ -34,7 +34,6 @@
   };
 
   theming.enable = true;
-  theming.colorscheme = "tokyonight-moon";
 
   programs = {
     obs-studio.enable = true;
