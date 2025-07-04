@@ -39,6 +39,9 @@ in
       enable = true;
       package = pkgs.niri-unstable;
     };
+
+    security.pam.services.swaylock = lib.mkIf cfg.enableNiri { };
+    services.systemd-lock-handler.enable = lib.mkIf cfg.enableNiri true;
     systemd.user.services = lib.mkIf cfg.enableNiri {
       niri-flake-polkit.enable = false;
       polkit-gnome-authentication-agent-1 = {
@@ -52,6 +55,22 @@ in
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
+        };
+      };
+
+      swaylock = {
+        description = "Swaylock";
+        onSuccess = [ "unlock.target" ]; # If swaylock exits cleanly, unlock the session
+        partOf = [ "lock.target" ]; # When lock.target is stopped, stops this too
+        # Delay lock.target until this service is ready:
+        before = [ "lock.target" ];
+        wantedBy = [ "lock.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${lib.getExe pkgs.swaylock}";
+          # If swaylock crashes, always restart it immediately:
+          Restart = "on-failure";
+          RestartSec = 0;
         };
       };
     };
@@ -78,7 +97,6 @@ in
         swayidle
         swaylock
         waybar
-        xwayland-satellite-unstable
       ]);
   };
 }

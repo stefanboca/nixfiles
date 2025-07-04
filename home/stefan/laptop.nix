@@ -98,6 +98,9 @@
           };
         };
       };
+
+      # NOTE: this fixes the main display turning off when re-opening the lid
+      # debug.keep-laptop-panel-on-when-lid-is-closed = [ ];
     };
   };
 
