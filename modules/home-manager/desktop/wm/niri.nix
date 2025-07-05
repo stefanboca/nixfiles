@@ -287,7 +287,13 @@ in
     };
 
     programs = {
-      swaylock.enable = true;
+      swaylock = {
+        enable = true;
+        settings = {
+          indicator-caps-lock = true;
+          indicator-idle-visible = true;
+        };
+      };
     };
 
     services.mako = {
