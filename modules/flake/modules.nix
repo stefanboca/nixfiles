@@ -30,6 +30,7 @@ let
         sharedModules = homeCommon;
         useGlobalPkgs = true;
         useUserPackages = true;
+        backupFileExtension = "bak";
       };
     }
 

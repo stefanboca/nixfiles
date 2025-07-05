@@ -113,6 +113,7 @@
         "0x0a8d"
         "0x00000000"
       ];
+      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
       "org/gnome/mutter".experimental-features = [
         "autoclose-xwayland"
         "kms-modifiers"
