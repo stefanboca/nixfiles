@@ -25,7 +25,7 @@ in
         { command = [ (lib.getExe pkgs.mako) ]; }
         {
           command = [
-            (lib.getExe pkgs.swaylock)
+            (lib.getExe pkgs.swayidle)
             "-w"
             "timeout"
             "300"
