@@ -31,6 +31,12 @@ in
         brightnessctl
         dconf-editor
       ];
+
+      programs.nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "ghostty";
+      };
+
     }
 
     (lib.mkIf cfg.enableGnome {
@@ -59,7 +65,6 @@ in
       };
 
       security.pam.services.swaylock = { };
-      services.systemd-lock-handler.enable = true;
       systemd.user.services = {
         niri-flake-polkit.enable = false;
         polkit-gnome-authentication-agent-1 = {
@@ -93,14 +98,32 @@ in
         };
       };
 
+      services = {
+        # avahi.enable = true;
+        # geoclue2.enable = true;
+        gnome.sushi.enable = true; # quick previewer for nautilus
+        systemd-lock-handler.enable = true; # add systemd user lock.target
+      };
+      programs = {
+        dconf.enable = true;
+        evince.enable = true; # document viewer
+        file-roller.enable = true; # archive manager
+        gnome-disks.enable = true; # udisk frontend
+        seahorse.enable = true; # manager for gnome keyring
+      };
+
       environment.systemPackages = with pkgs; [
         adwaita-icon-theme
-        fuzzel
-        mako
-        swaybg
-        swayidle
-        swaylock
-        waybar
+        baobab # disk usage analyzer
+        decibels # audio player
+        fuzzel # application launcher
+        gnome-font-viewer # font viewer
+        loupe # image viewer
+        mako # notification daemon
+        nautilus # file explorer
+        swayidle # idle management daemon
+        totem # video player
+        waybar # wayland bar
       ];
     })
   ];

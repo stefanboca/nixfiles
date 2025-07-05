@@ -286,6 +286,13 @@ in
       };
     };
 
+    xdg.userDirs = {
+      enable = true;
+      desktop = null;
+      publicShare = null;
+      templates = null;
+    };
+
     programs = {
       swaylock = {
         enable = true;
@@ -295,7 +302,6 @@ in
         };
       };
     };
-
     services.mako = {
       enable = true;
       settings = {

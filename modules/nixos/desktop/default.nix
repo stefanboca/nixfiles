@@ -70,7 +70,7 @@ in
         };
       };
       thermald.enable = true;
-      # power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
+      power-profiles-daemon.enable = true;
       # tlp.enable = lib.mkIf cfg.isLaptop false;
       # auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
       upower.enable = lib.mkIf cfg.isLaptop true;

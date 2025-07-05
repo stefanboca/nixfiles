@@ -34,7 +34,7 @@
     isLaptop = true;
     dm = "sddm";
     wm = {
-      enableGnome = true;
+      # enableGnome = true;
       enableNiri = true;
     };
   };
