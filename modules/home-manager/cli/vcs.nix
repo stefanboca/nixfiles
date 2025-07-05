@@ -71,10 +71,11 @@ in
               "@-"
             ];
 
-            rb = [ "rebase" ];
+            cm = [ "commit" ];
             d = [ "diff" ];
-            s = [ "show" ];
             n = [ "new" ];
+            rb = [ "rebase" ];
+            s = [ "show" ];
 
             g = [ "git" ];
             gc = [
