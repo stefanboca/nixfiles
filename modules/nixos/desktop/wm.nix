@@ -15,88 +15,93 @@ in
     enableNiri = lib.mkEnableOption "Enable niri WM";
   };
 
-  config = {
-    services = {
-      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
-
-      desktopManager = {
-        gnome.enable = lib.mkIf cfg.enableGnome true;
-        cosmic.enable = lib.mkIf cfg.enableCosmic true;
-      };
-
-      libinput = {
-        enable = true;
-        touchpad.naturalScrolling = true;
-      };
-    };
-
-    xdg.portal.enable = true;
-
-    xdg.portal.extraPortals = lib.mkIf cfg.enableNiri [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    programs.niri = lib.mkIf cfg.enableNiri {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
-
-    security.pam.services.swaylock = lib.mkIf cfg.enableNiri { };
-    services.systemd-lock-handler.enable = lib.mkIf cfg.enableNiri true;
-    systemd.user.services = lib.mkIf cfg.enableNiri {
-      niri-flake-polkit.enable = false;
-      polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
+  config = lib.mkMerge [
+    {
+      services = {
+        xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
+        libinput = {
+          enable = true;
+          touchpad.naturalScrolling = true;
         };
       };
 
-      swaylock = {
-        description = "Swaylock";
-        onSuccess = [ "unlock.target" ]; # If swaylock exits cleanly, unlock the session
-        partOf = [ "lock.target" ]; # When lock.target is stopped, stops this too
-        # Delay lock.target until this service is ready:
-        before = [ "lock.target" ];
-        wantedBy = [ "lock.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${lib.getExe pkgs.swaylock}";
-          # If swaylock crashes, always restart it immediately:
-          Restart = "on-failure";
-          RestartSec = 0;
-        };
-      };
-    };
+      xdg.portal.enable = true;
 
-    environment.systemPackages =
-      with pkgs;
-      [
+      environment.systemPackages = with pkgs; [
         brightnessctl
         dconf-editor
-      ]
-      ++ (lib.optionals cfg.enableCosmic [
-        dconf-editor
-        cosmic-bg
-      ])
-      ++ (lib.optionals cfg.enableGnome [
+      ];
+    }
+
+    (lib.mkIf cfg.enableGnome {
+      services.desktopManager.gnome.enable = true;
+      environment.systemPackages = with pkgs; [
         gnome-tweaks
         gnome-backgrounds
-      ])
-      ++ (lib.optionals cfg.enableNiri [
+      ];
+    })
+
+    (lib.mkIf cfg.enableCosmic {
+      services.desktopManager.cosmic.enable = true;
+      environment.systemPackages = with pkgs; [
+        cosmic-bg
+      ];
+    })
+
+    (lib.mkIf cfg.enableNiri {
+      xdg.portal.extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+
+      programs.niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
+
+      security.pam.services.swaylock = { };
+      services.systemd-lock-handler.enable = true;
+      systemd.user.services = {
+        niri-flake-polkit.enable = false;
+        polkit-gnome-authentication-agent-1 = {
+          description = "polkit-gnome-authentication-agent-1";
+          wantedBy = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
+        };
+
+        swaylock = {
+          description = "Swaylock";
+          onSuccess = [ "unlock.target" ]; # If swaylock exits cleanly, unlock the session
+          partOf = [ "lock.target" ]; # When lock.target is stopped, stops this too
+          # Delay lock.target until this service is ready:
+          before = [ "lock.target" ];
+          wantedBy = [ "lock.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart = "${lib.getExe pkgs.swaylock}";
+            # If swaylock crashes, always restart it immediately:
+            Restart = "on-failure";
+            RestartSec = 0;
+          };
+        };
+      };
+
+      environment.systemPackages = with pkgs; [
+        adwaita-icon-theme
         fuzzel
         mako
-        adwaita-icon-theme
         swaybg
         swayidle
         swaylock
         waybar
-      ]);
-  };
+      ];
+    })
+  ];
 }
