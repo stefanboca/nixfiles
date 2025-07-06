@@ -161,7 +161,6 @@ in
           };
 
           git = {
-            push-bookmark-prefix = "sb/push-";
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };
 
@@ -178,6 +177,8 @@ in
             "diff stat total_added" = "green";
             "diff stat total_removed" = "red";
           };
+
+          templates.git_push_bookmark = ''"sb/push-" ++ change_id.short()'';
 
           template-aliases = {
             shell_prompt = ''
