@@ -43,13 +43,14 @@ in
       home-manager
       imagemagick
       jq
-      killall
       libinput
       lsb-release
       lshw
       nmap
+      ouch
       parted
       pciutils
+      psmisc
       ripgrep
       sops
       ssh-to-age
