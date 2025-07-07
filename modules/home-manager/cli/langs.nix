@@ -21,6 +21,7 @@ in
 
       # typst
       typst
+      typstyle
 
       # rust
       bugstalker # cli debugger
