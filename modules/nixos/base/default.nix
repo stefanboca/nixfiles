@@ -38,7 +38,6 @@ in
       loader = {
         limine = {
           enable = true;
-          enableEditor = true;
           secureBoot.enable = true;
         };
         timeout = lib.mkDefault 1;
