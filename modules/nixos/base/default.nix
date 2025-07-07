@@ -39,6 +39,7 @@ in
         limine = {
           enable = true;
           enableEditor = true;
+          secureBoot.enable = true;
         };
         timeout = lib.mkDefault 1;
         efi.canTouchEfiVariables = true;

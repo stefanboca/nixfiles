@@ -16,6 +16,7 @@
           packages = with pkgs; [
             age
             bat
+            disko
             eza
             fd
             fish
@@ -28,6 +29,7 @@
             nix
             parted
             ripgrep
+            sbctl
             sops
             ssh-to-age
           ];

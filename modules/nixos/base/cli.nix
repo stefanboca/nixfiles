@@ -52,6 +52,7 @@ in
       pciutils
       psmisc
       ripgrep
+      sbctl
       sops
       ssh-to-age
       vim
