@@ -68,7 +68,7 @@ in
           fish_hybrid_key_bindings = # fish
             ''
               for mode in default insert visual
-                fish_default_key_bindings -M $mode
+                  fish_default_key_bindings -M $mode
               end
               fish_vi_key_bindings --no-erase insert
             '';
@@ -81,6 +81,22 @@ in
             '';
           _tide_item_git_no_jj = # fish
             ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+
+          realify = {
+            description = "Replace symlink(s) with real file(s) in‑place";
+            body = # fish
+              ''
+                for file in $argv
+                    if test -L "$file"
+                        set target (readlink -f "$file")
+                        cp --remove-destination "$target" "$file"
+                        chmod +w "$file"
+                    else
+                        echo "realify: $file is not a symlink" >&2
+                    end
+                end
+              '';
+          };
         };
 
         shellAbbrs = {
