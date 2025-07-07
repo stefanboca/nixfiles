@@ -56,6 +56,8 @@ in
       layout = {
         gaps = 8;
         center-focused-column = "on-overflow";
+        always-center-single-column = true;
+        empty-workspace-above-first = true;
         preset-column-widths = [
           { proportion = 1.0 / 3.0; }
           { proportion = 1.0 / 2.0; }
