@@ -55,6 +55,7 @@ in
       sbctl
       sops
       ssh-to-age
+      steam-run
       vim
       wev
       wget

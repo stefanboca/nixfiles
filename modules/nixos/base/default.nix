@@ -22,7 +22,7 @@ in
       description = "Primary user for permissions and defaults.";
     };
 
-    boot.enable = lib.mkEnableOption "Enable boot config" // {
+    boot.enable = lib.mkEnableOption "Enable boot config." // {
       default = true;
     };
 
@@ -31,6 +31,8 @@ in
       default = "America/Los_Angeles";
       description = "The timezone of the machine.";
     };
+
+    appimage.enable = lib.mkEnableOption "Enable appimage.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -75,6 +77,7 @@ in
         wifi.backend = "iwd";
       };
       nftables.enable = true;
+      firewall.enable = true;
     };
 
     services = {
@@ -89,6 +92,11 @@ in
       enable = true;
       algorithm = "lzo-rle";
       memoryPercent = 25;
+    };
+
+    programs.appimage = lib.mkIf cfg.appimage.enable {
+      enable = true;
+      binfmt = true;
     };
   };
 }

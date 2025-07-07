@@ -24,19 +24,16 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
+  base = {
+    appimage.enable = true;
   };
 
   desktop = {
     enable = true;
     isLaptop = true;
     dm = "sddm";
-    wm = {
-      # enableGnome = true;
-      enableNiri = true;
-    };
+    wm.enableNiri = true;
+    gaming.enable = true;
   };
 
   # TODO: remove on https://github.com/NixOS/nixpkgs/pull/419588/files

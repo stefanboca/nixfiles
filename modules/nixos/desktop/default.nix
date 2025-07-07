@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./dm.nix
+    ./gaming.nix
     ./wm.nix
   ];
 
