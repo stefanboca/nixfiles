@@ -42,6 +42,7 @@ in
       scc # count lines of code
       sd # better sed
       typos # source code spell checker
+      units # unit conversion tool
       watchexec # execute commands in response to file modifications
       wl-clipboard # cli clipboard utils
       xdg-ninja # check for unwanted files and directories in $HOME
