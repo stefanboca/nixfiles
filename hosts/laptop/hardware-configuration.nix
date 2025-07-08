@@ -27,14 +27,13 @@
     ];
   };
 
-  nixpkgs.config = {
-    cudaSupport = true;
-    # cudaCapabilities = [ "8.9" ];
+  nixpkgs = {
+    hostPlatform = "x86_64-linux";
+    config = {
+      cudaSupport = true;
+      # cudaCapabilities = [ "8.9" ];
+    };
   };
-
-  swapDevices = [ ];
-  networking.useDHCP = lib.mkDefault true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   hardware = {
     asus.battery.chargeUpto = 80;
