@@ -52,6 +52,9 @@ in
         cmake-lint
         neocmakelsp
 
+        # glsl
+        glsl_analyzer
+
         # python
         basedpyright
         ruff
