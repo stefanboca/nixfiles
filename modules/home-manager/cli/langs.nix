@@ -19,6 +19,9 @@ in
       # lua
       emmylua_check
 
+      # lean
+      lean4
+
       # typst
       typst
       typstyle

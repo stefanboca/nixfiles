@@ -55,6 +55,9 @@ in
         # glsl
         glsl_analyzer
 
+        # lean
+        lean4
+
         # python
         basedpyright
         ruff
