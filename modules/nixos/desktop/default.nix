@@ -39,11 +39,11 @@ in
 
     security.rtkit.enable = true;
 
-    # fix shutdown taking a long time
-    systemd.extraConfig = ''
-      DefaultTimeoutStopSec=10s
-      DefaultTimeoutStartSec=10s
-    '';
+    # help fix shutdown taking a long time
+    systemd.settings.Manager = {
+      DefaultTimeoutStopSec = "10s";
+      DefaultTimeoutStartSec = "10s";
+    };
 
     services = {
       pulseaudio.enable = false;
