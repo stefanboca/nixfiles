@@ -65,7 +65,7 @@ in
 
         # nix
         nil
-        nixfmt-rfc-style
+        nixfmt
         statix
 
         # shell

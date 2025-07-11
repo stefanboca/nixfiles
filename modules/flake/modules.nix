@@ -12,7 +12,8 @@ let
 
     # shared nixpkgs config for home-manager
     { inherit (self.nixCfg) nix; }
-  ] ++ builtins.attrValues allHomeManager;
+  ]
+  ++ builtins.attrValues allHomeManager;
 
   nixosCommon = [
     inputs.catppuccin.nixosModules.catppuccin
@@ -52,7 +53,8 @@ let
         ];
       }
     )
-  ] ++ builtins.attrValues allNixos;
+  ]
+  ++ builtins.attrValues allNixos;
 in
 {
   imports = [ inputs.home-manager.flakeModules.home-manager ];
@@ -76,10 +78,12 @@ in
           inputs.disko.nixosModules.disko
         ]
         ++ nixosCommon;
-    } // allNixos;
+    }
+    // allNixos;
 
     homeModules = {
       common = homeCommon;
-    } // allHomeManager;
+    }
+    // allHomeManager;
   };
 }
