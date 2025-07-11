@@ -21,7 +21,6 @@ in
 
   config = lib.mkIf cfg.enable {
     catppuccin = {
-      gtk.enable = true;
       cursors.enable = true;
       nvim.enable = false;
     };
@@ -35,7 +34,6 @@ in
     };
     xresources.path = "${config.xdg.configHome}/X11/xresources";
 
-    gtk.enable = true;
     programs = {
       ghostty.settings = {
         font-family = cfg.fonts.monospace.name;
