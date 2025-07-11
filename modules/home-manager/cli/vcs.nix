@@ -53,6 +53,7 @@ in
           ui = {
             default-command = "log";
             diff-formatter = "difft";
+            diff-editor = ":builtin";
             editor = [
               "nvim"
               "--cmd"
