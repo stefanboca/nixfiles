@@ -58,6 +58,9 @@ in
         # lean
         lean4
 
+        # koto
+        koto-ls
+
         # python
         basedpyright
         ruff

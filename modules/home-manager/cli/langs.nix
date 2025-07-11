@@ -11,17 +11,19 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      koto
+      lean4
+      zig
+
+      # c / cpp
       cmakeCurses
       gcc
 
-      # gh
+      # github actions
       zizmor # github actions static analysis tool
 
       # lua
       emmylua_check
-
-      # lean
-      lean4
 
       # typst
       typst
@@ -45,9 +47,6 @@ in
         "rustfmt"
       ])
       rust-analyzer-nightly
-
-      # zig
-      zig
     ];
 
     programs = {
