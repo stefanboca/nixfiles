@@ -36,6 +36,7 @@ in
       hyperfine # cli benchmarking tool
       just # command runner
       kondo # clean build dependencies and artifacts
+      nix-diff # explain why two nix derivations differ
       nix-tree # browse dependency graphs of nix derivations
       procs # better ps
       rnr # batch rename files and directories
