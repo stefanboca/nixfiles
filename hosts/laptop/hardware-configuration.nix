@@ -48,13 +48,19 @@
       # Experimental and only works on modern Nvidia GPUs (Turing or newer).
       powerManagement.finegrained = true;
 
+      # Whether to enable dynamic Boost balances power between the CPU and the
+      # GPU for improved performance on supported laptops using the
+      # nvidia-powerd daemon. For more information, see the NVIDIA docs, on
+      # Chapter 23. Dynamic Boost on Linux.
+      dynamicBoost.enable = true;
+
       # Use the NVidia open source kernel module (not to be confused with the
       # independent third-party "nouveau" open source driver).
       # Support is limited to the Turing and later architectures. Full list of
       # supported GPUs is at:
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
-      open = false;
+      open = true;
 
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.
