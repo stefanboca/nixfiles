@@ -117,6 +117,7 @@ in
         baobab # disk usage analyzer
         decibels # audio player
         fuzzel # application launcher
+        gnome-calculator # calculator
         gnome-font-viewer # font viewer
         loupe # image viewer
         mako # notification daemon
