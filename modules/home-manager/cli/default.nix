@@ -24,6 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       ast-grep # syntax-aware structural grep
+      bencher # benchmark isolation tool
       binsider # ELF analysis tool
       diskus # faster du -sh
       dua # disk usage analyzer
