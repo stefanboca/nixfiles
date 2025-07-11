@@ -5,6 +5,15 @@
   ...
 }:
 
+let
+  # override pkgs with cuda support, in order to get cache hits
+  pkgs-cuda = import pkgs.path {
+    inherit (pkgs) system overlays;
+    config = pkgs.config // {
+      cudaSupport = true;
+    };
+  };
+in
 {
   imports = [
     ./shared.nix
@@ -18,7 +27,7 @@
 
   home.packages = with pkgs; [
     esphome
-    blender
+    pkgs-cuda.blender
     # calibre
     freecad
     geogebra6
