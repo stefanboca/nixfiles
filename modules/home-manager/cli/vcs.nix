@@ -165,11 +165,6 @@ in
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };
 
-          core = {
-            fsmonitor = "none";
-            watchman.register-snapshot-trigger = true;
-          };
-
           colors = {
             description = "cyan";
             divergent = "magenta";
