@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -34,6 +32,11 @@
     dm = "sddm";
     wm.enableNiri = true;
     gaming.enable = true;
+  };
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
   };
 
   system.stateVersion = "25.11";

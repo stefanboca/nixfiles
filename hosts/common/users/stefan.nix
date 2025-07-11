@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   users.users.stefan = {
@@ -9,7 +14,8 @@
     extraGroups = [
       "wheel"
       "video"
-    ];
+    ]
+    ++ lib.optional config.programs.wireshark.enable "wireshark";
 
     openssh.authorizedKeys.keys = [
       (builtins.readFile ../../../home/stefan/keys/id_ed25519.pub)
