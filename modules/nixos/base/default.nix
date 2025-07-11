@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./cli.nix
+    ./man.nix
     ./ssh.nix
   ];
 
