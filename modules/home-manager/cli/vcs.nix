@@ -208,10 +208,21 @@ in
     '';
 
     xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml { }).generate "jjui-config" {
-      preview.extra_args = [
-        "--config"
-        ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]''
-      ];
+      preview =
+        let
+          args = [
+            "--color"
+            "always"
+            "--config"
+            ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]''
+            "-r"
+            "$change_id"
+          ];
+        in
+        {
+          revision_command = [ "show" ] ++ args;
+          file_command = [ "diff" ] ++ args ++ [ "$file" ];
+        };
     };
 
     home.file.".ssh/allowed_signers".text =
