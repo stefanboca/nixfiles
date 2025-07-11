@@ -121,7 +121,10 @@
             "DocsRS" = {
               urls = [ { template = "https://docs.rs/releases/search?query={searchTerms}"; } ];
               icon = "https://docs.rs/favicon.ico";
-              definedAliases = [ "docsrs" ];
+              definedAliases = [
+                "drs"
+                "docsrs"
+              ];
             };
             "Rust" = {
               urls = [ { template = "https://doc.rust-lang.org/std/?search={searchTerms}"; } ];
