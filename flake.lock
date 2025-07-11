@@ -111,11 +111,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1754030776,
-        "narHash": "sha256-EA7Qh5OUc3tgYrLHfG7zU6wxltvWsJ0+sFxOcVsbjOY=",
+        "lastModified": 1754116698,
+        "narHash": "sha256-2cMDogXcqv975o191g0/6ZM0UolJ2X0ChuuLaNKbNAM=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "451f184de2958f8e725acba046ec10670dd771a1",
+        "rev": "acdb7d8af407ea8aee21b028dc58b4bc51a7849a",
         "type": "github"
       },
       "original": {
@@ -133,11 +133,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754083112,
-        "narHash": "sha256-kFz2QjHjdnd2vCWQZmAqU7Fel78b7dMFKUgjud1RpFc=",
+        "lastModified": 1754138110,
+        "narHash": "sha256-ceXMbItbQ0uCAtH9tzL/YH9duYW40+DFi3Hk+iZkFzI=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "aa45a0b17bb2e54a6d688c00717a373f37e95333",
+        "rev": "ecc6420b4163168497dc985bf52be721fc885472",
         "type": "github"
       },
       "original": {
@@ -313,17 +313,17 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1753722074,
-        "narHash": "sha256-yGQ28k8iz2tGrj5oo/HBkn0ihWA5uUZ1ZErkMtegzTw=",
+        "lastModified": 1754060800,
+        "narHash": "sha256-UA3ppDUMw9XmmTzjW50j8m4sKb+A/zEqAnUiGcrrst8=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "92c1f4b0b9c6fde6d8f79109de71bf4e30831e86",
+        "rev": "469001b7f623f780cfdcb50cc4842f7a4e6386ab",
         "type": "github"
       },
       "original": {
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "92c1f4b0b9c6fde6d8f79109de71bf4e30831e86",
+        "rev": "469001b7f623f780cfdcb50cc4842f7a4e6386ab",
         "type": "github"
       }
     },
