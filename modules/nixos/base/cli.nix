@@ -46,6 +46,8 @@ in
       libinput
       lsb-release
       lshw
+      net-tools
+      nix-output-monitor
       nmap
       ouch
       parted
