@@ -56,7 +56,7 @@ writeTextFile {
           set args $argv[5..-1]
 
           echo "[bench] launching '$cmd $args' in $slice_name"
-          sudo systemd-run --unit=bench-job --slice=$slice_name --scope $cmd $args
+          sudo systemd-inhibit systemd-run --uid=(id -u) --gid=(id -g) --unit=bench-job --slice=$slice_name --scope $cmd $args
       end
 
       function restore_all
