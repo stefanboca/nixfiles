@@ -50,6 +50,7 @@ in
       ouch
       parted
       pciutils
+      powertop
       psmisc
       ripgrep
       sbctl
