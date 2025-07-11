@@ -71,10 +71,21 @@ in
         };
       };
       thermald.enable = true;
-      power-profiles-daemon.enable = true;
-      # tlp.enable = lib.mkIf cfg.isLaptop false;
-      # auto-cpufreq.enable = lib.mkIf cfg.isLaptop true;
       upower.enable = lib.mkIf cfg.isLaptop true;
+      power-profiles-daemon.enable = lib.mkIf cfg.isLaptop false;
+      auto-cpufreq = lib.mkIf cfg.isLaptop {
+        enable = true;
+        settings = {
+          charger = {
+            energy_perf_bias = "performance";
+          };
+          battery = {
+            energy_performance_preference = "power";
+            energy_perf_bias = "power";
+            turbo = "never";
+          };
+        };
+      };
 
       udev.extraRules = lib.concatStringsSep "\n" [
         ''
@@ -87,5 +98,7 @@ in
         ''
       ];
     };
+
+    powerManagement.powertop.enable = lib.mkIf cfg.isLaptop true;
   };
 }
