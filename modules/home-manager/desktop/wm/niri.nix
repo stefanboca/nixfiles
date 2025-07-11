@@ -288,11 +288,16 @@ in
       };
     };
 
-    xdg.userDirs = {
-      enable = true;
-      desktop = null;
-      publicShare = null;
-      templates = null;
+    xdg = {
+      userDirs = {
+        enable = true;
+        desktop = null;
+        publicShare = null;
+        templates = null;
+      };
+      mimeApps.defaultApplications = {
+        "application/pdf" = "org.gnome.Evince.desktop";
+      };
     };
 
     programs = {
