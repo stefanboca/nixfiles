@@ -30,6 +30,7 @@ in
 
       extraPackages = with pkgs; [
         wl-clipboard
+        inotify-tools
         # treesitter
         nodejs
         tree-sitter

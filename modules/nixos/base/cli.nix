@@ -42,6 +42,7 @@ in
       gnumake
       home-manager
       imagemagick
+      inotify-tools
       jq
       libinput
       lsb-release
