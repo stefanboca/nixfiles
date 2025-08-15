@@ -37,7 +37,7 @@
 
     # TODO: use nixpkgs ghostty on 1.1.4 release
     # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty/5bf632e9cc0e77a578bad983b0cbdf0451ce87d4";
+    ghostty.url = "github:ghostty-org/ghostty/4e26bb65ae9f49c444bcfa59736e1cc1e52049cd";
     ghostty.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay = {
