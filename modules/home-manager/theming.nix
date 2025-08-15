@@ -23,6 +23,7 @@ in
     catppuccin = {
       cursors.enable = true;
       nvim.enable = false;
+      gtk.icon.enable = false;
     };
 
     home.packages = cfg.fontPackages;
@@ -33,6 +34,16 @@ in
       dotIcons.enable = false;
     };
     xresources.path = "${config.xdg.configHome}/X11/xresources";
+
+    dconf = {
+      enable = true;
+      settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    };
+    gtk = {
+      enable = true;
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+    };
 
     programs = {
       ghostty.settings = {
