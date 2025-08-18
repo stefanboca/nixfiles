@@ -19,7 +19,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ prismlauncher ];
+    environment.systemPackages = with pkgs; [
+      gamemode
+      mangohud
+      prismlauncher
+    ];
 
     programs = {
       steam = {
