@@ -25,6 +25,15 @@ in
         { command = [ (lib.getExe pkgs.mako) ]; }
         {
           command = [
+            (lib.getExe pkgs.swaybg)
+            "--image"
+            "${../../../../assets/wallpapers/nix-catppuccin-mocha.png}"
+            "--mode"
+            "fill"
+          ];
+        }
+        {
+          command = [
             (lib.getExe pkgs.swayidle)
             "-w"
             "timeout"
@@ -74,13 +83,6 @@ in
           enable = true;
         };
       };
-
-      layer-rules = [
-        {
-          matches = [ { namespace = "^wallpaper$"; } ];
-          place-within-backdrop = true;
-        }
-      ];
 
       window-rules = [
         {

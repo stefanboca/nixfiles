@@ -68,6 +68,17 @@ in
           '';
 
       niri.settings = {
+        spawn-at-startup = [
+          {
+            command = [
+              (lib.getExe pkgs.swaybg)
+              "--image"
+              "${../../assets/wallpapers/nix-catppuccin-${config.catppuccin.flavor}.png}"
+              "--mode"
+              "fill"
+            ];
+          }
+        ];
         cursor = {
           theme = config.home.pointerCursor.name;
           inherit (config.home.pointerCursor) size;
