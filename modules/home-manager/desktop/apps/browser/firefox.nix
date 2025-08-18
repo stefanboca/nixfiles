@@ -64,6 +64,7 @@
           "signon.autofillForms" = false;
           "signon.firefoxRelay.feature" = "disabled";
           "signon.generation.enabled" = false;
+          "signon.management.page.breach-alerts.enabled" = false;
           "signon.rememberSignons" = false;
           "toolkit.telemetry.archive.enabled" = false;
           "toolkit.telemetry.bhrPing.enabled" = false;
