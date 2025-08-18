@@ -127,7 +127,6 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
-      cache.enable = true;
       flavor = lib.mkDefault cfg.flavor;
       accent = lib.mkDefault cfg.accent;
     };
