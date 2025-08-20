@@ -4,6 +4,7 @@
   imports = [
     inputs.centerpiece.hmModules."x86_64-linux".default
     ./niri.nix
+    ./gnome.nix
   ];
 
   programs.centerpiece = {
