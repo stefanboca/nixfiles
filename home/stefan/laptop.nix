@@ -20,11 +20,6 @@ in
     ./sops.nix
   ];
 
-  desktop = {
-    enable = true;
-    wm.enableNiri = true;
-  };
-
   home.packages = with pkgs; [
     esphome
     pkgs-cuda.blender

@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./apps
+    ./gaming.nix
     ./wm
   ];
 

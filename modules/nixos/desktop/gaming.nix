@@ -15,13 +15,12 @@ let
 in
 {
   options.desktop.gaming = {
-    enable = lib.mkEnableOption "Enable the gaming module.";
+    enable = lib.mkEnableOption "Enable gaming.";
   };
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       gamemode
-      mangohud
       prismlauncher
     ];
 

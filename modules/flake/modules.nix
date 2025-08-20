@@ -41,13 +41,21 @@ let
       {
         home-manager.sharedModules = [
           {
-            config.theming = {
-              inherit (config.theming)
-                enable
-                flavor
-                accent
-                fonts
-                ;
+            config = {
+              desktop = {
+                inherit (config.desktop) enable;
+                wm = { inherit (config.desktop.wm) enableGnome enableNiri; };
+                gaming = { inherit (config.desktop.gaming) enable; };
+              };
+
+              theming = {
+                inherit (config.theming)
+                  enable
+                  flavor
+                  accent
+                  fonts
+                  ;
+              };
             };
           }
         ];
