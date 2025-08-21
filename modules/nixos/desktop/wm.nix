@@ -102,7 +102,9 @@ in
         # avahi.enable = true;
         # geoclue2.enable = true;
         gnome.sushi.enable = true; # quick previewer for nautilus
+        gvfs.enable = true; # userspace virtual filesystem
         systemd-lock-handler.enable = true; # add systemd user lock.target
+        udisks2.enable = true; # dbus service for querying and manipulating storage devices
       };
       programs = {
         dconf.enable = true;
