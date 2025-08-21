@@ -91,6 +91,7 @@ in
 
         # docker
         docker-language-server
+        dockerfmt
         hadolint
 
         # java
