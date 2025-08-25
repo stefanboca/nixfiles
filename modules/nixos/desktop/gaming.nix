@@ -35,5 +35,10 @@ in
         libraries = [ steam-run-libs ];
       };
     };
+
+    specialisation.gaming.configuration = {
+      system.nixos.tags = [ "gaming" ];
+      boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_lqx;
+    };
   };
 }
