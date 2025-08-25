@@ -76,10 +76,17 @@
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
+
+      primeBatterySaverSpecialisation = true;
     };
 
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   };
+
+  # TODO: upstream this
+  specialisation.battery-saver.configuration.hardware.nvidia.prime.offload.enableOffloadCmd =
+    lib.mkForce false;
 }
