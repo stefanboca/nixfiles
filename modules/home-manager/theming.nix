@@ -12,10 +12,14 @@ in
   imports = [ ../common/theming.nix ];
 
   options.theming = with lib; {
-    niri.outputs = mkOption {
-      description = "A list of niri outputs to theme";
-      type = types.listOf types.str;
-      default = [ ];
+    niri = {
+      outputs = mkOption {
+        description = "A list of niri outputs to theme";
+        type = types.listOf types.str;
+        default = [ ];
+      };
+
+      wallpaper = mkEnableOption "Configure niri wallpaper";
     };
   };
 
@@ -68,12 +72,12 @@ in
           '';
 
       niri.settings = {
-        spawn-at-startup = [
+        spawn-at-startup = lib.mkIf cfg.niri.wallpaper [
           {
             command = [
               (lib.getExe pkgs.swaybg)
               "--image"
-              "${../../assets/wallpapers/nix-catppuccin-${config.catppuccin.flavor}.png}"
+              "${../../assets/wallpapers/hexagons_catppuccin_${config.catppuccin.flavor}.png}"
               "--mode"
               "fill"
             ];

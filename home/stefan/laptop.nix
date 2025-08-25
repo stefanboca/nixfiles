@@ -47,6 +47,31 @@ in
     aerc.enable = true;
 
     niri.settings = {
+      spawn-at-startup = [
+        {
+          command = [
+            (lib.getExe pkgs.swaybg)
+            "--mode"
+            "fill"
+            "--output"
+            "eDP-1"
+            "--image"
+            "${../../assets/wallpapers/hexagons_catppuccin_mocha.png}"
+          ];
+        }
+        {
+          command = [
+            (lib.getExe pkgs.swaybg)
+            "--mode"
+            "fill"
+            "--output"
+            "DP-1"
+            "--image"
+            "${../../assets/wallpapers/hexagons_catppuccin_mocha_small.png}"
+          ];
+        }
+      ];
+
       input.tablet.map-to-output = "eDP-1";
       input.touch.map-to-output = "eDP-1";
       binds = with config.lib.niri.actions; {
