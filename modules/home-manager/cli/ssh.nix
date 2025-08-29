@@ -14,6 +14,7 @@ in
 
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "github.com" = {
           hostname = "github.com";
@@ -21,8 +22,14 @@ in
           identityFile = "~/.ssh/id_ed25519_git";
           identitiesOnly = true;
         };
+        "*" = {
+          forwardAgent = lib.mkDefault false;
+          addKeysToAgent = lib.mkDefault "no";
+          userKnownHostsFile = lib.mkDefault "~/.ssh/known_hosts";
+          controlPath = lib.mkDefault "~/.ssh/master-%r@%n:%p";
+          controlPersist = lib.mkDefault "no";
+        };
       };
-      extraConfig = ''SetEnv TERM=xterm-256color'';
     };
   };
 }
