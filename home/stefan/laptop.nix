@@ -23,9 +23,10 @@ in
   home.packages = with pkgs; [
     esphome
     pkgs-cuda.blender
-    # calibre
+    calibre
     freecad
     geogebra6
+    libreoffice
     # musescore
     prusa-slicer
     rnote
