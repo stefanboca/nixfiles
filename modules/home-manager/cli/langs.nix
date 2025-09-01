@@ -57,7 +57,7 @@ in
       #go
       go = {
         enable = true;
-        goPath = "${config.xdg.dataHome}/go";
+        env.GOPATH = "${config.xdg.dataHome}/go";
       };
     };
 
