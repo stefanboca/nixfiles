@@ -52,7 +52,7 @@
       # GPU for improved performance on supported laptops using the
       # nvidia-powerd daemon. For more information, see the NVIDIA docs, on
       # Chapter 23. Dynamic Boost on Linux.
-      dynamicBoost.enable = true;
+      dynamicBoost.enable = false;
 
       # Use the NVidia open source kernel module (not to be confused with the
       # independent third-party "nouveau" open source driver).
