@@ -103,7 +103,7 @@ in
           hotkey-overlay.title = "Open Ghostty";
           action = spawn [
             (lib.getExe config.programs.ghostty.package)
-            "--launched-from=desktop"
+            "--gtk-single-instance=true"
           ];
         };
         "Mod+B" = {
