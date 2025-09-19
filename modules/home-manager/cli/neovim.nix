@@ -101,7 +101,7 @@ in
         just-lsp
 
         # lua
-        emmylua_ls
+        emmylua-ls
         lua-language-server
         stylua
 

@@ -23,7 +23,7 @@ in
       zizmor # github actions static analysis tool
 
       # lua
-      emmylua_check
+      emmylua-check
 
       # typst
       typst

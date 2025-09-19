@@ -35,20 +35,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # TODO: use nixpkgs ghostty on 1.1.4 release
-    # use nightly for now because of strange goto_split behavior
-    ghostty.url = "github:ghostty-org/ghostty/8aa0b4c92a54f822043e134d2b84ee29844f944e";
-    ghostty.inputs.nixpkgs.follows = "nixpkgs";
-
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-
-    # NOTE: pinned to avoid recompiling, needs manual update
-    emmylua-analyzer-rust.url = "github:EmmyLuaLs/emmylua-analyzer-rust/1d5b372551b269a7f3f12e490f6090f6c98e295d";
-    emmylua-analyzer-rust.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
