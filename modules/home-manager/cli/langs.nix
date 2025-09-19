@@ -43,6 +43,7 @@ in
         "cargo"
         "clippy"
         "miri"
+        "rust-analysis"
         "rust-src"
         "rustc"
         "rustfmt"

@@ -31,12 +31,6 @@ in
         brightnessctl
         dconf-editor
       ];
-
-      programs.nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "ghostty";
-      };
-
     }
 
     (lib.mkIf cfg.enableGnome {
@@ -121,9 +115,11 @@ in
         fuzzel # application launcher
         gnome-calculator # calculator
         gnome-font-viewer # font viewer
+        gnome-power-manager # view battery and power statistics
         loupe # image viewer
         mako # notification daemon
         nautilus # file explorer
+        playerctl # utility for controlling mpris media players
         swayidle # idle management daemon
         totem # video player
         waybar # wayland bar
