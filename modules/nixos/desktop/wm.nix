@@ -119,6 +119,7 @@ in
         loupe # image viewer
         mako # notification daemon
         nautilus # file explorer
+        networkmanagerapplet
         playerctl # utility for controlling mpris media players
         swayidle # idle management daemon
         totem # video player
