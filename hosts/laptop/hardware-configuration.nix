@@ -32,7 +32,10 @@
   };
 
   hardware = {
-    asus.battery.chargeUpto = 80;
+    asus.battery = {
+      chargeUpto = 80;
+      enableChargeUptoScript = true;
+    };
 
     nvidia = {
       # Modesetting is required.
@@ -86,7 +89,8 @@
 
   };
 
-  # TODO: upstream this
-  specialisation.battery-saver.configuration.hardware.nvidia.prime.offload.enableOffloadCmd =
-    lib.mkForce false;
+  specialisation.battery-saver.configuration = {
+    hardware.asus.battery.chargeUpto = lib.mkForce 100;
+    hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false; # TODO: upstream this
+  };
 }
