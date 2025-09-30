@@ -10,8 +10,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    documentation.man.generateCaches = true;
-
     programs = {
       fish.enable = true;
       command-not-found.enable = false;

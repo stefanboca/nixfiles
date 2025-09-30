@@ -19,5 +19,6 @@ in
       pkgs.man-pages-posix
     ];
     documentation.dev.enable = true;
+    documentation.man.generateCaches = true;
   };
 }
