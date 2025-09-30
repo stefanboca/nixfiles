@@ -95,17 +95,17 @@
             "Nix Packages" = {
               urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "np" ];
+              definedAliases = ["nxp"];
             };
             "Nix Options" = {
               urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "no" ];
+              definedAliases = ["nxo"];
             };
             "Noogle" = {
               urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "nx" ];
+              definedAliases = ["nx"];
             };
             "Home Manager" = {
               urls = [
