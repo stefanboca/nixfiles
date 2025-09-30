@@ -97,9 +97,14 @@ in {
         gnome-power-manager # view battery and power statistics
         loupe # image viewer
         nautilus # file explorer
-        networkmanagerapplet
         playerctl # utility for controlling mpris media players
         totem # video player
+
+        # extract nm-connection-editor from networkmanagerapplet
+        (pkgs.runCommand "nm-connection-editor" {} ''
+          mkdir -p $out/bin
+          ln -s ${pkgs.networkmanagerapplet}/bin/nm-connection-editor $out/bin/
+        '')
       ];
     })
   ];
