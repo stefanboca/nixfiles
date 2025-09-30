@@ -68,8 +68,9 @@ in
         python313Packages.debugpy
 
         # nix
+        alejandra
+        deadnix
         nil
-        nixfmt
         statix
 
         # shell
