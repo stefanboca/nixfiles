@@ -21,11 +21,6 @@ in
 
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-    # enable man pages
-    manual = {
-      html.enable = true;
-      json.enable = lib.mkDefault true;
-    };
     programs.man.generateCaches = true;
   };
 }
