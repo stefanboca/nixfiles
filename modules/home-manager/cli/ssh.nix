@@ -1,10 +1,11 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.cli;
-in
-{
+in {
   config = mkIf cfg.enable {
     # ensure public keys are present
     home.file = {

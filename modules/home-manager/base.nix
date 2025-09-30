@@ -1,9 +1,10 @@
-{ config, lib, ... }:
-
-let
-  cfg = config.base;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.base;
+in {
   options.base = {
     enable = lib.mkEnableOption "Enable base module";
   };

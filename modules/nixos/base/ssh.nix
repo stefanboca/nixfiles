@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.base;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     services.openssh = {
       enable = true; # enable to generate ssh keys
@@ -18,7 +15,7 @@ in
     # disable sshd
     systemd.sockets.sshd = {
       enable = lib.mkForce false;
-      wantedBy = lib.mkForce [ ];
+      wantedBy = lib.mkForce [];
     };
   };
 }

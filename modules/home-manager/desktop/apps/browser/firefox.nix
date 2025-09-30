@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-nightly-bin;
@@ -83,54 +81,49 @@
           default = "ddg";
           engines = {
             "Github" = {
-              urls = [ { template = "https://github.com/search?type=repositories&q={searchTerms}"; } ];
-              definedAliases = [ "gh" ];
+              urls = [{template = "https://github.com/search?type=repositories&q={searchTerms}";}];
               icon = "https://github.githubassets.com/favicons/favicon.svg";
+              definedAliases = ["gh"];
             };
             "NixOS Wiki" = {
-              urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
+              urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
               icon = "https://nixos.wiki/favicon.png";
-              definedAliases = [ "nw" ];
+              definedAliases = ["nw"];
             };
             "Nix Packages" = {
-              urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
+              urls = [{template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";}];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["nxp"];
             };
             "Nix Options" = {
-              urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
+              urls = [{template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";}];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["nxo"];
             };
             "Noogle" = {
-              urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
+              urls = [{template = "https://noogle.dev/q?term={searchTerms}";}];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["nx"];
             };
             "Home Manager" = {
-              urls = [
-                { template = "https://home-manager-options.extranix.com/?release=master&query={searchTerms}"; }
-              ];
+              urls = [{template = "https://home-manager-options.extranix.com/?release=master&query={searchTerms}";}];
               icon = "https://home-manager-options.extranix.com/images/favicon.png";
-              definedAliases = [ "hm" ];
+              definedAliases = ["hm"];
             };
             "Crates" = {
-              urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
+              urls = [{template = "https://crates.io/search?q={searchTerms}";}];
               icon = "https://crates.io/favicon.ico";
-              definedAliases = [ "crates" ];
+              definedAliases = ["crates"];
             };
             "DocsRS" = {
-              urls = [ { template = "https://docs.rs/releases/search?query={searchTerms}"; } ];
+              urls = [{template = "https://docs.rs/releases/search?query={searchTerms}";}];
               icon = "https://docs.rs/favicon.ico";
-              definedAliases = [
-                "drs"
-                "docsrs"
-              ];
+              definedAliases = ["drs" "docsrs"];
             };
             "Rust" = {
-              urls = [ { template = "https://doc.rust-lang.org/std/?search={searchTerms}"; } ];
+              urls = [{template = "https://doc.rust-lang.org/std/?search={searchTerms}";}];
               icon = "https://doc.rust-lang.org/favicon.ico";
-              definedAliases = [ "rs" ];
+              definedAliases = ["rs"];
             };
           };
         };

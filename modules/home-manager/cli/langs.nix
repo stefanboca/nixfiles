@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.cli;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       koto
@@ -39,15 +36,7 @@ in
       cargo-watch # run cargo commands on project changes
       cargo-wizard # configure cargo projects for best performance
       ra-multiplex # run a single rust-analyzer instance
-      (fenix.complete.withComponents [
-        "cargo"
-        "clippy"
-        "miri"
-        "rust-analysis"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])
+      (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
       rust-analyzer-nightly
     ];
 
@@ -62,7 +51,7 @@ in
       };
     };
 
-    xdg.dataFile."cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
+    xdg.dataFile."cargo/config.toml".source = (pkgs.formats.toml {}).generate "cargo-config" {
       net.git-fetch-with-cli = true;
       unstable.gc = true;
     };

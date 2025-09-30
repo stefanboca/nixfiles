@@ -3,19 +3,12 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.desktop;
-in
-{
+in {
   options.desktop = {
     dm = lib.mkOption {
-      type = lib.types.enum [
-        "sddm"
-        "gdm"
-        "cosmic-greeter"
-      ];
+      type = lib.types.enum ["sddm" "gdm" "cosmic-greeter"];
       default = "sddm";
       description = "The display manager to use.";
     };

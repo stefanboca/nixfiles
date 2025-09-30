@@ -3,20 +3,17 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.theming;
-in
-{
-  imports = [ ../common/theming.nix ];
+in {
+  imports = [../common/theming.nix];
 
   options.theming = with lib; {
     niri = {
       outputs = mkOption {
         description = "A list of niri outputs to theme";
         type = types.listOf types.str;
-        default = [ ];
+        default = [];
       };
     };
   };
@@ -58,16 +55,17 @@ in
         colorScheme = config.catppuccin.flavor;
       };
       neovide.settings.font = {
-        normal = [ { family = cfg.fonts.monospace.name; } ];
+        normal = [{family = cfg.fonts.monospace.name;}];
         size = cfg.fonts.sizes.terminal;
         features.${cfg.fonts.monospace.name} = builtins.map (str: "+" + str) cfg.fonts.monospace.features;
       };
 
       neovim.extraLuaConfig =
         lib.mkBefore # lua
-          ''
-            vim.g.catppuccin_flavor = ${config.catppuccin.flavor}
-          '';
+        
+        ''
+          vim.g.catppuccin_flavor = ${config.catppuccin.flavor}
+        '';
 
       niri.settings = {
         cursor = {

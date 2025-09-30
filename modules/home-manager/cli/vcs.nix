@@ -3,15 +3,12 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.cli;
 
   name = "Stefan Boca";
   email = "stefan.r.boca@gmail.com";
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       difftastic # syntax-aware structural diff tool
@@ -48,65 +45,33 @@ in
         enable = true;
 
         settings = {
-          user = { inherit name email; };
+          user = {inherit name email;};
 
           ui = {
             default-command = "log";
             diff-formatter = "difft";
             diff-editor = ":builtin";
-            editor = [
-              "nvim"
-              "--cmd"
-              "let g:quit_on_write=1"
-            ];
+            editor = ["nvim" "--cmd" "let g:quit_on_write=1"];
             log-word-wrap = true;
           };
 
           aliases = {
-            tug = [
-              "bookmark"
-              "move"
-              "--from"
-              "closest_bookmark(@-)"
-              "--to"
-              "@-"
-            ];
+            tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
 
-            cm = [ "commit" ];
-            d = [ "diff" ];
-            n = [ "new" ];
-            rb = [ "rebase" ];
-            s = [ "show" ];
+            cm = ["commit"];
+            d = ["diff"];
+            n = ["new"];
+            rb = ["rebase"];
+            s = ["show"];
 
-            g = [ "git" ];
-            gc = [
-              "git"
-              "clone"
-              "--colocate"
-            ];
-            gp = [
-              "git"
-              "push"
-            ];
-            gf = [
-              "git"
-              "fetch"
-            ];
-            gr = [
-              "git"
-              "remote"
-            ];
+            g = ["git"];
+            gc = ["git" "clone" "--colocate"];
+            gp = ["git" "push"];
+            gf = ["git" "fetch"];
+            gr = ["git" "remote"];
 
-            c = [
-              "log"
-              "-r"
-              "current_branch()"
-            ];
-            a = [
-              "log"
-              "-r"
-              "all()"
-            ];
+            c = ["log" "-r" "current_branch()"];
+            a = ["log" "-r" "all()"];
           };
 
           revset-aliases = {
@@ -117,22 +82,7 @@ in
           merge-tools = {
             nvim = {
               program = "nvim";
-              merge-args = [
-                "--cmd"
-                "let g:quit_on_write=1"
-                "-d"
-                "$output"
-                "-M"
-                "$left"
-                "$base"
-                "$right"
-                "-c"
-                "wincmd J"
-                "-c"
-                "set modifiable"
-                "-c"
-                "set write"
-              ];
+              merge-args = ["--cmd" "let g:quit_on_write=1" "-d" "$output" "-M" "$left" "$base" "$right" "-c" "wincmd J" "-c" "set modifiable" "-c" "set write"];
               diff-invocation-mode = "file-by-file";
               merge-tool-edits-conflict-markers = true;
               conflict-marker-style = "snapshot";
@@ -140,16 +90,8 @@ in
 
             mergiraf = {
               program = "mergiraf";
-              merge-args = [
-                "merge"
-                "$base"
-                "$left"
-                "$right"
-                "-o"
-                "$output"
-                "--fast"
-              ];
-              merge-conflict-exit-codes = [ 1 ];
+              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--fast"];
+              merge-conflict-exit-codes = [1];
               conflict-marker-style = "git";
             };
           };
@@ -202,25 +144,15 @@ in
       *.scratch.*
     '';
 
-    xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml { }).generate "jjui-config" {
-      preview =
-        let
-          args = [
-            "--color"
-            "always"
-            "--config"
-            ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]''
-            "-r"
-            "$change_id"
-          ];
-        in
-        {
-          revision_command = [ "show" ] ++ args;
-          file_command = [ "diff" ] ++ args ++ [ "$file" ];
-        };
+    xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml {}).generate "jjui-config" {
+      preview = let
+        args = ["--color" "always" "--config" ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]'' "-r" "$change_id"];
+      in {
+        revision_command = ["show"] ++ args;
+        file_command = ["diff"] ++ args ++ ["$file"];
+      };
     };
 
-    home.file.".ssh/allowed_signers".text =
-      "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
+    home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
 }

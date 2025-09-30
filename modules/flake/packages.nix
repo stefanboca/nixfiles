@@ -1,22 +1,13 @@
-{ inputs, ... }:
+{inputs, ...}: {
+  imports = [inputs.flake-parts.flakeModules.easyOverlay];
 
-{
-  imports = [ inputs.flake-parts.flakeModules.easyOverlay ];
+  perSystem = {
+    config,
+    pkgs,
+    ...
+  }: {
+    packages = import ../../pkgs {inherit pkgs;};
 
-  perSystem =
-    {
-      config,
-      self',
-      inputs',
-      pkgs,
-      stable,
-      small,
-      system,
-      ...
-    }:
-    {
-      packages = import ../../pkgs { inherit pkgs; };
-
-      overlayAttrs = config.packages;
-    };
+    overlayAttrs = config.packages;
+  };
 }

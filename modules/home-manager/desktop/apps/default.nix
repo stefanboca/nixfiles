@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.desktop;
-in
-{
+in {
   imports = [
     ./browser/firefox.nix
     ./spotify.nix

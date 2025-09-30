@@ -1,9 +1,10 @@
-{ config, lib, ... }:
-
-let
-  cfg = config.desktop;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.desktop;
+in {
   imports = [
     ./apps
     ./gaming.nix

@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.desktop.gaming;
-in
-{
+in {
   options.desktop.gaming = {
     enable = lib.mkEnableOption "Enable gaming.";
   };

@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.base;
-in
-{
+in {
   imports = [
     ./cli.nix
     ./man.nix
@@ -23,9 +20,7 @@ in
       description = "Primary user for permissions and defaults.";
     };
 
-    boot.enable = lib.mkEnableOption "Enable boot config." // {
-      default = true;
-    };
+    boot.enable = lib.mkEnableOption "Enable boot config." // {default = true;};
 
     tz = lib.mkOption {
       type = lib.types.str;
@@ -56,7 +51,7 @@ in
 
       tmp.useTmpfs = true;
 
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
+      binfmt.emulatedSystems = ["aarch64-linux"];
 
       supportedFilesystems = {
         btrfs = true;

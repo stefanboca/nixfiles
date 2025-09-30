@@ -5,15 +5,12 @@
   inputs,
   ...
 }:
-
-with lib;
-let
+with lib; let
   cfg = config.theming;
 
-  catppuccinLib = import "${inputs.catppuccin}/modules/lib" { inherit config lib pkgs; };
+  catppuccinLib = import "${inputs.catppuccin}/modules/lib" {inherit config lib pkgs;};
 
-  mkFontOpt =
-    typeName:
+  mkFontOpt = typeName:
     mkOption {
       description = "Settings for the ${typeName} font";
       type = types.submodule {
@@ -29,13 +26,12 @@ let
           features = mkOption {
             type = types.listOf types.str;
             description = "Features to use for the ${typeName} font";
-            default = [ ];
+            default = [];
           };
         };
       };
     };
-in
-{
+in {
   options.theming = {
     enable = mkEnableOption "Enable system theming";
 
@@ -64,10 +60,10 @@ in
             description = "Font size settings";
             type = types.submodule {
               options = {
-                terminal = mkOption { type = types.int; };
-                desktop = mkOption { type = types.int; };
-                popups = mkOption { type = types.int; };
-                applications = mkOption { type = types.int; };
+                terminal = mkOption {type = types.int;};
+                desktop = mkOption {type = types.int;};
+                popups = mkOption {type = types.int;};
+                applications = mkOption {type = types.int;};
               };
             };
           };
@@ -78,28 +74,22 @@ in
         monospace = {
           name = "Lilex";
           package = pkgs.lilex;
-          features = [
-            "cv09"
-            "cv10"
-            "cv11"
-            "ss01"
-            "ss03"
-          ];
+          features = ["cv09" "cv10" "cv11" "ss01" "ss03"];
         };
         serif = {
           name = "Noto Serif";
           package = pkgs.noto-fonts;
-          features = [ ];
+          features = [];
         };
         sansSerif = {
           name = "Open Sans";
           package = pkgs.open-sans;
-          features = [ ];
+          features = [];
         };
         emoji = {
           name = "Noto Color Emoji";
           package = pkgs.noto-fonts-color-emoji;
-          features = [ ];
+          features = [];
         };
 
         sizes = {
@@ -134,10 +124,10 @@ in
     fonts.fontconfig = {
       enable = true;
       defaultFonts = with cfg.fonts; {
-        monospace = [ monospace.name ];
-        serif = [ serif.name ];
-        sansSerif = [ sansSerif.name ];
-        emoji = [ emoji.name ];
+        monospace = [monospace.name];
+        serif = [serif.name];
+        sansSerif = [sansSerif.name];
+        emoji = [emoji.name];
       };
     };
 

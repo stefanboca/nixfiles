@@ -3,15 +3,9 @@
   lib,
   kernel ? pkgs.linuxPackages_latest.kernel,
 }:
-
 pkgs.stdenv.mkDerivation {
   pname = "asus-nb-wmi-kernel-module";
-  inherit (kernel)
-    src
-    version
-    postPatch
-    nativeBuildInputs
-    ;
+  inherit (kernel) src version postPatch nativeBuildInputs;
 
   kernelDev = kernel.dev;
   kernelVersion = kernel.modDirVersion;
@@ -22,8 +16,8 @@ pkgs.stdenv.mkDerivation {
     BUILT_KERNEL=$kernelDev/lib/modules/$kernelVersion/build
 
     cp $BUILT_KERNEL/Module.symvers .
-    cp $BUILT_KERNEL/.config        .
-    cp $kernelDev/vmlinux          .
+    cp $BUILT_KERNEL/.config .
+    cp $kernelDev/vmlinux .
 
     make "-j$NIX_BUILD_CORES" modules_prepare
     make "-j$NIX_BUILD_CORES" M=$moduleDir asus-nb-wmi.ko

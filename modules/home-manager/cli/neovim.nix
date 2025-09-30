@@ -1,17 +1,13 @@
 # Requires cloning nvim config manually
 # jj git clone --colocate git@github.com:stefanboca/nvim.git ~/.config/nvim
-
 {
   config,
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.cli;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       VISUAL = "nvim";
@@ -22,7 +18,8 @@ in
       defaultEditor = true;
       package = pkgs.neovim-nightly;
 
-      extraLuaConfig = # lua
+      extraLuaConfig =
+        # lua
         ''
           vim.loader.enable()
           require("my.config.lazy");
@@ -135,7 +132,7 @@ in
         "--suffix"
         "LD_LIBRARY_PATH"
         ":"
-        (lib.makeLibraryPath [ pkgs.sqlite ])
+        (lib.makeLibraryPath [pkgs.sqlite])
       ];
 
       withNodeJs = false;

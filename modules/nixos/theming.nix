@@ -2,13 +2,10 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.theming;
-in
-{
-  imports = [ ../common/theming.nix ];
+in {
+  imports = [../common/theming.nix];
 
   config = lib.mkIf cfg.enable {
     catppuccin = {
@@ -22,7 +19,7 @@ in
 
     console = {
       font = cfg.fonts.monospace.name;
-      packages = [ cfg.fonts.monospace.package ];
+      packages = [cfg.fonts.monospace.package];
     };
   };
 }

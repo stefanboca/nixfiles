@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.cli;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     home.shell.enableFishIntegration = true;
 
@@ -19,7 +16,7 @@ in
 
       atuin = {
         enable = true;
-        flags = [ "--disable-up-arrow" ];
+        flags = ["--disable-up-arrow"];
         settings = {
           ctrl_n_shortcuts = true;
           enter_accept = true;
@@ -28,31 +25,11 @@ in
           workspaces = true;
           stats = {
             # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
-            common_subcommands = [
-              "cargo"
-              "docker"
-              "git"
-              "ip"
-              "jj"
-              "nh"
-              "nix"
-              "nmcli"
-              "npm"
-              "pnpm"
-              "podman"
-              "port"
-              "systemctl"
-              "uv"
-            ];
+            common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "port" "systemctl" "uv"];
             # Set commands that should be totally stripped and ignored from stats
-            common_prefix = [ "sudo" ];
+            common_prefix = ["sudo"];
             # Set commands that will be completely ignored from stats
-            ignored_commands = [
-              "cd"
-              "ls"
-              "z"
-              "eza"
-            ];
+            ignored_commands = ["cd" "ls" "z" "eza"];
           };
         };
       };
@@ -65,7 +42,8 @@ in
           # disable greeting
           fish_greeting = "";
           # Vi-style bindings that inherit emacs-style bindings in all modes
-          fish_hybrid_key_bindings = # fish
+          fish_hybrid_key_bindings =
+            # fish
             ''
               for mode in default insert visual
                   fish_default_key_bindings -M $mode
@@ -74,17 +52,20 @@ in
             '';
 
           # jj integration for tide
-          _tide_item_jj = # fish
+          _tide_item_jj =
+            # fish
             ''
               command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
               _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
             '';
-          _tide_item_git_no_jj = # fish
+          _tide_item_git_no_jj =
+            # fish
             ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
 
           realify = {
             description = "Replace symlink(s) with real file(s) in‑place";
-            body = # fish
+            body =
+              # fish
               ''
                 for file in $argv
                     if test -L "$file"
@@ -150,7 +131,7 @@ in
       };
     };
 
-    home.activation.configureFish = lib.hm.dag.entryAfter [ "writeBoundary" "installPackages" ] ''
+    home.activation.configureFish = lib.hm.dag.entryAfter ["writeBoundary" "installPackages"] ''
       run --quiet ${pkgs.fish}/bin/fish -c "
         set -U fish_key_bindings fish_hybrid_key_bindings
 

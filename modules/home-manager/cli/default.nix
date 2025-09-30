@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.cli;
-in
-{
+in {
   imports = [
     ./fish.nix
     ./langs.nix
@@ -60,16 +57,7 @@ in
       # fuzzy finder
       fzf = {
         enable = true;
-        defaultOptions = [
-          "--cycle"
-          "--layout=reverse"
-          "--border"
-          "--height=-3"
-          "--preview-window=wrap"
-          "--highlight-line"
-          "--info=inline-right"
-          "--ansi"
-        ];
+        defaultOptions = ["--cycle" "--layout=reverse" "--border" "--height=-3" "--preview-window=wrap" "--highlight-line" "--info=inline-right" "--ansi"];
       };
       jq.enable = true; # transform json
       numbat.enable = true; # scientific calculator with physical units
@@ -86,26 +74,24 @@ in
       };
     };
 
-    home.sessionVariables =
-      let
-        inherit (config.xdg) cacheHome dataHome stateHome;
-      in
-      {
-        LESS = "-FRXS";
+    home.sessionVariables = let
+      inherit (config.xdg) cacheHome dataHome stateHome;
+    in {
+      LESS = "-FRXS";
 
-        # make stuff xdg compliant
-        CARGO_HOME = "${dataHome}/cargo";
-        GNUPGHOME = "${dataHome}/gnupg";
-        HISTFILE = "${stateHome}/bash_history";
-        NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
-        NPM_CONFIG_CACHE = "${cacheHome}/npm";
-        NPM_CONFIG_PREFIX = "${dataHome}/npm";
-        PLATFORMIO_CORE_DIR = "${dataHome}/platformio";
-        PYTHON_HISTORY = "${stateHome}/python_history";
-        RUSTUP_HOME = "${dataHome}/rust";
-        SQLITE_HISTORY = "${stateHome}/sqlite_history";
-        WINEPREFIX = "${dataHome}/wine";
-        _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${dataHome}/java";
-      };
+      # make stuff xdg compliant
+      CARGO_HOME = "${dataHome}/cargo";
+      GNUPGHOME = "${dataHome}/gnupg";
+      HISTFILE = "${stateHome}/bash_history";
+      NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
+      NPM_CONFIG_CACHE = "${cacheHome}/npm";
+      NPM_CONFIG_PREFIX = "${dataHome}/npm";
+      PLATFORMIO_CORE_DIR = "${dataHome}/platformio";
+      PYTHON_HISTORY = "${stateHome}/python_history";
+      RUSTUP_HOME = "${dataHome}/rust";
+      SQLITE_HISTORY = "${stateHome}/sqlite_history";
+      WINEPREFIX = "${dataHome}/wine";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${dataHome}/java";
+    };
   };
 }

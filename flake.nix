@@ -47,15 +47,13 @@
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    {
-      self,
-      flake-parts,
-      home-manager,
-      nixpkgs,
-      ...
-    }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = {
+    self,
+    flake-parts,
+    nixpkgs,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         ./modules/flake/modules.nix
         ./modules/flake/nix.nix
@@ -64,34 +62,25 @@
         ./modules/flake/shell.nix
       ];
 
-      systems = [ "x86_64-linux" ];
+      systems = ["x86_64-linux"];
 
       flake = {
         nixosConfigurations = {
           # TODO: find a better hostname
           laptop = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            modules = [ self.nixosModules.laptop ];
-            specialArgs = { inherit self inputs; };
+            modules = [self.nixosModules.laptop];
+            specialArgs = {inherit self inputs;};
           };
         };
       };
 
-      perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          system,
-          ...
-        }:
-        {
-          treefmt = {
-            flakeCheck = true;
-            programs.deadnix.enable = true;
-            programs.alejandra.enable = true;
-          };
+      perSystem = {...}: {
+        treefmt = {
+          flakeCheck = true;
+          programs.deadnix.enable = true;
+          programs.alejandra.enable = true;
         };
+      };
     };
 }

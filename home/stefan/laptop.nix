@@ -3,18 +3,13 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   # override pkgs with cuda support, in order to get cache hits
   pkgs-cuda = import pkgs.path {
     inherit (pkgs) system overlays;
-    config = pkgs.config // {
-      cudaSupport = true;
-    };
+    config = pkgs.config // {cudaSupport = true;};
   };
-in
-{
+in {
   imports = [
     ./shared.nix
     ./sops.nix
@@ -53,21 +48,13 @@ in
       binds = with config.lib.niri.actions; {
         XF86MonBrightnessUp = lib.mkForce {
           allow-when-locked = true;
-          action = spawn [
-            "sh"
-            "-c"
-            "dms ipc brightness increment 5 intel_backlight; dms ipc brightness increment 5 asus_screenpad;"
-          ];
+          action = spawn ["sh" "-c" "dms ipc brightness increment 5 intel_backlight; dms ipc brightness increment 5 asus_screenpad;"];
         };
         XF86MonBrightnessDown = lib.mkForce {
           allow-when-locked = true;
-          action = spawn [
-            "sh"
-            "-c"
-            "dms ipc brightness decrement 5 intel_backlight; dms ipc brightness decrement 5 asus_screenpad;"
-          ];
+          action = spawn ["sh" "-c" "dms ipc brightness decrement 5 intel_backlight; dms ipc brightness decrement 5 asus_screenpad;"];
         };
-        XF86DisplayToggle.action = spawn [ "toggle-screenpad-backlight" ];
+        XF86DisplayToggle.action = spawn ["toggle-screenpad-backlight"];
         "XF86Launch1" = {
           allow-when-locked = true;
           action = spawn [
@@ -121,10 +108,6 @@ in
   dconf = {
     enable = true;
     # map screenpad touchscreen to correct display in gnome
-    settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = [
-      "BOE"
-      "0x0a8d"
-      "0x00000000"
-    ];
+    settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
   };
 }

@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   cfg = config.desktop;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     programs.ghostty = {
       enable = true;

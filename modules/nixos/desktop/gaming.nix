@@ -3,17 +3,14 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.desktop.gaming;
 
-  steam-run-libs = pkgs.runCommand "steam-run-libs" { } ''
+  steam-run-libs = pkgs.runCommand "steam-run-libs" {} ''
     mkdir $out
     ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib
   '';
-in
-{
+in {
   options.desktop.gaming = {
     enable = lib.mkEnableOption "Enable gaming.";
   };
@@ -32,12 +29,12 @@ in
 
       nix-ld = {
         enable = true;
-        libraries = [ steam-run-libs ];
+        libraries = [steam-run-libs];
       };
     };
 
     specialisation.gaming.configuration = {
-      system.nixos.tags = [ "gaming" ];
+      system.nixos.tags = ["gaming"];
       boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_lqx;
       hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
     };

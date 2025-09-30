@@ -3,29 +3,15 @@
   inputs,
   lib,
   ...
-}:
-
-{
+}: {
   flake = {
     nixCfg = {
       nix = {
         settings = {
-          allowed-users = [
-            "root"
-            "@wheel"
-          ];
-          trusted-users = [
-            "root"
-            "@wheel"
-          ];
-          experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-          substituters = [
-            "https://cache.nixos.org"
-            "https://nix-community.cachix.org"
-          ];
+          allowed-users = ["root" "@wheel"];
+          trusted-users = ["root" "@wheel"];
+          experimental-features = ["nix-command" "flakes"];
+          substituters = ["https://cache.nixos.org" "https://nix-community.cachix.org"];
           trusted-public-keys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -37,9 +23,11 @@
 
         # add each flake input as a registry
         # to make nix3 commands consistent with the flake
-        registry = (lib.mapAttrs (_: value: { flake = value; }) inputs) // {
-          n.flake = inputs.nixpkgs;
-        };
+        registry =
+          (lib.mapAttrs (_: value: {flake = value;}) inputs)
+          // {
+            n.flake = inputs.nixpkgs;
+          };
       };
 
       nixpkgs = {
@@ -52,19 +40,14 @@
     };
   };
 
-  perSystem =
-    {
-      config,
-      self',
-      inputs',
-      pkgs,
-      system,
-      ...
-    }:
-    {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        inherit (self.nixCfg.nixpkgs) config overlays;
-      };
+  perSystem = {
+    config,
+    system,
+    ...
+  }: {
+    _module.args.pkgs = import inputs.nixpkgs {
+      inherit system;
+      inherit (self.nixCfg.nixpkgs) config overlays;
     };
+  };
 }

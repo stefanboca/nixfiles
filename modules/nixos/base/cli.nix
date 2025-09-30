@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.base;
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     programs = {
       fish.enable = true;

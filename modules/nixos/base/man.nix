@@ -3,12 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.base.extraMan;
-in
-{
+in {
   options.base.extraMan = {
     enable = lib.mkEnableOption "Enable extra man pages.";
   };

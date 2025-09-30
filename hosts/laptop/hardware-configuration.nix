@@ -3,33 +3,18 @@
   lib,
   pkgs,
   ...
-}:
-
-{
+}: {
   boot = {
-    initrd.availableKernelModules = [
-      "thunderbolt"
-      "vmd"
-      "nvme"
-      "uas"
-      "rtsx_pci_sdmmc"
-    ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-intel" ];
+    initrd.availableKernelModules = ["thunderbolt" "vmd" "nvme" "uas" "rtsx_pci_sdmmc"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
     extraModulePackages = [
-      (
-        (pkgs.asus-nb-wmi-kernel-module.override { inherit (config.boot.kernelPackages) kernel; })
-        .overrideAttrs
-        (_: {
-          patches = [ ./0001-screenpad-keys.patch ];
-        })
-      )
+      (pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;}).overrideAttrs
+      (_: {patches = [./0001-screenpad-keys.patch];})
     ];
   };
 
-  nixpkgs = {
-    hostPlatform = "x86_64-linux";
-  };
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   hardware = {
     asus.battery = {
@@ -86,7 +71,6 @@
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   };
 
   specialisation.battery-saver.configuration = {
