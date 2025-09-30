@@ -15,7 +15,8 @@
       "wheel"
       "video"
     ]
-    ++ lib.optional config.programs.wireshark.enable "wireshark";
+    ++ lib.optional config.programs.wireshark.enable "wireshark"
+    ++ lib.optional config.networking.networkmanager.enable "networkmanager";
 
     openssh.authorizedKeys.keys = [
       (builtins.readFile ../../../home/stefan/keys/id_ed25519.pub)

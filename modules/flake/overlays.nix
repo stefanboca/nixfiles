@@ -18,6 +18,8 @@
           mesonFlags = [ "-Dwallpaper=disabled" ];
         });
 
+        # use nightly quickshell
+        inherit (inputs.dank-material-shell.packages.${prev.system}) quickshell;
       };
 
       inherit (inputs.niri.overlays) niri;

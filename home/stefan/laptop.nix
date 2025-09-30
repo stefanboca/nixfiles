@@ -48,31 +48,6 @@ in
     aerc.enable = true;
 
     niri.settings = {
-      spawn-at-startup = [
-        {
-          command = [
-            (lib.getExe pkgs.swaybg)
-            "--mode"
-            "fill"
-            "--output"
-            "eDP-1"
-            "--image"
-            "${../../assets/wallpapers/hexagons_catppuccin_mocha.png}"
-          ];
-        }
-        {
-          command = [
-            (lib.getExe pkgs.swaybg)
-            "--mode"
-            "fill"
-            "--output"
-            "DP-1"
-            "--image"
-            "${../../assets/wallpapers/hexagons_catppuccin_mocha_small.png}"
-          ];
-        }
-      ];
-
       input.tablet.map-to-output = "eDP-1";
       input.touch.map-to-output = "eDP-1";
       binds = with config.lib.niri.actions; {
@@ -81,7 +56,7 @@ in
           action = spawn [
             "sh"
             "-c"
-            "brightnessctl -d intel_backlight set +10%; brightnessctl -d asus_screenpad set +10%"
+            "dms ipc brightness increment 5 intel_backlight; dms ipc brightness increment 5 asus_screenpad;"
           ];
         };
         XF86MonBrightnessDown = lib.mkForce {
@@ -89,10 +64,19 @@ in
           action = spawn [
             "sh"
             "-c"
-            "brightnessctl -d intel_backlight set 10%-; brightnessctl -d asus_screenpad set 10%-"
+            "dms ipc brightness decrement 5 intel_backlight; dms ipc brightness decrement 5 asus_screenpad;"
           ];
         };
         XF86DisplayToggle.action = spawn [ "toggle-screenpad-backlight" ];
+        "XF86Launch1" = {
+          allow-when-locked = true;
+          action = spawn [
+            "dms"
+            "ipc"
+            "mpris"
+            "playPause"
+          ];
+        };
         "Mod+XF86Launch2".action = focus-monitor-next;
         "Mod+Shift+XF86Launch2".action = move-window-to-monitor-next;
         "Mod+Ctrl+XF86Launch2".action = move-workspace-to-monitor-next;

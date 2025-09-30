@@ -77,6 +77,7 @@ in
         enable = true;
         wifi.backend = "iwd";
       };
+      modemmanager.enable = false; # enabled by nnetworkmanager
       nftables.enable = true;
       firewall.enable = true;
     };

@@ -18,8 +18,6 @@ in
         type = types.listOf types.str;
         default = [ ];
       };
-
-      wallpaper = mkEnableOption "Configure niri wallpaper";
     };
   };
 
@@ -72,17 +70,6 @@ in
           '';
 
       niri.settings = {
-        spawn-at-startup = lib.mkIf cfg.niri.wallpaper [
-          {
-            command = [
-              (lib.getExe pkgs.swaybg)
-              "--image"
-              "${../../assets/wallpapers/hexagons_catppuccin_${config.catppuccin.flavor}.png}"
-              "--mode"
-              "fill"
-            ];
-          }
-        ];
         cursor = {
           theme = config.home.pointerCursor.name;
           inherit (config.home.pointerCursor) size;

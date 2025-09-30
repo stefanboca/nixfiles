@@ -6,6 +6,8 @@ let
 
   homeCommon = [
     inputs.catppuccin.homeModules.catppuccin
+    inputs.dank-material-shell.homeModules.dankMaterialShell.default
+    inputs.dank-material-shell.homeModules.dankMaterialShell.niri
     inputs.nix-index-database.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
     inputs.spicetify-nix.homeManagerModules.spicetify

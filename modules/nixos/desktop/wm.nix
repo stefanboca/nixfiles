@@ -58,7 +58,6 @@ in
         package = pkgs.niri-unstable;
       };
 
-      security.pam.services.swaylock = { };
       systemd.user.services = {
         niri-flake-polkit.enable = false;
         polkit-gnome-authentication-agent-1 = {
@@ -74,22 +73,6 @@ in
             TimeoutStopSec = 10;
           };
         };
-
-        swaylock = {
-          description = "Swaylock";
-          onSuccess = [ "unlock.target" ]; # If swaylock exits cleanly, unlock the session
-          partOf = [ "lock.target" ]; # When lock.target is stopped, stops this too
-          # Delay lock.target until this service is ready:
-          before = [ "lock.target" ];
-          wantedBy = [ "lock.target" ];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${lib.getExe pkgs.swaylock}";
-            # If swaylock crashes, always restart it immediately:
-            Restart = "on-failure";
-            RestartSec = 0;
-          };
-        };
       };
 
       services = {
@@ -97,7 +80,6 @@ in
         # geoclue2.enable = true;
         gnome.sushi.enable = true; # quick previewer for nautilus
         gvfs.enable = true; # userspace virtual filesystem
-        systemd-lock-handler.enable = true; # add systemd user lock.target
         udisks2.enable = true; # dbus service for querying and manipulating storage devices
       };
       programs = {
@@ -112,18 +94,14 @@ in
         adwaita-icon-theme
         baobab # disk usage analyzer
         decibels # audio player
-        fuzzel # application launcher
         gnome-calculator # calculator
         gnome-font-viewer # font viewer
         gnome-power-manager # view battery and power statistics
         loupe # image viewer
-        mako # notification daemon
         nautilus # file explorer
         networkmanagerapplet
         playerctl # utility for controlling mpris media players
-        swayidle # idle management daemon
         totem # video player
-        waybar # wayland bar
       ];
     })
   ];
