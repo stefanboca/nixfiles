@@ -84,8 +84,8 @@
           engines = {
             "Github" = {
               urls = [ { template = "https://github.com/search?type=repositories&q={searchTerms}"; } ];
-              icon = "https://github.com/favicon.png";
               definedAliases = [ "gh" ];
+              icon = "https://github.githubassets.com/favicons/favicon.svg";
             };
             "NixOS Wiki" = {
               urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
