@@ -101,6 +101,10 @@ in {
         "Mod+Ctrl+N".action = dms-ipc "notepad" "toggle";
         "Super+Alt+L".action = dms-ipc "lock" "lock";
         "Mod+X".action = dms-ipc "powermenu" "toggle";
+        "Mod+Ctrl+Shift+R" = {
+          allow-when-locked = true;
+          action = spawn "dms" "restart";
+        };
 
         XF86AudioRaiseVolume = {
           allow-when-locked = true;
