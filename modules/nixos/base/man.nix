@@ -10,12 +10,20 @@ in {
     enable = lib.mkEnableOption "Enable extra man pages.";
   };
 
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.man-pages
-      pkgs.man-pages-posix
-    ];
-    documentation.dev.enable = true;
-    documentation.man.generateCaches = true;
-  };
+  config = lib.mkMerge [
+    {
+      documentation.man = {
+        generateCaches = true;
+        man-db.enable = false;
+        mandoc.enable = true;
+      };
+    }
+    (lib.mkIf cfg.enable {
+      environment.systemPackages = [
+        pkgs.man-pages
+        pkgs.man-pages-posix
+      ];
+      documentation.dev.enable = true;
+    })
+  ];
 }
