@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.base;
@@ -32,6 +33,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nix.package = pkgs.nixVersions.latest;
+
     boot = lib.mkIf cfg.boot.enable {
       loader = {
         limine = {
