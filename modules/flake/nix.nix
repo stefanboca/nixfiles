@@ -8,16 +8,19 @@
       nix = {
         settings = {
           allowed-users = ["root" "@wheel"];
-          trusted-users = ["root" "@wheel"];
+          auto-optimise-store = true;
           experimental-features = ["nix-command" "flakes"];
+          trace-import-from-derivation = true;
+          trusted-users = ["root" "@wheel"];
+          use-xdg-base-directories = true;
+          warn-dirty = false;
+          warn-short-path-literals = true;
+
           substituters = ["https://cache.nixos.org" "https://nix-community.cachix.org"];
           trusted-public-keys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
-          auto-optimise-store = true;
-          use-xdg-base-directories = true;
-          warn-dirty = false;
         };
 
         # add each flake input as a registry
