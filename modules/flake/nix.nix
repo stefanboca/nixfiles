@@ -23,13 +23,9 @@
           ];
         };
 
-        # add each flake input as a registry
-        # to make nix3 commands consistent with the flake
-        registry =
-          (lib.mapAttrs (_: value: {flake = value;}) inputs)
-          // {
-            n.flake = inputs.nixpkgs;
-          };
+        registry = {
+          n.flake = inputs.nixpkgs;
+        };
       };
 
       nixpkgs = {
