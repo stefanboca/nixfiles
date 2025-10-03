@@ -65,7 +65,7 @@ in {
             s = ["show"];
 
             g = ["git"];
-            gc = ["git" "clone" "--colocate"];
+            gc = ["git" "clone"];
             gp = ["git" "push"];
             gf = ["git" "fetch"];
             gr = ["git" "remote"];
@@ -146,7 +146,7 @@ in {
 
     xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml {}).generate "jjui-config" {
       preview = let
-        args = ["--color" "always" "--config" ''merge-tools.difft.diff-args=["--color=always", "--display=inline", "$left", "$right"]'' "-r" "$change_id"];
+        args = ["--color" "always" "--config" ''merge-tools.difft.diff-args=["--color=always", "--width=$width", "--display=inline", "$left", "$right"]'' "-r" "$change_id"];
       in {
         revision_command = ["show"] ++ args;
         file_command = ["diff"] ++ args ++ ["$file"];
