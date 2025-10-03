@@ -62,7 +62,10 @@ in {
           allow-when-locked = true;
           action = spawn ["sh" "-c" "dms ipc brightness decrement 5 asus_screenpad;"];
         };
-        XF86DisplayToggle.action = spawn ["toggle-screenpad-backlight"];
+        XF86DisplayToggle = {
+          allow-when-locked = true;
+          action = spawn "toggle-screenpad-backlight";
+        };
         "XF86Launch1" = {
           allow-when-locked = true;
           action = spawn [
