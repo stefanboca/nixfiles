@@ -73,6 +73,7 @@
   };
 
   specialisation.battery-saver.configuration = {
+    environment.etc."specialisation".text = "battery-saver";
     hardware.asus.battery.chargeUpto = lib.mkForce 100;
     hardware.nvidia.prime.offload.enableOffloadCmd = lib.mkForce false; # TODO: upstream this
   };

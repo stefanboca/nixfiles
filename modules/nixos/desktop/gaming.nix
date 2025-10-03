@@ -34,6 +34,7 @@ in {
     };
 
     specialisation.gaming.configuration = {
+      environment.etc."specialisation".text = "gaming";
       system.nixos.tags = ["gaming"];
       boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_lqx;
       hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
