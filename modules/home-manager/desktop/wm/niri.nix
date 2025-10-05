@@ -97,12 +97,25 @@ in {
           hotkey-overlay.title = "Application Launcher";
           action = dms-ipc "spotlight" "toggle";
         };
-        "Mod+Ctrl+B".action = dms-ipc "bar" "toggle";
-        "Mod+Ctrl+N".action = dms-ipc "notepad" "toggle";
-        "Super+Alt+L".action = dms-ipc "lock" "lock";
-        "Mod+X".action = dms-ipc "powermenu" "toggle";
+        "Mod+Ctrl+B" = {
+          hotkey-overlay.title = "Toggle DMS Bar";
+          action = dms-ipc "bar" "toggle";
+        };
+        "Mod+Ctrl+N" = {
+          hotkey-overlay.title = "Toggle DMS Notepad";
+          action = dms-ipc "notepad" "toggle";
+        };
+        "Mod+X" = {
+          hotkey-overlay.title = "Toggle DMS Power Menu";
+          action = dms-ipc "powermenu" "toggle";
+        };
+        "Super+Alt+L" = {
+          hotkey-overlay.title = "Lock";
+          action = dms-ipc "lock" "lock";
+        };
         "Mod+Ctrl+Shift+R" = {
           allow-when-locked = true;
+          hotkey-overlay.title = "Restart DMS";
           action = spawn "dms" "restart";
         };
 
