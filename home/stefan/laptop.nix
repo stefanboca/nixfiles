@@ -111,6 +111,9 @@ in {
         };
       };
 
+      # ignore/don't open NVIDIA gpu
+      debug.ignore-drm-device = "/dev/dri/renderD129";
+
       # NOTE: this fixes the main display turning off when re-opening the lid
       # debug.keep-laptop-panel-on-when-lid-is-closed = [ ];
     };
