@@ -99,6 +99,7 @@ in {
         nautilus # file explorer
         playerctl # utility for controlling mpris media players
         totem # video player
+        xwayland-satellite-unstable
 
         # extract nm-connection-editor from networkmanagerapplet
         (pkgs.runCommand "nm-connection-editor" {} ''

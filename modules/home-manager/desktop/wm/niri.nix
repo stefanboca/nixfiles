@@ -13,7 +13,7 @@ in {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
       hotkey-overlay.skip-at-startup = true;
-      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite-unstable;
+      xwayland-satellite.path = "xwayland-satellite";
       cursor = {
         hide-when-typing = true;
         hide-after-inactive-ms = 10000;
@@ -87,11 +87,11 @@ in {
 
         "Mod+T" = {
           hotkey-overlay.title = "Open Ghostty";
-          action = spawn [(lib.getExe config.programs.ghostty.package) "--gtk-single-instance=true"];
+          action = spawn "ghostty" "--gtk-single-instance=true";
         };
         "Mod+B" = {
           hotkey-overlay.title = "Open Browser";
-          action = spawn (lib.getExe config.programs.firefox.package);
+          action = spawn "firefox-nightly";
         };
         "Mod+Space" = {
           hotkey-overlay.title = "Application Launcher";
