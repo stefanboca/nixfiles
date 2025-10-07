@@ -131,5 +131,18 @@
     };
   };
 
+  xdg.mimeApps.defaultApplications = let
+    firefox = "firefox-nightly.desktop";
+  in {
+    "text/html" = [firefox];
+    "text/xml" = [firefox];
+    "x-scheme-handler/http" = [firefox];
+    "x-scheme-handler/https" = [firefox];
+
+    "x-scheme-handler/about" = [firefox];
+    "x-scheme-handler/unknown" = [firefox];
+    "x-scheme-handler/webcal" = [firefox];
+  };
+
   catppuccin.firefox.profiles.stefan.enable = true;
 }
