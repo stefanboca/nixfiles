@@ -12,6 +12,8 @@ pkgs.stdenv.mkDerivation {
 
   moduleDir = "drivers/platform/x86";
 
+  patches = [./0001-screenpad-keys.patch];
+
   buildPhase = ''
     BUILT_KERNEL=$kernelDev/lib/modules/$kernelVersion/build
 

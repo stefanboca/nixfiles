@@ -9,7 +9,7 @@
     initrd.kernelModules = [];
     kernelModules = ["kvm-intel"];
     extraModulePackages = [
-      ((pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;}).overrideAttrs (_: {patches = [./0001-screenpad-keys.patch];}))
+      (pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;})
     ];
   };
 
