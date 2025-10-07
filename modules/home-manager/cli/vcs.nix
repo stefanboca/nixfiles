@@ -66,9 +66,13 @@ in {
 
             g = ["git"];
             gc = ["git" "clone"];
-            gp = ["git" "push"];
             gf = ["git" "fetch"];
+            gp = ["git" "push"];
             gr = ["git" "remote"];
+
+            clone = ["git" "clone"];
+            fetch = ["git" "fetch"];
+            push = ["git" "push"];
 
             c = ["log" "-r" "current_branch()"];
             a = ["log" "-r" "all()"];
