@@ -18,8 +18,10 @@
         nixos-option = prev.nixos-option.override {nix = prev.nixVersions.latest;};
         comma = prev.comma.override {nix = prev.nixVersions.latest;};
 
-        # use nightly quickshell
-        inherit (inputs.dank-material-shell.packages.${prev.system}) quickshell;
+        # use nightly quickshell and add qtmultimedia
+        quickshell = inputs.dank-material-shell.packages.${prev.system}.quickshell.overrideAttrs (prevAttrs: {
+          buildInputs = prevAttrs.buildInputs ++ [prev.qt6.qtmultimedia];
+        });
       };
 
       inherit (inputs.niri.overlays) niri;
