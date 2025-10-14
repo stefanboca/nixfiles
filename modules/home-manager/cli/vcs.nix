@@ -51,7 +51,7 @@ in {
             default-command = "log";
             diff-formatter = "difft";
             diff-editor = ":builtin";
-            editor = ["nvim" "--cmd" "let g:quit_on_write=1"];
+            editor = ["nvim"];
             log-word-wrap = true;
           };
 
@@ -86,7 +86,7 @@ in {
           merge-tools = {
             nvim = {
               program = "nvim";
-              merge-args = ["--cmd" "let g:quit_on_write=1" "-d" "$output" "-M" "$left" "$base" "$right" "-c" "wincmd J" "-c" "set modifiable" "-c" "set write"];
+              merge-args = ["-d" "$output" "-M" "$left" "$base" "$right" "-c" "wincmd J" "-c" "set modifiable" "-c" "set write"];
               diff-invocation-mode = "file-by-file";
               merge-tool-edits-conflict-markers = true;
               conflict-marker-style = "snapshot";
