@@ -286,6 +286,7 @@ in {
       dankMaterialShell = {
         enable = true;
         enableColorPicker = false;
+        enableDynamicTheming = false;
         niri.enableSpawn = true;
       };
     };
