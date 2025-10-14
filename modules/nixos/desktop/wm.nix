@@ -5,6 +5,12 @@
   ...
 }: let
   cfg = config.desktop.wm;
+
+  # extract nm-connection-editor from networkmanagerapplet
+  nm-connection-editor = pkgs.runCommand "nm-connection-editor" {} ''
+    mkdir -p $out/bin
+    ln -s ${pkgs.networkmanagerapplet}/bin/nm-connection-editor $out/bin/
+  '';
 in {
   options.desktop.wm = {
     enableCosmic = lib.mkEnableOption "Enable Cosmic DE";
@@ -101,11 +107,7 @@ in {
         totem # video player
         xwayland-satellite-unstable
 
-        # extract nm-connection-editor from networkmanagerapplet
-        (pkgs.runCommand "nm-connection-editor" {} ''
-          mkdir -p $out/bin
-          ln -s ${pkgs.networkmanagerapplet}/bin/nm-connection-editor $out/bin/
-        '')
+        nm-connection-editor
       ];
     })
   ];
