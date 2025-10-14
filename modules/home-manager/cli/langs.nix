@@ -30,6 +30,7 @@ in {
       bugstalker # cli debugger
       cargo-auditable # make production Rust binaries auditable
       cargo-cache # rust cache cli
+      cargo-clean-recursive # cleans all projects under specified directory
       cargo-insta # snapshot testing tool
       cargo-nextest # better cargo test
       cargo-shear # find unused dependencies
