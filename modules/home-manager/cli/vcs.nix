@@ -16,6 +16,7 @@ in {
       jjui # TUI for jujutsu
       mergiraf # syntax-aware structural merge driver
       meld # Visual diff and merge tool
+      watchman
     ];
 
     programs = {
@@ -129,6 +130,20 @@ in {
               )
             '';
           };
+
+          fsmonitor.backend = "watchman";
+        };
+      };
+
+      jjui = {
+        enable = true;
+        settings = {
+          preview = let
+            args = ["--color" "always" "--config" ''merge-tools.difft.diff-args=["--color=always", "--width=$width", "--display=inline", "$left", "$right"]'' "-r" "$change_id"];
+          in {
+            revision_command = ["show"] ++ args;
+            file_command = ["diff"] ++ args ++ ["$file"];
+          };
         };
       };
     };
@@ -137,15 +152,6 @@ in {
       .jj
       *.scratch.*
     '';
-
-    xdg.configFile."jjui/config.toml".source = (pkgs.formats.toml {}).generate "jjui-config" {
-      preview = let
-        args = ["--color" "always" "--config" ''merge-tools.difft.diff-args=["--color=always", "--width=$width", "--display=inline", "$left", "$right"]'' "-r" "$change_id"];
-      in {
-        revision_command = ["show"] ++ args;
-        file_command = ["diff"] ++ args ++ ["$file"];
-      };
-    };
 
     home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
