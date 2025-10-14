@@ -10,7 +10,7 @@
       overrides = _final: prev: {
         # remove gnome from dependencies
         xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs (prevAttrs: {
-          buildInputs = builtins.filter (x: x != prev.gnome-desktop && x != prev.gnome-settings-daemon) prevAttrs.buildInputs;
+          buildInputs = builtins.filter (x: x != prev.gnome-desktop) prevAttrs.buildInputs;
           mesonFlags = ["-Dwallpaper=disabled"];
         });
 
