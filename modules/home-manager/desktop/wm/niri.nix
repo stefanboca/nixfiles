@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.desktop.wm;
@@ -243,9 +242,9 @@ in {
 
         "Mod+W".action = toggle-column-tabbed-display;
 
-        "XF86SelectiveScreenshot".action = screenshot;
-        "Print".action = screenshot;
-        "Shift+Print".action = screenshot-window;
+        "XF86SelectiveScreenshot".action.screenshot = {};
+        "Print".action.screenshot = {};
+        "Shift+Print".action.screenshot-window = {};
         "Ctrl+Print".action.screenshot-screen = {};
 
         "Mod+Escape" = {
