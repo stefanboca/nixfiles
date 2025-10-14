@@ -285,6 +285,7 @@ in {
     programs = {
       dankMaterialShell = {
         enable = true;
+        enableColorPicker = false;
         niri.enableSpawn = true;
       };
     };
