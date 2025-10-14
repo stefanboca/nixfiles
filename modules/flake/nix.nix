@@ -10,11 +10,9 @@
           allowed-users = ["root" "@wheel"];
           auto-optimise-store = true;
           experimental-features = ["nix-command" "flakes"];
-          trace-import-from-derivation = true;
           trusted-users = ["root" "@wheel"];
           use-xdg-base-directories = true;
           warn-dirty = false;
-          warn-short-path-literals = true;
 
           substituters = ["https://cache.nixos.org" "https://nix-community.cachix.org"];
           trusted-public-keys = [
