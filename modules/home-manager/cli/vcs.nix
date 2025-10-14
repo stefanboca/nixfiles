@@ -84,14 +84,6 @@ in {
           };
 
           merge-tools = {
-            nvim = {
-              program = "nvim";
-              merge-args = ["-d" "$output" "-M" "$left" "$base" "$right" "-c" "wincmd J" "-c" "set modifiable" "-c" "set write"];
-              diff-invocation-mode = "file-by-file";
-              merge-tool-edits-conflict-markers = true;
-              conflict-marker-style = "snapshot";
-            };
-
             mergiraf = {
               program = "mergiraf";
               merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--fast"];
