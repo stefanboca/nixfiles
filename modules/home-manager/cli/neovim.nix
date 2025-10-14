@@ -1,5 +1,5 @@
 # Requires cloning nvim config manually
-# jj git clone --colocate git@github.com:stefanboca/nvim.git ~/.config/nvim
+# jj git clone git@github.com:stefanboca/nvim.git ~/.config/nvim
 {
   config,
   lib,
@@ -25,6 +25,7 @@ in {
         nodejs
         tree-sitter
         gcc
+        ts_query_ls
         # luasnip
         gnumake
         # peek.nvim
