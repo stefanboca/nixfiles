@@ -8,6 +8,7 @@
 
   name = "Stefan Boca";
   email = "stefan.r.boca@gmail.com";
+  key = "~/.ssh/id_ed25519_git.pub";
 in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -23,20 +24,17 @@ in {
       git = {
         enable = true;
         lfs.enable = true;
-        userName = name;
-        userEmail = email;
-        signing = {
-          signByDefault = true;
-          format = "ssh";
-          key = "~/.ssh/id_ed25519_git.pub";
-        };
-        extraConfig = {
+        settings = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-          url."ssh://git@github.com" = {
-            insteadOf = "https://github.com";
-          };
           init.defautlBranch = "main";
           pull.rebase = true;
+          url."ssh://git@github.com" = {insteadOf = "https://github.com";};
+          user = {inherit name email;};
+        };
+        signing = {
+          inherit key;
+          signByDefault = true;
+          format = "ssh";
         };
       };
 
@@ -93,9 +91,9 @@ in {
           };
 
           signing = {
+            inherit key;
             behavior = "own";
             backend = "ssh";
-            key = "~/.ssh/id_ed25519_git.pub";
             backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
           };
 
