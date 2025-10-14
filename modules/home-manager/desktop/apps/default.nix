@@ -18,6 +18,7 @@ in {
       easyeffects
       gnome-decoder
       helvum
+      qpwgraph
       signal-desktop
       telegram-desktop
     ];
