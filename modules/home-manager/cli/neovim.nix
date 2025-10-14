@@ -18,13 +18,6 @@ in {
       defaultEditor = true;
       package = pkgs.neovim-nightly;
 
-      extraLuaConfig =
-        # lua
-        ''
-          vim.loader.enable()
-          require("my.config.lazy");
-        '';
-
       extraPackages = with pkgs; [
         wl-clipboard
         inotify-tools

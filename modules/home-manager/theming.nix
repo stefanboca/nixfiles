@@ -60,13 +60,6 @@ in {
         features.${cfg.fonts.monospace.name} = builtins.map (str: "+" + str) cfg.fonts.monospace.features;
       };
 
-      neovim.extraLuaConfig =
-        lib.mkBefore # lua
-        
-        ''
-          vim.g.catppuccin_flavor = ${config.catppuccin.flavor}
-        '';
-
       niri.settings = {
         cursor = {
           theme = config.home.pointerCursor.name;
