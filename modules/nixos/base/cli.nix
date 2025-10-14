@@ -55,6 +55,7 @@ in {
       sops
       ssh-to-age
       steam-run
+      usbutils
       vim
       wev
       wget
