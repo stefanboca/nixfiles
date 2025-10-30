@@ -14,7 +14,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      bitwarden
+      bitwarden-desktop
       easyeffects
       gnome-decoder
       helvum
