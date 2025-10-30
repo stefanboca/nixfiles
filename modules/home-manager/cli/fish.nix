@@ -55,12 +55,12 @@ in {
           _tide_item_jj =
             # fish
             ''
-              command -q jj && jj --ignore-working-copy root &>/dev/null || return 1
-              _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --no-pager --no-graph --color always -T shell_prompt)
+              command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null || return 1
+              _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --at-op=@ --no-pager --no-graph --color always -T shell_prompt)
             '';
           _tide_item_git_no_jj =
             # fish
-            ''command -q jj && jj --ignore-working-copy root &>/dev/null && return 1 || _tide_item_git'';
+            ''command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null && return 1 || _tide_item_git'';
 
           realify = {
             description = "Replace symlink(s) with real file(s) in‑place";
