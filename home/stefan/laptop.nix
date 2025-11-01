@@ -6,7 +6,8 @@
 }: let
   # override pkgs with cuda support, in order to get cache hits
   pkgs-cuda = import pkgs.path {
-    inherit (pkgs) system overlays;
+    inherit (pkgs) overlays;
+    inherit (pkgs.stdenv.hostPlatform) system;
     config = pkgs.config // {cudaSupport = true;};
   };
 in {

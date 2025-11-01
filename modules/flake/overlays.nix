@@ -1,10 +1,12 @@
 {inputs, ...}: {
   flake = {
     overlays = {
-      additions = final: _prev: {
-        inherit (inputs.firefox-nightly.packages.${final.system}) firefox-nightly-bin;
-        neovim-nightly = inputs.neovim-nightly-overlay.packages.${final.system}.default;
-        spicePkgs = inputs.spicetify-nix.legacyPackages.${final.system};
+      additions = final: _prev: let
+        system = final.stdenv.hostPlatform.system;
+      in {
+        inherit (inputs.firefox-nightly.packages.${system}) firefox-nightly-bin;
+        neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.default;
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
       };
 
       overrides = _final: prev: {
