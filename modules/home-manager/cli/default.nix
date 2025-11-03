@@ -23,6 +23,7 @@ in {
       ast-grep # syntax-aware structural grep
       bencher # benchmark isolation tool
       binsider # ELF analysis tool
+      bluetui # TUI for managing bluetooth devices
       diskus # faster du -sh
       dua # disk usage analyzer
       duf # better df
