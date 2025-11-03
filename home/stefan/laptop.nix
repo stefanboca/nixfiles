@@ -49,19 +49,19 @@ in {
       binds = with config.lib.niri.actions; {
         XF86MonBrightnessUp = lib.mkForce {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "increment" "5" "intel_backlight";
+          action = spawn "dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight";
         };
         XF86MonBrightnessDown = lib.mkForce {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "decrement" "5" "intel_backlight";
+          action = spawn "dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight";
         };
         "Shift+XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "increment" "5" "asus_screenpad";
+          action = spawn "dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad";
         };
         "Shift+XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action = spawn ["sh" "-c" "dms ipc brightness decrement 5 asus_screenpad;"];
+          action = spawn ["sh" "-c" "dms ipc brightness decrement 5 backlight:asus_screenpad;"];
         };
         XF86DisplayToggle = {
           allow-when-locked = true;
