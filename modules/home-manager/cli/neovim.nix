@@ -82,7 +82,7 @@ in {
         graphviz # for crate graph visualtization
 
         # docker
-        docker-language-server
+        # docker-language-server
         dockerfmt
         hadolint
 
