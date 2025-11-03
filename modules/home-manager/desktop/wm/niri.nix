@@ -86,7 +86,7 @@ in {
 
         "Mod+T" = {
           hotkey-overlay.title = "Open Ghostty";
-          action = spawn "ghostty" "--gtk-single-instance=true";
+          action = spawn "ghostty" "+new-window";
         };
         "Mod+B" = {
           hotkey-overlay.title = "Open Browser";

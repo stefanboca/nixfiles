@@ -16,6 +16,8 @@ in {
         shell-integration-features = true;
         image-storage-limit = 128 * 1024 * 1024; # 128 MB
         scrollback-limit = 128 * 1024 * 1024; # 128 MB
+        quit-after-last-window-closed = true;
+        quit-after-last-window-closed-delay = "5m";
 
         window-inherit-working-directory = true;
         window-theme = "ghostty";
