@@ -48,10 +48,11 @@ in {
 
           ui = {
             default-command = "log";
+            diff-editor = "nvim";
             diff-formatter = "difft";
-            diff-editor = ":builtin";
             editor = ["nvim"];
             log-word-wrap = true;
+            merge-editor = "nvim";
           };
 
           aliases = {
@@ -83,9 +84,15 @@ in {
           };
 
           merge-tools = {
+            nvim = {
+              program = "nvim";
+              edit-args = ["-c" "DiffEditor $left $right $output"];
+              merge-args = ["-c" "let g:jj_diffconflicts_marker_length=$marker_length" "-c" "JJDiffConflicts!" "$output" "$base" "$left" "$right"];
+              merge-tool-edits-conflict-markers = true;
+            };
             mergiraf = {
               program = "mergiraf";
-              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--fast"];
+              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--confilct-marker-size" "$marker_length"];
               merge-conflict-exit-codes = [1];
               conflict-marker-style = "git";
             };
