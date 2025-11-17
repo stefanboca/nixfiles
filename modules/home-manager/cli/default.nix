@@ -36,6 +36,7 @@ in {
       just # command runner
       kondo # clean build dependencies and artifacts
       nix-diff # explain why two nix derivations differ
+      nix-inspect # TUI for inspecting nix configs and other expressions
       nix-tree # browse dependency graphs of nix derivations
       procs # better ps
       rnr # batch rename files and directories
