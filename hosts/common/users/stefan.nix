@@ -10,7 +10,7 @@
     hashedPasswordFile = config.sops.secrets.stefan-pw.path;
     shell = pkgs.fish;
     extraGroups =
-      ["wheel" "video"]
+      ["wheel" "video" "audio"]
       ++ lib.optional config.programs.wireshark.enable "wireshark"
       ++ lib.optional config.networking.networkmanager.enable "networkmanager";
 

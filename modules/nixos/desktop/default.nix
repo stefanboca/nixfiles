@@ -49,7 +49,6 @@ in {
         alsa.enable = lib.mkDefault true;
         alsa.support32Bit = lib.mkDefault true;
         pulse.enable = lib.mkDefault true;
-        # jack.enable = lib.mkDefault true;
 
         wireplumber.extraConfig.bluetoothEnhancements."monitor.bluez.properties" = {
           "bluez5.enable-sbc-xq" = true;
