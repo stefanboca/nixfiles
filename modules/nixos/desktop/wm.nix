@@ -89,7 +89,6 @@ in {
       programs = {
         dconf.enable = true;
         evince.enable = true; # document viewer
-        file-roller.enable = true; # archive manager
         gnome-disks.enable = true; # udisk frontend
         seahorse.enable = true; # manager for gnome keyring
       };
@@ -98,6 +97,7 @@ in {
         adwaita-icon-theme
         baobab # disk usage analyzer
         decibels # audio player
+        file-roller # archive-manager
         gnome-calculator # calculator
         gnome-font-viewer # font viewer
         gnome-power-manager # view battery and power statistics
