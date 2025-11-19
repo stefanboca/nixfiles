@@ -14,6 +14,8 @@ in {
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
       documentation = {
+        info.enable = false;
+        nixos.enable = false;
         man = {
           generateCaches = true;
           man-db.enable = false;

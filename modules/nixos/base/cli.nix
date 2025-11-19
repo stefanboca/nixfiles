@@ -52,10 +52,12 @@ in {
       powertop
       psmisc
       ripgrep
+      rsync
       sbctl
       sops
       ssh-to-age
       steam-run
+      strace
       usbutils
       vim
       wev
