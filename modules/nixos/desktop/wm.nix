@@ -81,7 +81,7 @@ in {
 
       services = {
         # avahi.enable = true;
-        # geoclue2.enable = true;
+        geoclue2.enable = true;
         gnome.sushi.enable = true; # quick previewer for nautilus
         gvfs.enable = true; # userspace virtual filesystem
         udisks2.enable = true; # dbus service for querying and manipulating storage devices
