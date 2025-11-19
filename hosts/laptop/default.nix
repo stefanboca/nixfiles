@@ -14,15 +14,12 @@
 
   base = {
     enable = true;
-    extraMan.enable = true;
+    appimage.enable = true;
+    docs.extraMan.enable = true;
   };
   theming.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  base = {
-    appimage.enable = true;
-  };
 
   desktop = {
     enable = true;
