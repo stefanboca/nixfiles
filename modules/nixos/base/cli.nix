@@ -42,6 +42,7 @@ in {
       libinput
       lsb-release
       lshw
+      lsof
       net-tools
       nix-output-monitor
       nmap
