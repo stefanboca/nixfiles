@@ -47,7 +47,6 @@ in {
       pipewire = {
         enable = lib.mkDefault true;
         alsa.enable = lib.mkDefault true;
-        alsa.support32Bit = lib.mkDefault true;
         pulse.enable = lib.mkDefault true;
 
         wireplumber.extraConfig.bluetoothEnhancements."monitor.bluez.properties" = {

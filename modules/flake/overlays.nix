@@ -2,7 +2,7 @@
   flake = {
     overlays = {
       additions = final: _prev: let
-        system = final.stdenv.hostPlatform.system;
+        inherit (final.stdenv.hostPlatform) system;
       in {
         inherit (inputs.firefox-nightly.packages.${system}) firefox-nightly-bin;
         neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.default;
