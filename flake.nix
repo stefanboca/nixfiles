@@ -74,12 +74,32 @@
         };
       };
 
-      perSystem = {...}: {
+      perSystem = {
+        self',
+        lib,
+        system,
+        ...
+      }: {
         treefmt = {
           flakeCheck = true;
           programs.deadnix.enable = true;
           programs.alejandra.enable = true;
         };
+
+        checks = let
+          machinesPerSystem = {
+            x86_64-linux = ["laptop"];
+          };
+          nixosMachines = lib.mapAttrs' (n: lib.nameValuePair "nixos-${n}") (
+            lib.genAttrs (machinesPerSystem.${system} or []) (
+              name: self.nixosConfigurations.${name}.config.system.build.toplevel
+            )
+          );
+
+          packages = lib.mapAttrs' (n: lib.nameValuePair "package-${n}") self'.packages;
+          devShells = lib.mapAttrs' (n: lib.nameValuePair "devShell-${n}") self'.devShells;
+        in
+          nixosMachines // packages // devShells;
       };
     };
 }
