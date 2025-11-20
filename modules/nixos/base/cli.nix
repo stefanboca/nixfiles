@@ -45,6 +45,7 @@ in {
       lsof
       net-tools
       nix-output-monitor
+      nix-fast-build
       nmap
       ouch
       parted
