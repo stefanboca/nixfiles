@@ -20,6 +20,7 @@ in {
     esphome
     pkgs-cuda.blender
     calibre
+    fluent-reader
     freecad
     geogebra6
     libreoffice
