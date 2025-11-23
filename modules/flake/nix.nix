@@ -10,6 +10,7 @@
           allowed-users = ["root" "@wheel"];
           auto-optimise-store = true;
           experimental-features = ["nix-command" "flakes"];
+          keep-outputs = true; # don't garbage-collect build-time dependencies
           trusted-users = ["root" "@wheel"];
           use-xdg-base-directories = true;
           warn-dirty = false;
