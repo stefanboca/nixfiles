@@ -92,7 +92,7 @@ in {
             };
             mergiraf = {
               program = "mergiraf";
-              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--confilct-marker-size" "$marker_length"];
+              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--conflict-marker-size" "$marker_length"];
               merge-conflict-exit-codes = [1];
               conflict-marker-style = "git";
             };
