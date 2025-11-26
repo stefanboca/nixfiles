@@ -28,7 +28,11 @@ in {
       };
     };
 
-    environment.systemPackages = cfg.fontPackages;
+    fonts = {
+      fontconfig.enable = true;
+      packages = cfg.fontPackages;
+      enableDefaultPackages = true;
+    };
 
     console = {
       font = cfg.fonts.monospace.name;

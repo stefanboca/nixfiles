@@ -101,6 +101,12 @@ in {
       };
     };
 
+    extraFontPackages = mkOption {
+      description = "Additional font packages to install";
+      type = types.listOf types.package;
+      default = with pkgs; [ibm-plex];
+    };
+
     fontPackages = mkOption {
       description = "All font packages";
       type = types.listOf types.package;
@@ -132,12 +138,14 @@ in {
     };
 
     theming = {
-      fontPackages = with cfg.fonts; [
-        monospace.package
-        serif.package
-        sansSerif.package
-        emoji.package
-      ];
+      fontPackages = with cfg.fonts;
+        [
+          monospace.package
+          serif.package
+          sansSerif.package
+          emoji.package
+        ]
+        ++ cfg.extraFontPackages;
 
       palette = (lib.importJSON "${config.catppuccin.sources.palette}/palette.json").${cfg.flavor}.colors;
     };
