@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   modulesPath,
@@ -51,42 +50,37 @@ in {
     niri.settings = {
       input.tablet.map-to-output = "eDP-1";
       input.touch.map-to-output = "eDP-1";
-      binds = with config.lib.niri.actions; {
-        XF86MonBrightnessUp = lib.mkForce {
+      binds = {
+        "XF86MonBrightnessUp" = lib.mkForce {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight";
+          action.spawn = ["dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight"];
         };
-        XF86MonBrightnessDown = lib.mkForce {
+        "XF86MonBrightnessDown" = lib.mkForce {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight";
+          action.spawn = ["dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight"];
         };
         "Shift+XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action = spawn "dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad";
+          action.spawn = ["dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad"];
         };
         "Shift+XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action = spawn ["sh" "-c" "dms ipc brightness decrement 5 backlight:asus_screenpad;"];
+          action.spawn = ["dms" "ipc" "brightness" "decrement" "5" "backlight:asus_screenpad"];
         };
-        XF86DisplayToggle = {
+        "XF86DisplayToggle" = {
           allow-when-locked = true;
-          action = spawn "toggle-screenpad-backlight";
+          action.spawn = ["toggle-screenpad-backlight"];
         };
         "XF86Launch1" = {
           allow-when-locked = true;
-          action = spawn [
-            "dms"
-            "ipc"
-            "mpris"
-            "playPause"
-          ];
+          action.spawn = ["dms" "ipc" "mpris" "playPause"];
         };
-        "Mod+XF86Launch2".action = focus-monitor-next;
-        "Mod+Shift+XF86Launch2".action = move-window-to-monitor-next;
-        "Mod+Ctrl+XF86Launch2".action = move-workspace-to-monitor-next;
-        "XF86Launch2".action = focus-monitor-previous;
-        "Shift+XF86Launch2".action = move-window-to-monitor-previous;
-        "Ctrl+XF86Launch2".action = move-workspace-to-monitor-previous;
+        "Mod+XF86Launch2".action.focus-monitor-next = {};
+        "Mod+Shift+XF86Launch2".action.move-window-to-monitor-next = {};
+        "Mod+Ctrl+XF86Launch2".action.move-workspace-to-monitor-next = {};
+        "XF86Launch2".action.focus-monitor-previous = {};
+        "Shift+XF86Launch2".action.move-window-to-monitor-previous = {};
+        "Ctrl+XF86Launch2".action.move-workspace-to-monitor-previous = {};
       };
 
       outputs = rec {

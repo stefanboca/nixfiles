@@ -108,6 +108,11 @@ in {
           background-color = cfg.palette.mantle.hex;
           backdrop-color = cfg.palette.crust.hex;
         });
+        # recent-windows.highlight = {
+        #   active.color = cfg.palette.${cfg.accent}.hex;
+        #   urgent.color = cfg.palette.red.hex;
+        #   corner-radius = 30;
+        # };
       };
     };
   };
