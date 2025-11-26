@@ -1,12 +1,40 @@
 {
   config,
+  inputs,
   lib,
+  modulesPath,
   pkgs,
   ...
 }: let
   cfg = config.theming;
 in {
-  imports = [../common/theming.nix];
+  imports = [
+    ../common/theming.nix
+    (lib.modules.importApply "${inputs.catppuccin}/modules/global.nix" {
+      catppuccinModules = map (m: "${inputs.catppuccin}/modules/home-manager/${m}.nix") [
+        # keep-sorted start
+        "aerc"
+        "atuin"
+        "bat"
+        "bottom"
+        "btop"
+        "cursors"
+        "eza"
+        "firefox"
+        "fish"
+        "ghostty"
+        "gtk"
+        "mangohud"
+        "obs"
+        "vesktop"
+        # keep-sorted end
+      ];
+    })
+
+    # dependencies of catppuccin firefox
+    "${modulesPath}/programs/floorp.nix"
+    "${modulesPath}/programs/librewolf.nix"
+  ];
 
   options.theming = with lib; {
     niri = {
@@ -21,7 +49,6 @@ in {
   config = lib.mkIf cfg.enable {
     catppuccin = {
       cursors.enable = true;
-      nvim.enable = false;
       gtk.icon.enable = false;
     };
 

@@ -2,133 +2,116 @@
   config,
   lib,
   pkgs,
+  modulesPath,
   ...
 }: let
   cfg = config.cli;
 in {
+  imports = [
+    "${modulesPath}/programs/fish.nix"
+
+    # dependency of fish.nix
+    "${modulesPath}/programs/man.nix"
+  ];
+
   config = lib.mkIf cfg.enable {
     home.shell.enableFishIntegration = true;
 
-    programs = {
-      nix-index-database.comma.enable = true;
-
-      zoxide.enable = true;
-
-      atuin = {
-        enable = true;
-        flags = ["--disable-up-arrow"];
-        settings = {
-          ctrl_n_shortcuts = true;
-          enter_accept = true;
-          sync.records = true;
-          sync_frequency = "1h";
-          workspaces = true;
-          stats = {
-            # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
-            common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "port" "systemctl" "uv"];
-            # Set commands that should be totally stripped and ignored from stats
-            common_prefix = ["sudo"];
-            # Set commands that will be completely ignored from stats
-            ignored_commands = ["cd" "ls" "z" "eza"];
-          };
-        };
-      };
-
+    programs.
       fish = {
-        enable = true;
-        preferAbbrs = true;
+      enable = true;
+      preferAbbrs = true;
 
-        functions = {
-          # disable greeting
-          fish_greeting = "";
-          # Vi-style bindings that inherit emacs-style bindings in all modes
-          fish_hybrid_key_bindings =
+      functions = {
+        # disable greeting
+        fish_greeting = "";
+        # Vi-style bindings that inherit emacs-style bindings in all modes
+        fish_hybrid_key_bindings =
+          # fish
+          ''
+            for mode in default insert visual
+                fish_default_key_bindings -M $mode
+            end
+            fish_vi_key_bindings --no-erase insert
+          '';
+
+        # jj integration for tide
+        _tide_item_jj =
+          # fish
+          ''
+            command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null || return 1
+            _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --at-op=@ --no-pager --no-graph --color always -T shell_prompt)
+          '';
+        _tide_item_git_no_jj =
+          # fish
+          ''command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null && return 1 || _tide_item_git'';
+
+        realify = {
+          description = "Replace symlink(s) with real file(s) in‑place";
+          body =
             # fish
             ''
-              for mode in default insert visual
-                  fish_default_key_bindings -M $mode
+              for file in $argv
+                  if test -L "$file"
+                      set target (readlink -f "$file")
+                      cp --remove-destination "$target" "$file"
+                      chmod +w "$file"
+                  else
+                      echo "realify: $file is not a symlink" >&2
+                  end
               end
-              fish_vi_key_bindings --no-erase insert
             '';
-
-          # jj integration for tide
-          _tide_item_jj =
-            # fish
-            ''
-              command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null || return 1
-              _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --at-op=@ --no-pager --no-graph --color always -T shell_prompt)
-            '';
-          _tide_item_git_no_jj =
-            # fish
-            ''command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null && return 1 || _tide_item_git'';
-
-          realify = {
-            description = "Replace symlink(s) with real file(s) in‑place";
-            body =
-              # fish
-              ''
-                for file in $argv
-                    if test -L "$file"
-                        set target (readlink -f "$file")
-                        cp --remove-destination "$target" "$file"
-                        chmod +w "$file"
-                    else
-                        echo "realify: $file is not a symlink" >&2
-                    end
-                end
-              '';
-          };
         };
-
-        shellAbbrs = {
-          # NOTE: (roughly) sorted in order of laziness, least to greatest
-          sc = "sudo systemctl --system";
-          scu = "systemctl --user";
-
-          nb = "nix build";
-          nd = "nix develop -c fish";
-          nf = "nix flake";
-          nfu = "nix flake update";
-          nhb = "nh home build";
-          nhs = "nh home switch";
-          nr = "nix run";
-          nrr = "nh os repl";
-          nrs = "nh os switch";
-          ns = "nix search";
-          nsh = "nix shell";
-
-          se = "sudoedit";
-          nv = "neovide";
-          n = "nvim";
-          o = "xdg-open";
-
-          c = "cargo";
-
-          ju = "jjui";
-          j = "jj";
-        };
-
-        plugins = [
-          {
-            name = "autopair";
-            inherit (pkgs.fishPlugins.autopair) src;
-          }
-          {
-            name = "git-abbr";
-            inherit (pkgs.fishPlugins.git-abbr) src;
-          }
-          # text expansions such as .., !! and others
-          {
-            name = "puffer";
-            inherit (pkgs.fishPlugins.puffer) src;
-          }
-          # prompt
-          {
-            name = "tide";
-            inherit (pkgs.fishPlugins.tide) src;
-          }
-        ];
       };
+
+      shellAbbrs = {
+        # NOTE: (roughly) sorted in order of laziness, least to greatest
+        sc = "sudo systemctl --system";
+        scu = "systemctl --user";
+
+        nb = "nix build";
+        nd = "nix develop -c fish";
+        nf = "nix flake";
+        nfu = "nix flake update";
+        nhb = "nh home build";
+        nhs = "nh home switch";
+        nr = "nix run";
+        nrr = "nh os repl";
+        nrs = "nh os switch";
+        ns = "nix search";
+        nsh = "nix shell";
+
+        se = "sudoedit";
+        nv = "neovide";
+        n = "nvim";
+        o = "xdg-open";
+
+        c = "cargo";
+
+        ju = "jjui";
+        j = "jj";
+      };
+
+      plugins = [
+        {
+          name = "autopair";
+          inherit (pkgs.fishPlugins.autopair) src;
+        }
+        {
+          name = "git-abbr";
+          inherit (pkgs.fishPlugins.git-abbr) src;
+        }
+        # text expansions such as .., !! and others
+        {
+          name = "puffer";
+          inherit (pkgs.fishPlugins.puffer) src;
+        }
+        # prompt
+        {
+          name = "tide";
+          inherit (pkgs.fishPlugins.tide) src;
+        }
+      ];
     };
 
     home.activation.configureFish = lib.hm.dag.entryAfter ["writeBoundary" "installPackages"] ''

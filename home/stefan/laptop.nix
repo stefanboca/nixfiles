@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  modulesPath,
   ...
 }: let
   # override pkgs with cuda support, in order to get cache hits
@@ -14,6 +15,9 @@ in {
   imports = [
     ./shared.nix
     ./sops.nix
+
+    "${modulesPath}/programs/aerc"
+    "${modulesPath}/programs/obs-studio.nix"
   ];
 
   home.packages = with pkgs; [

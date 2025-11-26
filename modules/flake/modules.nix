@@ -8,7 +8,6 @@
 
   homeCommon =
     [
-      inputs.catppuccin.homeModules.catppuccin
       inputs.dank-material-shell.homeModules.dankMaterialShell.default
       inputs.dank-material-shell.homeModules.dankMaterialShell.niri
       inputs.nix-index-database.homeModules.nix-index
@@ -22,43 +21,40 @@
 
   nixosCommon =
     [
-      inputs.catppuccin.nixosModules.catppuccin
       inputs.home-manager.nixosModules.home-manager
       inputs.niri.nixosModules.niri
       inputs.sops-nix.nixosModules.sops
 
       ../../hosts/common
 
-      # share nix and nixpkgs config with home-manager
-      {
+      ({config, ...}: {
         inherit (self.nixCfg) nix nixpkgs;
+
         home-manager = {
           extraSpecialArgs = {inherit self inputs;};
-          sharedModules = homeCommon;
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "bak";
-        };
-      }
+          minimal = true;
 
-      # share select config with home-manager
-      (
-        {config, ...}: {
-          home-manager.sharedModules = [
-            {
-              config = {
-                desktop = {
-                  inherit (config.desktop) enable;
-                  wm = {inherit (config.desktop.wm) enableGnome enableNiri;};
-                  gaming = {inherit (config.desktop.gaming) enable;};
+          sharedModules =
+            homeCommon
+            ++ [
+              {
+                # share select config with home-manager
+                config = {
+                  desktop = {
+                    inherit (config.desktop) enable;
+                    wm = {inherit (config.desktop.wm) enableGnome enableNiri;};
+                    gaming = {inherit (config.desktop.gaming) enable;};
+                  };
+
+                  theming = {inherit (config.theming) enable flavor accent fonts;};
                 };
-
-                theming = {inherit (config.theming) enable flavor accent fonts;};
-              };
-            }
-          ];
-        }
-      )
+              }
+            ];
+        };
+      })
     ]
     ++ builtins.attrValues allNixos;
 in {

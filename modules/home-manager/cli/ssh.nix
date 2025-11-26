@@ -1,11 +1,16 @@
 {
   config,
   lib,
+  modulesPath,
   ...
 }: let
   inherit (lib) mkIf;
   cfg = config.cli;
 in {
+  imports = [
+    "${modulesPath}/programs/ssh.nix"
+  ];
+
   config = mkIf cfg.enable {
     # ensure public keys are present
     home.file = {

@@ -1,16 +1,24 @@
 {
   config,
   lib,
+  modulesPath,
   pkgs,
   ...
 }: let
   cfg = config.cli;
 in {
+  imports = [
+    "${modulesPath}/programs/go.nix"
+  ];
+
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       koto
       lean4
       zig
+
+      # python
+      uv
 
       # c / cpp
       cmakeCurses
@@ -43,12 +51,10 @@ in {
     ];
 
     programs = {
-      # python
-      uv.enable = true;
-
       #go
       go = {
         enable = true;
+        telemetry.mode = "off";
         env.GOPATH = "${config.xdg.dataHome}/go";
       };
     };

@@ -1,10 +1,16 @@
 {
   config,
   lib,
+  modulesPath,
   ...
 }: let
   cfg = config.desktop.wm;
 in {
+  imports = [
+    # dependency of dankMaterialShell
+    "${modulesPath}/programs/quickshell.nix"
+  ];
+
   options.desktop.wm.enableNiri = lib.mkEnableOption "niri WM";
 
   config = lib.mkIf cfg.enableNiri {

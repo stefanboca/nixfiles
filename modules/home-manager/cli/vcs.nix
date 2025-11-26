@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  modulesPath,
   pkgs,
   ...
 }: let
@@ -10,6 +11,24 @@
   email = "stefan.r.boca@gmail.com";
   key = "~/.ssh/id_ed25519_git.pub";
 in {
+  imports = [
+    "${modulesPath}/programs/gh.nix"
+    "${modulesPath}/programs/git.nix"
+    "${modulesPath}/programs/jjui.nix"
+    "${modulesPath}/programs/jujutsu.nix"
+
+    # dependencies of git.nix
+    "${modulesPath}/programs/delta.nix"
+    "${modulesPath}/programs/diff-highlight.nix"
+    "${modulesPath}/programs/diff-so-fancy.nix"
+    "${modulesPath}/programs/difftastic.nix"
+    "${modulesPath}/programs/patdiff.nix"
+    "${modulesPath}/programs/riff.nix"
+
+    # dependency of jujutsu.nix
+    "${modulesPath}/programs/emacs.nix"
+  ];
+
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       difftastic # syntax-aware structural diff tool

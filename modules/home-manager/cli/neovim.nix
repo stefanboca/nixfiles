@@ -3,11 +3,17 @@
 {
   config,
   lib,
+  modulesPath,
   pkgs,
   ...
 }: let
   cfg = config.cli;
 in {
+  imports = [
+    "${modulesPath}/programs/neovide.nix"
+    "${modulesPath}/programs/neovim.nix"
+  ];
+
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       VISUAL = "nvim";
@@ -26,14 +32,6 @@ in {
         tree-sitter
         gcc
         ts_query_ls
-        # luasnip
-        gnumake
-        # peek.nvim
-        deno
-        # snacks.image
-        imagemagick
-        mermaid-cli
-        ghostscript
 
         harper
 

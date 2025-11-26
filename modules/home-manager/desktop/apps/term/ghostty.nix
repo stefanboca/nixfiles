@@ -1,10 +1,18 @@
 {
   config,
   lib,
+  modulesPath,
   ...
 }: let
   cfg = config.desktop;
 in {
+  imports = [
+    "${modulesPath}/programs/ghostty.nix"
+
+    # dependency of ghostty.nix
+    "${modulesPath}/programs/vim.nix"
+  ];
+
   config = lib.mkIf cfg.enable {
     programs.ghostty = {
       enable = true;

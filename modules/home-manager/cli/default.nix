@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  modulesPath,
   pkgs,
   ...
 }: let
@@ -12,6 +13,26 @@ in {
     ./neovim.nix
     ./ssh.nix
     ./vcs.nix
+
+    "${modulesPath}/programs/bat.nix"
+    "${modulesPath}/programs/bottom.nix"
+    "${modulesPath}/programs/btop.nix"
+    "${modulesPath}/programs/atuin.nix"
+    "${modulesPath}/programs/eza.nix"
+    "${modulesPath}/programs/fd.nix"
+    "${modulesPath}/programs/fzf.nix"
+    "${modulesPath}/programs/jq.nix"
+    "${modulesPath}/programs/nix-index.nix"
+    "${modulesPath}/programs/numbat.nix"
+    "${modulesPath}/programs/ripgrep.nix"
+    "${modulesPath}/programs/tealdeer.nix"
+    "${modulesPath}/programs/zoxide.nix"
+
+    # dependency of tealdeer.nix
+    "${modulesPath}/services/tldr-update.nix"
+
+    # dependency of nix-index.nix
+    "${modulesPath}/programs/command-not-found"
   ];
 
   options.cli = {
@@ -20,6 +41,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      # keep-sorted start
       ast-grep # syntax-aware structural grep
       bencher # benchmark isolation tool
       binsider # ELF analysis tool
@@ -48,9 +70,30 @@ in {
       wl-clipboard # cli clipboard utils
       xdg-ninja # check for unwanted files and directories in $HOME
       xh # cli http client
+      # keep-sorted end
     ];
 
     programs = {
+      # keep-sorted start block=true
+      atuin = {
+        enable = true;
+        flags = ["--disable-up-arrow"];
+        settings = {
+          ctrl_n_shortcuts = true;
+          enter_accept = true;
+          sync.records = true;
+          sync_frequency = "1h";
+          workspaces = true;
+          stats = {
+            # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+            common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "port" "systemctl" "uv"];
+            # Set commands that should be totally stripped and ignored from stats
+            common_prefix = ["sudo"];
+            # Set commands that will be completely ignored from stats
+            ignored_commands = ["cd" "ls" "z" "eza"];
+          };
+        };
+      };
       bat.enable = true; # better cat
       bottom.enable = true; # system monitor
       btop.enable = true; # system monitor
@@ -62,6 +105,7 @@ in {
         defaultOptions = ["--cycle" "--layout=reverse" "--border" "--height=-3" "--preview-window=wrap" "--highlight-line" "--info=inline-right" "--ansi"];
       };
       jq.enable = true; # transform json
+      nix-index-database.comma.enable = true;
       numbat.enable = true; # scientific calculator with physical units
       ripgrep.enable = true; # better grep
       # cheatsheets for shell commands
@@ -74,6 +118,8 @@ in {
           };
         };
       };
+      zoxide.enable = true;
+      # keep-sorted end
     };
 
     home.sessionVariables = let
