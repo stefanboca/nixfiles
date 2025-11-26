@@ -82,8 +82,6 @@ in {
 
         initrd.systemd.enable = true;
         plymouth.enable = true;
-
-        binfmt.emulatedSystems = ["aarch64-linux"];
       };
 
       services.userborn.enable = true;
