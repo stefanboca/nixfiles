@@ -13,9 +13,6 @@
       inputs.nix-index-database.homeModules.nix-index
       inputs.sops-nix.homeManagerModules.sops
       inputs.spicetify-nix.homeManagerModules.spicetify
-
-      # shared nixpkgs config for home-manager
-      {inherit (self.nixCfg) nix;}
     ]
     ++ builtins.attrValues allHomeManager;
 
