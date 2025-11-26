@@ -85,7 +85,10 @@ in {
       };
 
       services.userborn.enable = true;
-      system.etc.overlay.enable = true;
+      system = {
+        nixos-init.enable = true;
+        etc.overlay.enable = true;
+      };
 
       # Remove random perl remnants, for perlless activation
       system.tools.nixos-generate-config.enable = false;
