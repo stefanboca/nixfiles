@@ -34,6 +34,7 @@ in {
         ts_query_ls
 
         harper
+        keep-sorted
 
         # c/cpp
         clang-tools

@@ -3,6 +3,7 @@
     devShells = {
       default = pkgs.mkShellNoCC {
         packages = with pkgs; [
+          # keep-sorted start
           age
           bat
           disko
@@ -21,6 +22,7 @@
           sbctl
           sops
           ssh-to-age
+          # keep-sorted end
         ];
 
         env.NIX_CONFIG = "experimental-features = nix-command flakes";

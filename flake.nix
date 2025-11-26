@@ -82,8 +82,11 @@
       }: {
         treefmt = {
           flakeCheck = true;
-          programs.deadnix.enable = true;
-          programs.alejandra.enable = true;
+          programs = {
+            deadnix.enable = true;
+            keep-sorted.enable = true;
+            alejandra.enable = true;
+          };
         };
 
         checks = let

@@ -18,6 +18,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      # keep-sorted start
       age
       bat
       bolt
@@ -63,6 +64,7 @@ in {
       vim
       wev
       wget
+      # keep-sorted start
     ];
   };
 }
