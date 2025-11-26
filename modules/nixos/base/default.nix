@@ -16,7 +16,6 @@ in {
     enable = lib.mkEnableOption "Enable the base system module";
     appimage.enable = lib.mkEnableOption "Enable appimage.";
     boot.enable = lib.mkEnableOption "Enable boot config." // {default = true;};
-    perllessActivation.enable = lib.mkEnableOption "Enable perlless activation." // {default = true;};
 
     primaryUser = lib.mkOption {
       type = lib.types.str;
@@ -78,31 +77,29 @@ in {
           efi.canTouchEfiVariables = true;
         };
 
+        supportedFilesystems.btrfs = true;
+        tmp.useTmpfs = true;
+
         initrd.systemd.enable = true;
         plymouth.enable = true;
-        tmp.useTmpfs = true;
+
         binfmt.emulatedSystems = ["aarch64-linux"];
-        supportedFilesystems.btrfs = true;
       };
+
+      services.userborn.enable = true;
+      system.etc.overlay.enable = true;
+
+      # Remove random perl remnants, for perlless activation
+      system.tools.nixos-generate-config.enable = false;
+      environment.defaultPackages = lib.mkDefault [];
+      documentation.info.enable = lib.mkDefault false;
+      documentation.nixos.enable = lib.mkDefault false;
     })
     (lib.mkIf cfg.appimage.enable {
       programs.appimage = {
         enable = true;
         binfmt = true;
       };
-    })
-    (lib.mkIf cfg.perllessActivation.enable {
-      # Remove perl from activation
-      boot.initrd.systemd.enable = true;
-      system.etc.overlay.enable = true;
-      services.userborn.enable = true;
-
-      # Random perl remnants
-      system.tools.nixos-generate-config.enable = false;
-      boot.loader.grub.enable = lib.mkDefault false;
-      environment.defaultPackages = lib.mkDefault [];
-      documentation.info.enable = lib.mkDefault false;
-      documentation.nixos.enable = lib.mkDefault false;
     })
   ]);
 }
