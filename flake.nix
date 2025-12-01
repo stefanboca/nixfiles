@@ -35,6 +35,16 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
+    hjem.url = "github:feel-co/hjem";
+    hjem.inputs.nixpkgs.follows = "nixpkgs";
+    hjem-rum = {
+      url = "github:snugnug/hjem-rum";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hjem.follows = "hjem";
+      };
+    };
+
     snv = {
       url = "github:stefanboca/nvim";
       inputs = {
@@ -68,6 +78,133 @@
           laptop = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [self.nixosModules.laptop];
+            specialArgs = {inherit self inputs;};
+          };
+
+          vm = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              inputs.hjem.nixosModules.default
+              (
+                {
+                  pkgs,
+                  modulesPath,
+                  inputs,
+                  ...
+                }: {
+                  nix = {
+                    package = pkgs.nixVersions.latest;
+                    channel.enable = false;
+                    settings = {
+                      allowed-users = ["root" "@wheel"];
+                      experimental-features = ["nix-command" "flakes"];
+                      substituters = ["https://cache.nixos.org"];
+                      trusted-public-keys = ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="];
+                      trusted-users = ["root" "@wheel"];
+                      use-xdg-base-directories = true;
+                    };
+                  };
+
+                  imports = ["${modulesPath}/virtualisation/qemu-vm.nix"];
+
+                  system = {
+                    nixos-init.enable = true;
+                    etc.overlay.enable = true;
+                    stateVersion = "26.05";
+                    tools.nixos-generate-config.enable = false;
+                  };
+
+                  hardware.graphics.enable = true;
+
+                  boot = {
+                    loader = {
+                      limine.enable = true;
+                      efi.canTouchEfiVariables = true;
+                    };
+                    tmp.useTmpfs = true;
+                    initrd.systemd.enable = true;
+                  };
+
+                  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
+
+                  services = {
+                    # xserver.enable = true;
+                    # displayManager.sddm = {
+                    #   enable = true;
+                    #   wayland.enable = true;
+                    # };
+                    # xserver.desktopManager.xfce = {
+                    #   enable = true;
+                    # };
+                    # desktopManager.gnome.enable = true;
+                    dbus.implementation = "broker";
+                    irqbalance.enable = true;
+                    userborn.enable = true;
+                  };
+
+                  users = {
+                    mutableUsers = false;
+                    users.stefan = {
+                      extraGroups = ["wheel" "tty"];
+                      isNormalUser = true;
+                      password = "password";
+                      shell = pkgs.fish;
+                    };
+                  };
+
+                  environment.defaultPackages = [];
+
+                  programs = {
+                    fish.enable = true;
+                    command-not-found.enable = false;
+                    # niri.enable = true;
+                  };
+
+                  hjem = {
+                    extraModules = [inputs.hjem-rum.hjemModules.default];
+                    clobberByDefault = true;
+                    users.stefan = {
+                      enable = true;
+                      files.".self".text = "${self}";
+                      # rum.desktops.niri = {
+                      #   enable = true;
+                      #   config =
+                      #     # kdl
+                      #     ''
+                      #       debug {
+                      #         render-drm-device "/dev/dri/renderD128"
+                      #       }
+                      #     '';
+                      # };
+                      rum.programs = {
+                        bottom.enable = true;
+                        git.enable = true;
+                        fish.enable = true;
+                        ghostty.enable = true;
+                        starship = {
+                          enable = true;
+                          transience.enable = true;
+                          integrations.fish.enable = true;
+                        };
+                        zoxide = {
+                          enable = true;
+                          integrations.fish.enable = true;
+                        };
+                      };
+                    };
+                  };
+
+                  documentation = {
+                    enable = false;
+                    dev.enable = false;
+                    doc.enable = false;
+                    info.enable = false;
+                    man.enable = false;
+                    nixos.enable = false;
+                  };
+                }
+              )
+            ];
             specialArgs = {inherit self inputs;};
           };
         };
