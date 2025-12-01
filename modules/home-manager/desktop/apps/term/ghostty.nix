@@ -16,6 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.ghostty = {
       enable = true;
+      systemd.enable = false; # the relevant files are installed by default in /etc/profiles/per-user
       installVimSyntax = true;
       installBatSyntax = true;
 
