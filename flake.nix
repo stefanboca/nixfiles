@@ -161,7 +161,10 @@
                   };
 
                   hjem = {
-                    extraModules = [inputs.hjem-rum.hjemModules.default];
+                    extraModules = [
+                      inputs.hjem-rum.hjemModules.default
+                      (import ./modules/hjem)
+                    ];
                     clobberByDefault = true;
                     users.stefan = {
                       enable = true;
@@ -177,10 +180,66 @@
                       #     '';
                       # };
                       rum.programs = {
+                        atuin = {
+                          enable = true;
+                          flags = ["--disable-up-arrow"];
+                          settings = {
+                            ctrl_n_shortcuts = true;
+                            enter_accept = true;
+                            sync.records = true;
+                            sync_frequency = "1h";
+                            workspaces = true;
+                            stats = {
+                              # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+                              common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "port" "systemctl" "uv"];
+                              # Set commands that should be totally stripped and ignored from stats
+                              common_prefix = ["sudo"];
+                              # Set commands that will be completely ignored from stats
+                              ignored_commands = ["cd" "ls" "z" "eza"];
+                            };
+                          };
+                          integrations.fish.enable = true;
+                        };
+                        bat.enable = true;
                         bottom.enable = true;
                         git.enable = true;
                         fish.enable = true;
-                        ghostty.enable = true;
+                        fzf = {
+                          enable = true;
+                          defaultOpts = ["--cycle" "--layout=reverse" "--border" "--height=-3" "--preview-window=wrap" "--highlight-line" "--info=inline-right" "--ansi"];
+                        };
+                        ghostty = {
+                          enable = true;
+                          settings = {
+                            auto-update = "off";
+                            shell-integration-features = true;
+                            image-storage-limit = 128 * 1024 * 1024; # 128 MB
+                            scrollback-limit = 128 * 1024 * 1024; # 128 MB
+                            quit-after-last-window-closed = true;
+                            quit-after-last-window-closed-delay = "5m";
+
+                            window-inherit-working-directory = true;
+                            window-theme = "ghostty";
+                            window-decoration = "none";
+                            gtk-tabs-location = "bottom";
+                            window-padding-x = 0;
+                            window-padding-y = 0;
+
+                            keybind = [
+                              "alt+t=toggle_tab_overview"
+                              "ctrl+shift+k=clear_screen"
+                              "ctrl+shift+backslash=new_split:right"
+                              "ctrl+shift+minus=new_split:down"
+                              "ctrl+shift+x=close_surface"
+
+                              "shift+up=goto_split:up"
+                              "shift+down=goto_split:down"
+                              "shift+left=goto_split:left"
+                              "shift+right=goto_split:right"
+                            ];
+                          };
+                          integrations.bat.enable = true;
+                        };
                         starship = {
                           enable = true;
                           transience.enable = true;
