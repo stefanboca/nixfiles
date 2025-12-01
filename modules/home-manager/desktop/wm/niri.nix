@@ -233,6 +233,7 @@ in {
         "Mod+Shift+R".action.switch-preset-window-height = {};
         "Mod+Ctrl+R".action.reset-window-height = {};
 
+        "Mod+Return".action.maximize-window-to-edges = {};
         "Mod+F".action.maximize-column = {};
         "Mod+Shift+F".action.fullscreen-window = {};
         "Mod+Ctrl+F".action.expand-column-to-available-width = {};
