@@ -13,7 +13,7 @@ in {
     home = {
       username = lib.mkDefault "stefan";
       homeDirectory = lib.mkDefault "/home/${config.home.username}";
-      stateVersion = lib.mkDefault "25.11";
+      stateVersion = lib.mkDefault "26.05";
       preferXdgDirectories = true;
       language.base = "en_US.UTF-8";
     };
