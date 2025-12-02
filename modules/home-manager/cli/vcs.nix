@@ -46,16 +46,23 @@ in {
         lfs.enable = true;
         ignores = [".jj" "*.scratch.*"];
         settings = {
-          gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+          gpg = {
+            format = "ssh";
+            ssh = {
+              program = lib.getExe pkgs.openssh "ssh-keygen";
+              allowedSignersFile = "~/.ssh/allowed_signers";
+            };
+          };
+          commit.gpgSign = true;
+          tag.gpgSign = true;
+
           init.defautlBranch = "main";
           pull.rebase = true;
           url."ssh://git@github.com" = {insteadOf = "https://github.com";};
-          user = {inherit name email;};
-        };
-        signing = {
-          inherit key;
-          signByDefault = true;
-          format = "ssh";
+          user = {
+            inherit name email;
+            signingKey = key;
+          };
         };
       };
 
