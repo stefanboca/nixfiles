@@ -51,7 +51,7 @@ in {
     packages = mkIf (cfg.package != null) [cfg.package];
 
     xdg.config.files."atuin/config.toml" = mkIf (cfg.settings != {}) {
-      source = toml.generate "alacritty.toml" cfg.settings;
+      source = toml.generate "atuin-config.toml" cfg.settings;
     };
 
     rum.programs.fish.config = mkIf cfg.integrations.fish.enable (

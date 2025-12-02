@@ -4,16 +4,17 @@
   pkgs,
   ...
 }: let
+  inherit (lib.attrsets) mapAttrsToList;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption mkPackageOption;
-  inherit (lib.types) listOf str path;
   inherit (lib.strings) concatLines;
+  inherit (lib.types) attrsOf listOf path str;
 
   cacheSource = pkgs.runCommand "bat-cache-source" {} ''
     mkdir -p $out/{syntaxes,themes}
-    ${concatLines (map (p: "ln -s ${p} $out/syntaxes/${baseNameOf p}") cfg.syntaxes)}
-    ${concatLines (map (p: "ln -s ${p} $out/themes/${baseNameOf p}") cfg.themes)}
+    ${concatLines (mapAttrsToList (name: value: "ln -s ${value} $out/syntaxes/${name}") cfg.syntaxes)}
+    ${concatLines (mapAttrsToList (name: value: "ln -s ${value} $out/themes/${name}") cfg.themes)}
     chmod -R a+rX $out
   '';
 
@@ -34,13 +35,13 @@ in {
     };
 
     syntaxes = mkOption {
-      type = listOf path;
-      default = [];
+      type = attrsOf path;
+      default = {};
     };
 
     themes = mkOption {
-      type = listOf path;
-      default = [];
+      type = attrsOf path;
+      default = {};
     };
   };
 

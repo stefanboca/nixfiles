@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     rum.programs.bat = mkIf cfg.integrations.bat.enable {
       flags = [''--map-syntax="${config.xdg.config.directory}/ghostty/config:Ghostty Config"''];
-      syntaxes = ["${cfg.package}/share/bat/syntaxes/ghostty.sublime-syntax"];
+      syntaxes."ghostty.sublime-syntax" = "${cfg.package}/share/bat/syntaxes/ghostty.sublime-syntax";
     };
   };
 }

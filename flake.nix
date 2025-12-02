@@ -83,6 +83,7 @@
 
           vm = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
+            specialArgs = {inherit self inputs;};
             modules = [
               inputs.hjem.nixosModules.default
               (
@@ -104,6 +105,8 @@
                       use-xdg-base-directories = true;
                     };
                   };
+
+                  nixpkgs.config = {allowUnfree = true;};
 
                   imports = ["${modulesPath}/virtualisation/qemu-vm.nix"];
 
@@ -165,6 +168,7 @@
                       inputs.hjem-rum.hjemModules.default
                       (import ./modules/hjem)
                     ];
+                    specialArgs = {inherit self inputs;};
                     clobberByDefault = true;
                     users.stefan = {
                       enable = true;
@@ -249,6 +253,25 @@
                           enable = true;
                           integrations.fish.enable = true;
                         };
+                        vesktop = {
+                          enable = true;
+                          # package = pkgs.vesktop.override {withSystemVencord = true;};
+                        };
+                        spicetify = {
+                          enable = true;
+                          # enabledExtensions = with pkgs.spicePkgs.extensions; [
+                          #   adblockify
+                          #   bookmark
+                          # ];
+                        };
+                        nix-index = {
+                          enable = true;
+                          database = {
+                            cache.enable = true;
+                            comma.enable = true;
+                          };
+                          integrations.fish.enable = true;
+                        };
                       };
                     };
                   };
@@ -264,7 +287,6 @@
                 }
               )
             ];
-            specialArgs = {inherit self inputs;};
           };
         };
       };
