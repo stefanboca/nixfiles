@@ -44,6 +44,7 @@ in {
       git = {
         enable = true;
         lfs.enable = true;
+        ignores = [".jj" "*.scratch.*"];
         settings = {
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
           init.defautlBranch = "main";
@@ -170,11 +171,6 @@ in {
         };
       };
     };
-
-    xdg.configFile."git/ignore".text = ''
-      .jj
-      *.scratch.*
-    '';
 
     home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
