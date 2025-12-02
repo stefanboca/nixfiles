@@ -272,6 +272,12 @@
                           };
                           integrations.fish.enable = true;
                         };
+                        gh = {
+                          enable = true;
+                          integrations.git.credentialHelper.enable = true;
+                        };
+                        jujutsu.enable = true;
+                        jjui.enable = true;
                       };
                     };
                   };
