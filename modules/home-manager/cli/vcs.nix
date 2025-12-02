@@ -109,12 +109,6 @@ in {
               merge-args = ["-c" "let g:jj_diffconflicts_marker_length=$marker_length" "-c" "let g:autoformat_disable=v:true" "-c" "JJDiffConflicts!" "$output" "$base" "$left" "$right"];
               merge-tool-edits-conflict-markers = true;
             };
-            mergiraf = {
-              program = "mergiraf";
-              merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--conflict-marker-size" "$marker_length"];
-              merge-conflict-exit-codes = [1];
-              conflict-marker-style = "git";
-            };
           };
 
           signing = {
