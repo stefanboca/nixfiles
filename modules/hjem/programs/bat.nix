@@ -11,12 +11,15 @@
   inherit (lib.strings) concatLines;
   inherit (lib.types) attrsOf listOf path str;
 
-  cacheSource = pkgs.runCommand "bat-cache-source" {} ''
-    mkdir -p $out/{syntaxes,themes}
-    ${concatLines (mapAttrsToList (name: value: "ln -s ${value} $out/syntaxes/${name}") cfg.syntaxes)}
-    ${concatLines (mapAttrsToList (name: value: "ln -s ${value} $out/themes/${name}") cfg.themes)}
-    chmod -R a+rX $out
-  '';
+  mkCachePaths = root:
+    mapAttrsToList (name: value: {
+      name = "${root}/${name}";
+      path = value;
+    });
+
+  cacheSource = pkgs.linkFarm "bat-cache-source" (
+    (mkCachePaths "syntaxes" cfg.syntaxes) ++ (mkCachePaths "themes" cfg.themes)
+  );
 
   cache = pkgs.runCommand "bat-cache" {} ''
     ${getExe cfg.package} cache --build --source ${cacheSource} --target $out
