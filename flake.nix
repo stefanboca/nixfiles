@@ -278,6 +278,25 @@
                         };
                         jujutsu.enable = true;
                         jjui.enable = true;
+                        ssh = {
+                          enable = true;
+                          settings =
+                            # ssh_config
+                            ''
+                              Host github.com
+                                User git
+                                HostName github.com
+                                IdentitiesOnly yes
+                                IdentityFile ~/.ssh/id_ed25519_git
+
+                              Host *
+                                ForwardAgent no
+                                AddKeysToAgent no
+                                UserKnownHostsFile ~/.ssh/known_hosts
+                                ControlPath ~/.ssh/master-%r@%n:%p
+                                ControlPersist no
+                            '';
+                        };
                       };
                     };
                   };
