@@ -26,6 +26,12 @@ in {
       telegram-desktop
     ];
 
-    programs.vesktop.enable = true;
+    programs.vesktop = {
+      enable = true;
+      package = pkgs.vesktop.override {
+        withMiddleClickScroll = true;
+        withSystemVencord = true;
+      };
+    };
   };
 }
