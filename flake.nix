@@ -1,6 +1,4 @@
 {
-  description = "Home Manager configuration of doctorwho";
-
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
