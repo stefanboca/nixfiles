@@ -266,27 +266,11 @@ in {
       };
     };
 
-    xdg = {
-      userDirs = {
-        enable = true;
-        desktop = null;
-        publicShare = null;
-        templates = null;
-      };
-      mimeApps = {
-        associations.added = {
-          "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-          "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
-        };
-        defaultApplications = {
-          "application/pdf" = "org.gnome.Evince.desktop";
-          "image/jpeg" = "org.gnome.Loupe.desktop";
-          "image/png" = "org.gnome.Loupe.desktop";
-          "image/svg+xml" = "org.gnome.Loupe.desktop";
-          "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-          "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
-        };
-      };
+    xdg.userDirs = {
+      enable = true;
+      desktop = null;
+      publicShare = null;
+      templates = null;
     };
 
     programs = {

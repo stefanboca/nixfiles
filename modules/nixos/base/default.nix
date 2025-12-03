@@ -60,8 +60,6 @@ in {
         irqbalance.enable = true;
       };
 
-      fonts.fontconfig.enable = lib.mkDefault false;
-
       zramSwap = {
         enable = true;
         algorithm = "lzo-rle";

@@ -23,12 +23,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    fonts = {
-      enableDefaultPackages = true;
-      fontconfig.enable = true;
-      fontDir.enable = true;
-    };
-
     hardware = {
       bluetooth.enable = true;
       graphics.enable = true;
@@ -86,5 +80,23 @@ in {
     };
 
     powerManagement.powertop.enable = lib.mkIf cfg.isLaptop true;
+
+    xdg.mime = let
+      firefox = ["firefox-nightly.desktop" "firefox.desktop"];
+    in {
+      defaultApplications = {
+        "application/pdf" = "org.gnome.Evince.desktop";
+        "application/xhtml+xml" = firefox;
+        "text/html" = firefox;
+        "text/plain" = "gnome-text-editor.desktop";
+        "text/rtf" = "writer.desktop";
+        "x-scheme-handler/discord" = "vesktop.desktop";
+        "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+      };
+      addedAssociations = {
+        "x-scheme-handler/discord" = "vesktop.desktop";
+        "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+      };
+    };
   };
 }

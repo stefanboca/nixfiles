@@ -29,7 +29,15 @@ in {
     };
 
     fonts = {
-      fontconfig.enable = true;
+      fontconfig = {
+        enable = true;
+        defaultFonts = with cfg.fonts; {
+          monospace = [monospace.name];
+          serif = [serif.name];
+          sansSerif = [sansSerif.name];
+          emoji = [emoji.name];
+        };
+      };
       packages = cfg.fontPackages;
       enableDefaultPackages = true;
     };

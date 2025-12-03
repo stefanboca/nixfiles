@@ -16,7 +16,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    xdg.mime.enable = true;
-    xdg.mimeApps.enable = true;
+    xdg.mime.enable = false;
   };
 }

@@ -127,16 +127,6 @@ in {
       accent = lib.mkDefault cfg.accent;
     };
 
-    fonts.fontconfig = {
-      enable = true;
-      defaultFonts = with cfg.fonts; {
-        monospace = [monospace.name];
-        serif = [serif.name];
-        sansSerif = [sansSerif.name];
-        emoji = [emoji.name];
-      };
-    };
-
     theming = {
       fontPackages = with cfg.fonts;
         [

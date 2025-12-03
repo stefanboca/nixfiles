@@ -18,7 +18,7 @@ in {
       language.base = "en_US.UTF-8";
     };
 
-    xdg.enable = true;
+    fonts.fontconfig.enable = false;
 
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 

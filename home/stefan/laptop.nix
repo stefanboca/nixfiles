@@ -34,10 +34,6 @@ in {
     # zotero
   ];
 
-  xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
-  };
-
   theming.niri.outputs = [
     "DP-1"
     "eDP-1"
