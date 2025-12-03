@@ -91,6 +91,8 @@ in {
         "text/plain" = "gnome-text-editor.desktop";
         "text/rtf" = "writer.desktop";
         "x-scheme-handler/discord" = "vesktop.desktop";
+        "x-scheme-handler/http" = firefox;
+        "x-scheme-handler/https" = firefox;
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
       };
       addedAssociations = {
