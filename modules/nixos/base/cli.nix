@@ -45,8 +45,8 @@ in {
       lshw
       lsof
       net-tools
-      nix-output-monitor
       nix-fast-build
+      nix-output-monitor
       nmap
       ouch
       parted
@@ -64,7 +64,7 @@ in {
       vim
       wev
       wget
-      # keep-sorted start
+      # keep-sorted end
     ];
   };
 }

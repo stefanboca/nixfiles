@@ -15,7 +15,7 @@
   cfg = config.theming;
 in {
   imports = [
-    ../common/theming.nix
+    ../../common/theming
     (lib.modules.importApply "${inputs.catppuccin}/modules/global.nix" {
       catppuccinModules = map (m: "${inputs.catppuccin}/modules/home-manager/${m}.nix") [
         # keep-sorted start

@@ -8,10 +8,6 @@
   cfg = config.desktop;
 in {
   imports = [
-    ./browser/firefox.nix
-    ./spotify.nix
-    ./term/ghostty.nix
-
     "${modulesPath}/programs/vesktop.nix"
   ];
 

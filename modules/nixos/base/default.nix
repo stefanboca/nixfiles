@@ -6,12 +6,6 @@
 }: let
   cfg = config.base;
 in {
-  imports = [
-    ./cli.nix
-    ./docs.nix
-    ./ssh.nix
-  ];
-
   options.base = {
     enable = lib.mkEnableOption "Enable the base system module";
     appimage.enable = lib.mkEnableOption "Enable appimage.";
@@ -32,8 +26,6 @@ in {
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      nix.package = pkgs.nixVersions.latest;
-
       systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 
       console = {

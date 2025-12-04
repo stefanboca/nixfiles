@@ -6,12 +6,6 @@
 }: let
   cfg = config.desktop;
 in {
-  imports = [
-    ./dm.nix
-    ./gaming.nix
-    ./wm.nix
-  ];
-
   options.desktop = {
     enable = lib.mkEnableOption "Enable the desktop environment module.";
 

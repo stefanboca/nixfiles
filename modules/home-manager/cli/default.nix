@@ -8,12 +8,6 @@
   cfg = config.cli;
 in {
   imports = [
-    ./fish.nix
-    ./langs.nix
-    ./neovim.nix
-    ./ssh.nix
-    ./vcs.nix
-
     "${modulesPath}/programs/bat.nix"
     "${modulesPath}/programs/bottom.nix"
     "${modulesPath}/programs/btop.nix"

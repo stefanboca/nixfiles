@@ -6,12 +6,6 @@
 }: let
   cfg = config.desktop;
 in {
-  imports = [
-    ./apps
-    ./gaming.nix
-    ./wm
-  ];
-
   options.desktop.enable = lib.mkEnableOption "Enable Desktop configuration" // {default = osConfig.desktop.enable or false;};
 
   config = lib.mkIf cfg.enable {

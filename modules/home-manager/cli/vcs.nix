@@ -49,7 +49,7 @@ in {
           gpg = {
             format = "ssh";
             ssh = {
-              program = lib.getExe pkgs.openssh "ssh-keygen";
+              program = lib.getExe' pkgs.openssh "ssh-keygen";
               allowedSignersFile = "~/.ssh/allowed_signers";
             };
           };

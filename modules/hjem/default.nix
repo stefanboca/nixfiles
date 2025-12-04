@@ -1,3 +1,3 @@
-{lib, ...}: {
-  imports = lib.filesystem.listFilesRecursive ./programs;
+{
+  rum-extensions = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./rum;};
 }
