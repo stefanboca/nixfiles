@@ -45,9 +45,7 @@ in {
       cargo-shear # find unused dependencies
       cargo-watch # run cargo commands on project changes
       cargo-wizard # configure cargo projects for best performance
-      lspmux # run a single rust-analyzer instance
       (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
-      rust-analyzer-nightly
     ];
 
     programs = {

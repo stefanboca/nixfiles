@@ -29,19 +29,20 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
+    snv = {
+      url = "github:stefanboca/nvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        fenix.follows = "fenix";
+        flake-parts.follows = "flake-parts";
+      };
+    };
   };
 
   outputs = {

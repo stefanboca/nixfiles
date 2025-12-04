@@ -14,12 +14,12 @@
           git
           gnupg
           home-manager
-          neovim
           nh
           nix
           parted
           ripgrep
           sbctl
+          snv
           sops
           ssh-to-age
           # keep-sorted end

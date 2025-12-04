@@ -81,10 +81,10 @@ in {
         ns = "nix search";
         nsh = "nix shell";
 
-        se = "sudoedit";
         nv = "neovide";
-        n = "nvim";
         o = "xdg-open";
+        s = "snv";
+        se = "sudoedit";
 
         c = "cargo";
 

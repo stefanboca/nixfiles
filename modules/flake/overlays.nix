@@ -5,7 +5,6 @@
         inherit (final.stdenv.hostPlatform) system;
       in {
         inherit (inputs.firefox-nightly.packages.${system}) firefox-nightly-bin;
-        neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.default;
         spicePkgs = inputs.spicetify-nix.legacyPackages.${system};
       };
 
@@ -22,6 +21,7 @@
       };
 
       inherit (inputs.niri.overlays) niri;
+      snv = inputs.snv.overlays.default;
       fenix = inputs.fenix.overlays.default;
     };
   };

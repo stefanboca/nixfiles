@@ -68,11 +68,11 @@ in {
 
           ui = {
             default-command = "log";
-            diff-editor = "nvim";
+            diff-editor = "snv";
             diff-formatter = "difft";
-            editor = ["nvim"];
+            editor = "snv";
             log-word-wrap = true;
-            merge-editor = "nvim";
+            merge-editor = "snv";
           };
 
           aliases = {
@@ -104,8 +104,8 @@ in {
           };
 
           merge-tools = {
-            nvim = {
-              program = "nvim";
+            snv = {
+              program = "snv";
               edit-args = ["-c" "DiffEditor $left $right $output"];
               merge-args = ["-c" "let g:jj_diffconflicts_marker_length=$marker_length" "-c" "let g:autoformat_disable=v:true" "-c" "JJDiffConflicts!" "$output" "$base" "$left" "$right"];
               merge-tool-edits-conflict-markers = true;
