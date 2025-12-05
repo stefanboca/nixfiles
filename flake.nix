@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -50,7 +49,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         fenix.follows = "fenix";
-        flake-parts.follows = "flake-parts";
       };
     };
   };
