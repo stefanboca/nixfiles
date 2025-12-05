@@ -17,11 +17,7 @@ in {
   options.rum.programs.spicetify = mkOption {
     type = submoduleWith {
       specialArgs = {inherit pkgs;};
-      modules =
-        [
-          (import "${spicetify}/modules/options.nix" spicetify)
-        ]
-        ++ optional pkgs.stdenv.isLinux "${spicetify}/modules/linuxOpts.nix";
+      modules = [(import "${spicetify}/modules/options.nix" spicetify)] ++ optional pkgs.stdenv.isLinux "${spicetify}/modules/linuxOpts.nix";
     };
     default = {};
   };
