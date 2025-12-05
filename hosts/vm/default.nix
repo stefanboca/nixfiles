@@ -18,8 +18,13 @@
     };
   };
 
-  nixpkgs.config = {allowUnfree = true;};
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs = {
+    overlays = builtins.attrValues self.overlays;
+    config = {
+      allowUnfree = true;
+    };
+    hostPlatform = "x86_64-linux";
+  };
 
   imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
 
@@ -180,6 +185,21 @@
                 ControlPersist no
             '';
         };
+        dank-material-shell = {
+          enable = true;
+
+          audioWavelength.enable = true;
+          brightnessControl.enable = true;
+          clipboard.enable = true;
+          systemMonitoring.enable = true;
+          systemSound.enable = true;
+
+          integrations.niri.enable = true;
+        };
+      };
+      rum.desktops.niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
       };
     };
   };

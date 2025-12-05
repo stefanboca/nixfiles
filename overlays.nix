@@ -13,6 +13,13 @@ inputs: {
     comma = prev.comma.override {nix = prev.nixVersions.latest;};
   };
 
+  dank-material-shell = final: _prev: let
+    inherit (final.stdenv.hostPlatform) system;
+  in {
+    inherit (inputs.dank-material-shell.packages.${system}) dms-shell;
+    inherit (inputs.dank-material-shell.inputs.dgop.packages.${system}) dgop;
+  };
+
   inherit (inputs.niri.overlays) niri;
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
