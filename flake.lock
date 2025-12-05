@@ -118,11 +118,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764958690,
-        "narHash": "sha256-RAuBMOWXGj1QGrhsQPhLu7Tpd5tPSsI75zUecpYiQoY=",
+        "lastModified": 1764964774,
+        "narHash": "sha256-LNOs6lgxckt55mEzHwV4odse1kWD+PiwLdCMbkE9yDU=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "2c484583845d05a95e77212d585df9ad2c8ae697",
+        "rev": "6d0c56554fba353db582893540f39c53935b6460",
         "type": "github"
       },
       "original": {
@@ -805,11 +805,11 @@
         "vim-jjdescription": "vim-jjdescription"
       },
       "locked": {
-        "lastModified": 1764896659,
-        "narHash": "sha256-AE0TnqSIPK7c2NVg6J0uH5i1pJ+redE0wEy/wtXIyzQ=",
+        "lastModified": 1764959600,
+        "narHash": "sha256-2++stNsvIWaf5cL4pKqFAxTiVc4xKml+5uHS0mXNTcQ=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "ccf63d9db982ccdec377bb68a4f06f02858bae82",
+        "rev": "3bd3aa8c669cf98e174459976331f93ec49ac958",
         "type": "github"
       },
       "original": {
