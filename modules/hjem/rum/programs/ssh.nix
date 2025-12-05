@@ -7,25 +7,22 @@
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.strings) toInt;
   inherit (lib.types) lines;
 
-  source = pkgs.writeText "ssh-config" cfg.settings;
-
-  validate = pkgs.runCommandLocal "ssh-validate" {} ''
-    mkdir -p $out
-
-    set +e
-    ${getExe pkgs.openssh} -G -F ${source} dummyhost > $out/stdout 2>&1
-    exitcode=$?
-    set -e
-
-    echo $exitcode > $out/exitcode
-  '';
-
-  validateStdout = builtins.readFile "${validate}/stdout";
-  validateExitCode = toInt (builtins.readFile "${validate}/exitcode");
-  isValid = validateExitCode == 0;
+  validatedConfig =
+    pkgs.runCommandWith {
+      name = "ssh-config";
+      runLocal = true;
+      derivationArgs = {
+        config = cfg.settings;
+        passAsFile = ["config"];
+      };
+    }
+    # bash
+    ''
+      ${getExe pkgs.openssh} -G -F $configPath dummyhost
+      cp $configPath $out
+    '';
 
   cfg = config.rum.programs.ssh;
 in {
@@ -36,24 +33,11 @@ in {
       type = lines;
       default = "";
     };
-
-    validate.enable = mkEnableOption "validate ssh config" // {default = true;};
   };
 
   config = mkIf cfg.enable {
     files.".ssh/config" = mkIf (cfg.settings != "") {
-      text = cfg.settings;
+      source = validatedConfig;
     };
-
-    assertions = [
-      (mkIf cfg.validate.enable {
-        assertion = isValid;
-        message = ''
-          SSH config is invalid:
-
-          ${validateStdout}
-        '';
-      })
-    ];
   };
 }
