@@ -9,21 +9,6 @@
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) lines;
 
-  validatedConfig =
-    pkgs.runCommandWith {
-      name = "ssh-config";
-      runLocal = true;
-      derivationArgs = {
-        config = cfg.settings;
-        passAsFile = ["config"];
-      };
-    }
-    # bash
-    ''
-      ${getExe pkgs.openssh} -G -F $configPath dummyhost
-      cp $configPath $out
-    '';
-
   cfg = config.rum.programs.ssh;
 in {
   options.rum.programs.ssh = {
@@ -37,7 +22,13 @@ in {
 
   config = mkIf cfg.enable {
     files.".ssh/config" = mkIf (cfg.settings != "") {
-      source = validatedConfig;
+      source = pkgs.writeTextFile {
+        name = "ssh-config";
+        text = cfg.settings;
+        checkPhase = ''
+          ${getExe pkgs.openssh} -G -F "$target" dummyhost
+        '';
+      };
     };
   };
 }
