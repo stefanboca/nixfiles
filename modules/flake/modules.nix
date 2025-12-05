@@ -24,7 +24,7 @@
 
       ../../hosts/common
 
-      ({config, ...}: {
+      {
         inherit (self.nixCfg) nix nixpkgs;
 
         home-manager = {
@@ -34,24 +34,9 @@
           backupFileExtension = "bak";
           minimal = true;
 
-          sharedModules =
-            homeCommon
-            ++ [
-              {
-                # share select config with home-manager
-                config = {
-                  desktop = {
-                    inherit (config.desktop) enable;
-                    wm = {inherit (config.desktop.wm) enableGnome enableNiri;};
-                    gaming = {inherit (config.desktop.gaming) enable;};
-                  };
-
-                  theming = {inherit (config.theming) enable flavor accent fonts;};
-                };
-              }
-            ];
+          sharedModules = homeCommon;
         };
-      })
+      }
     ]
     ++ builtins.attrValues allNixos;
 in {

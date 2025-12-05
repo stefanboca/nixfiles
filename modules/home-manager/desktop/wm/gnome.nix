@@ -1,11 +1,12 @@
 {
   config,
   lib,
+  osConfig,
   ...
 }: let
   cfg = config.desktop.wm;
 in {
-  options.desktop.wm.enableGnome = lib.mkEnableOption "Gnome DE";
+  options.desktop.wm.enableGnome = lib.mkEnableOption "Gnome DE" // {default = osConfig.desktop.wm.enableGnome or false;};
 
   config = lib.mkIf cfg.enableGnome {
     dconf = {

@@ -2,6 +2,7 @@
   config,
   lib,
   modulesPath,
+  osConfig,
   ...
 }: let
   cfg = config.desktop.wm;
@@ -11,7 +12,7 @@ in {
     "${modulesPath}/programs/quickshell.nix"
   ];
 
-  options.desktop.wm.enableNiri = lib.mkEnableOption "niri WM";
+  options.desktop.wm.enableNiri = lib.mkEnableOption "niri WM" // {default = osConfig.desktop.wm.enableNiri or false;};
 
   config = lib.mkIf cfg.enableNiri {
     programs.niri.settings = {
