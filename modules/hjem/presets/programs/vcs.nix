@@ -1,76 +1,87 @@
 {
   config,
   lib,
-  modulesPath,
   pkgs,
   ...
 }: let
-  cfg = config.cli;
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) path singleLinStr;
 
-  name = "Stefan Boca";
-  email = "stefan.r.boca@gmail.com";
-  key = "~/.ssh/id_ed25519_git.pub";
+  allowedSignersFile = pkgs.writeText "allowed_signers" ''
+    ${cfg.email} ${builtins.readFile cfg.signingKeyFile}
+  '';
+
+  cfg = config.presets.programs.vcs;
 in {
-  imports = [
-    "${modulesPath}/programs/gh.nix"
-    "${modulesPath}/programs/git.nix"
-    "${modulesPath}/programs/jjui.nix"
-    "${modulesPath}/programs/jujutsu.nix"
+  options.presets.programs.vcs = {
+    enable = mkEnableOption "vcs preset";
 
-    # dependencies of git.nix
-    "${modulesPath}/programs/delta.nix"
-    "${modulesPath}/programs/diff-highlight.nix"
-    "${modulesPath}/programs/diff-so-fancy.nix"
-    "${modulesPath}/programs/difftastic.nix"
-    "${modulesPath}/programs/patdiff.nix"
-    "${modulesPath}/programs/riff.nix"
+    name = mkOption {
+      type = singleLinStr;
+      default = "stefan";
+    };
 
-    # dependency of jujutsu.nix
-    "${modulesPath}/programs/emacs.nix"
-  ];
+    email = mkOption {
+      type = singleLinStr;
+      default = "stefan.r.boca@gmail.com";
+    };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      difftastic # syntax-aware structural diff tool
-      mergiraf # syntax-aware structural merge driver
-      meld # Visual diff and merge tool
-      watchman
+    signingKeyFile = mkOption {
+      type = path;
+      default = ../../../../home/stefan/keys/id_ed25519_git.pub;
+    };
+  };
+
+  config = mkIf cfg.enable {
+    packages = [
+      pkgs.git-lfs
+      pkgs.difftastic
+      pkgs.mergiraf
+      pkgs.meld
+      pkgs.watchman
     ];
 
-    programs = {
-      gh.enable = true; # github CLI
+    rum.programs = {
+      gh.enable = true;
 
       git = {
         enable = true;
-        lfs.enable = true;
         ignores = [".jj" "*.scratch.*"];
         settings = {
+          user = {
+            inherit (cfg) name email;
+            signingKey = cfg.signingKeyFile;
+          };
+          init.defautlBranch = "main";
+          pull.rebase = true;
+
+          url."ssh://git@github.com" = {insteadOf = "https://github.com";};
+
           gpg = {
             format = "ssh";
             ssh = {
               program = lib.getExe' pkgs.openssh "ssh-keygen";
-              allowedSignersFile = "~/.ssh/allowed_signers";
+              inherit allowedSignersFile;
             };
           };
           commit.gpgSign = true;
           tag.gpgSign = true;
 
-          init.defautlBranch = "main";
-          pull.rebase = true;
-          url."ssh://git@github.com" = {insteadOf = "https://github.com";};
-          user = {
-            inherit name email;
-            signingKey = key;
+          filter.lfs = {
+            required = true;
+            clean = "git-lfs clean -- %f";
+            process = "git-lfs filter-process";
+            smudge = "git-lfs smudge -- %f";
           };
         };
       };
 
-      # better git
       jujutsu = {
         enable = true;
 
         settings = {
-          user = {inherit name email;};
+          user = {inherit (cfg) name email;};
 
           ui = {
             default-command = "log";
@@ -119,10 +130,10 @@ in {
           };
 
           signing = {
-            inherit key;
+            key = cfg.signingKeyFile;
             behavior = "own";
             backend = "ssh";
-            backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
+            backends.ssh.allowed-signers = allowedSignersFile;
           };
 
           git = {
@@ -177,7 +188,5 @@ in {
         };
       };
     };
-
-    home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
 }

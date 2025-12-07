@@ -17,8 +17,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.shell.enableFishIntegration = true;
 
-    programs.
-      fish = {
+    programs.fish = {
       enable = true;
       preferAbbrs = true;
 
