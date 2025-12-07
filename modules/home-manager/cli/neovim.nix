@@ -16,7 +16,7 @@ in {
       EDITOR = "snv";
       VISUAL = "snv";
     };
-    home.packages = [pkgs.snv pkgs.snv-dev pkgs.snv-profile];
+    home.packages = [pkgs.snv];
 
     programs.neovide = {
       enable = true;
