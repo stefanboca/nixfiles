@@ -118,11 +118,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765074833,
-        "narHash": "sha256-hOj1hjk6pIN2oSeBsDDHfNH5w/lD/xViBsUXpcIvjPc=",
+        "lastModified": 1765128809,
+        "narHash": "sha256-rnRINQsZ++y7Z6XDskYEFc1DGFJaf57ukx1M7s4bZ/k=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "511cb938060f3c5d6302ff5d02cff4d6c22ccfb4",
+        "rev": "308c8c3ea77300c463ba4ece1a41ec9a3f2e5701",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765059572,
-        "narHash": "sha256-RydYROkEz0apxnQQUj2o5Z58pLbyeo3IQBFYOb2Qd80=",
+        "lastModified": 1765106210,
+        "narHash": "sha256-HAIads4cp7kuH8so4kXI/d5d2a3dDP6gGFyYQp9u6Xs=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "fadb5bcaa5e1ba5e87f600dac4a867f10e916bad",
+        "rev": "e13eb4ff53088e144a96fa16745b6c96ec4da55c",
         "type": "github"
       },
       "original": {
@@ -496,11 +496,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1765008770,
-        "narHash": "sha256-7w2Sn3Bgk91Ly+5XJ/OYvTqNVa+8+4Rqma05YM7xnVU=",
+        "lastModified": 1765120349,
+        "narHash": "sha256-MvwrHRV80hOdEwfLgI16XhApHuvj69aAgUWQ8ZBgAqE=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "935080f54490e3e7b1eda731cbe1478744546ea8",
+        "rev": "0f4acff79842637e92f5f2609d3844bac9d5e592",
         "type": "github"
       },
       "original": {
@@ -622,11 +622,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1764831616,
-        "narHash": "sha256-OtzF5wBvO0jgW1WW1rQU9cMGx7zuvkF7CAVJ1ypzkxA=",
+        "lastModified": 1764983851,
+        "narHash": "sha256-y7RPKl/jJ/KAP/VKLMghMgXTlvNIJMHKskl8/Uuar7o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c97c47f2bac4fa59e2cbdeba289686ae615f8ed4",
+        "rev": "d9bc5c7dceb30d8d6fafa10aeb6aa8a48c218454",
         "type": "github"
       },
       "original": {
@@ -797,11 +797,11 @@
         "vim-jjdescription": "vim-jjdescription"
       },
       "locked": {
-        "lastModified": 1765083141,
-        "narHash": "sha256-sRqJ9WFCXr75qL0SFVQ7x5lBypWiFnM2XKwEz/rWDEM=",
+        "lastModified": 1765093616,
+        "narHash": "sha256-0CFa/WxYBikGEFrEFuk51WasTSEzkbhUhJb7jSTmrYI=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "df6cd512531074cefe3aa566921f8b40600b6099",
+        "rev": "974e55aed2eaa98f3237496f0f19e8c530388f70",
         "type": "github"
       },
       "original": {
