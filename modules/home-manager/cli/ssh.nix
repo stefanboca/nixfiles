@@ -22,12 +22,6 @@ in {
       enable = true;
       enableDefaultConfig = false;
       matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/.ssh/id_ed25519_git";
-          identitiesOnly = true;
-        };
         "*" = {
           forwardAgent = lib.mkDefault false;
           addKeysToAgent = lib.mkDefault "no";
