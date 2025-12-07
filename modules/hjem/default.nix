@@ -1,5 +1,14 @@
 {
-  presets = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./rum;};
-  rum-extensions = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./rum;};
-  sops = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./sops;};
+  presets = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./rum;
+    _class = "hjem";
+  };
+  rum-extensions = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./rum;
+    _class = "hjem";
+  };
+  sops = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./sops;
+    _class = "hjem";
+  };
 }

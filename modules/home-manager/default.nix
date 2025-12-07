@@ -1,6 +1,18 @@
 {
-  base = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./base;};
-  cli = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./cli;};
-  desktop = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./desktop;};
-  theming = {lib, ...}: {imports = lib.filesystem.listFilesRecursive ./theming;};
+  base = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./base;
+    _class = "homeManager";
+  };
+  cli = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./cli;
+    _class = "homeManager";
+  };
+  desktop = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./desktop;
+    _class = "homeManager";
+  };
+  theming = {lib, ...}: {
+    imports = lib.filesystem.listFilesRecursive ./theming;
+    _class = "homeManager";
+  };
 }
