@@ -23,7 +23,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.sessionVariables.FZF_DEFAULT_OPTS = mkIf (cfg.defaultOpts != []) toDefaultOpts;
   };
 }

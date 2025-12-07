@@ -1,30 +1,20 @@
 {
   config,
   lib,
-  modulesPath,
   pkgs,
   ...
 }: let
-  cfg = config.cli;
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkEnableOption;
+
+  cfg = config.presets.development.rust;
 in {
-  imports = [
-    (modulesPath + "/programs/go.nix")
-  ];
+  options.presets.development.rust = {
+    enable = mkEnableOption "rust preset";
+  };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      cmakeCurses
-      elan # lean4
-      emmylua-check
-      gcc
-      koto
-      typst
-      typstyle
-      uv
-      zig
-      zizmor # github actions static analysis tool
-
-      # rust
+  config = mkIf cfg.enable {
+    packages = with pkgs; [
       (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
       bugstalker # cli debugger
       cargo-auditable # make production Rust binaries auditable
@@ -37,14 +27,5 @@ in {
       cargo-watch # run cargo commands on project changes
       cargo-wizard # configure cargo projects for best performance
     ];
-
-    programs = {
-      #go
-      go = {
-        enable = true;
-        telemetry.mode = "off";
-        env.GOPATH = "${config.xdg.dataHome}/go";
-      };
-    };
   };
 }
