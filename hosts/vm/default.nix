@@ -77,13 +77,13 @@
     clobberByDefault = true;
     users.stefan = {
       enable = true;
-
       presets = {
         desktops.niri.enable = true;
-
+        development.rust.enable = true;
         environment.sessionVariables.enable = true;
         programs = {
           cli.enable = true;
+          firefox.enable = true;
           fish.enable = true;
           ghostty.enable = true;
           neovim.enable = true;
