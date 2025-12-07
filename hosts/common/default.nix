@@ -42,7 +42,6 @@ in {
     };
 
     registry = {
-      s.flake = self;
       n.flake = inputs.nixpkgs;
     };
   };
