@@ -6,11 +6,13 @@
 }: let
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) path singleLinStr;
+  inherit (lib.types) path singleLineStr;
 
-  allowedSignersFile = pkgs.writeText "allowed_signers" ''
+  allowedSignersFile = builtins.toString (pkgs.writeText "allowed_signers" ''
     ${cfg.email} ${builtins.readFile cfg.signingKeyFile}
-  '';
+  '');
+
+  signingKeyFile = builtins.toString cfg.signingKeyFile;
 
   cfg = config.presets.programs.vcs;
 in {
@@ -18,12 +20,12 @@ in {
     enable = mkEnableOption "vcs preset";
 
     name = mkOption {
-      type = singleLinStr;
+      type = singleLineStr;
       default = "stefan";
     };
 
     email = mkOption {
-      type = singleLinStr;
+      type = singleLineStr;
       default = "stefan.r.boca@gmail.com";
     };
 
@@ -47,11 +49,16 @@ in {
 
       git = {
         enable = true;
-        ignores = [".jj" "*.scratch.*"];
+        ignore =
+          # gitignore
+          ''
+            .jj
+            *.scratch.*
+          '';
         settings = {
           user = {
             inherit (cfg) name email;
-            signingKey = cfg.signingKeyFile;
+            signingKey = signingKeyFile;
           };
           init.defautlBranch = "main";
           pull.rebase = true;
@@ -130,7 +137,7 @@ in {
           };
 
           signing = {
-            key = cfg.signingKeyFile;
+            key = signingKeyFile;
             behavior = "own";
             backend = "ssh";
             backends.ssh.allowed-signers = allowedSignersFile;

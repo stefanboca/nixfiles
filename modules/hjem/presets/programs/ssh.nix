@@ -12,7 +12,7 @@ in {
     enable = mkEnableOption "ssh preset";
   };
 
-  config.rum.programs.ssh = mkIf cfg.enable {
+  config = mkIf cfg.enable {
     files = {
       ".ssh/id_ed25519.pub".source = ../../../../home/stefan/keys/id_ed25519.pub;
       ".ssh/id_ed25519_git.pub".source = ../../../../home/stefan/keys/id_ed25519_git.pub;

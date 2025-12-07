@@ -58,7 +58,7 @@ in {
       bat.enable = true;
       fzf = {
         enable = true;
-        defaultOptions = ["--cycle" "--layout=reverse" "--border" "--height=-3" "--preview-window=wrap" "--highlight-line" "--info=inline-right" "--ansi"];
+        defaultOpts = ["--cycle" "--layout=reverse" "--border" "--height=-3" "--preview-window=wrap" "--highlight-line" "--info=inline-right" "--ansi"];
       };
       tealdeer = {
         enable = true;

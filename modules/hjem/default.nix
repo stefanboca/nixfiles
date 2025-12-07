@@ -1,6 +1,6 @@
 {
   presets = {lib, ...}: {
-    imports = lib.filesystem.listFilesRecursive ./rum;
+    imports = lib.filesystem.listFilesRecursive ./presets;
     _class = "hjem";
   };
   rum-extensions = {lib, ...}: {

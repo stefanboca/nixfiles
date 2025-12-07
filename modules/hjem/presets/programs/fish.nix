@@ -14,6 +14,8 @@ in {
   };
 
   config.rum.programs = mkIf cfg.enable {
+    # TODO: explore starship prompt
+
     fish = {
       enable = true;
 
@@ -88,7 +90,7 @@ in {
           ''_tide_item_jj || _tide_item_git'';
       };
 
-      plugins = {inherit (pkgs.fishPlugins) autopair git-abbrs puffer tide;};
+      plugins = {inherit (pkgs.fishPlugins) autopair git-abbr puffer tide;};
 
       earlyConfigFiles = {
         set_key_bindings =
