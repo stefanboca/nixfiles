@@ -17,8 +17,8 @@ in {
     type = submoduleWith {
       specialArgs = {inherit pkgs;};
       modules = [
-        (importApply (spicetify + "modules/options.nix") spicetify)
-        (spicetify + "modules/linuxOpts.nix")
+        (importApply (spicetify + "/modules/options.nix") spicetify)
+        (spicetify + "/modules/linuxOpts.nix")
       ];
     };
     default = {};
