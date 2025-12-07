@@ -7,10 +7,10 @@
   cfg = config.desktop;
 in {
   imports = [
-    "${modulesPath}/programs/ghostty.nix"
+    (modulesPath + "/programs/ghostty.nix")
 
     # dependency of ghostty.nix
-    "${modulesPath}/programs/vim.nix"
+    (modulesPath + "/programs/vim.nix")
   ];
 
   config = lib.mkIf cfg.enable {

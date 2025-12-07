@@ -8,25 +8,25 @@
   cfg = config.cli;
 in {
   imports = [
-    "${modulesPath}/programs/bat.nix"
-    "${modulesPath}/programs/bottom.nix"
-    "${modulesPath}/programs/btop.nix"
-    "${modulesPath}/programs/atuin.nix"
-    "${modulesPath}/programs/eza.nix"
-    "${modulesPath}/programs/fd.nix"
-    "${modulesPath}/programs/fzf.nix"
-    "${modulesPath}/programs/jq.nix"
-    "${modulesPath}/programs/nix-index.nix"
-    "${modulesPath}/programs/numbat.nix"
-    "${modulesPath}/programs/ripgrep.nix"
-    "${modulesPath}/programs/tealdeer.nix"
-    "${modulesPath}/programs/zoxide.nix"
+    (modulesPath + "/programs/bat.nix")
+    (modulesPath + "/programs/bottom.nix")
+    (modulesPath + "/programs/btop.nix")
+    (modulesPath + "/programs/atuin.nix")
+    (modulesPath + "/programs/eza.nix")
+    (modulesPath + "/programs/fd.nix")
+    (modulesPath + "/programs/fzf.nix")
+    (modulesPath + "/programs/jq.nix")
+    (modulesPath + "/programs/nix-index.nix")
+    (modulesPath + "/programs/numbat.nix")
+    (modulesPath + "/programs/ripgrep.nix")
+    (modulesPath + "/programs/tealdeer.nix")
+    (modulesPath + "/programs/zoxide.nix")
 
     # dependency of tealdeer.nix
-    "${modulesPath}/services/tldr-update.nix"
+    (modulesPath + "/services/tldr-update.nix")
 
     # dependency of nix-index.nix
-    "${modulesPath}/programs/command-not-found"
+    (modulesPath + "/programs/command-not-found")
   ];
 
   options.cli = {

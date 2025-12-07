@@ -8,7 +8,7 @@
   cfg = config.desktop.gaming;
 in {
   imports = [
-    "${modulesPath}/programs/mangohud.nix"
+    (modulesPath + "/programs/mangohud.nix")
   ];
 
   options.desktop.gaming.enable = lib.mkEnableOption "Enable gaming." // {default = osConfig.desktop.gaming.enable or false;};

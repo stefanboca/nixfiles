@@ -5,8 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib.lists) optional;
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) importApply mkIf;
   inherit (lib.options) mkOption;
   inherit (lib.types) submoduleWith;
 
@@ -17,7 +16,10 @@ in {
   options.rum.programs.spicetify = mkOption {
     type = submoduleWith {
       specialArgs = {inherit pkgs;};
-      modules = [(import "${spicetify}/modules/options.nix" spicetify)] ++ optional pkgs.stdenv.isLinux "${spicetify}/modules/linuxOpts.nix";
+      modules = [
+        (importApply (spicetify + "modules/options.nix") spicetify)
+        (spicetify + "modules/linuxOpts.nix")
+      ];
     };
     default = {};
   };

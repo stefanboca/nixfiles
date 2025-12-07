@@ -8,7 +8,7 @@
   cfg = config.cli;
 in {
   imports = [
-    "${modulesPath}/programs/neovide.nix"
+    (modulesPath + "/programs/neovide.nix")
   ];
 
   config = lib.mkIf cfg.enable {

@@ -8,7 +8,7 @@
   cfg = config.cli;
 in {
   imports = [
-    "${modulesPath}/programs/go.nix"
+    (modulesPath + "/programs/go.nix")
   ];
 
   config = lib.mkIf cfg.enable {

@@ -8,7 +8,7 @@
   cfg = config.desktop;
 in {
   imports = [
-    "${modulesPath}/programs/vesktop.nix"
+    (modulesPath + "/programs/vesktop.nix")
   ];
 
   config = lib.mkIf cfg.enable {

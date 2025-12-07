@@ -8,10 +8,10 @@
   cfg = config.cli;
 in {
   imports = [
-    "${modulesPath}/programs/fish.nix"
+    (modulesPath + "/programs/fish.nix")
 
     # dependency of fish.nix
-    "${modulesPath}/programs/man.nix"
+    (modulesPath + "/programs/man.nix")
   ];
 
   config = lib.mkIf cfg.enable {

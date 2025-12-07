@@ -21,7 +21,7 @@
   nixpkgs.config = {allowUnfree = true;};
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  imports = ["${modulesPath}/virtualisation/qemu-vm.nix"];
+  imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
 
   system = {
     nixos-init.enable = true;

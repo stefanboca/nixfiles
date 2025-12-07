@@ -16,8 +16,8 @@
 in {
   imports = [
     ../../common/theming
-    (lib.modules.importApply "${inputs.catppuccin}/modules/global.nix" {
-      catppuccinModules = map (m: "${inputs.catppuccin}/modules/home-manager/${m}.nix") [
+    (lib.modules.importApply (inputs.catppuccin + "/modules/global.nix") {
+      catppuccinModules = map (m: inputs.catppuccin + "/modules/home-manager/${m}.nix") [
         # keep-sorted start
         "aerc"
         "atuin"
@@ -38,8 +38,8 @@ in {
     })
 
     # dependencies of catppuccin firefox
-    "${modulesPath}/programs/floorp.nix"
-    "${modulesPath}/programs/librewolf.nix"
+    (modulesPath + "/programs/floorp.nix")
+    (modulesPath + "/programs/librewolf.nix")
   ];
 
   options.theming = {

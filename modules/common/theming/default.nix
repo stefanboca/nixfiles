@@ -8,7 +8,7 @@
 with lib; let
   cfg = config.theming;
 
-  catppuccinLib = import "${inputs.catppuccin}/modules/lib" {inherit config lib pkgs;};
+  catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
 
   mkFontOpt = typeName:
     mkOption {

@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    "${modulesPath}/programs/firefox"
+    (modulesPath + "/programs/firefox")
   ];
 
   config = {

@@ -8,7 +8,7 @@
   cfg = config.cli;
 in {
   imports = [
-    "${modulesPath}/programs/ssh.nix"
+    (modulesPath + "/programs/ssh.nix")
   ];
 
   config = mkIf cfg.enable {

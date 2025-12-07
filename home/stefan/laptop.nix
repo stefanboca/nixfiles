@@ -15,8 +15,8 @@ in {
     ./shared.nix
     ./sops.nix
 
-    "${modulesPath}/programs/aerc"
-    "${modulesPath}/programs/obs-studio.nix"
+    (modulesPath + "/programs/aerc")
+    (modulesPath + "/programs/obs-studio.nix")
   ];
 
   home.packages = with pkgs; [

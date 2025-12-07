@@ -9,7 +9,7 @@
 in {
   imports = [
     # dependency of dankMaterialShell
-    "${modulesPath}/programs/quickshell.nix"
+    (modulesPath + "/programs/quickshell.nix")
   ];
 
   options.desktop.wm.enableNiri = lib.mkEnableOption "niri WM" // {default = osConfig.desktop.wm.enableNiri or false;};
