@@ -77,6 +77,13 @@
     clobberByDefault = true;
     users.stefan = {
       enable = true;
+      catppuccin = {
+        enable = true;
+        programs = {
+          atuin.enable = true;
+          firefox.enable = true;
+        };
+      };
       presets = {
         desktops.niri.enable = true;
         development.rust.enable = true;

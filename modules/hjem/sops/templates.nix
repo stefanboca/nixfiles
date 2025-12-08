@@ -6,8 +6,8 @@
   ...
 }: let
   inherit (lib.attrsets) optionalAttrs mapAttrs;
-  inherit (lib.modules) literalExpression mergeEqualOption mkIf mkOptionType;
-  inherit (lib.options) mkDefault mkOption;
+  inherit (lib.modules) literalExpression mergeEqualOption mkDefault mkIf mkOptionType;
+  inherit (lib.options) mkOption;
   inherit (lib.strings) isConvertibleWithToString;
   inherit (lib.types) attrsOf lines path singleLineStr submodule;
 

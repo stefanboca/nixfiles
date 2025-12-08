@@ -11,4 +11,8 @@
     imports = lib.filesystem.listFilesRecursive ./sops;
     _class = "hjem";
   };
+  catppuccin = {lib, ...}: {
+    imports = [./catppuccin];
+    _class = "hjem";
+  };
 }

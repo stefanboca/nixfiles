@@ -1,0 +1,27 @@
+diff --git a/main.js b/main.js
+index a4b6e93..83a5998 100644
+--- a/main.js
++++ b/main.js
+@@ -1,5 +1,6 @@
+ import JsonUrl from "json-url";
+ import { variants } from "@catppuccin/palette";
++import { mkdirSync, writeFileSync } from "node:fs";
+
+ const accents = [
+     "rosewater",
+@@ -51,6 +52,7 @@ const capitalize = (s) => {
+             };
+         });
+
++        mkdirSync(`./themes/${flavour}`, {recursive: true});
+         for (const accent of accents) {
+             lib.accent = lib[accent];
+
+@@ -98,6 +100,7 @@ const capitalize = (s) => {
+                 },
+                 title: `Catppuccin ${flavour} ${accent}`,
+             };
++            writeFileSync(`./themes/${flavour}/catppuccin-${flavour}-${accent}.json`, JSON.stringify({firstRunDone: true, theme: theme}));
+
+             const url = await jsonCodec.compress(theme);
+             const link = `<a href="https://color.firefox.com/?theme=${url}">${capitalize(
