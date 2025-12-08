@@ -10,21 +10,14 @@
   dataDir = config.xdg.data.directory;
   stateDir = config.xdg.state.directory;
 
-  cfg = config.presets.environment.sessionVariables;
+  cfg = config.presets.misc.xdg;
 in {
-  options.presets.environment.sessionVariables = {
-    enable = mkEnableOption "session variables preset";
+  options.presets.misc.xdg = {
+    enable = mkEnableOption "xdg directories preset";
   };
 
   config = mkIf cfg.enable {
-    xdg.config.files."go/env".text = ''
-      GOPATH=${config.xdg.data.directory}/go;
-    '';
-
     environment.sessionVariables = {
-      LESS = "-FRXS";
-
-      # make stuff xdg compliant
       CARGO_HOME = "${dataDir}/cargo";
       GNUPGHOME = "${dataDir}/gnupg";
       HISTFILE = "${stateDir}/bash_history";
@@ -38,5 +31,11 @@ in {
       WINEPREFIX = "${dataDir}/wine";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${dataDir}/java";
     };
+
+    xdg.config.files."go/env".text = ''
+      GOPATH=${config.xdg.data.directory}/go;
+    '';
+
+    rum.misc.gtk.gtk2Location = ".config/gtk-2.0/gtkrc";
   };
 }

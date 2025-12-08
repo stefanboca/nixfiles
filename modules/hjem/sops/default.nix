@@ -5,11 +5,12 @@
   inputs,
   ...
 }: let
-  inherit (lib.attrsets) mapAttrsToList;
-  inherit (lib.path) hasStorePathPrefix;
+  inherit (lib.attrsets) attrValues mapAttrsToList;
+  inherit (lib.lists) elem;
   inherit (lib.modules) mergeEqualOption mkIf mkOptionType;
   inherit (lib.options) literalExpression mkOption;
-  inherit (lib.strings) concatStringsSep escapeShellArg optionalString;
+  inherit (lib.path) hasStorePathPrefix;
+  inherit (lib.strings) concatStringsSep escapeShellArg optionalString toJSON;
   inherit (lib.types) attrsOf bool either enum ints listOf nullOr package path str submodule;
 
   sops-install-secrets = cfg.package;
@@ -95,9 +96,9 @@
   manifestFor = suffix: secrets: templates:
     pkgs.writeTextFile {
       name = "manifest${suffix}.json";
-      text = builtins.toJSON {
-        secrets = builtins.attrValues secrets;
-        templates = builtins.attrValues templates;
+      text = toJSON {
+        secrets = attrValues secrets;
+        templates = attrValues templates;
         secretsMountPoint = cfg.defaultSecretsMountPoint;
         symlinkPath = cfg.defaultSymlinkPath;
         keepGenerations = cfg.keepGenerations;
@@ -108,8 +109,8 @@
         placeholderBySecretName = cfg.placeholder;
         userMode = true;
         logging = {
-          keyImport = builtins.elem "keyImport" cfg.log;
-          secretChanges = builtins.elem "secretChanges" cfg.log;
+          keyImport = elem "keyImport" cfg.log;
+          secretChanges = elem "secretChanges" cfg.log;
         };
       };
       checkPhase = ''

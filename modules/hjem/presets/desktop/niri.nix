@@ -47,6 +47,11 @@ in {
               warp-mouse-to-focus
           }
 
+          cursor {
+            hide-when-typing
+            hide-after-inactive-ms 10000
+          }
+
           // TODO: don't hard-code colors
           layout {
               gaps 8

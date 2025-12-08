@@ -14,6 +14,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables = {
+      LESS = "-FRXS";
+    };
+
     packages = with pkgs; [
       # keep-sorted start
       ast-grep # syntax-aware structural grep

@@ -4,15 +4,16 @@
   pkgs,
   ...
 }: let
+  inherit (builtins) readFile;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) path singleLineStr;
 
-  allowedSignersFile = builtins.toString (pkgs.writeText "allowed_signers" ''
-    ${cfg.email} ${builtins.readFile cfg.signingKeyFile}
+  allowedSignersFile = toString (pkgs.writeText "allowed_signers" ''
+    ${cfg.email} ${readFile cfg.signingKeyFile}
   '');
 
-  signingKeyFile = builtins.toString cfg.signingKeyFile;
+  signingKeyFile = toString cfg.signingKeyFile;
 
   cfg = config.presets.programs.vcs;
 in {

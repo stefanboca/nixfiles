@@ -3,14 +3,15 @@
   lib,
   ...
 }: let
-  inherit (config.catppuccin) sources;
+  inherit (catppuccinLib) mkCatppuccinOption;
   inherit (lib.modules) mkIf;
 
+  source = config.catppuccin.sources.atuin;
   themeName = "catppuccin-${cfg.flavor}-${cfg.accent}";
 
   cfg = config.catppuccin.programs.atuin;
 in {
-  options.catppuccin.programs.atuin = catppuccinLib.mkCatppuccinOption {
+  options.catppuccin.programs.atuin = mkCatppuccinOption {
     name = "atuin";
     accentSupport = true;
   };
@@ -21,7 +22,7 @@ in {
     };
 
     xdg.config.files = {
-      "atuin/themes/${themeName}.toml".source = "${sources.atuin}/${cfg.flavor}/${themeName}.toml";
+      "atuin/themes/${themeName}.toml".source = "${source}/${cfg.flavor}/${themeName}.toml";
     };
   };
 }

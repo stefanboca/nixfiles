@@ -79,15 +79,27 @@
       enable = true;
       catppuccin = {
         enable = true;
+        misc.cursors = {
+          enable = true;
+          integrations = {
+            gtk.enable = true;
+            niri.enable = true;
+          };
+        };
+        misc.gtk.icon.enable = true;
         programs = {
           atuin.enable = true;
+          bat.enable = true;
+          eza.enable = true;
           firefox.enable = true;
+          vesktop.enable = true;
         };
       };
       presets = {
         desktops.niri.enable = true;
         development.rust.enable = true;
-        environment.sessionVariables.enable = true;
+        misc.xdg.enable = true;
+        misc.gtk.enable = true;
         programs = {
           cli.enable = true;
           firefox.enable = true;

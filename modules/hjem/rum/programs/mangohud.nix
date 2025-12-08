@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  inherit (builtins) typeOf;
   inherit (lib.attrsets) filterAttrs mapAttrs' nameValuePair;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption mkPackageOption;
@@ -16,7 +17,7 @@
       bool = "0"; # "on/off" opts are disabled with `=0`
       list = concatMapStringsSep "," toString option;
     }.${
-      builtins.typeOf option
+      typeOf option
     } or (toString
       option);
   renderLine = k: v: (

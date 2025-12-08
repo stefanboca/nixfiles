@@ -3,22 +3,23 @@
   lib,
   ...
 }: let
+  inherit (catppuccinLib) mkCatppuccinOption;
   inherit (lib.attrsets) attrNames hasAttr mapAttrs optionalAttrs;
   inherit (lib.lists) foldl' optional;
   inherit (lib.modules) mkDefault mkIf;
   inherit (lib.options) mkOption;
   inherit (lib.types) attrsOf submodule;
 
-  inherit (config.catppuccin) sources;
-
   mkProfileOptions = {enableDefault ? null}:
-    catppuccinLib.mkCatppuccinOption (
+    mkCatppuccinOption (
       {
         name = "firefox";
         accentSupport = true;
       }
       // (optionalAttrs (enableDefault != null) {default = enableDefault;})
     );
+
+  source = config.catppuccin.sources.firefox;
 
   firefoxCfg = config.rum.programs.firefox;
   cfg = config.catppuccin.programs.firefox;
@@ -52,7 +53,7 @@ in {
             profile = cfg.profiles.${name};
           in {
             config = mkIf (cfg.profiles ? ${name} && profile.enable) {
-              files."browser-extension-data/FirefoxColor@mozilla.com/storage.js".source = "${sources.firefox}/${profile.flavor}/catppuccin-${profile.flavor}-${profile.accent}.json";
+              files."browser-extension-data/FirefoxColor@mozilla.com/storage.js".source = "${source}/${profile.flavor}/catppuccin-${profile.flavor}-${profile.accent}.json";
             };
           }
         )

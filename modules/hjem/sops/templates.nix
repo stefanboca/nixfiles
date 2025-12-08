@@ -5,6 +5,7 @@
   options,
   ...
 }: let
+  inherit (builtins) hashString;
   inherit (lib.attrsets) optionalAttrs mapAttrs;
   inherit (lib.modules) literalExpression mergeEqualOption mkDefault mkIf mkOptionType;
   inherit (lib.options) mkOption;
@@ -78,7 +79,7 @@ in {
 
   config = optionalAttrs (options ? sops.secrets) (
     mkIf (cfg.templates != {}) {
-      sops.placeholder = mapAttrs (name: _: mkDefault "<SOPS:${builtins.hashString "sha256" name}:PLACEHOLDER>") cfg.secrets;
+      sops.placeholder = mapAttrs (name: _: mkDefault "<SOPS:${hashString "sha256" name}:PLACEHOLDER>") cfg.secrets;
     }
   );
 }

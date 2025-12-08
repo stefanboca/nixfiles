@@ -25,7 +25,14 @@
       };
     };
 in {
-  imports = catppuccinLib.applyToModules (listFilesRecursive ./programs);
+  # TODO:
+  # - enable in presets?
+  # - packages:
+  #   - mako
+  #   - btop
+  #   - gtk icons
+  #   - starship? (currently requires IFD)
+  imports = catppuccinLib.applyToModules ((listFilesRecursive ./programs) ++ (listFilesRecursive ./misc));
 
   options.catppuccin = {
     enable = mkEnableOption "Catppuccin globally";
