@@ -21,6 +21,11 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  services.printing = {
+    enable = true;
+    drivers = [pkgs.cnijfilter2];
+  };
+
   desktop = {
     enable = true;
     isLaptop = true;
