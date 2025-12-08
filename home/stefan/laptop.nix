@@ -13,7 +13,6 @@
 in {
   imports = [
     ./shared.nix
-    ./sops.nix
 
     (modulesPath + "/programs/aerc")
     (modulesPath + "/programs/obs-studio.nix")

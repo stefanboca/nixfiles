@@ -3,19 +3,25 @@
   lib,
   ...
 }: let
-  inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.modules) mkAfter mkIf;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.types) path;
 
   cfg = config.presets.programs.ssh;
 in {
   options.presets.programs.ssh = {
     enable = mkEnableOption "ssh preset";
+
+    identityFile = mkOption {
+      type = path;
+    };
   };
 
   config = mkIf cfg.enable {
     rum.programs.ssh = {
       enable = true;
       settings =
+        mkAfter
         # ssh_config
         ''
           Host *
@@ -23,7 +29,7 @@ in {
             AddKeysToAgent no
             UserKnownHostsFile ~/.ssh/known_hosts
             ControlPath ~/.ssh/master-%r@%n:%p
-            IdentityFile ${../../../../home/stefan/keys/id_ed25519.pub}
+            IdentityFile ${cfg.identityFile}
             ControlPersist no
         '';
     };

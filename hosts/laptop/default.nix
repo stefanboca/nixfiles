@@ -6,11 +6,6 @@
   ];
 
   networking.hostName = "laptop";
-  networking.networkmanager.dns = "dnsmasq";
-
-  sops.secrets.smbcredentials = {
-    sopsFile = ./secrets.yaml;
-  };
 
   base = {
     enable = true;

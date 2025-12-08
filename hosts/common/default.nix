@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   lib,
   pkgs,
@@ -9,15 +8,8 @@
   inherit (lib.attrsets) attrValues;
 in {
   imports = [
-    ./users/root.nix
     ./users/stefan.nix
   ];
-
-  sops.defaultSopsFile = ./secrets.yaml;
-
-  sops.secrets.dnsmasq-hosts = lib.mkIf (config.networking.networkmanager.dns == "dnsmasq") {
-    path = "/etc/NetworkManager/dnsmasq.d/hosts";
-  };
 
   programs.fish.enable = true;
   users.mutableUsers = false;

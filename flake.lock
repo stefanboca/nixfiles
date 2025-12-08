@@ -730,6 +730,7 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "secrets": "secrets",
         "snv": "snv",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
@@ -773,6 +774,21 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "secrets": {
+      "locked": {
+        "lastModified": 1765244835,
+        "narHash": "sha256-909hbFQsOV6OH+IIYodlc6pyD2j3HJMD7hGw0r6xQaM=",
+        "ref": "refs/heads/main",
+        "rev": "032f9dfd8e804406b28b625f3911ebb5642ce9de",
+        "revCount": 11,
+        "type": "git",
+        "url": "https://github.com/stefanboca/nixfiles-secrets"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/stefanboca/nixfiles-secrets"
       }
     },
     "smfh": {

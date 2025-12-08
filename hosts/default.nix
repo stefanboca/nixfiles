@@ -29,10 +29,14 @@ in {
 
         ./common
         ./laptop
+        inputs.secrets.nixosModules.common
+        inputs.secrets.nixosModules.laptop
 
         {
           home-manager.sharedModules =
             [
+              inputs.secrets.homeModules.stefan
+
               inputs.dank-material-shell.homeModules.dankMaterialShell.default
               inputs.dank-material-shell.homeModules.dankMaterialShell.niri
               inputs.nix-index-database.homeModules.nix-index

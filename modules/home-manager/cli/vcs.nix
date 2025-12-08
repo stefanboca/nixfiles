@@ -9,7 +9,6 @@
 
   name = "Stefan Boca";
   email = "stefan.r.boca@gmail.com";
-  key = "~/.ssh/id_ed25519_git.pub";
 in {
   imports = [
     (modulesPath + "/programs/gh.nix")
@@ -47,20 +46,14 @@ in {
         settings = {
           gpg = {
             format = "ssh";
-            ssh = {
-              program = lib.getExe' pkgs.openssh "ssh-keygen";
-              allowedSignersFile = "~/.ssh/allowed_signers";
-            };
+            ssh.program = lib.getExe' pkgs.openssh "ssh-keygen";
           };
           commit.gpgSign = true;
           tag.gpgSign = true;
 
           init.defautlBranch = "main";
           pull.rebase = true;
-          user = {
-            inherit name email;
-            signingKey = key;
-          };
+          user = {inherit name email;};
         };
       };
 
@@ -118,10 +111,8 @@ in {
           };
 
           signing = {
-            inherit key;
             behavior = "own";
             backend = "ssh";
-            backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
           };
 
           git = {
@@ -176,7 +167,5 @@ in {
         };
       };
     };
-
-    home.file.".ssh/allowed_signers".text = "* ${builtins.readFile ../../../home/stefan/keys/id_ed25519_git.pub}";
   };
 }

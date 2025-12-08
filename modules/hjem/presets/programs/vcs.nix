@@ -32,7 +32,6 @@ in {
 
     signingKeyFile = mkOption {
       type = path;
-      default = ../../../../home/stefan/keys/id_ed25519_git.pub;
     };
   };
 
