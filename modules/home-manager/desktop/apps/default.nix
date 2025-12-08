@@ -17,6 +17,7 @@ in {
       easyeffects
       gnome-decoder
       helvum
+      miro
       qpwgraph
       signal-desktop
       telegram-desktop

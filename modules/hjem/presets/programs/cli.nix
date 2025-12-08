@@ -43,6 +43,7 @@ in {
       nix-diff # explain why two nix derivations differ
       nix-inspect # TUI for inspecting nix configs and other expressions
       nix-tree # browse dependency graphs of nix derivations
+      nps # nix package search
       numbat
       procs # better ps
       ripgrep

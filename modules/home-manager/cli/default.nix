@@ -54,6 +54,7 @@ in {
       nix-diff # explain why two nix derivations differ
       nix-inspect # TUI for inspecting nix configs and other expressions
       nix-tree # browse dependency graphs of nix derivations
+      nps # nix package search
       procs # better ps
       rnr # batch rename files and directories
       scc # count lines of code
