@@ -13,11 +13,15 @@ inputs: {
     comma = prev.comma.override {nix = prev.nixVersions.latest;};
   };
 
-  dank-material-shell = final: _prev: let
+  dank-material-shell = final: prev: let
     inherit (final.stdenv.hostPlatform) system;
   in {
-    inherit (inputs.dank-material-shell.packages.${system}) dms-shell;
-    inherit (inputs.dank-material-shell.inputs.dgop.packages.${system}) dgop;
+    dmsPkgs =
+      {
+        inherit (inputs.dank-material-shell.packages.${system}) dms-shell;
+        inherit (inputs.dank-material-shell.inputs.dgop.packages.${system}) dgop;
+      }
+      // inputs.dank-material-shell.inputs.quickshell.overlays.default final prev;
   };
 
   inherit (inputs.niri.overlays) niri;

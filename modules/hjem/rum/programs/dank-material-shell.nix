@@ -14,7 +14,7 @@ in {
   options.rum.programs.dank-material-shell = {
     enable = mkEnableOption "DankMaterialShell";
 
-    package = mkPackageOption pkgs "dms-shell" {};
+    package = mkPackageOption pkgs.dmsPkgs "dms-shell" {};
 
     audioWavelength.enable = mkEnableOption "audio wavelength";
     brightnessControl.enable = mkEnableOption "brightness control";
@@ -24,7 +24,7 @@ in {
     dynamicTheming.enable = mkEnableOption "dynamic theming";
     systemMonitoring = {
       enable = mkEnableOption "system monitoring";
-      package = mkPackageOption pkgs "dgop" {};
+      package = mkPackageOption pkgs.dmsPkgs "dgop" {};
     };
     systemSound.enable = mkEnableOption "system sound";
     vpn.enable = mkEnableOption "vpn";
@@ -55,6 +55,7 @@ in {
 
     rum.programs.quickshell = {
       enable = true;
+      package = pkgs.dmsPkgs.quickshell;
       extraBuildInputs = [
         pkgs.qt6.qtmultimedia
       ];
