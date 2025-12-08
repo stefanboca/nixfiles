@@ -16,6 +16,7 @@ in {
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       LESS = "-FRXS";
+      NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
     };
 
     packages = with pkgs; [

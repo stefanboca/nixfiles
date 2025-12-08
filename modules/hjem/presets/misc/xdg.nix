@@ -21,6 +21,7 @@ in {
       CARGO_HOME = "${dataDir}/cargo";
       GNUPGHOME = "${dataDir}/gnupg";
       HISTFILE = "${stateDir}/bash_history";
+      NIX_PACKAGE_SEARCH_CACHE_FOLDER_ABSOLUTE_PATH = "${cacheDir}/nix-package-search";
       NODE_REPL_HISTORY = "${dataDir}/node_repl_history";
       NPM_CONFIG_CACHE = "${cacheDir}/npm";
       NPM_CONFIG_PREFIX = "${dataDir}/npm";

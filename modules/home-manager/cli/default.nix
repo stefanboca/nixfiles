@@ -121,11 +121,13 @@ in {
       inherit (config.xdg) cacheHome dataHome stateHome;
     in {
       LESS = "-FRXS";
+      NIX_PACKAGE_SEARCH_EXPERIMENTAL = "true";
 
       # make stuff xdg compliant
       CARGO_HOME = "${dataHome}/cargo";
       GNUPGHOME = "${dataHome}/gnupg";
       HISTFILE = "${stateHome}/bash_history";
+      NIX_PACKAGE_SEARCH_CACHE_FOLDER_ABSOLUTE_PATH = "${cacheHome}/nix-package-search";
       NODE_REPL_HISTORY = "${dataHome}/node_repl_history";
       NPM_CONFIG_CACHE = "${cacheHome}/npm";
       NPM_CONFIG_PREFIX = "${dataHome}/npm";
