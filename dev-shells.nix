@@ -9,6 +9,7 @@ pkgs: {
       fd
       fish
       fzf
+      gh
       git
       gnupg
       home-manager
