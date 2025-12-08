@@ -35,10 +35,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: fonts and other dependencies
+    # TODO: fix fonts
     packages =
-      [cfg.package]
-      # TODO: should these be extraBuildInputs to quickshell instead?
+      [
+        cfg.package
+        pkgs.ddcutil
+        pkgs.material-symbols
+        pkgs.inter
+        pkgs.fira-code
+      ]
       ++ optional cfg.systemMonitoring.enable cfg.systemMonitoring.package
       ++ optionals cfg.clipboard.enable [pkgs.cliphist pkgs.wl-clipboard]
       ++ optionals cfg.vpn.enable [pkgs.glib pkgs.networkmanager]

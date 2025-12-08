@@ -27,6 +27,12 @@
   };
 
   imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
+  virtualisation.qemu.options = [
+    "-enable-kvm"
+    "-vga none"
+    "-device virtio-gpu-gl-pci"
+    "-display gtk,gl=on"
+  ];
 
   system = {
     nixos-init.enable = true;
@@ -69,6 +75,10 @@
   programs = {
     fish.enable = true;
     command-not-found.enable = false;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
   };
 
   hjem = {

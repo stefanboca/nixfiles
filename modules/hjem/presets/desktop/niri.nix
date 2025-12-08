@@ -5,18 +5,20 @@
   ...
 }: let
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkPackageOption;
 
   cfg = config.presets.desktops.niri;
 in {
   options.presets.desktops.niri = {
     enable = mkEnableOption "niri preset";
+    xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite-unstable" {nullable = true;};
   };
 
   config = mkIf cfg.enable {
+    packages = mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package];
+
     rum.desktops.niri = {
       enable = true;
-      package = pkgs.niri-unstable;
 
       binds = {};
 
@@ -95,24 +97,24 @@ in {
           }
 
           // TODO: laptop-specific
-          debug { ignore-drm-device "/dev/dri/renderD129"; }
-          output "DP-1" {
-              backdrop-color "#11111b"
-              background-color "#181825"
-              scale 1.250000
-              transform "normal"
-              position x=0 y=1440
-              mode "2880x864@60.008000"
-          }
-          output "eDP-1" {
-              backdrop-color "#11111b"
-              background-color "#181825"
-              scale 1.250000
-              focus-at-startup
-              transform "normal"
-              position x=0 y=0
-              mode "2800x1800@120.016000"
-          }
+          // debug { ignore-drm-device "/dev/dri/renderD129"; }
+          // output "DP-1" {
+          //     backdrop-color "#11111b"
+          //     background-color "#181825"
+          //     scale 1.250000
+          //     transform "normal"
+          //     position x=0 y=1440
+          //     mode "2880x864@60.008000"
+          // }
+          // output "eDP-1" {
+          //     backdrop-color "#11111b"
+          //     background-color "#181825"
+          //     scale 1.250000
+          //     focus-at-startup
+          //     transform "normal"
+          //     position x=0 y=0
+          //     mode "2800x1800@120.016000"
+          // }
           // input {
           //   tablet { map-to-output "eDP-1"; }
           //   touch { map-to-output "eDP-1"; }
