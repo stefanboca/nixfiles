@@ -90,6 +90,7 @@ in {
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
       };
       addedAssociations = {
+        "model/3mf" = "PrusaSlicer.desktop";
         "x-scheme-handler/discord" = "vesktop.desktop";
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
       };
