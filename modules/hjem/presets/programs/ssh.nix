@@ -5,7 +5,8 @@
 }: let
   inherit (lib.modules) mkAfter mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) path;
+  inherit (lib.strings) optionalString;
+  inherit (lib.types) nullOr oneOf path str;
 
   cfg = config.presets.programs.ssh;
 in {
@@ -13,7 +14,8 @@ in {
     enable = mkEnableOption "ssh preset";
 
     identityFile = mkOption {
-      type = path;
+      type = nullOr (oneOf [path str]);
+      default = null;
     };
   };
 
@@ -29,8 +31,8 @@ in {
             AddKeysToAgent no
             UserKnownHostsFile ~/.ssh/known_hosts
             ControlPath ~/.ssh/master-%r@%n:%p
-            IdentityFile ${cfg.identityFile}
             ControlPersist no
+            ${optionalString (cfg.identityFile != null) "IdentityFile ${cfg.identityFile}"}
         '';
     };
   };

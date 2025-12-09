@@ -6,14 +6,11 @@
 }: let
   inherit (builtins) readFile;
   inherit (lib.modules) mkIf;
+  inherit (lib.strings) trim;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) path singleLineStr;
+  inherit (lib.types) singleLineStr path;
 
-  allowedSignersFile = toString (pkgs.writeText "allowed_signers" ''
-    ${cfg.email} ${readFile cfg.signingKeyFile}
-  '');
-
-  signingKeyFile = toString cfg.signingKeyFile;
+  signingKey = trim (readFile cfg.signingKeyFile);
 
   cfg = config.presets.programs.vcs;
 in {
@@ -44,6 +41,10 @@ in {
       pkgs.watchman
     ];
 
+    files.".ssh/allowed_signers".text = ''
+      ${cfg.email} ${signingKey}
+    '';
+
     rum.programs = {
       gh = {
         enable = true;
@@ -61,7 +62,7 @@ in {
         settings = {
           user = {
             inherit (cfg) name email;
-            signingKey = signingKeyFile;
+            inherit signingKey;
           };
           init.defautlBranch = "main";
           pull.rebase = true;
@@ -70,7 +71,7 @@ in {
             format = "ssh";
             ssh = {
               program = lib.getExe' pkgs.openssh "ssh-keygen";
-              inherit allowedSignersFile;
+              allowedSignersFile = "~/.ssh/allowed_signers";
             };
           };
           commit.gpgSign = true;
@@ -138,10 +139,10 @@ in {
           };
 
           signing = {
-            key = signingKeyFile;
+            key = signingKey;
             behavior = "own";
             backend = "ssh";
-            backends.ssh.allowed-signers = allowedSignersFile;
+            backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
           };
 
           git = {
