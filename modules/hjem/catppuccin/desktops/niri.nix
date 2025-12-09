@@ -13,11 +13,11 @@
     # kdl
     ''
       overview {
-        backdrop-color ${palette.crust.hex}
+        backdrop-color "${palette.crust.hex}"
       }
 
       layout {
-        background-color ${palette.mantle.hex}
+        background-color "${palette.mantle.hex}"
 
         focus-ring {
           active-color "${palette.${accent}.hex}"
