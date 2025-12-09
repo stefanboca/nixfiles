@@ -28,9 +28,6 @@ in {
     ];
 
     catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "teal";
       misc.cursors = {
         enable = true;
         integrations = {

@@ -62,8 +62,8 @@ in {
     };
 
     rum.desktops.niri.spawn-at-startup = mkIf cfg.integrations.niri.enable (
-      [[(getExe cfg.package) "run"]]
-      ++ optional cfg.clipboard.enable [(getExe' pkgs.wl-clipboard "wl-paste") "--watch" (getExe pkgs.cliphist) "store"]
+      [["dms" "run"]]
+      ++ optional cfg.clipboard.enable ["wl-paste" "--watch" "cliphist" "store"]
     );
   };
 }

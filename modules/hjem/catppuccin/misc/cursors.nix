@@ -7,7 +7,7 @@
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
   inherit (catppuccinLib.types) accent;
-  inherit (lib.modules) mkAfter mkDefault mkIf mkMerge;
+  inherit (lib.modules) mkBefore mkDefault mkIf mkMerge;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.strings) concatStringsSep;
   inherit (lib.types) enum int mergeTypes;
@@ -102,7 +102,7 @@ in {
       cursor-theme-size = cfg.size;
     };
 
-    rum.desktops.niri.config = mkIf (cfg.integrations.niri.enable && config.rum.desktops.niri.enable) (mkAfter
+    rum.desktops.niri.config = mkIf (cfg.integrations.niri.enable && config.rum.desktops.niri.enable) (mkBefore
       # kdl
       ''
         include "${niriConfigFile}"

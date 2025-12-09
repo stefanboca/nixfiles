@@ -46,6 +46,12 @@ in {
   networking.hostName = "laptop";
   system.stateVersion = "26.05";
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "teal";
+  };
+
   presets = {
     common = {
       enable = true;
