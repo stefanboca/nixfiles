@@ -25,7 +25,7 @@ in {
   config = mkIf cfg.enable {
     packages = mkIf (cfg.package != null) [cfg.package];
 
-    xdg.config.files."jujutsu/config.toml" = mkIf (cfg.settings != {}) {
+    xdg.config.files."jj/config.toml" = mkIf (cfg.settings != {}) {
       source = toml.generate "jujutsu-config.toml" cfg.settings;
     };
   };
