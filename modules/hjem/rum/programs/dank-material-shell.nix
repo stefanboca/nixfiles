@@ -35,7 +35,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: fix fonts
     packages =
       [
         cfg.package

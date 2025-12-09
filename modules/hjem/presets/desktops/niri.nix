@@ -3,7 +3,6 @@
   lib,
   ...
 }: let
-  inherit (config.catppuccin) accent palette;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
 
@@ -16,8 +15,6 @@ in {
   config = mkIf cfg.enable {
     rum.desktops.niri = {
       enable = true;
-
-      binds = {};
 
       config =
         # kdl
@@ -33,63 +30,45 @@ in {
             hide-after-inactive-ms 10000
           }
 
-          overview {
-            backdrop-color "${palette.crust.hex}"
-          }
-
           input {
-              keyboard {
-                  xkb {
-                      layout "us"
-                      options "caps:ctrl_modifier"
-                  }
+            keyboard {
+              xkb {
+                layout "us"
+                options "caps:ctrl_modifier"
               }
-              touchpad {
-                  tap
-                  natural-scroll
-                  click-method "clickfinger"
-              }
-              warp-mouse-to-focus
+            }
+            touchpad {
+              tap
+              natural-scroll
+              click-method "clickfinger"
+            }
+            warp-mouse-to-focus
           }
 
           layout {
-              always-center-single-column
-              background-color "${palette.mantle.hex}"
-              border { off; }
-              center-focused-column "on-overflow"
-              empty-workspace-above-first
-              gaps 8
+            always-center-single-column
+            border { off; }
+            center-focused-column "on-overflow"
+            empty-workspace-above-first
+            gaps 8
 
-              default-column-width { proportion 0.5; }
-              preset-column-widths {
-                  proportion 0.333333
-                  proportion 0.5
-                  proportion 0.666667
-              }
+            default-column-width { proportion 0.5; }
+            preset-column-widths {
+              proportion 0.333333
+              proportion 0.5
+              proportion 0.666667
+            }
 
-              focus-ring {
-                  width 2
-                  active-color "${palette.${accent}.hex}"
-                  inactive-color "${palette.overlay1.hex}"
-                  urgent-color "${palette.red.hex}"
-              }
+            focus-ring {
+              width 2
+            }
 
-              shadow {
-                  on
-                  color "${palette.crust.hex}"
-                  inactive-color "${palette.crust.hex}"
-              }
-          }
-
-          recent-windows {
-            // TODO: binds
-            highlight {
-              active-color "${palette.${accent}.hex}"
-              urgent-color "${palette.red.hex}"
-              padding 30
-              corner-radius 30
+            shadow {
+              on
             }
           }
+
+          // TODO: recent-windows binds
 
           window-rule {
             clip-to-geometry true

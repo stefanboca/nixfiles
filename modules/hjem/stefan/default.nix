@@ -38,7 +38,10 @@ in {
           niri.enable = true;
         };
       };
-      programs.eza.enable = true;
+      programs = {
+        eza.enable = true;
+        spicetify.enable = true;
+      };
     };
 
     presets = {

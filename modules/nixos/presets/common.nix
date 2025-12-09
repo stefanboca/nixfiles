@@ -44,7 +44,6 @@ in {
       libinput
       man-pages
       man-pages-posix
-      steam-run # TODO: move this somewhere more appropriate?
       wev
       # keep-sorted end
     ];

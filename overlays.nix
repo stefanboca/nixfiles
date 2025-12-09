@@ -1,6 +1,19 @@
 inputs: {
   default = _final: prev: import ./pkgs prev;
 
+  catppuccin = _final: prev: let
+    upstreamSources = (import inputs.catppuccin {pkgs = prev;}).packages;
+  in {
+    catppuccin-sources =
+      upstreamSources
+      // {
+        firefox = upstreamSources.firefox.overrideAttrs {
+          patches = [./res/catppuccin/firefox-write-themes-to-json.patch];
+          installPhase = ''mkdir -p $out; mv themes/* $out'';
+        };
+      };
+  };
+
   dank-material-shell = final: prev: let
     inherit (final.stdenv.hostPlatform) system;
   in {

@@ -17,8 +17,6 @@ in {
     enable = true;
     wayland = true;
     windowManagerPatch = true;
-    theme = pkgs.spicePkgs.themes.catppuccin;
-    colorScheme = config.catppuccin.flavor;
     enabledExtensions = with pkgs.spicePkgs.extensions; [
       adblockify
       bookmark

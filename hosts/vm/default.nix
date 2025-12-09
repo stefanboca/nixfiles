@@ -1,44 +1,10 @@
 {
   inputs,
-  lib,
   modulesPath,
   pkgs,
   self,
   ...
-}: let
-  inherit (lib.modules) mkAfter mkForce;
-
-  # override pkgs with cuda support, in order to get cache hits
-  pkgs-cuda = import pkgs.path {
-    inherit (pkgs) overlays;
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config = pkgs.config // {cudaSupport = true;};
-  };
-
-  niriConfigFile =
-    pkgs.writeText "niri-laptop.kdl"
-    # kdl
-    ''
-      // ignore/don't open NVIDIA gpu
-      // debug { ignore-drm-device "/dev/dri/renderD129"; }
-      // output "eDP-1" {
-      //     scale 1.250000
-      //     focus-at-startup
-      //     position x=0 y=0
-      //     mode "2800x1800@120.016000"
-      // }
-      // output "DP-1" {
-      //     scale 1.250000
-      //     position x=0 y=1440
-      //     mode "2880x864@60.008000"
-      //     vrr
-      // }
-      // input {
-      //   tablet { map-to-output "eDP-1"; }
-      //   touch { map-to-output "eDP-1"; }
-      // }
-    '';
-in {
+}: {
   imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
 
   virtualisation.qemu.options = [
@@ -49,7 +15,6 @@ in {
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
-
   system.stateVersion = "26.05";
 
   users.users.stefan.password = "password";
@@ -71,8 +36,6 @@ in {
     users.stefan.enable = true;
   };
 
-  programs.obs-studio.enable = true;
-
   hjem = {
     linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
     specialArgs = {inherit inputs self;};
@@ -82,63 +45,6 @@ in {
     users.stefan = {
       enable = true;
       presets.users.stefan.enable = true;
-
-      packages = with pkgs; [
-        esphome
-        pkgs-cuda.blender
-        calibre
-        fluent-reader
-        freecad
-        geogebra6
-        libreoffice
-        # musescore
-        prusa-slicer
-        rnote
-        # xournalpp
-        # zotero
-      ];
-
-      rum.desktops.niri = {
-        config =
-          mkAfter
-          # kdl
-          ''
-            include "${niriConfigFile}"
-          '';
-        binds = {
-          "XF86MonBrightnessUp".spawn = mkForce ["dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight"];
-          "XF86MonBrightnessDown".spawn = mkForce ["dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight"];
-          "Shift+XF86MonBrightnessUp" = {
-            spawn = ["dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad"];
-            parameters.allow-when-locked = true;
-          };
-          "Shift+XF86MonBrightnessDown" = {
-            spawn = ["dms" "ipc" "brightness" "decrement" "5" "backlight:asus_screenpad"];
-            parameters.allow-when-locked = true;
-          };
-          "XF86DisplayToggle" = {
-            spawn = ["toggle-screenpad-backlight"];
-            parameters.allow-when-locked = true;
-          };
-          "XF86Launch1" = {
-            spawn = ["dms" "ipc" "mpris" "playPause"];
-            parameters.allow-when-locked = true;
-          };
-          "Mod+XF86Launch2".action = "focus-monitor-next";
-          "Mod+Shift+XF86Launch2".action = "move-window-to-monitor-next";
-          "Mod+Ctrl+XF86Launch2".action = "move-workspace-to-monitor-next";
-          "XF86Launch2".action = "focus-monitor-previous";
-          "Shift+XF86Launch2".action = "move-window-to-monitor-previous";
-          "Ctrl+XF86Launch2".action = "move-workspace-to-monitor-previous";
-        };
-      };
-
-      # TODO: (needed for gnome)
-      # dconf = {
-      #   enable = true;
-      #   # map screenpad touchscreen to correct display in gnome
-      #   settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
-      # };
     };
   };
 }

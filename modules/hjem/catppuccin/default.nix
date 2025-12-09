@@ -2,12 +2,13 @@
   config,
   inputs,
   lib,
+  osConfig,
   pkgs,
   ...
 }: let
   inherit (catppuccinLib) applyToModules;
   inherit (catppuccinLib.types) accent flavor;
-  inherit (lib.attrsets) recursiveUpdate;
+  inherit (lib.attrsets) optionalAttrs recursiveUpdate;
   inherit (lib.filesystem) listFilesRecursive;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.trivial) importJSON;
@@ -15,48 +16,40 @@
 
   catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
 
-  upstreamSources = (import inputs.catppuccin {inherit pkgs;}).packages;
-  defaultSources =
-    upstreamSources
-    // {
-      firefox = upstreamSources.firefox.overrideAttrs {
-        patches = [./pkgs/firefox/write-themes-to-json.patch];
-        installPhase = ''
-          mkdir -p $out
-          mv themes/* $out
-        '';
-      };
-    };
+  hasOsConfig = osConfig ? catppuccin;
 
   cfg = config.catppuccin;
+  osCfg = osConfig.catppuccin;
 in {
   # TODO:
   # - mako
   # - btop
   # - starship? (currently requires IFD)
-  imports = applyToModules ((listFilesRecursive ./programs) ++ (listFilesRecursive ./misc));
+  imports = applyToModules ((listFilesRecursive ./desktops) ++ (listFilesRecursive ./programs) ++ (listFilesRecursive ./misc));
 
   options.catppuccin = {
-    enable = mkEnableOption "Catppuccin globally";
+    enable = (mkEnableOption "Catppuccin globally") // optionalAttrs hasOsConfig {default = osCfg.enable;};
 
-    flavor = mkOption {
-      type = flavor;
-      default = "mocha";
-      description = "Global Catppuccin flavor";
-    };
+    flavor = mkOption ({
+        type = flavor;
+        default = "mocha";
+        description = "Global Catppuccin flavor";
+      }
+      // optionalAttrs hasOsConfig {default = osCfg.flavor;});
 
-    accent = mkOption {
-      type = accent;
-      default = "mauve";
-      description = "Global Catppuccin accent";
-    };
+    accent = mkOption ({
+        type = accent;
+        default = "mauve";
+        description = "Global Catppuccin accent";
+      }
+      // optionalAttrs hasOsConfig {default = osCfg.accent;});
 
     sources = mkOption {
       type = lazyAttrsOf raw;
-      default = defaultSources;
+      default = pkgs.catppuccin-sources;
       defaultText = "{ ... }";
       # HACK: without this, overriding one source will delete all others. -@getchoo
-      apply = recursiveUpdate defaultSources;
+      apply = recursiveUpdate pkgs.catppuccin-sources;
       description = "Port sources used across all options";
     };
 
@@ -64,9 +57,7 @@ in {
       type = lazyAttrsOf raw;
       readOnly = true;
       # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = (importJSON ./palette.json).${cfg.flavor}.colors;
+      default = (importJSON ../../../res/catppuccin/palette.json).${cfg.flavor}.colors;
     };
   };
-
-  # TODO: inherit defaults from osConfig.catppuccin?
 }

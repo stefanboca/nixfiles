@@ -14,8 +14,6 @@
 
   catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
 
-  sources = (import inputs.catppuccin {inherit pkgs;}).packages;
-
   cfg = config.catppuccin;
 in {
   imports = applyToModules (
@@ -40,10 +38,10 @@ in {
 
     sources = mkOption {
       type = lazyAttrsOf raw;
-      default = sources;
+      default = pkgs.catppuccin-sources;
       defaultText = "{ ... }";
       # HACK: without this, overriding one source will delete all others. -@getchoo
-      apply = recursiveUpdate sources;
+      apply = recursiveUpdate pkgs.catppuccin-sources;
       description = "Port sources used across all options";
     };
 
@@ -51,10 +49,7 @@ in {
       type = lazyAttrsOf raw;
       readOnly = true;
       # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      # TODO: move this to res/catppuccin or something
-      default = (importJSON ../../hjem/catppuccin/palette.json).${cfg.flavor}.colors;
+      default = (importJSON ../../../res/catppuccin/palette.json).${cfg.flavor}.colors;
     };
   };
-
-  # TODO: inherit defaults from osConfig.catppuccin?
 }
