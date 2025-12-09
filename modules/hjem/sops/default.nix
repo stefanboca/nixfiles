@@ -7,11 +7,11 @@
 }: let
   inherit (lib.attrsets) attrValues mapAttrsToList;
   inherit (lib.lists) elem;
-  inherit (lib.modules) mergeEqualOption mkIf mkOptionType;
+  inherit (lib.modules) mergeEqualOption mkIf;
   inherit (lib.options) literalExpression mkOption;
   inherit (lib.path) hasStorePathPrefix;
   inherit (lib.strings) concatStringsSep escapeShellArg optionalString toJSON;
-  inherit (lib.types) attrsOf bool either enum ints listOf nullOr package path str submodule;
+  inherit (lib.types) attrsOf bool either enum ints listOf mkOptionType nullOr package path str submodule;
 
   sops-install-secrets = cfg.package;
   secretType = submodule (

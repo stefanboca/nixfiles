@@ -7,10 +7,10 @@
 }: let
   inherit (builtins) hashString;
   inherit (lib.attrsets) optionalAttrs mapAttrs;
-  inherit (lib.modules) literalExpression mergeEqualOption mkDefault mkIf mkOptionType;
+  inherit (lib.modules) literalExpression mergeEqualOption mkDefault mkIf;
   inherit (lib.options) mkOption;
   inherit (lib.strings) isConvertibleWithToString;
-  inherit (lib.types) attrsOf lines path singleLineStr submodule;
+  inherit (lib.types) attrsOf lines mkOptionType path singleLineStr submodule;
 
   xdgConfigDir = config.xdg.config.directory;
   cfg = config.sops;
