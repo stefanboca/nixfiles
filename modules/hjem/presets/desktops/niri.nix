@@ -69,6 +69,12 @@ in {
           }
 
           // TODO: recent-windows binds
+          recent-windows {
+            highlight {
+              padding 30
+              corner-radius 30
+            }
+          }
 
           window-rule {
             clip-to-geometry true
