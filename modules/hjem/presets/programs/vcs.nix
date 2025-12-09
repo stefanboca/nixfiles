@@ -45,7 +45,10 @@ in {
     ];
 
     rum.programs = {
-      gh.enable = true;
+      gh = {
+        enable = true;
+        integrations.git.credentialHelper.enable = true;
+      };
 
       git = {
         enable = true;
