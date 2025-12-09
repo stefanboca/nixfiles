@@ -70,7 +70,7 @@ in {
     };
 
     rum.programs.git.settings.credential = mkIf cfg.integrations.git.credentialHelper.enable (
-      genAttrs cfg.integrations.git.credentialHelper.hosts (_: {helper = "${getExe cfg.package} auth git-credentials";})
+      genAttrs cfg.integrations.git.credentialHelper.hosts (_: {helper = "${getExe cfg.package} auth git-credential";})
     );
   };
 }
