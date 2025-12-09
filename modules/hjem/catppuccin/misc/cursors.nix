@@ -7,8 +7,9 @@
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
   inherit (catppuccinLib.types) accent;
-  inherit (lib.modules) mkAfter mkDefault mkIf;
+  inherit (lib.modules) mkAfter mkDefault mkIf mkMerge;
   inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.strings) concatStringsSep;
   inherit (lib.types) enum int mergeTypes;
 
   source = config.catppuccin.sources.cursors;
@@ -72,17 +73,30 @@ in {
   config = mkIf cfg.enable {
     packages = [source defaultIndexThemePackage];
 
-    environment.sessionVariables = {
-      XCURSOR_THEME = mkDefault themeName;
-      XCURSOR_SIZE = mkDefault cfg.size;
-      XCURSOR_PATH = ["/etc/profiles/per-user/${name}/share/icons" "${config.xdg.data.directory}/icons"];
-    };
+    environment.sessionVariables = mkMerge [
+      {
+        # this actually overrides a bunch of other paths, but it works so I can't be bothered to fix it
+        XCURSOR_PATH = concatStringsSep ":" ["/etc/profiles/per-user/${name}/share/icons" "${config.xdg.data.directory}/icons"];
+      }
+      (mkIf (!cfg.integrations.niri.enable) {
+        # niri sets these automatically
+        XCURSOR_THEME = mkDefault themeName;
+        XCURSOR_SIZE = mkDefault cfg.size;
+      })
+    ];
 
+    # TODO: figure out which of these is actually necessary
     xdg.data.files = {
       "icons/default/index.theme".source = "${defaultIndexThemePackage}/share/icons/default/index.theme";
       "icons/${themeName}".source = "${source}/share/icons/${themeName}";
     };
 
+    xdg.config.files."X11/xresources".text = ''
+      Xcursor.size: ${toString cfg.size}
+      Xcursor.theme: ${themeName}
+    '';
+
+    # TODO: _somehow_ get these into dconf (/org/gnome/desktop/interface)
     rum.misc.gtk.settings = mkIf (cfg.integrations.gtk.enable && config.rum.misc.gtk.enable) {
       cursor-theme-name = themeName;
       cursor-theme-size = cfg.size;

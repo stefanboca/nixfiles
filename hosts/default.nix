@@ -2,59 +2,36 @@
   inputs,
   lib,
   self,
-}: let
-  inherit (lib.attrsets) attrValues;
-
-  inherit (inputs.disko.nixosModules) disko;
-  inherit (inputs.home-manager.nixosModules) home-manager;
-  inherit (inputs.niri.nixosModules) niri;
-  inherit (inputs.sops-nix.nixosModules) sops;
-  hjem = inputs.hjem.nixosModules.default;
-  nixosHardware = inputs.nixos-hardware.nixosModules;
-in {
+}: {
   # TODO: find a better hostname
   laptop = lib.nixosSystem {
     specialArgs = {inherit inputs self;};
-    modules =
-      [
-        disko
-        home-manager
-        niri
-        sops
+    modules = [
+      ./laptop
+      self.nixosModules.catppuccin
+      self.nixosModules.presets
+      inputs.secrets.nixosModules.common
+      inputs.secrets.nixosModules.laptop
 
-        nixosHardware.asus-battery
-        nixosHardware.common-cpu-intel
-        nixosHardware.common-gpu-nvidia
-        nixosHardware.common-pc-ssd
+      inputs.disko.nixosModules.disko
+      inputs.hjem.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
 
-        ./common
-        ./laptop
-        inputs.secrets.nixosModules.common
-        inputs.secrets.nixosModules.laptop
-
-        {
-          home-manager.sharedModules =
-            [
-              inputs.secrets.homeModules.stefan
-
-              inputs.dank-material-shell.homeModules.dankMaterialShell.default
-              inputs.dank-material-shell.homeModules.dankMaterialShell.niri
-              inputs.nix-index-database.homeModules.nix-index
-              inputs.sops-nix.homeManagerModules.sops
-              inputs.spicetify-nix.homeManagerModules.spicetify
-            ]
-            ++ attrValues self.homeModules;
-        }
-      ]
-      ++ attrValues self.nixosModules;
+      inputs.nixos-hardware.nixosModules.asus-battery
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
+      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
+    ];
   };
 
   vm = lib.nixosSystem {
     specialArgs = {inherit inputs self;};
     modules = [
-      hjem
-
       ./vm
+      self.nixosModules.catppuccin
+      self.nixosModules.presets
+
+      inputs.hjem.nixosModules.default
     ];
   };
 }

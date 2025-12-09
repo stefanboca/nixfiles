@@ -12,6 +12,7 @@ in {
   options.catppuccin.programs.eza = mkCatppuccinOption {
     name = "eza";
     accentSupport = true;
+    useGlobalEnable = false;
   };
 
   config = lib.mkIf cfg.enable {

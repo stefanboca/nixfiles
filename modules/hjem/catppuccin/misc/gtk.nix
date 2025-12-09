@@ -25,6 +25,7 @@ in {
   config = lib.mkIf (cfg.icon.enable && config.rum.misc.gtk.enable) {
     packages = [package];
 
+    # TODO: _somehow_ get this into dconf (/org/gnome/desktop/interface)
     rum.misc.gtk.settings.icon-theme-name = "Papirus-${polarity}";
   };
 }

@@ -42,7 +42,9 @@ in {
       just # command runner
       kondo # clean build dependencies and artifacts
       nix-diff # explain why two nix derivations differ
+      nix-fast-build
       nix-inspect # TUI for inspecting nix configs and other expressions
+      nix-output-monitor
       nix-tree # browse dependency graphs of nix derivations
       nps # nix package search
       numbat

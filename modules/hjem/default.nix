@@ -1,4 +1,9 @@
-{
+rec {
+  # keep-sorted start block=true
+  catppuccin = {...}: {
+    imports = [./catppuccin];
+    _class = "hjem";
+  };
   presets = {lib, ...}: {
     imports = lib.filesystem.listFilesRecursive ./presets;
     _class = "hjem";
@@ -11,8 +16,15 @@
     imports = lib.filesystem.listFilesRecursive ./sops;
     _class = "hjem";
   };
-  catppuccin = {lib, ...}: {
-    imports = [./catppuccin];
+  stefan = {
+    lib,
+    inputs,
+    ...
+  }: {
+    imports =
+      [catppuccin presets rum-extensions sops inputs.secrets.hjemModules.stefan inputs.hjem-rum.hjemModules.default]
+      ++ lib.filesystem.listFilesRecursive ./stefan;
     _class = "hjem";
   };
+  # keep-sorted end
 }

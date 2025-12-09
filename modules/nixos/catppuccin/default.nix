@@ -8,33 +8,20 @@
   inherit (catppuccinLib) applyToModules;
   inherit (catppuccinLib.types) accent flavor;
   inherit (lib.attrsets) recursiveUpdate;
-  inherit (lib.filesystem) listFilesRecursive;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.trivial) importJSON;
   inherit (lib.types) lazyAttrsOf raw;
 
   catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
 
-  upstreamSources = (import inputs.catppuccin {inherit pkgs;}).packages;
-  defaultSources =
-    upstreamSources
-    // {
-      firefox = upstreamSources.firefox.overrideAttrs {
-        patches = [./pkgs/firefox/write-themes-to-json.patch];
-        installPhase = ''
-          mkdir -p $out
-          mv themes/* $out
-        '';
-      };
-    };
+  sources = (import inputs.catppuccin {inherit pkgs;}).packages;
 
   cfg = config.catppuccin;
 in {
-  # TODO:
-  # - mako
-  # - btop
-  # - starship? (currently requires IFD)
-  imports = applyToModules ((listFilesRecursive ./programs) ++ (listFilesRecursive ./misc));
+  imports = applyToModules (
+    [./tty.nix]
+    ++ (map (m: inputs.catppuccin + "/modules/nixos/${m}.nix") ["limine" "plymouth" "sddm"])
+  );
 
   options.catppuccin = {
     enable = mkEnableOption "Catppuccin globally";
@@ -53,10 +40,10 @@ in {
 
     sources = mkOption {
       type = lazyAttrsOf raw;
-      default = defaultSources;
+      default = sources;
       defaultText = "{ ... }";
       # HACK: without this, overriding one source will delete all others. -@getchoo
-      apply = recursiveUpdate defaultSources;
+      apply = recursiveUpdate sources;
       description = "Port sources used across all options";
     };
 
@@ -64,7 +51,8 @@ in {
       type = lazyAttrsOf raw;
       readOnly = true;
       # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = (importJSON ./palette.json).${cfg.flavor}.colors;
+      # TODO: move this to res/catppuccin or something
+      default = (importJSON ../../hjem/catppuccin/palette.json).${cfg.flavor}.colors;
     };
   };
 

@@ -28,7 +28,6 @@ in {
         };
       };
 
-      xdg.portal.enable = true;
       xdg.autostart.enable = lib.mkForce false;
 
       environment.systemPackages = with pkgs; [

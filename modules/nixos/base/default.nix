@@ -54,7 +54,7 @@ in {
       zramSwap = {
         enable = true;
         algorithm = "lzo-rle";
-        memoryPercent = 25;
+        memoryPercent = 50;
       };
     }
     (lib.mkIf cfg.boot.enable {

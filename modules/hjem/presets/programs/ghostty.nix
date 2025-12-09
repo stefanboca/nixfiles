@@ -30,6 +30,10 @@ in {
       window-padding-x = 0;
       window-padding-y = 0;
 
+      font-family = "Lilex";
+      font-size = 10;
+      font-feature = ["cv09" "cv10" "cv11" "ss01" "ss03"];
+
       keybind = [
         "alt+t=toggle_tab_overview"
         "ctrl+shift+k=clear_screen"

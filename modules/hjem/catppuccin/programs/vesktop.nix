@@ -1,6 +1,7 @@
 {catppuccinLib}: {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (catppuccinLib) mkCatppuccinOption mkFlavorName;
@@ -19,7 +20,7 @@ in {
   config.rum.programs.vesktop = mkIf (cfg.enable && config.rum.programs.vesktop.enable) {
     vencord = {
       settings.enabledThemes = ["${themeName}.css"];
-      themes."${themeName}" = ''
+      themes."${themeName}" = pkgs.writeText "themeName.css" ''
         /**
          * @name Catppuccin ${mkFlavorName cfg.flavor} (${toSentenceCase cfg.accent})
          * @author Catppuccin

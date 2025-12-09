@@ -1,32 +1,46 @@
 {
   inputs,
+  lib,
   modulesPath,
   pkgs,
   self,
   ...
-}: {
-  nix = {
-    package = pkgs.nixVersions.latest;
-    channel.enable = false;
-    settings = {
-      allowed-users = ["root" "@wheel"];
-      experimental-features = ["nix-command" "flakes"];
-      substituters = ["https://cache.nixos.org"];
-      trusted-public-keys = ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="];
-      trusted-users = ["root" "@wheel"];
-      use-xdg-base-directories = true;
-    };
+}: let
+  inherit (lib.modules) mkAfter mkForce;
+
+  # override pkgs with cuda support, in order to get cache hits
+  pkgs-cuda = import pkgs.path {
+    inherit (pkgs) overlays;
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config = pkgs.config // {cudaSupport = true;};
   };
 
-  nixpkgs = {
-    overlays = builtins.attrValues self.overlays;
-    config = {
-      allowUnfree = true;
-    };
-    hostPlatform = "x86_64-linux";
-  };
-
+  niriConfigFile =
+    pkgs.writeText "niri-laptop.kdl"
+    # kdl
+    ''
+      // ignore/don't open NVIDIA gpu
+      // debug { ignore-drm-device "/dev/dri/renderD129"; }
+      // output "eDP-1" {
+      //     scale 1.250000
+      //     focus-at-startup
+      //     position x=0 y=0
+      //     mode "2800x1800@120.016000"
+      // }
+      // output "DP-1" {
+      //     scale 1.250000
+      //     position x=0 y=1440
+      //     mode "2880x864@60.008000"
+      //     vrr
+      // }
+      // input {
+      //   tablet { map-to-output "eDP-1"; }
+      //   touch { map-to-output "eDP-1"; }
+      // }
+    '';
+in {
   imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
+
   virtualisation.qemu.options = [
     "-enable-kvm"
     "-vga none"
@@ -34,103 +48,97 @@
     "-display gtk,gl=on"
   ];
 
-  system = {
-    nixos-init.enable = true;
-    etc.overlay.enable = true;
-    stateVersion = "26.05";
-    tools.nixos-generate-config.enable = false;
+  nixpkgs.hostPlatform = "x86_64-linux";
+
+  system.stateVersion = "26.05";
+
+  users.users.stefan.password = "password";
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
   };
 
-  hardware.graphics.enable = true;
-
-  boot = {
-    loader = {
-      limine.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-    tmp.useTmpfs = true;
-    initrd.systemd.enable = true;
+  catppuccin = {
+    enable = true;
+    accent = "teal";
+  };
+  presets = {
+    common.enable = true;
+    desktop.enable = true;
+    gaming.enable = true;
+    programs.niri.enable = true;
+    users.stefan.enable = true;
   };
 
-  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
-
-  services = {
-    dbus.implementation = "broker";
-    irqbalance.enable = true;
-    userborn.enable = true;
-  };
-
-  users = {
-    mutableUsers = false;
-    users.stefan = {
-      extraGroups = ["wheel" "tty"];
-      isNormalUser = true;
-      password = "password";
-      shell = pkgs.fish;
-    };
-  };
-
-  environment.defaultPackages = [];
-
-  programs = {
-    fish.enable = true;
-    command-not-found.enable = false;
-    niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
-  };
+  programs.obs-studio.enable = true;
 
   hjem = {
+    linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
     specialArgs = {inherit inputs self;};
-    extraModules = [inputs.hjem-rum.hjemModules.default inputs.secrets.hjemModules.stefan] ++ builtins.attrValues self.hjemModules;
+    extraModules = [self.hjemModules.stefan];
     clobberByDefault = true;
+
     users.stefan = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        misc.cursors = {
-          enable = true;
-          integrations = {
-            gtk.enable = true;
-            niri.enable = true;
-          };
-        };
-        misc.gtk.icon.enable = true;
-        programs = {
-          atuin.enable = true;
-          bat.enable = true;
-          eza.enable = true;
-          firefox.enable = true;
-          vesktop.enable = true;
-        };
-      };
-      presets = {
-        desktops.niri.enable = true;
-        development.rust.enable = true;
-        misc.xdg.enable = true;
-        misc.gtk.enable = true;
-        programs = {
-          cli.enable = true;
-          firefox.enable = true;
-          fish.enable = true;
-          ghostty.enable = true;
-          neovim.enable = true;
-          spicetify.enable = true;
-          ssh.enable = true;
-          vcs.enable = true;
-          vesktop.enable = true;
-        };
-      };
-    };
-  };
+      presets.users.stefan.enable = true;
 
-  documentation = {
-    enable = false;
-    dev.enable = false;
-    doc.enable = false;
-    info.enable = false;
-    man.enable = false;
-    nixos.enable = false;
+      packages = with pkgs; [
+        esphome
+        pkgs-cuda.blender
+        calibre
+        fluent-reader
+        freecad
+        geogebra6
+        libreoffice
+        # musescore
+        prusa-slicer
+        rnote
+        # xournalpp
+        # zotero
+      ];
+
+      rum.desktops.niri = {
+        config =
+          mkAfter
+          # kdl
+          ''
+            include "${niriConfigFile}"
+          '';
+        binds = {
+          "XF86MonBrightnessUp".spawn = mkForce ["dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight"];
+          "XF86MonBrightnessDown".spawn = mkForce ["dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight"];
+          "Shift+XF86MonBrightnessUp" = {
+            spawn = ["dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad"];
+            parameters.allow-when-locked = true;
+          };
+          "Shift+XF86MonBrightnessDown" = {
+            spawn = ["dms" "ipc" "brightness" "decrement" "5" "backlight:asus_screenpad"];
+            parameters.allow-when-locked = true;
+          };
+          "XF86DisplayToggle" = {
+            spawn = ["toggle-screenpad-backlight"];
+            parameters.allow-when-locked = true;
+          };
+          "XF86Launch1" = {
+            spawn = ["dms" "ipc" "mpris" "playPause"];
+            parameters.allow-when-locked = true;
+          };
+          "Mod+XF86Launch2".action = "focus-monitor-next";
+          "Mod+Shift+XF86Launch2".action = "move-window-to-monitor-next";
+          "Mod+Ctrl+XF86Launch2".action = "move-workspace-to-monitor-next";
+          "XF86Launch2".action = "focus-monitor-previous";
+          "Shift+XF86Launch2".action = "move-window-to-monitor-previous";
+          "Ctrl+XF86Launch2".action = "move-workspace-to-monitor-previous";
+        };
+      };
+
+      # TODO: (needed for gnome)
+      # dconf = {
+      #   enable = true;
+      #   # map screenpad touchscreen to correct display in gnome
+      #   settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
+      # };
+    };
   };
 }

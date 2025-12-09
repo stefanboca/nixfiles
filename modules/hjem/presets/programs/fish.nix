@@ -78,26 +78,7 @@ in {
             end
           '';
 
-        # jj integration for tide
-        _tide_item_jj =
-          # fish
-          ''
-            command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null || return 1
-            _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --at-op=@ --no-pager --no-graph --color always -T shell_prompt)
-          '';
-        _tide_item_jj_or_git =
-          # fish
-          ''_tide_item_jj || _tide_item_git'';
-      };
-
-      plugins = {inherit (pkgs.fishPlugins) autopair git-abbr puffer tide;};
-
-      earlyConfigFiles = {
-        set_key_bindings =
-          # fish
-          ''
-            set -U fish_key_bindings fish_hybrid_key_bindings
-          '';
+        # HACK: for now, prompt is configured manually by calling this function
         configure_tide_prompt =
           # fish
           ''
@@ -128,6 +109,27 @@ in {
             set -U tide_vi_mode_color_insert brgreen
             set -U tide_vi_mode_color_replace bryellow
             set -U tide_vi_mode_color_visual brmagenta
+          '';
+
+        # jj integration for tide
+        _tide_item_jj =
+          # fish
+          ''
+            command -q jj && jj --ignore-working-copy --at-op=@ root &>/dev/null || return 1
+            _tide_print_item jj $tide_jj_icon' ' (jj log -r@ --ignore-working-copy --at-op=@ --no-pager --no-graph --color always -T shell_prompt)
+          '';
+        _tide_item_jj_or_git =
+          # fish
+          ''_tide_item_jj || _tide_item_git'';
+      };
+
+      plugins = {inherit (pkgs.fishPlugins) autopair git-abbr puffer tide;};
+
+      earlyConfigFiles = {
+        set_key_bindings =
+          # fish
+          ''
+            set -U fish_key_bindings fish_hybrid_key_bindings
           '';
       };
     };

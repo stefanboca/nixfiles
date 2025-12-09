@@ -5,8 +5,18 @@
   ...
 }: {
   boot = {
+    loader = {
+      limine = {
+        enable = true;
+        secureBoot.enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+
     initrd.availableKernelModules = ["thunderbolt" "vmd" "nvme" "uas" "rtsx_pci_sdmmc"];
     initrd.kernelModules = [];
+
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["kvm-intel"];
     extraModulePackages = [
       (pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;})
@@ -43,6 +53,14 @@
 
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
+  };
+
+  services.hardware.bolt.enable = true;
+
+  zramSwap = {
+    enable = true;
+    algorithm = "lzo-rle";
+    memoryPercent = 50;
   };
 
   specialisation.battery-saver.configuration = {

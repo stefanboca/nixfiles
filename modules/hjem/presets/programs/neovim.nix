@@ -27,6 +27,12 @@ in {
         fork = true;
         frame = "none";
         title-hidden = true;
+
+        font = {
+          normal = [{family = "Lilex";}];
+          size = 10;
+          features.Lilex = ["+cv09" "+cv10" "+cv11" "+ss01" "+ss03"];
+        };
       };
     };
   };

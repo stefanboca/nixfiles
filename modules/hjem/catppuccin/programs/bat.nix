@@ -6,7 +6,6 @@
   inherit (catppuccinLib) mkCatppuccinOption;
 
   source = config.catppuccin.sources.bat;
-
   themeName = "Catppuccin ${lib.toSentenceCase cfg.flavor}";
 
   cfg = config.catppuccin.programs.bat;

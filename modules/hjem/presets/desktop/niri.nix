@@ -1,22 +1,19 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
+  inherit (config.catppuccin) accent palette;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption mkPackageOption;
+  inherit (lib.options) mkEnableOption;
 
   cfg = config.presets.desktops.niri;
 in {
   options.presets.desktops.niri = {
     enable = mkEnableOption "niri preset";
-    xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite-unstable" {nullable = true;};
   };
 
   config = mkIf cfg.enable {
-    packages = mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package];
-
     rum.desktops.niri = {
       enable = true;
 
@@ -25,11 +22,20 @@ in {
       config =
         # kdl
         ''
-          config-notification { disable-failed; }
+          config-notification { disable-failed; } // handled by dms
           hotkey-overlay { skip-at-startup; }
           prefer-no-csd
           screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
           xwayland-satellite { path "xwayland-satellite"; }
+
+          cursor {
+            hide-when-typing
+            hide-after-inactive-ms 10000
+          }
+
+          overview {
+            backdrop-color "${palette.crust.hex}"
+          }
 
           input {
               keyboard {
@@ -37,9 +43,6 @@ in {
                       layout "us"
                       options "caps:ctrl_modifier"
                   }
-                  repeat-delay 600
-                  repeat-rate 25
-                  track-layout "global"
               }
               touchpad {
                   tap
@@ -49,78 +52,54 @@ in {
               warp-mouse-to-focus
           }
 
-          cursor {
-            hide-when-typing
-            hide-after-inactive-ms 10000
-          }
-
-          // TODO: don't hard-code colors
           layout {
+              always-center-single-column
+              background-color "${palette.mantle.hex}"
+              border { off; }
+              center-focused-column "on-overflow"
+              empty-workspace-above-first
               gaps 8
+
               default-column-width { proportion 0.5; }
               preset-column-widths {
                   proportion 0.333333
                   proportion 0.5
                   proportion 0.666667
               }
-              center-focused-column "on-overflow"
-              always-center-single-column
-              empty-workspace-above-first
+
               focus-ring {
                   width 2
-                  urgent-color "#f38ba8"
-                  active-color "#94e2d5"
-                  inactive-color "#7f849c"
+                  active-color "${palette.${accent}.hex}"
+                  inactive-color "${palette.overlay1.hex}"
+                  urgent-color "${palette.red.hex}"
               }
-              border { off; }
-              background-color "#181825"
+
               shadow {
                   on
-                  offset x=0.0 y=5.0
-                  softness 30.0
-                  spread 5.0
-                  draw-behind-window false
-                  color "#11111b"
-                  inactive-color "#11111b"
+                  color "${palette.crust.hex}"
+                  inactive-color "${palette.crust.hex}"
               }
           }
 
+          recent-windows {
+            // TODO: binds
+            highlight {
+              active-color "${palette.${accent}.hex}"
+              urgent-color "${palette.red.hex}"
+              padding 30
+              corner-radius 30
+            }
+          }
 
           window-rule {
+            clip-to-geometry true
               geometry-corner-radius 10.0 10.0 10.0 10.0
-              clip-to-geometry true
           }
 
           window-rule {
               match app-id="^firefox" title="^Picture-in-Picture$"
               open-floating true
           }
-
-          // TODO: laptop-specific
-          // debug { ignore-drm-device "/dev/dri/renderD129"; }
-          // output "DP-1" {
-          //     backdrop-color "#11111b"
-          //     background-color "#181825"
-          //     scale 1.250000
-          //     transform "normal"
-          //     position x=0 y=1440
-          //     mode "2880x864@60.008000"
-          // }
-          // output "eDP-1" {
-          //     backdrop-color "#11111b"
-          //     background-color "#181825"
-          //     scale 1.250000
-          //     focus-at-startup
-          //     transform "normal"
-          //     position x=0 y=0
-          //     mode "2800x1800@120.016000"
-          // }
-          // input {
-          //   tablet { map-to-output "eDP-1"; }
-          //   touch { map-to-output "eDP-1"; }
-          // }
-
-          // TODO: recent-windows binds
         '';
 
       binds = {

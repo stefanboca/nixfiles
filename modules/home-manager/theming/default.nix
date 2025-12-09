@@ -64,7 +64,7 @@ in {
     (mkIf cfg.enable {
       catppuccin = {
         cursors.enable = true;
-        gtk.icon.enable = false;
+        gtk.icon.enable = true;
       };
 
       home.pointerCursor = {
