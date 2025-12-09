@@ -78,7 +78,6 @@
     nixosConfigurations = import ./hosts {inherit inputs lib self;};
 
     hjemModules = import ./modules/hjem;
-    homeModules = import ./modules/home-manager;
     nixosModules = import ./modules/nixos;
 
     overlays = import ./overlays.nix inputs;
