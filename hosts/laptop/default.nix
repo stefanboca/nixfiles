@@ -90,14 +90,23 @@ in {
       presets.users.stefan.enable = true;
 
       packages = with pkgs; [
+        bitwarden-desktop
         calibre
+        easyeffects
         esphome
         fluent-reader
         freecad
         geogebra6
+        gnome-decoder
+        helvum
+        imv
         libreoffice
+        miro
         prusa-slicer
+        qpwgraph
         rnote
+        signal-desktop
+        telegram-desktop
         pkgs-cuda.blender
         # musescore
         # xournalpp
