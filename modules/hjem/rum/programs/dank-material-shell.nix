@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (lib.meta) getExe getExe';
   inherit (lib.lists) optional optionals;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkPackageOption;
@@ -17,10 +16,8 @@ in {
     package = mkPackageOption pkgs.dmsPkgs "dms-shell" {};
 
     audioWavelength.enable = mkEnableOption "audio wavelength";
-    brightnessControl.enable = mkEnableOption "brightness control";
     calendarEvents.enable = mkEnableOption "calendar events";
     clipboard.enable = mkEnableOption "clipboard";
-    colorPicker.enable = mkEnableOption "color picker";
     dynamicTheming.enable = mkEnableOption "dynamic theming";
     systemMonitoring = {
       enable = mkEnableOption "system monitoring";
@@ -36,18 +33,10 @@ in {
 
   config = mkIf cfg.enable {
     packages =
-      [
-        cfg.package
-        pkgs.ddcutil
-        pkgs.material-symbols
-        pkgs.inter
-        pkgs.fira-code
-      ]
+      [cfg.package]
       ++ optional cfg.systemMonitoring.enable cfg.systemMonitoring.package
       ++ optionals cfg.clipboard.enable [pkgs.cliphist pkgs.wl-clipboard]
       ++ optionals cfg.vpn.enable [pkgs.glib pkgs.networkmanager]
-      ++ optional cfg.brightnessControl.enable pkgs.brightnessctl
-      ++ optional cfg.colorPicker.enable pkgs.hyprpicker
       ++ optional cfg.dynamicTheming.enable pkgs.mutagen
       ++ optional cfg.audioWavelength.enable pkgs.cava
       ++ optional cfg.calendarEvents.enable pkgs.khal;

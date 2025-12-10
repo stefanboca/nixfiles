@@ -33,6 +33,7 @@ in {
     };
 
     services = {
+      accounts-daemon.enable = true; # used by dms
       pulseaudio.enable = false;
       pipewire = {
         enable = true;
@@ -46,8 +47,6 @@ in {
           "bluez5.headset-roles" = ["a2dp_sink" "a2dp_source" "bap_sink" "bap_source" "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
         };
       };
-      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
-
       udev.extraRules = concatStringsSep "\n" [
         # udevrules
         ''
@@ -59,6 +58,7 @@ in {
             RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/bl_power"
         ''
       ];
+      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
     };
 
     # TODO: consider

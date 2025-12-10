@@ -270,7 +270,6 @@ in {
       enable = true;
 
       audioWavelength.enable = true;
-      brightnessControl.enable = true;
       clipboard.enable = true;
       systemMonitoring.enable = true;
       systemSound.enable = true;
