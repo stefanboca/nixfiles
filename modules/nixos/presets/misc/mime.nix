@@ -19,6 +19,8 @@ in {
       defaultApplications = {
         "application/pdf" = "org.gnome.Evince.desktop";
         "application/xhtml+xml" = firefox;
+        "image/jpeg" = "org.gnome.Loupe.desktop";
+        "image/png" = "org.gnome.Loupe.desktop";
         "text/html" = firefox;
         "text/plain" = "gnome-text-editor.desktop";
         "text/rtf" = "writer.desktop";
