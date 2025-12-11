@@ -815,11 +815,11 @@
         "vim-jjdescription": "vim-jjdescription"
       },
       "locked": {
-        "lastModified": 1765496602,
-        "narHash": "sha256-CJBGnF96NufoXf5s2/52izt2w1lxXFNYjqkcb3gAZBA=",
+        "lastModified": 1765497303,
+        "narHash": "sha256-FwWXq2+kpBGGsCcTBYupcsgc5utRygyISgPsY2U9iIs=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "06f4859d09d87139dbc00f8cb9aafb025837ee05",
+        "rev": "844d40e1d77087c1b5496e9fcbf6dbdbbcdc0031",
         "type": "github"
       },
       "original": {
