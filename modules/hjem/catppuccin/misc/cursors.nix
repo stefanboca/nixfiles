@@ -1,7 +1,6 @@
 {catppuccinLib}: {
   config,
   lib,
-  name,
   pkgs,
   ...
 }: let

@@ -59,7 +59,8 @@
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
-    inherit (lib.attrsets) attrValues genAttrs;
+    inherit (lib.attrsets) attrValues filterAttrs genAttrs mapAttrs' nameValuePair;
+    inherit (lib.trivial) pipe;
 
     mkPkgs = system:
       import nixpkgs {
@@ -82,12 +83,12 @@
 
     devShells = forAllSystems (pkgs: import ./dev-shells.nix pkgs);
 
+    templates = import ./templates;
+
     formatter = forAllSystems (pkgs: treefmt.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
+
     checks = forAllSystems (pkgs: let
-      inherit (pkgs) lib;
       inherit (pkgs.stdenv.hostPlatform) system;
-      inherit (lib.attrsets) filterAttrs mapAttrs' nameValuePair;
-      inherit (lib.trivial) pipe;
 
       nixosMachines = pipe self.nixosConfigurations [
         (filterAttrs (_: c: c.pkgs.stdenv.hostPlatform.system == system))
@@ -95,9 +96,9 @@
       ];
       packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
       devShells = mapAttrs' (n: nameValuePair "devShell-${n}") self.devShells.${system};
-      formatter = {formatting = treefmt.${system}.config.build.check self;};
+      formatting = {formatting = treefmt.${system}.config.build.check self;};
     in
-      nixosMachines // packages // devShells // formatter);
+      nixosMachines // packages // devShells // formatting);
   };
 
   nixConfig = {
