@@ -38,6 +38,7 @@ in {
 
       registry = {
         n.flake = inputs.nixpkgs;
+        nixpkgs.flake = inputs.nixpkgs;
       };
     };
 
