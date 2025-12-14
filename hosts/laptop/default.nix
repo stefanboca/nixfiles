@@ -73,7 +73,7 @@ in {
   };
 
   programs = {
-    nh.flake = "/home/stefn/src/nixfiles";
+    nh.flake = "/home/stefan/src/nixfiles";
     obs-studio.enable = true;
     wireshark = {
       enable = true;
