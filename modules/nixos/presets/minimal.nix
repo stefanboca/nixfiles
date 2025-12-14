@@ -25,6 +25,7 @@ in {
         auto-optimise-store = true;
         experimental-features = ["nix-command" "flakes"];
         keep-outputs = true; # don't garbage-collect build-time dependencies
+        trace-import-from-derivation = true;
         trusted-users = ["root" "@wheel"];
         use-xdg-base-directories = true;
         warn-dirty = false;

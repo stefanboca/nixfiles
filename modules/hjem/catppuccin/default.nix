@@ -18,7 +18,6 @@
 
   hasOsConfig = osConfig ? catppuccin;
 
-  cfg = config.catppuccin;
   osCfg = osConfig.catppuccin;
 in {
   # TODO:
@@ -57,7 +56,7 @@ in {
       type = lazyAttrsOf raw;
       readOnly = true;
       # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = (importJSON ../../../res/catppuccin/palette.json).${cfg.flavor}.colors;
+      default = importJSON ../../../res/catppuccin/palette.json;
     };
   };
 }

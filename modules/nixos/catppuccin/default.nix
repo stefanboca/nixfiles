@@ -13,12 +13,10 @@
   inherit (lib.types) lazyAttrsOf raw;
 
   catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
-
-  cfg = config.catppuccin;
 in {
   imports = applyToModules (
-    [./tty.nix]
-    ++ (map (m: inputs.catppuccin + "/modules/nixos/${m}.nix") ["limine" "plymouth" "sddm"])
+    [./limine.nix ./tty.nix]
+    ++ (map (m: inputs.catppuccin + "/modules/nixos/${m}.nix") ["plymouth" "sddm"])
   );
 
   options.catppuccin = {
@@ -49,7 +47,7 @@ in {
       type = lazyAttrsOf raw;
       readOnly = true;
       # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = (importJSON ../../../res/catppuccin/palette.json).${cfg.flavor}.colors;
+      default = importJSON ../../../res/catppuccin/palette.json;
     };
   };
 }

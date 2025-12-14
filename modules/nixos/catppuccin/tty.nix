@@ -8,7 +8,7 @@
   inherit (lib.modules) mkIf;
   inherit (lib.strings) substring;
 
-  inherit (config.catppuccin) palette;
+  palette = config.catppuccin.palette.${cfg.flavor}.colors;
 
   cfg = config.catppuccin.tty;
 in {

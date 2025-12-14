@@ -7,9 +7,8 @@
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
   inherit (catppuccinLib.types) accent;
-  inherit (lib.modules) mkBefore mkDefault mkIf mkMerge;
+  inherit (lib.modules) mkBefore mkDefault mkIf;
   inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.strings) concatStringsSep;
   inherit (lib.types) enum int mergeTypes;
 
   source = config.catppuccin.sources.cursors;

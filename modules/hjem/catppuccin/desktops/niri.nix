@@ -5,8 +5,10 @@
   ...
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
-  inherit (config.catppuccin) accent palette;
+  inherit (config.catppuccin) accent;
   inherit (lib.modules) mkBefore mkIf;
+
+  palette = config.catppuccin.palette.${cfg.flavor}.colors;
 
   niriConfigFile =
     pkgs.writeText "niri-catppucin.kdl"
