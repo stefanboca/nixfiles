@@ -119,11 +119,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1765639582,
-        "narHash": "sha256-k86FM0biKCbCplA4rjI65GMI7JuwaOJUrPxGpaAHrdw=",
+        "lastModified": 1765661038,
+        "narHash": "sha256-HSpkTs+J84DG0i9TJSM7u6ybEDHZ6W/GO5FZJnC8qao=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "e4e20fb43a4627ab6d1581b14d6f7b5dab7d0820",
+        "rev": "fbf79e62e9961d809a12cf8990a23901a2e93d38",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765624668,
-        "narHash": "sha256-aJ6w3Xpx+5QYIzM1i6i+wPYqzg8RwqNWGWJ84xUUxfY=",
+        "lastModified": 1765667790,
+        "narHash": "sha256-QVV1ZAnssr2ATycPFxx6jyZ0QdcerMqHGg+bzI0IZNY=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "f95325f43f5cfa600403b33833442c5810ecae37",
+        "rev": "1dc5532111cb139816180c8280145166cda2c466",
         "type": "github"
       },
       "original": {
@@ -815,11 +815,11 @@
         "vim-jjdescription": "vim-jjdescription"
       },
       "locked": {
-        "lastModified": 1765648934,
-        "narHash": "sha256-iHu7gqK09/tFK5fFX+62OLZ4l+xFPQvTWSQvajV/E1Q=",
+        "lastModified": 1765649123,
+        "narHash": "sha256-lk10/nCOV/6acLDCCGlGTgfnjUi8e3vLkZ7RVD3yIqs=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "3d3b77152b700e6440fa122f2f9c790495189011",
+        "rev": "23f879481723532ee6b5939ebad227d34e13394f",
         "type": "github"
       },
       "original": {
