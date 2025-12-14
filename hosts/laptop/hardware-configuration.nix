@@ -63,6 +63,25 @@
     memoryPercent = 50;
   };
 
+  powerManagement.powertop.enable = true;
+  services = {
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        charger = {
+          energy_perf_bias = "performance";
+        };
+        battery = {
+          energy_performance_preference = "power";
+          energy_perf_bias = "power";
+          turbo = "never";
+        };
+      };
+    };
+    power-profiles-daemon.enable = false;
+    upower.enable = true;
+  };
+
   specialisation.battery-saver.configuration = {
     environment.etc."specialisation".text = "battery-saver";
     hardware.asus.battery.chargeUpto = lib.mkForce 100;

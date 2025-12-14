@@ -5,24 +5,12 @@
   ...
 }: let
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) bool str;
+  inherit (lib.options) mkEnableOption;
 
   cfg = config.presets.common;
 in {
   options.presets.common = {
     enable = mkEnableOption "common preset";
-
-    isLaptop = mkOption {
-      type = bool;
-      default = false;
-      description = "Enable laptop-specific settings.";
-    };
-
-    primaryUser = mkOption {
-      type = str;
-      default = "stefan";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -51,10 +39,7 @@ in {
     boot.plymouth.enable = true;
 
     programs = {
-      nh = {
-        enable = true;
-        flake = "/home/${cfg.primaryUser}/src/nixfiles";
-      };
+      nh.enable = true;
       # TODO: test remove steam-run-libs.
       nix-ld = {
         enable = true;
@@ -67,25 +52,6 @@ in {
     documentation = {
       dev.enable = true;
       man.generateCaches = true;
-    };
-
-    powerManagement.powertop.enable = mkIf cfg.isLaptop true;
-    services = {
-      upower.enable = mkIf cfg.isLaptop true;
-      power-profiles-daemon.enable = mkIf cfg.isLaptop false;
-      auto-cpufreq = mkIf cfg.isLaptop {
-        enable = true;
-        settings = {
-          charger = {
-            energy_perf_bias = "performance";
-          };
-          battery = {
-            energy_performance_preference = "power";
-            energy_perf_bias = "power";
-            turbo = "never";
-          };
-        };
-      };
     };
   };
 }

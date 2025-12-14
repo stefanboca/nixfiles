@@ -53,10 +53,7 @@ in {
   };
 
   presets = {
-    common = {
-      enable = true;
-      isLaptop = true;
-    };
+    common.enable = true;
     desktop.enable = true;
     gaming.enable = true;
     programs.niri.enable = true;
@@ -64,19 +61,24 @@ in {
     users.stefan.enable = true;
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.printing = {
-    enable = true;
-    drivers = [pkgs.cnijfilter2];
+  services = {
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    printing = {
+      enable = true;
+      drivers = [pkgs.cnijfilter2];
+    };
   };
 
-  programs.obs-studio.enable = true;
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark;
+  programs = {
+    nh.flake = "/home/stefn/src/nixfiles";
+    obs-studio.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
   };
 
   hjem = {
