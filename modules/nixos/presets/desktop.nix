@@ -20,7 +20,10 @@ in {
     environment.systemPackages = [pkgs.brightnessctl pkgs.dconf-editor];
 
     hardware = {
-      bluetooth.enable = true;
+      bluetooth = {
+        enable = true;
+        powerOnBoot = false;
+      };
       graphics.enable = true;
     };
 
