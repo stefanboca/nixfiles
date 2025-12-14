@@ -84,7 +84,7 @@ in {
   hjem = {
     linker = inputs.hjem.packages.${pkgs.stdenv.hostPlatform.system}.smfh;
     specialArgs = {inherit inputs self;};
-    extraModules = [self.hjemModules.stefan inputs.secrets.hjemModules.stefan];
+    extraModules = [self.hjemModules.stefan];
     clobberByDefault = true;
 
     users.stefan = {
