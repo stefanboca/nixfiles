@@ -6,6 +6,7 @@
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
   inherit (catppuccinLib.types) accent;
+  inherit (lib.gvariant) mkInt32;
   inherit (lib.modules) mkBefore mkDefault mkIf;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) enum int mergeTypes;
@@ -76,17 +77,28 @@ in {
       XCURSOR_THEME = mkDefault themeName;
       XCURSOR_SIZE = mkDefault cfg.size;
     };
+    rum = {
+      misc.gtk.settings = mkIf (cfg.integrations.gtk.enable && config.rum.misc.gtk.enable) {
+        cursor-theme-name = themeName;
+        cursor-theme-size = cfg.size;
+      };
 
-    # TODO: _somehow_ get these into dconf (/org/gnome/desktop/interface)
-    rum.misc.gtk.settings = mkIf (cfg.integrations.gtk.enable && config.rum.misc.gtk.enable) {
-      cursor-theme-name = themeName;
-      cursor-theme-size = cfg.size;
+      misc.dconf = mkIf (cfg.integrations.gtk.enable && config.rum.misc.dconf.enable) {
+        settings."org/gnome/desktop/interface" = {
+          cursor-theme = themeName;
+          cursor-size = mkInt32 cfg.size;
+        };
+        locks = [
+          "org/gnome/desktop/interface/cursor-theme"
+          "org/gnome/desktop/interface/cursor-size"
+        ];
+      };
+
+      desktops.niri.config = mkIf (cfg.integrations.niri.enable && config.rum.desktops.niri.enable) (mkBefore
+        # kdl
+        ''
+          include "${niriConfigFile}"
+        '');
     };
-
-    rum.desktops.niri.config = mkIf (cfg.integrations.niri.enable && config.rum.desktops.niri.enable) (mkBefore
-      # kdl
-      ''
-        include "${niriConfigFile}"
-      '');
   };
 }

@@ -9,6 +9,7 @@
     modules = [
       ./laptop
       self.nixosModules.catppuccin
+      self.nixosModules.extensions
       self.nixosModules.presets
       inputs.secrets.nixosModules.common
       inputs.secrets.nixosModules.laptop

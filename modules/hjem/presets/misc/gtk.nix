@@ -15,8 +15,12 @@ in {
   config = mkIf cfg.enable {
     rum.misc.gtk = {
       enable = true;
-      # TODO: _somehow_ get this into dconf as /org/gnome/desktop/interface/color-scheme = prefer-dark
       settings.application-prefer-dark-theme = true;
+    };
+
+    rum.misc.dconf = {
+      enable = true;
+      settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     };
   };
 }

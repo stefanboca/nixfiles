@@ -79,6 +79,12 @@ in {
       enable = true;
       package = pkgs.wireshark;
     };
+    dconf = {
+      enable = true;
+      profiles.user = {
+        userDbs = ["user" "hjem"];
+      };
+    };
   };
 
   hjem = {
@@ -115,6 +121,11 @@ in {
         # zotero
       ];
 
+      rum.misc.dconf = {
+        settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
+        locks = ["org/gnome/desktop/peripherals/touchscreens/04f3:2f2a/output"];
+      };
+
       rum.desktops.niri = {
         config =
           mkAfter
@@ -149,10 +160,6 @@ in {
           "Ctrl+XF86Launch2".action = "move-workspace-to-monitor-previous";
         };
       };
-
-      # TODO: (needed for gnome)
-      # map screenpad touchscreen to correct display in gnome
-      # dconf.settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
     };
   };
 }

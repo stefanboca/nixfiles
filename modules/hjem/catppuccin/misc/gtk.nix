@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (catppuccinLib) mkCatppuccinOption;
+  inherit (lib.modules) mkIf;
 
   package = pkgs.catppuccin-papirus-folders.override {inherit (cfg.icon) accent flavor;};
 
@@ -12,6 +13,7 @@
     if cfg.icon.flavor == "latte"
     then "Light"
     else "Dark";
+  themeName = "Papairus-${polarity}";
 
   cfg = config.catppuccin.misc.gtk;
 in {
@@ -25,7 +27,11 @@ in {
   config = lib.mkIf (cfg.icon.enable && config.rum.misc.gtk.enable) {
     packages = [package];
 
-    # TODO: _somehow_ get this into dconf (/org/gnome/desktop/interface)
-    rum.misc.gtk.settings.icon-theme-name = "Papirus-${polarity}";
+    rum.misc.gtk.settings.icon-theme-name = themeName;
+
+    rum.misc.dconf = mkIf config.rum.misc.dconf.enable {
+      settings."org/gnome/desktop/interface".icon-theme = themeName;
+      locks = ["org/gnome/desktop/interface/icon-theme"];
+    };
   };
 }
