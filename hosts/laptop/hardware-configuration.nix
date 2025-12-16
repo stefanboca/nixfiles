@@ -69,6 +69,7 @@
       enable = true;
       settings = {
         charger = {
+          energy_performance_preference = "performance";
           energy_perf_bias = "performance";
         };
         battery = {
