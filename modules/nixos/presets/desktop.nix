@@ -63,8 +63,5 @@ in {
       ];
       xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
     };
-
-    # TODO: consider
-    # xdg.autostart.enable = mkForce false;
   };
 }

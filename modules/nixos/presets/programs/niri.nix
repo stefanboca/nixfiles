@@ -7,12 +7,6 @@
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) mkEnableOption mkPackageOption;
 
-  # extract nm-connection-editor from networkmanagerapplet
-  nm-connection-editor = pkgs.runCommand "nm-connection-editor" {} ''
-    mkdir -p $out/bin
-    ln -s ${pkgs.networkmanagerapplet}/bin/nm-connection-editor $out/bin/
-  '';
-
   cfg = config.presets.programs.niri;
 in {
   options.presets.programs.niri = {
@@ -36,7 +30,7 @@ in {
         playerctl # utility for controlling mpris media players
         totem # video player
 
-        nm-connection-editor
+        (pkgs.onlyBin pkgs.networkmanagerapplet)
       ])
       (mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package])
     ];
@@ -65,9 +59,10 @@ in {
     };
 
     xdg = {
+      autostart.enable = true;
+      icons.enable = true;
       menus.enable = true;
       mime.enable = true;
-      icons.enable = true;
     };
   };
 }
