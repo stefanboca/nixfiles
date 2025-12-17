@@ -14,6 +14,7 @@
       inputs.secrets.nixosModules.common
       inputs.secrets.nixosModules.laptop
 
+      inputs.autocpu.nixosModules.default
       inputs.disko.nixosModules.disko
       inputs.hjem.nixosModules.default
       inputs.sops-nix.nixosModules.sops

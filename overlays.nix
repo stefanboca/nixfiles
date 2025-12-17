@@ -26,6 +26,7 @@ inputs: {
   };
 
   inherit (inputs.niri.overlays) niri;
+  autocpu = inputs.autocpu.overlays.default;
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
   snv = inputs.snv.overlays.default;

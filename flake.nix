@@ -50,6 +50,14 @@
         fenix.follows = "fenix";
       };
     };
+
+    autocpu = {
+      url = "github:stefanboca/autocpu";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
   };
 
   outputs = {

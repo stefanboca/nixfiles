@@ -65,17 +65,34 @@
 
   powerManagement.powertop.enable = true;
   services = {
-    auto-cpufreq = {
+    autocpu = {
       enable = true;
+      package = pkgs.autocpu; # use package from overlay
       settings = {
-        charger = {
-          energy_performance_preference = "performance";
-          energy_perf_bias = "performance";
-        };
-        battery = {
-          energy_performance_preference = "power";
-          energy_perf_bias = "power";
-          turbo = "never";
+        upower_battery_path = "/org/freedesktop/UPower/devices/battery_BAT0";
+        on_battery = "powersave";
+        on_wallpower = "performance";
+
+        presets = {
+          powersave = {
+            epp = "power";
+            hwp_dynamic_boost = false;
+            no_turbo = true;
+            scaling_governor = "powersave";
+          };
+
+          balanced = {
+            epp = "default";
+            hwp_dynamic_boost = false;
+            no_turbo = true;
+            scaling_governor = "powersave";
+          };
+
+          performance = {
+            hwp_dynamic_boost = true;
+            no_turbo = false;
+            scaling_governor = "performance";
+          };
         };
       };
     };
