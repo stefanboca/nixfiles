@@ -158,11 +158,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1765998254,
-        "narHash": "sha256-ZGaAvkQ1IPVApAg1KIb8BGaZLgqk3OZn6mapvv6qI58=",
+        "lastModified": 1766023204,
+        "narHash": "sha256-1x/ZI/Zqx4rqxWnK7DTBzMUZWK7G6a1XVggTjBax+sI=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "53553c1f6214d7d89a75917790f9dcbe2524684c",
+        "rev": "145d2636ddbaf66d20be9a46eb08e1ac08cb085f",
         "type": "github"
       },
       "original": {
@@ -258,11 +258,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765988999,
-        "narHash": "sha256-ECtC8GYGD2PERbXUgIE+9dnHUsyW9wS6gYJnUVs+lhc=",
+        "lastModified": 1766020845,
+        "narHash": "sha256-E/0TwTB2i7/cKz0Qdzcbivgh8YJdBRJ7wPodPnKUJSQ=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "bc3f6cbfaa2fc08fe01cba84a1aafb4fab68b42b",
+        "rev": "02a75c24ead1190085c051bf2ac71a57e9ad3e6f",
         "type": "github"
       },
       "original": {
@@ -998,11 +998,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765982577,
-        "narHash": "sha256-qYUjljxINfhuEFipGYNDpBbsbAXxd8bW5KLQeKe2U+w=",
+        "lastModified": 1766000401,
+        "narHash": "sha256-+cqN4PJz9y0JQXfAK5J1drd0U05D5fcAGhzhfVrDlsI=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "1b9b6f9c5ae66f0e20cf38a55591ef3548a7cb6e",
+        "rev": "42d96e75aa56a3f70cab7e7dc4a32868db28e8fd",
         "type": "github"
       },
       "original": {
