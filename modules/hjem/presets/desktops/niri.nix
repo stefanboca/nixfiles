@@ -271,7 +271,6 @@ in {
 
       audioWavelength.enable = true;
       clipboard.enable = true;
-      systemMonitoring.enable = true;
       systemSound.enable = true;
 
       integrations.niri.enable = true;
