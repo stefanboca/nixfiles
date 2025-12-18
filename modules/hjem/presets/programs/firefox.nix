@@ -37,6 +37,7 @@ in {
           user_pref("browser.newtabpage.activity-stream.showWeather", false);
           user_pref("browser.newtabpage.activity-stream.telemetry", false);
           user_pref("browser.ping-centre.telemetry", false);
+          user_pref("browser.search.suggest.enabled", false);
           user_pref("browser.startup.page", 3);
           user_pref("browser.tabs.closeWindowWithLastTab", false);
           user_pref("browser.tabs.groups.smart.userEnabled", false);
