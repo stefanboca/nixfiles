@@ -72,8 +72,9 @@ in {
   config = mkIf cfg.enable {
     packages = [source defaultIndexThemePackage];
 
-    environment.sessionVariables = mkIf (!cfg.integrations.niri.enable) {
-      # niri sets these automatically
+    environment.sessionVariables = {
+      # set these even in niri (which sets them automatically), in order for them to get picked up by ghostty.
+      # this is because ghostty doesn't pick up any environment configured in niri, due to being run under dbus.
       XCURSOR_THEME = mkDefault themeName;
       XCURSOR_SIZE = mkDefault cfg.size;
     };
