@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766043393,
-        "narHash": "sha256-klVUNtSrLhYZs5vC3JMRQuK5PLXe+d/yO56Qe68htN4=",
+        "lastModified": 1766104659,
+        "narHash": "sha256-MEKXXMngqpMfyRGtyuggrg8M7ujxuriHpEsQsjaW5A8=",
         "owner": "stefanboca",
         "repo": "autocpu",
-        "rev": "36ffba110dc9991c09f7cf2a890b86696c030d9b",
+        "rev": "123e2da7ad990930e128552ebf21ee1a6960dfd4",
         "type": "github"
       },
       "original": {
