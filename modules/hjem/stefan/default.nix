@@ -47,15 +47,20 @@ in {
       misc.xdg.enable = true;
       misc.gtk.enable = true;
       programs = {
+        # keep-sorted start block=true
         cli.enable = true;
         firefox.enable = true;
         fish.enable = true;
         ghostty.enable = true;
-        neovim.enable = true;
+        neovim = {
+          enable = true;
+          neovide.enable = true;
+        };
         spicetify.enable = true;
         ssh.enable = true;
         vcs.enable = true;
         vesktop.enable = true;
+        # keep-sorted end
       };
     };
   };
