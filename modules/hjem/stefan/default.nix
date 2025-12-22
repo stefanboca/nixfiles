@@ -20,6 +20,7 @@ in {
       emmylua-check
       gcc
       koto
+      ninja
       typst
       typstyle
       uv
