@@ -17,8 +17,6 @@
     pkgs.writeText "niri-laptop.kdl"
     # kdl
     ''
-      // don't use NVIDIA gpu
-      debug { ignore-drm-device "/dev/dri/renderD129"; }
       output "eDP-1" {
           scale 1.250000
           focus-at-startup

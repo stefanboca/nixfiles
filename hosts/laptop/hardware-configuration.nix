@@ -3,7 +3,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib.modules) mkForce;
+in {
   boot = {
     loader = {
       limine = {
@@ -102,11 +104,11 @@
 
   specialisation.battery-saver.configuration = {
     environment.etc."specialisation".text = "battery-saver";
-    hardware.asus.battery.chargeUpto = lib.mkForce 100;
+    hardware.asus.battery.chargeUpto = mkForce 100;
   };
 
   specialisation.gaming.configuration = {
     # liquorix disables the intel_pstate driver
-    services.autocpu.enable = false;
+    services.autocpu.enable = mkForce false;
   };
 }
