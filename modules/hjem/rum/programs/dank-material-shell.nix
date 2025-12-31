@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -8,12 +9,15 @@
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkPackageOption;
 
+  inherit (pkgs.stdenv.hostPlatform) system;
+  dmsPkgs = inputs.dank-material-shell.packages.${system};
+
   cfg = config.rum.programs.dank-material-shell;
 in {
   options.rum.programs.dank-material-shell = {
     enable = mkEnableOption "DankMaterialShell";
 
-    package = mkPackageOption pkgs.dmsPkgs "dms-shell" {};
+    package = mkPackageOption dmsPkgs "dms-shell" {};
 
     audioWavelength.enable = mkEnableOption "audio wavelength";
     calendarEvents.enable = mkEnableOption "calendar events";
@@ -21,7 +25,7 @@ in {
     dynamicTheming.enable = mkEnableOption "dynamic theming";
     systemMonitoring = {
       enable = mkEnableOption "system monitoring";
-      package = mkPackageOption pkgs.dmsPkgs "dgop" {};
+      package = mkPackageOption pkgs "dgop" {};
     };
     systemSound.enable = mkEnableOption "system sound";
     vpn.enable = mkEnableOption "vpn";
@@ -43,7 +47,7 @@ in {
 
     rum.programs.quickshell = {
       enable = true;
-      package = pkgs.dmsPkgs.quickshell;
+      package = dmsPkgs.quickshell;
       extraBuildInputs = [
         pkgs.qt6.qtmultimedia
       ];

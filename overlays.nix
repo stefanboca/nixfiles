@@ -14,17 +14,6 @@ inputs: {
       };
   };
 
-  dank-material-shell = final: prev: let
-    inherit (final.stdenv.hostPlatform) system;
-  in {
-    dmsPkgs =
-      {
-        inherit (inputs.dank-material-shell.packages.${system}) dms-shell;
-        inherit (inputs.dank-material-shell.inputs.dgop.packages.${system}) dgop;
-      }
-      // inputs.dank-material-shell.inputs.quickshell.overlays.default final prev;
-  };
-
   inherit (inputs.niri.overlays) niri;
   autocpu = inputs.autocpu.overlays.default;
   fenix = inputs.fenix.overlays.default;
