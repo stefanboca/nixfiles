@@ -620,6 +620,63 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "nvim-treesitter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766230815,
+        "narHash": "sha256-+2PF6Q2uwRs/gbhKvR4jF8rYhe0HoZfwMwZCoZinp/o=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "8cdffc6d334731ce3703b6d870a5a34fd878208a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "ref": "main",
+        "repo": "nvim-treesitter",
+        "type": "github"
+      }
+    },
+    "nvim-treesitter-main": {
+      "inputs": {
+        "nixpkgs": [
+          "snv",
+          "nixpkgs"
+        ],
+        "nvim-treesitter": "nvim-treesitter",
+        "nvim-treesitter-textobjects": "nvim-treesitter-textobjects"
+      },
+      "locked": {
+        "lastModified": 1766296113,
+        "narHash": "sha256-s6bymukQTFg6kAsgogwbCda+Fe+Su3T9rJE0xZ8s9R0=",
+        "owner": "iofq",
+        "repo": "nvim-treesitter-main",
+        "rev": "5ca3b0dd2d3d00fb597ba8c316eb3ca79ea17fbc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iofq",
+        "repo": "nvim-treesitter-main",
+        "type": "github"
+      }
+    },
+    "nvim-treesitter-textobjects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766243280,
+        "narHash": "sha256-hbVwqoo0WRTVKIhsG5N6IXnmOVrrQzGuE4x0rEMYro0=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "rev": "e91c585ac0ee760198dabc1fad2e6227effdcd5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "ref": "main",
+        "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
     "quickshell": {
       "inputs": {
         "nixpkgs": [
@@ -756,15 +813,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "nvim-treesitter-main": "nvim-treesitter-main",
         "tiny-code-action-nvim": "tiny-code-action-nvim",
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1767214888,
-        "narHash": "sha256-YNu4jEmv3qaZ7ZTo0Ik5NVWonZb6UaDK1283Tv7kj9I=",
+        "lastModified": 1766816977,
+        "narHash": "sha256-/b4z1C0NCXAQCy9wDxM4/Wcmy6SB3LUKilqs0+tBDdo=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "b78b95122583b5a87ef7a67f5b0001eef53819e3",
+        "rev": "f8512cf0c23042d45956c8e6c718ac7cde75958f",
         "type": "github"
       },
       "original": {
