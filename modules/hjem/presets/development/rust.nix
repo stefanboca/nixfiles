@@ -16,7 +16,9 @@ in {
   config = mkIf cfg.enable {
     packages = with pkgs; [
       (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
-      bugstalker # cli debugger
+      # keep-sorted start
+      # FIXME: re-add once build is fixed
+      # bugstalker # cli debugger
       cargo-auditable # make production Rust binaries auditable
       cargo-cache # rust cache cli
       cargo-clean-recursive # cleans all projects under specified directory
@@ -26,6 +28,7 @@ in {
       cargo-sweep # clean up unused build files
       cargo-watch # run cargo commands on project changes
       cargo-wizard # configure cargo projects for best performance
+      # keep-sorted end
     ];
   };
 }

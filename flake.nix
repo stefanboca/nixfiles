@@ -1,6 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # FIXME: remove once https://github.com/NixOS/nixpkgs/pull/476347 reaches nixos-unstable
+    nixpkgs-476347.url = "github:NixOS/nixpkgs/pull/476347/head";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
