@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   inherit (lib.modules) mkIf;
@@ -16,7 +15,7 @@ in {
 
   config.rum.programs.vesktop = mkIf cfg.enable {
     enable = true;
-    package = inputs.nixpkgs-476347.legacyPackages.${pkgs.stdenv.hostPlatform.system}.vesktop.override {
+    package = pkgs.vesktop.override {
       withMiddleClickScroll = true;
       withSystemVencord = true;
     };
