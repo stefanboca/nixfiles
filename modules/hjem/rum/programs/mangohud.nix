@@ -59,7 +59,7 @@ in {
 
     xdg.config.files =
       {
-        "MangoHud/MangoHud.confg" = mkIf (cfg.settings != {}) {text = renderSettings cfg.settings;};
+        "MangoHud/MangoHud.config" = mkIf (cfg.settings != {}) {text = renderSettings cfg.settings;};
       }
       // pipe cfg.appSettings [
         (filterAttrs (_: value: value != {}))
