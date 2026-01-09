@@ -66,7 +66,7 @@ in {
     };
     printing = {
       enable = true;
-      # FIXME: remove override when https://github.com/NixOS/nixpkgs/pull/476341 reaches nixos-unstable
+      # FIXME: remove override when https://github.com/NixOS/nixpkgs/pull/477193 reaches nixos-unstable
       drivers = [(pkgs.cnijfilter2.overrideAttrs {env.NIX_CFLAGS_COMPILE = "-std=gnu17";})];
     };
   };
