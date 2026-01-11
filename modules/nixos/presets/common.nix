@@ -41,10 +41,6 @@ in {
     programs = {
       nh.enable = true;
       nix-ld.enable = true;
-      # currently testing not using steam-run libs
-      # nix-ld.libraries = [
-      #   (pkgs.runCommand "steam-run-libs" {} ''mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib'')
-      # ];
     };
 
     documentation = {
