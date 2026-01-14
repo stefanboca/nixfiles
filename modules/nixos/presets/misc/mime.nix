@@ -17,11 +17,13 @@ in {
       firefox = ["firefox-nightly.desktop" "firefox.desktop"];
     in {
       defaultApplications = {
+        # keep-sorted start
         "application/pdf" = "org.gnome.Evince.desktop";
         "application/xhtml+xml" = firefox;
         "image/jpeg" = "org.gnome.Loupe.desktop";
-        "image/svg" = "org.gnome.Loupe.desktop";
         "image/png" = "org.gnome.Loupe.desktop";
+        "image/svg" = "org.gnome.Loupe.desktop";
+        "image/svg+xml" = "org.gnome.Loupe.desktop";
         "text/html" = firefox;
         "text/plain" = "gnome-text-editor.desktop";
         "text/rtf" = "writer.desktop";
@@ -29,11 +31,14 @@ in {
         "x-scheme-handler/http" = firefox;
         "x-scheme-handler/https" = firefox;
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+        # keep-sorted end
       };
       addedAssociations = {
+        # keep-sorted start
         "model/3mf" = "PrusaSlicer.desktop";
         "x-scheme-handler/discord" = "vesktop.desktop";
         "x-scheme-handler/prusaslicer" = "PrusaSlicer.desktop";
+        # keep-sorted end
       };
     };
   };
