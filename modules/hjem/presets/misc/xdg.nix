@@ -7,6 +7,7 @@
   inherit (lib.options) mkEnableOption;
 
   cacheDir = config.xdg.cache.directory;
+  configDir = config.xdg.config.directory;
   dataDir = config.xdg.data.directory;
   stateDir = config.xdg.state.directory;
 
@@ -18,9 +19,11 @@ in {
 
   config = mkIf cfg.enable {
     environment.sessionVariables = {
+      # keep-sorted start
       CARGO_HOME = "${dataDir}/cargo";
       GNUPGHOME = "${dataDir}/gnupg";
       HISTFILE = "${stateDir}/bash_history";
+      JUPYTER_CONFIG_DIR = "${configDir}/jupyter";
       NIX_PACKAGE_SEARCH_CACHE_FOLDER_ABSOLUTE_PATH = "${cacheDir}/nix-package-search";
       NODE_REPL_HISTORY = "${dataDir}/node_repl_history";
       NPM_CONFIG_CACHE = "${cacheDir}/npm";
@@ -31,6 +34,7 @@ in {
       SQLITE_HISTORY = "${stateDir}/sqlite_history";
       WINEPREFIX = "${dataDir}/wine";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${dataDir}/java";
+      # keep-sorted end
     };
 
     xdg.config.files."go/env".text = ''
