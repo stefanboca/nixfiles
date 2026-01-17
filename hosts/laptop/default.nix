@@ -100,7 +100,8 @@ in {
         easyeffects
         esphome
         fluent-reader
-        freecad
+        # FIXME: uncomment once https://github.com/NixOS/nixpkgs/issues/480860 is resolved
+        # freecad
         geogebra6
         gnome-decoder
         helvum
