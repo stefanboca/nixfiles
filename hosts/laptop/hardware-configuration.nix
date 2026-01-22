@@ -61,7 +61,7 @@ in {
 
   zramSwap = {
     enable = true;
-    algorithm = "lzo-rle";
+    algorithm = "zstd";
     memoryPercent = 50;
   };
 
