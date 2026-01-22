@@ -16,6 +16,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.sessionVariables = {
+      QT_QPA_PLATFORM = "wayland";
+    };
+
     environment.systemPackages = mkMerge [
       (with pkgs; [
         adwaita-icon-theme
