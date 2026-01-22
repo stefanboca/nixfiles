@@ -25,7 +25,18 @@ in {
           emoji = ["Noto Color Emoji"];
         };
       };
-      packages = with pkgs; [lilex noto-fonts open-sans noto-fonts-color-emoji ibm-plex inter fira-code];
+      packages = with pkgs; [
+        # keep-sorted start
+        fira-code
+        ibm-plex
+        inter
+        lilex
+        nerd-fonts.symbols-only
+        noto-fonts
+        noto-fonts-color-emoji
+        open-sans
+        # keep-sorted end
+      ];
     };
 
     catppuccin.sddm = {

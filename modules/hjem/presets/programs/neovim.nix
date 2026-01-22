@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: let
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
 
@@ -24,12 +25,13 @@ in {
     rum.programs.neovide = mkIf cfg.neovide.enable {
       enable = true;
       settings = {
+        neovim-bin = getExe pkgs.snv;
         fork = true;
         frame = "none";
         title-hidden = true;
 
         font = {
-          normal = [{family = "Lilex";}];
+          normal = [{family = "Lilex";} {family = "Symbols Nerd Font Mono";}];
           size = 10;
           features.Lilex = ["+cv09" "+cv10" "+cv11" "+ss01" "+ss03"];
         };
