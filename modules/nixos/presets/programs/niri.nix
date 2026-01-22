@@ -45,7 +45,10 @@ in {
     security.soteria.enable = true;
 
     services = {
-      # avahi.enable = true;
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+      };
       geoclue2.enable = true;
       gnome.sushi.enable = true; # quick previewer for nautilus
       gvfs.enable = true; # userspace virtual filesystem
