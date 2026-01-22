@@ -129,6 +129,7 @@ in {
           # kdl
           ''
             include "${niriConfigFile}"
+            include optional=true "dev.kdl"
           '';
         binds = {
           "XF86MonBrightnessUp".spawn = mkForce ["dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight"];

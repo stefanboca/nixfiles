@@ -21,12 +21,6 @@
       layout {
         background-color "${palette.mantle.hex}"
 
-        focus-ring {
-          active-color "${palette.${accent}.hex}"
-          inactive-color "${palette.overlay1.hex}"
-          urgent-color "${palette.red.hex}"
-        }
-
         shadow {
           color "${palette.crust.hex}"
           inactive-color "${palette.crust.hex}"

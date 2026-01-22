@@ -47,10 +47,9 @@ in {
 
           layout {
             always-center-single-column
-            border { off; }
             center-focused-column "on-overflow"
             empty-workspace-above-first
-            gaps 8
+            gaps 3
 
             default-column-width { proportion 0.5; }
             preset-column-widths {
@@ -59,8 +58,18 @@ in {
               proportion 0.666667
             }
 
-            focus-ring {
-              width 2
+            focus-ring { off; }
+            border {
+              width 3
+              active-gradient from="hsl(183deg, 80%, 50%)" to="hsl(183deg, 80%, 50%)" angle=45 relative-to="workspace-view" in="oklch longer hue"
+              inactive-gradient from="hsl(183deg, 40%, 30%)" to="hsl(183deg, 40%, 30%)" angle=45 relative-to="workspace-view" in="oklch longer hue"
+              urgent-gradient from="hsl(320deg, 80%, 50%)" to="hsl(40deg, 80%, 50%)" angle=45 in="oklch shorter hue"
+            }
+
+            tab-indicator {
+              length total-proportion=0.75
+              gaps-between-tabs 2
+              place-within-column
             }
 
             shadow {
