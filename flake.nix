@@ -16,8 +16,15 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    niri.url = "github:sodiboo/niri-flake";
-    niri.inputs.nixpkgs.follows = "nixpkgs";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        niri-stable.follows = "";
+        nixpkgs-stable.follows = "";
+        xwayland-satellite-stable.follows = "";
+      };
+    };
     dank-material-shell.url = "github:AvengeMedia/DankMaterialShell";
     dank-material-shell.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -33,13 +40,17 @@
     firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
     firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
-    hjem.url = "github:feel-co/hjem";
-    hjem.inputs.nixpkgs.follows = "nixpkgs";
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "";
+    };
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
+        treefmt-nix.follows = "";
       };
     };
 
@@ -48,6 +59,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         fenix.follows = "fenix";
+        treefmt-nix.follows = "";
       };
     };
 
@@ -55,7 +67,7 @@
       url = "github:stefanboca/autocpu";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
+        treefmt-nix.follows = "";
       };
     };
   };
