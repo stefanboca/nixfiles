@@ -3,37 +3,43 @@
   lib,
   ...
 }: let
-  inherit (lib.modules) mkAfter mkIf;
-  inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.strings) optionalString;
-  inherit (lib.types) nullOr oneOf path str;
+  inherit (lib.modules) mkAfter mkBefore mkIf mkMerge;
+  inherit (lib.options) mkEnableOption;
 
   cfg = config.presets.programs.ssh;
 in {
   options.presets.programs.ssh = {
     enable = mkEnableOption "ssh preset";
-
-    identityFile = mkOption {
-      type = nullOr (oneOf [path str]);
-      default = null;
-    };
   };
 
   config = mkIf cfg.enable {
     rum.programs.ssh = {
       enable = true;
-      settings =
-        mkAfter
-        # ssh_config
-        ''
-          Host *
-            ForwardAgent no
-            AddKeysToAgent no
-            UserKnownHostsFile ~/.ssh/known_hosts
-            ControlPath ~/.ssh/master-%r@%n:%p
-            ControlPersist no
-            ${optionalString (cfg.identityFile != null) "IdentityFile ${cfg.identityFile}"}
-        '';
+      settings = mkMerge [
+        (mkBefore
+          # ssh_config
+          ''Include config.d/*'')
+        (mkAfter
+          # ssh_config
+          ''
+            Host *
+              # keep-sorted start
+              AddKeysToAgent yes
+              BatchMode no
+              CheckHostIp yes
+              ControlPath ~/.ssh/control-%r@%h:%p
+              ControlPersist 3s
+              ForwardAgent no
+              IdentitiesOnly yes
+              KbdInteractiveAuthentication no
+              PasswordAuthentication no
+              PubkeyAuthentication no
+              StrictHostKeyChecking ask
+              UpdateHostKeys yes
+              VisualHostKey yes
+              # keep-sorted end
+          '')
+      ];
     };
   };
 }

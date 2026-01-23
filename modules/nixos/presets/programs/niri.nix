@@ -63,6 +63,10 @@ in {
       evince.enable = true; # document viewer
       gnome-disks.enable = true; # udisk frontend
       seahorse.enable = true; # manager for gnome keyring
+      ssh = {
+        askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
+        enableAskPassword = true;
+      };
     };
 
     xdg = {
