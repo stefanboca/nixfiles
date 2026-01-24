@@ -17,11 +17,11 @@ in {
 
     settings = {
       auto-update = "off";
-      shell-integration-features = true;
-      image-storage-limit = 128 * 1024 * 1024; # 128 MB
-      scrollback-limit = 128 * 1024 * 1024; # 128 MB
+      config-file = "?dev";
       quit-after-last-window-closed = true;
       quit-after-last-window-closed-delay = "5m";
+      scrollback-limit = 128 * 1024 * 1024; # 128 MB
+      shell-integration-features = true;
 
       window-inherit-working-directory = true;
       window-theme = "ghostty";
@@ -32,7 +32,7 @@ in {
 
       font-family = "Lilex";
       font-size = 10;
-      font-feature = ["cv09" "cv10" "cv11" "ss01" "ss03"];
+      font-feature = "cv09,cv10,cv11,ss01,ss03";
 
       keybind = [
         "alt+t=toggle_tab_overview"
