@@ -22,6 +22,18 @@ in {
         ["wheel" "video" "audio"]
         ++ lib.optional config.programs.wireshark.enable "wireshark"
         ++ lib.optional config.networking.networkmanager.enable "networkmanager";
+      subGidRanges = [
+        {
+          startGid = 100000;
+          count = 65536;
+        }
+      ];
+      subUidRanges = [
+        {
+          startUid = 100000;
+          count = 65536;
+        }
+      ];
     };
   };
 }
