@@ -648,11 +648,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1769280963,
-        "narHash": "sha256-Pexes0GOgSPdHmh27R5ZJetACJhPuiy8C5o31IBeruQ=",
+        "lastModified": 1769634528,
+        "narHash": "sha256-HfLNPn5kowlTFVXojgfKVzHUXnrVA/Cf75c6p3z/1Ek=",
         "ref": "refs/heads/main",
-        "rev": "739b96069b072bc6746da9a2fcd0b064cae5229f",
-        "revCount": 19,
+        "rev": "253ed369c52a7870edc80e10a1610f668fe34603",
+        "revCount": 20,
         "type": "git",
         "url": "https://github.com/stefanboca/nixfiles-secrets"
       },
