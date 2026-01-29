@@ -89,6 +89,12 @@ in {
         userDbs = ["user" "hjem"];
       };
     };
+    zoom-us = {
+      enable = true;
+      package = pkgs.zoom-us.override {
+        gnomeXdgDesktopPortalSupport = true;
+      };
+    };
   };
 
   hjem = {
