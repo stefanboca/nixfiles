@@ -16,8 +16,7 @@ in {
   config = mkIf cfg.enable {
     packages = with pkgs; [
       (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
-      # FIXME: re-add once build is fixed
-      # bugstalker # cli debugger
+      bugstalker # cli debugger
       # keep-sorted start
       cargo-auditable # make production Rust binaries auditable
       cargo-cache # rust cache cli
