@@ -33,6 +33,7 @@ in {
         nautilus # file explorer
         playerctl # utility for controlling mpris media players
         totem # video player
+        gpu-screen-recorder # FIXME: until https://github.com/NixOS/nixpkgs/pull/485772 is merged
 
         (pkgs.onlyBin pkgs.networkmanagerapplet)
       ])
@@ -49,6 +50,7 @@ in {
     security.soteria.enable = true;
 
     services = {
+      # keep-sorted start block=true
       avahi = {
         enable = true;
         nssmdns4 = true;
@@ -56,17 +58,25 @@ in {
       geoclue2.enable = true;
       gnome.sushi.enable = true; # quick previewer for nautilus
       gvfs.enable = true; # userspace virtual filesystem
+      noctalia-shell = {
+        enable = true;
+        package = pkgs.noctalia-shell; # taken from overlay
+      };
       udisks2.enable = true; # dbus service for querying and manipulating storage devices
+      # keep-sorted end
     };
 
     programs = {
+      # keep-sorted start block=true
       evince.enable = true; # document viewer
       gnome-disks.enable = true; # udisk frontend
+      gpu-screen-recorder.enable = true; # for noctalia screen recording plugin
       seahorse.enable = true; # manager for gnome keyring
       ssh = {
         askPassword = "${pkgs.openssh-askpass}/libexec/gtk-ssh-askpass";
         enableAskPassword = true;
       };
+      # keep-sorted end
     };
 
     xdg = {

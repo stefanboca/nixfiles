@@ -144,22 +144,12 @@ in {
             include optional=true "dev.kdl"
           '';
         binds = {
-          "XF86MonBrightnessUp".spawn = mkForce ["dms" "ipc" "brightness" "increment" "5" "backlight:intel_backlight"];
-          "XF86MonBrightnessDown".spawn = mkForce ["dms" "ipc" "brightness" "decrement" "5" "backlight:intel_backlight"];
-          "Shift+XF86MonBrightnessUp" = {
-            spawn = ["dms" "ipc" "brightness" "increment" "5" "backlight:asus_screenpad"];
-            parameters.allow-when-locked = true;
-          };
-          "Shift+XF86MonBrightnessDown" = {
-            spawn = ["dms" "ipc" "brightness" "decrement" "5" "backlight:asus_screenpad"];
-            parameters.allow-when-locked = true;
-          };
           "XF86DisplayToggle" = {
             spawn = ["toggle-screenpad-backlight"];
             parameters.allow-when-locked = true;
           };
           "XF86Launch1" = {
-            spawn = ["dms" "ipc" "mpris" "playPause"];
+            spawn = ["noctalia-shell" "ipc" "call" "media" "playPause"];
             parameters.allow-when-locked = true;
           };
           "Mod+XF86Launch2".action = "focus-monitor-next";

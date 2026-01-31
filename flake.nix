@@ -25,8 +25,8 @@
         xwayland-satellite-stable.follows = "";
       };
     };
-    dank-material-shell.url = "github:AvengeMedia/DankMaterialShell";
-    dank-material-shell.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia-shell.url = "github:noctalia-dev/noctalia-shell";
+    noctalia-shell.inputs.nixpkgs.follows = "nixpkgs";
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";

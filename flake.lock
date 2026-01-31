@@ -147,27 +147,6 @@
         "type": "github"
       }
     },
-    "dank-material-shell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "quickshell": "quickshell"
-      },
-      "locked": {
-        "lastModified": 1769742093,
-        "narHash": "sha256-GzWl3nzW6fedPNGoT/g7vmG/RIAB0foJJvzlL3Ksi0o=",
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
-        "rev": "67d3aa9da31322f1647afd5a40b217aca2f3d581",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "DankMaterialShell",
-        "type": "github"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -564,33 +543,30 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
-    "quickshell": {
+    "noctalia-shell": {
       "inputs": {
         "nixpkgs": [
-          "dank-material-shell",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1766725085,
-        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
-        "ref": "refs/heads/master",
-        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
-        "revCount": 715,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+        "lastModified": 1769900893,
+        "narHash": "sha256-lhH1TeBRXDNvCZKNzEfqiONLHo4UoLl9hHhro52Bo9E=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "834bbd119b6f7ba88df960855dcf8ceb0f698892",
+        "type": "github"
       },
       "original": {
-        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
-        "type": "git",
-        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
       }
     },
     "root": {
       "inputs": {
         "autocpu": "autocpu",
         "catppuccin": "catppuccin",
-        "dank-material-shell": "dank-material-shell",
         "disko": "disko",
         "fenix": "fenix",
         "firefox-nightly": "firefox-nightly",
@@ -600,6 +576,7 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "noctalia-shell": "noctalia-shell",
         "secrets": "secrets",
         "snv": "snv",
         "sops-nix": "sops-nix",

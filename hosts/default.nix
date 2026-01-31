@@ -17,6 +17,7 @@
       inputs.autocpu.nixosModules.default
       inputs.disko.nixosModules.disko
       inputs.hjem.nixosModules.default
+      inputs.noctalia-shell.nixosModules.default
       inputs.sops-nix.nixosModules.sops
 
       inputs.nixos-hardware.nixosModules.asus-battery

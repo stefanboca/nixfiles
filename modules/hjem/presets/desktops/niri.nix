@@ -19,7 +19,6 @@ in {
       config =
         # kdl
         ''
-          config-notification { disable-failed; } // handled by dms
           hotkey-overlay { skip-at-startup; }
           prefer-no-csd
           screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
@@ -108,70 +107,74 @@ in {
           parameters.hotkey-overlay-title = "Open Browser";
         };
         "Mod+Space" = {
-          spawn = ["dms" "ipc" "spotlight" "toggle"];
+          spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
           parameters.hotkey-overlay-title = "Application Launcher";
         };
         "Mod+Ctrl+B" = {
-          spawn = ["dms" "ipc" "bar" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle DMS Bar";
+          spawn = ["noctalia-shell" "ipc" "call" "bar" "toggle"];
+          parameters.hotkey-overlay-title = "Toggle Bar";
         };
-        "Mod+Ctrl+N" = {
-          spawn = ["dms" "ipc" "notepad" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle DMS Notepad";
+        "Mod+Ctrl+W" = {
+          spawn = ["noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"];
+          parameters.hotkey-overlay-title = "Toggle Desktop Widgets";
         };
         "Mod+X" = {
-          spawn = ["dms" "ipc" "powermenu" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle DMS Power Menu";
+          spawn = ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
+          parameters.hotkey-overlay-title = "Toggle Session Menu";
         };
         "Super+Alt+L" = {
-          spawn = ["dms" "ipc" "lock" "lock"];
+          spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
           parameters.hotkey-overlay-title = "Lock";
         };
+        "Mod+Ctrl+Shift+P" = {
+          spawn = ["noctalia-shell" "ipc" "call" "powerProfile" "toggleNoctaliaPerformance"];
+          parameters.hotkey-overlay-title = "Toggle Noctalia Performance Mode";
+        };
         "Mod+Ctrl+Shift+R" = {
-          spawn = ["dms" "restart"];
+          spawn = ["systemctl" "--user" "restart" "noctalia-shell.service"];
+          parameters.hotkey-overlay-title = "Restart Noctalia Shell";
           parameters.allow-when-locked = true;
-          parameters.hotkey-overlay-title = "Restart DMS";
         };
 
         XF86AudioRaiseVolume = {
-          spawn = ["dms" "ipc" "audio" "increment" "3"];
+          spawn = ["noctalia-shell" "ipc" "call" "volume" "increase"];
           parameters.allow-when-locked = true;
         };
         XF86AudioLowerVolume = {
-          spawn = ["dms" "ipc" "audio" "decrement" "3"];
-          parameters.allow-when-locked = true;
-        };
-        XF86AudioPlay = {
-          spawn = ["dms" "ipc" "mpris" "playPause"];
-          parameters.allow-when-locked = true;
-        };
-        XF86AudioStop = {
-          spawn = ["dms" "ipc" "mpris" "stop"];
-          parameters.allow-when-locked = true;
-        };
-        XF86AudioNext = {
-          spawn = ["dms" "ipc" "mpris" "next"];
-          parameters.allow-when-locked = true;
-        };
-        XF86AudioPrev = {
-          spawn = ["dms" "ipc" "mpris" "previous"];
+          spawn = ["noctalia-shell" "ipc" "call" "volume" "decrease"];
           parameters.allow-when-locked = true;
         };
         XF86AudioMute = {
-          spawn = ["dms" "ipc" "audio" "mute"];
+          spawn = ["noctalia-shell" "ipc" "call" "volume" "muteOutput"];
           parameters.allow-when-locked = true;
         };
         XF86AudioMicMute = {
-          spawn = ["dms" "ipc" "audio" "micmute"];
+          spawn = ["noctalia-shell" "ipc" "call" "volume" "muteInput"];
+          parameters.allow-when-locked = true;
+        };
+        XF86AudioPlay = {
+          spawn = ["noctalia-shell" "ipc" "call" "media" "playPause"];
+          parameters.allow-when-locked = true;
+        };
+        XF86AudioStop = {
+          spawn = ["noctalia-shell" "ipc" "call" "media" "stop"];
+          parameters.allow-when-locked = true;
+        };
+        XF86AudioNext = {
+          spawn = ["noctalia-shell" "ipc" "call" "media" "next"];
+          parameters.allow-when-locked = true;
+        };
+        XF86AudioPrev = {
+          spawn = ["noctalia-shell" "ipc" "call" "media" "previous"];
           parameters.allow-when-locked = true;
         };
 
         XF86MonBrightnessUp = {
-          spawn = ["dms" "ipc" "brightnessctl" "increment" "5"];
+          spawn = ["noctalia-shell" "ipc" "call" "brightness" "increase"];
           parameters.allow-when-locked = true;
         };
         XF86MonBrightnessDown = {
-          spawn = ["dms" "ipc" "brightnessctl" "decrement" "5"];
+          spawn = ["noctalia-shell" "ipc" "call" "brightness" "decrease"];
           parameters.allow-when-locked = true;
         };
 
@@ -273,16 +276,6 @@ in {
         "Mod+Shift+E".action = "quit";
         "Ctrl+Alt+Delete".action = "quit";
       };
-    };
-
-    rum.programs.dank-material-shell = {
-      enable = true;
-
-      audioWavelength.enable = true;
-      clipboard.enable = true;
-      systemSound.enable = true;
-
-      integrations.niri.enable = true;
     };
   };
 }

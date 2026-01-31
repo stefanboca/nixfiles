@@ -36,7 +36,6 @@ in {
     };
 
     services = {
-      accounts-daemon.enable = true; # used by dms
       pulseaudio.enable = false;
       pipewire = {
         enable = true;
