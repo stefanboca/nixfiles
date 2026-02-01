@@ -25,7 +25,6 @@ in {
 
       window-inherit-working-directory = true;
       window-theme = "ghostty";
-      window-decoration = "none";
       gtk-tabs-location = "bottom";
       window-padding-x = 0;
       window-padding-y = 0;
