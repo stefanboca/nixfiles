@@ -122,6 +122,10 @@ in {
           spawn = ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
           parameters.hotkey-overlay-title = "Toggle Session Menu";
         };
+        "Mod+N" = {
+          spawn = ["noctalia-shell" "ipc" "call" "nightLight" "toggle"];
+          parameters.hotkey-overlay-title = "Toggle Night Light";
+        };
         "Super+Alt+L" = {
           spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
           parameters.hotkey-overlay-title = "Lock";
