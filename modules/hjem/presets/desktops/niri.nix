@@ -266,9 +266,18 @@ in {
         "Mod+W".action = "toggle-column-tabbed-display";
 
         "XF86SelectiveScreenshot".action = "screenshot";
-        "Print".action = "screenshot";
-        "Shift+Print".action = "screenshot-window";
-        "Ctrl+Print".action = "screenshot-screen";
+        "Print" = {
+          action = "screenshot";
+          parameters.hotkey-overlay-title = "Screenshot";
+        };
+        "Shift+Print" = {
+          action = "screenshot-window";
+          parameters.hotkey-overlay-title = "Screenshot Window";
+        };
+        "Ctrl+Print" = {
+          action = "screenshot-screen";
+          parameters.hotkey-overlay-title = "Screenshot Screen";
+        };
 
         "Mod+Escape" = {
           action = "toggle-keyboard-shortcuts-inhibit";

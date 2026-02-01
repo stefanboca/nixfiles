@@ -33,6 +33,7 @@ in {
         nautilus # file explorer
         playerctl # utility for controlling mpris media players
         totem # video player
+        resources # system monitor
         gpu-screen-recorder # FIXME: until https://github.com/NixOS/nixpkgs/pull/485772 is merged
 
         (pkgs.onlyBin pkgs.networkmanagerapplet)
