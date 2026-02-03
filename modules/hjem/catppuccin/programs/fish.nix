@@ -19,7 +19,7 @@ in {
     rum.programs.fish.config =
       # fish
       ''
-        fish_config theme choose "${themeName}"
+        status is-interactive && fish_config theme choose "${themeName}"
       '';
   };
 }
