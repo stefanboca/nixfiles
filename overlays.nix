@@ -18,6 +18,7 @@ inputs: {
   autocpu = inputs.autocpu.overlays.default;
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
+  ghostty = inputs.ghostty.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
