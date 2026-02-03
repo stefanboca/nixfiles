@@ -83,11 +83,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765166178,
-        "narHash": "sha256-CwaO17nCTb2lvqY3dupi0RXKlpOFUwhqLwVW3djAQyU=",
+        "lastModified": 1770153157,
+        "narHash": "sha256-JPrMJ+YhsjEll7X9mRoDci7l0VkofD4UIN5xTJyHNiY=",
         "owner": "saghen",
         "repo": "blink.pairs",
-        "rev": "65978aadaf9b7d6cae59c1c51cf2b366b370546e",
+        "rev": "2a7cb15f2c4bbbbe178ebf9f3fdae19aa6d28d39",
         "type": "github"
       },
       "original": {
@@ -724,11 +724,11 @@
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1770149608,
-        "narHash": "sha256-RIOCj5YYddkS1G64cSgwJKDFu/AeuqcVGRdx+TCjc2w=",
+        "lastModified": 1770153214,
+        "narHash": "sha256-ZGg1cyK7G9cZ3FNcVXeibOgVsM/XVOAgw/vJLFQp3Nw=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "18823067fe8073147ab6fba323a22d12a5c58205",
+        "rev": "386b87609d5a57d0e0edc1ef223ff1a1dfedeee0",
         "type": "github"
       },
       "original": {
