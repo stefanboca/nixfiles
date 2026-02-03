@@ -22,7 +22,6 @@ in {
           hotkey-overlay { skip-at-startup; }
           prefer-no-csd
           screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
-          xwayland-satellite { path "xwayland-satellite"; }
 
           cursor {
             hide-when-typing

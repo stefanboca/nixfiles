@@ -14,12 +14,13 @@ inputs: {
       };
   };
 
-  inherit (inputs.niri.overlays) niri;
   autocpu = inputs.autocpu.overlays.default;
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
+  niri = inputs.niri.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
+  xwayland-satellite = inputs.xwayland-satellite.overlays.default;
 }

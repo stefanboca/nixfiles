@@ -17,13 +17,13 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        niri-stable.follows = "";
-        nixpkgs-stable.follows = "";
-        xwayland-satellite-stable.follows = "";
-      };
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "";
+    };
+    xwayland-satellite = {
+      url = "github:Supreeeme/xwayland-satellite";
+      inputs.rust-overlay.follows = "";
     };
     noctalia-shell.url = "github:noctalia-dev/noctalia-shell";
     noctalia-shell.inputs.nixpkgs.follows = "nixpkgs";

@@ -12,7 +12,7 @@ in {
   options.presets.programs.niri = {
     enable = mkEnableOption "stefan preset";
 
-    xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite-unstable" {nullable = true;};
+    xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite" {nullable = true;};
   };
 
   config = mkIf cfg.enable {
@@ -41,10 +41,7 @@ in {
       (mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package])
     ];
 
-    programs.niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
+    programs.niri.enable = true;
 
     fonts.enableDefaultPackages = true;
 
