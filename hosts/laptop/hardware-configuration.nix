@@ -72,13 +72,14 @@ in {
 
   powerManagement.powertop.enable = true;
   services = {
-    thermald.enable = mkForce false;
-    watt = {
-      enable = true;
-      package = pkgs.watt; # use package from overlay
-      settings = importTOML ./watt.toml;
-    };
+    # thermald.enable = mkForce false;
     power-profiles-daemon.enable = false;
+    tuned.enable = true;
+    # watt = {
+    #   enable = true;
+    #   package = pkgs.watt; # use package from overlay
+    #   settings = importTOML ./watt.toml;
+    # };
     upower.enable = true;
   };
 
