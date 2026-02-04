@@ -14,7 +14,7 @@ inputs: {
       };
   };
 
-  autocpu = inputs.autocpu.overlays.default;
+  # keep-sorted start
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
@@ -22,5 +22,7 @@ inputs: {
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
+  watt = inputs.watt.overlays.default;
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
+  # keep-sorted end
 }

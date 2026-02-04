@@ -14,11 +14,11 @@
       inputs.secrets.nixosModules.common
       inputs.secrets.nixosModules.laptop
 
-      inputs.autocpu.nixosModules.default
       inputs.disko.nixosModules.disko
       inputs.hjem.nixosModules.default
       inputs.noctalia-shell.nixosModules.default
       inputs.sops-nix.nixosModules.sops
+      inputs.watt.nixosModules.default
 
       inputs.nixos-hardware.nixosModules.asus-battery
       inputs.nixos-hardware.nixosModules.common-cpu-intel

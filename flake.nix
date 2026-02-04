@@ -72,13 +72,8 @@
       };
     };
 
-    autocpu = {
-      url = "github:stefanboca/autocpu";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "";
-      };
-    };
+    watt.url = "github:NotAShelf/watt";
+    watt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

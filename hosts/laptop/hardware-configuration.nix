@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib.modules) mkForce;
+  inherit (lib.trivial) importTOML;
 in {
   boot = {
     loader = {
@@ -23,6 +24,10 @@ in {
     extraModulePackages = [
       (pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;})
     ];
+
+    kernel.sysfs = {
+      devices.system.cpu.intel_pstate.hwp_dynamic_boost = 1;
+    };
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -67,36 +72,11 @@ in {
 
   powerManagement.powertop.enable = true;
   services = {
-    autocpu = {
+    thermald.enable = mkForce false;
+    watt = {
       enable = true;
-      package = pkgs.autocpu; # use package from overlay
-      settings = {
-        upower_battery_path = "/org/freedesktop/UPower/devices/battery_BAT0";
-        on_battery = "powersave";
-        on_wallpower = "performance";
-
-        presets = {
-          powersave = {
-            epp = "power";
-            hwp_dynamic_boost = false;
-            no_turbo = true;
-            scaling_governor = "powersave";
-          };
-
-          balanced = {
-            epp = "default";
-            hwp_dynamic_boost = false;
-            no_turbo = true;
-            scaling_governor = "powersave";
-          };
-
-          performance = {
-            hwp_dynamic_boost = true;
-            no_turbo = false;
-            scaling_governor = "performance";
-          };
-        };
-      };
+      package = pkgs.watt; # use package from overlay
+      settings = importTOML ./watt.toml;
     };
     power-profiles-daemon.enable = false;
     upower.enable = true;
@@ -105,5 +85,6 @@ in {
   specialisation.battery-saver.configuration = {
     environment.etc."specialisation".text = "battery-saver";
     hardware.asus.battery.chargeUpto = mkForce 100;
+    boot.kernel.sysfs.devices.system.cpu.intel_pstate.hwp_dynamic_boost = mkForce 0;
   };
 }
