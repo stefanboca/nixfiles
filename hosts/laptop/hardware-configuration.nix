@@ -106,9 +106,4 @@ in {
     environment.etc."specialisation".text = "battery-saver";
     hardware.asus.battery.chargeUpto = mkForce 100;
   };
-
-  specialisation.gaming.configuration = {
-    # liquorix disables the intel_pstate driver
-    services.autocpu.enable = mkForce false;
-  };
 }

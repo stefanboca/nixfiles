@@ -33,7 +33,7 @@ in {
       boot = {
         kernel.sysctl = {"vm.swappiness" = 10;};
         kernelParams = ["threadirqs"];
-        kernelPackages = mkForce pkgs.linuxKernel.packages.linux_lqx;
+        kernelPackages = mkForce pkgs.linuxKernel.packages.linux_zen;
       };
 
       security.pam.loginLimits = [
@@ -65,16 +65,23 @@ in {
 
       hardware.nvidia.powerManagement.finegrained = mkForce false;
 
-      services.pipewire = {
-        jack.enable = true;
-        extraConfig.pipewire."92-low-latency" = {
-          "context.properties" = {
-            "default.clock.rate" = 48000;
-            "default.clock.allowed-rates" = [44100 48000 96000];
-            "default.clock.quantum" = 128;
-            "default.clock.min-quantum" = 16;
-            "default.clock.max-quantum" = 1024;
+      services = {
+        pipewire = {
+          jack.enable = true;
+          extraConfig.pipewire."92-low-latency" = {
+            "context.properties" = {
+              "default.clock.rate" = 48000;
+              "default.clock.allowed-rates" = [44100 48000 96000];
+              "default.clock.quantum" = 128;
+              "default.clock.min-quantum" = 16;
+              "default.clock.max-quantum" = 1024;
+            };
           };
+        };
+        scx = {
+          enable = true;
+          scheduler = "scx_lavd";
+          package = pkgs.scx.rustscheds;
         };
       };
     };
