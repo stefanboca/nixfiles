@@ -5,7 +5,7 @@ rec {
     _class = "hjem";
   };
   presets = {lib, ...}: {
-    imports = lib.filesystem.listFilesRecursive ./presets;
+    imports = lib.fileset.toList (lib.fileset.fileFilter (file: file.hasExt "nix") ./presets);
     _class = "hjem";
   };
   rum-extensions = {lib, ...}: {

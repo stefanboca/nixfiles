@@ -1,7 +1,6 @@
 {
   inputs,
   modulesPath,
-  pkgs,
   self,
   ...
 }: {

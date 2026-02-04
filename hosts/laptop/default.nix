@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  inherit (lib.modules) mkAfter mkForce;
+  inherit (lib.modules) mkAfter;
 
   pkgs-cuda = import pkgs.path {
     inherit (pkgs) overlays;

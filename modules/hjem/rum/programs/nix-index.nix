@@ -53,11 +53,7 @@ in {
     xdg.cache.files."nix-index/files" = mkIf cfg.database.cache.enable {source = cfg.database.package;};
 
     rum.programs.fish.functions = mkIf cfg.integrations.fish.enable {
-      __fish_command_not_found_handler = pkgs.writers.writeFish "__fish_command_not_found_handler.fish" "
-        function __fish_command_not_found_handler --on-event fish_command_not_found
-            ${command-not-found} $argv
-        end
-      ";
+      fish_command_not_found = "${command-not-found} $argv";
     };
     rum.programs.zsh.initConfig = mkIf cfg.integrations.zsh.enable (
       mkAfter ''source ${cfg.package}/etc/profile.d/command-not-found.sh''
