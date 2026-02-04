@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib.modules) mkForce;
-  inherit (lib.trivial) importTOML;
 in {
   boot = {
     loader = {
@@ -70,7 +69,7 @@ in {
     memoryPercent = 50;
   };
 
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
   services = {
     # thermald.enable = mkForce false;
     power-profiles-daemon.enable = false;
