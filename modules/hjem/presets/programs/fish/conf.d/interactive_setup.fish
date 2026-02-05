@@ -22,4 +22,11 @@ end
 
 function __fish_async_prompt_exit --on-event fish_exit
     set -e $__fish_async_prompt
+
+    # clean up for any shells that failed to do so (crashed, etc.)
+    for pid in (set -nU | string match --regex --all --groups-only "__fish_async_prompt_(\d+)")
+        if not ps -p $pid &>/dev/null
+            set -e __fish_async_prompt_$pid
+        end
+    end
 end
