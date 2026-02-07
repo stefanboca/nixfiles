@@ -118,7 +118,6 @@ in {
       lsb-release
       lshw
       lsof
-      net-tools
       nmap
       ouch
       parted
