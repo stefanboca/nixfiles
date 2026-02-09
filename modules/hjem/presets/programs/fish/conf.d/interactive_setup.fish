@@ -11,11 +11,12 @@ function __fish_async_prompt_repaint --on-variable $__fish_async_prompt
 end
 
 function __fish_async_prompt --on-event fish_prompt
-    set -q $__fish_async_prompt_last_pid && commanhd kill $__fish_async_prompt_last_pid 2>/dev/null
+    set -q $__fish_async_prompt_last_pid && command kill $__fish_async_prompt_last_pid 2>/dev/null
 
     fish --private --command "
         set -U $__fish_async_prompt \"\$(fish_vcs_prompt)\" \"\$(fish_rustc_prompt)\"
     " &
+    disown $last_pid 2>/dev/null
 
     set -g __fish_async_prompt_last_pid $last_pid
 end
