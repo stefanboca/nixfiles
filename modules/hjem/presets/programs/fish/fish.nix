@@ -69,16 +69,6 @@ in {
           s = "snv";
           se = "sudoedit";
         };
-
-        earlyConfigFiles = {
-          configure_interactive =
-            # fish
-            ''
-              status is-interactive || exit 0
-              set -g fish_key_bindings fish_hybrid_key_bindings
-              fish_config theme choose catppuccin-mocha
-            '';
-        };
       };
 
       atuin = {
