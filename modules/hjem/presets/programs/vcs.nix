@@ -64,7 +64,7 @@ in {
             inherit (cfg) name email;
             inherit signingKey;
           };
-          init.defautlBranch = "main";
+          init.defaultBranch = "main";
           pull.rebase = true;
 
           gpg = {
