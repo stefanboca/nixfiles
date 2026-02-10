@@ -62,6 +62,7 @@ in {
             user_pref("extensions.update.autoUpdateDefault", false);
             user_pref("extensions.webextensions.ExtensionStorageIDB.enabled", false);
             user_pref("general.autoScroll", true);
+            user_pref("intl.accept_languages", "en-US");
             user_pref("network.lna.block_trackers", true); // block third-party trackers from accessing localhost and local network resources
             user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
             user_pref("privacy.clearOnShutdown_v2.formdata", true);
