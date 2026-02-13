@@ -1,5 +1,5 @@
 {
-  # keep-sorted start block=true
+  # keep-sorted start block=yes
   catppuccin = {...}: {
     imports = [./catppuccin];
     _class = "nixos";

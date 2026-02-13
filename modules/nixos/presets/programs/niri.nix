@@ -48,7 +48,7 @@ in {
     security.soteria.enable = true;
 
     services = {
-      # keep-sorted start block=true
+      # keep-sorted start block=yes
       avahi = {
         enable = true;
         nssmdns4 = true;
@@ -65,7 +65,7 @@ in {
     };
 
     programs = {
-      # keep-sorted start block=true
+      # keep-sorted start block=yes
       evince.enable = true; # document viewer
       gnome-disks.enable = true; # udisk frontend
       gpu-screen-recorder.enable = true; # for noctalia screen recording plugin

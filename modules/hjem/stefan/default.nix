@@ -48,7 +48,7 @@ in {
       misc.xdg.enable = true;
       misc.gtk.enable = true;
       programs = {
-        # keep-sorted start block=true
+        # keep-sorted start block=yes
         cli.enable = true;
         firefox.enable = true;
         fish.enable = true;
