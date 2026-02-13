@@ -20,6 +20,7 @@ inputs: {
   ghostty = inputs.ghostty.overlays.default;
   niri = inputs.niri.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
+  smfh = inputs.hjem.inputs.smfh.overlays.default;
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
