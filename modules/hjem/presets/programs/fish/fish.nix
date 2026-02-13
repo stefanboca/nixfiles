@@ -22,17 +22,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO: explore starship prompt
-
     # The following are all vendored plugins. They're added to `packages`
     # instead of using `rum.programs.fish.plugins`, in order to avoid IFD,
     # which the rum module uses to check if they're vendored (and then, if they
-    # are, adds them to `packages`).
+    # are, adds them to `packages` anyways).
     packages = with pkgs.fishPlugins; [
       autopair
       git-abbr
       puffer
-      # tide
     ];
 
     rum.programs = {
@@ -40,19 +37,14 @@ in {
         enable = true;
 
         abbrs = {
-          sc = "sudo systemctl --system";
+          sc = "systemctl --system";
           scu = "systemctl --user";
 
-          nb = "nix build";
           nd = "nix develop -c fish";
           nf = "nix flake";
           nfu = "nix flake update";
-          nhb = "nh home build";
-          nhs = "nh home switch";
-          nr = "nix run";
-          nrr = "nh os repl";
           nrs = "nh os switch";
-          ns = "nix search";
+          ns = "nix shell";
           nsh = "nix shell";
 
           ls = "eza";
@@ -81,11 +73,11 @@ in {
           sync_frequency = "1h";
           workspaces = true;
           stats = {
-            # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
-            common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "port" "systemctl" "uv"];
-            # Set commands that should be totally stripped and ignored from stats
-            common_prefix = ["sudo"];
-            # Set commands that will be completely ignored from stats
+            # commands where the subcommand should be considered
+            common_subcommands = ["cargo" "docker" "git" "ip" "jj" "nh" "nix" "nmcli" "npm" "pnpm" "podman" "systemctl" "uv"];
+            # command prefixes that should be stripped and ignored
+            common_prefix = ["sudo" "run0"];
+            # commands that will be completely ignored from stats
             ignored_commands = ["cd" "ls" "z" "eza"];
           };
         };
