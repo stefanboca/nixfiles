@@ -56,7 +56,6 @@ in {
         ignore =
           # gitignore
           ''
-            .jj
             *.scratch.*
           '';
         settings = {
