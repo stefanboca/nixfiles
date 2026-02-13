@@ -59,12 +59,6 @@ in {
     users.stefan.enable = true;
   };
 
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
-  };
-  hardware.nvidia-container-toolkit.enable = true;
-
   services = {
     displayManager.sddm = {
       enable = true;
