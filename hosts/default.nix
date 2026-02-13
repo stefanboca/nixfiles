@@ -18,7 +18,6 @@
       inputs.hjem.nixosModules.default
       inputs.noctalia-shell.nixosModules.default
       inputs.sops-nix.nixosModules.sops
-      inputs.watt.nixosModules.default
 
       inputs.nixos-hardware.nixosModules.asus-battery
       inputs.nixos-hardware.nixosModules.common-cpu-intel

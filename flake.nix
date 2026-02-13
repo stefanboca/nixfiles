@@ -71,9 +71,6 @@
         treefmt-nix.follows = "";
       };
     };
-
-    watt.url = "github:NotAShelf/watt";
-    watt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
