@@ -152,12 +152,12 @@ in {
             spawn = ["noctalia-shell" "ipc" "call" "media" "playPause"];
             parameters.allow-when-locked = true;
           };
-          "Mod+XF86Launch2".action = "focus-monitor-next";
-          "Mod+Shift+XF86Launch2".action = "move-window-to-monitor-next";
-          "Mod+Ctrl+XF86Launch2".action = "move-workspace-to-monitor-next";
-          "XF86Launch2".action = "focus-monitor-previous";
-          "Shift+XF86Launch2".action = "move-window-to-monitor-previous";
-          "Ctrl+XF86Launch2".action = "move-workspace-to-monitor-previous";
+          "Mod+XF86Display".action = "focus-monitor-next";
+          "Mod+Shift+XF86Display".action = "move-window-to-monitor-next";
+          "Mod+Ctrl+XF86Display".action = "move-workspace-to-monitor-next";
+          "XF86Display".action = "focus-monitor-previous";
+          "Shift+XF86Display".action = "move-window-to-monitor-previous";
+          "Ctrl+XF86Display".action = "move-workspace-to-monitor-previous";
         };
       };
     };
