@@ -585,7 +585,6 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "treefmt-nix": "treefmt-nix",
-        "watt": "watt",
         "xwayland-satellite": "xwayland-satellite"
       }
     },
@@ -850,26 +849,6 @@
       "original": {
         "owner": "brianhuster",
         "repo": "unnest.nvim",
-        "type": "github"
-      }
-    },
-    "watt": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770290744,
-        "narHash": "sha256-5rGhOyqxeEDXmMPIhNX7h6GIppcXRwJoEu/GBtlM8e0=",
-        "owner": "NotAShelf",
-        "repo": "watt",
-        "rev": "4a580db944dd9d616504756b09a6a0cc46754b79",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "watt",
         "type": "github"
       }
     },
