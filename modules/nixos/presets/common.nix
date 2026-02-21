@@ -45,7 +45,7 @@ in {
 
     documentation = {
       dev.enable = true;
-      man.generateCaches = true;
+      man.cache.enable = true;
     };
   };
 }

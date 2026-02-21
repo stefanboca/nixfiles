@@ -139,7 +139,7 @@ in {
       info.enable = false;
       nixos.enable = false;
       man = {
-        generateCaches = mkDefault false;
+        cache.enable = mkDefault false;
         man-db.enable = false;
         mandoc.enable = true;
       };
