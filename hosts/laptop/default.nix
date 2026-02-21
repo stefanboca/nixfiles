@@ -101,12 +101,14 @@ in {
       presets.users.stefan.enable = true;
 
       packages = with pkgs; [
+        # keep-sorted start
+        # beets
         bitwarden-desktop
-        calibre
+        # calibre
         easyeffects
         esphome
         fluent-reader
-        freecad
+        # freecad
         geogebra6
         gnome-decoder
         helvum
@@ -118,6 +120,8 @@ in {
         rnote
         signal-desktop
         telegram-desktop
+        zed-editor
+        # keep-sorted end
         pkgs-cuda.blender
         # musescore
         # xournalpp
