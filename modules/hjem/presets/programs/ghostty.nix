@@ -18,6 +18,8 @@ in {
     settings = {
       auto-update = "off";
       config-file = "?dev";
+      palette-generate = true;
+      palette-harmonious = true;
       quit-after-last-window-closed = true;
       quit-after-last-window-closed-delay = "5m";
       scrollback-limit = 128 * 1024 * 1024; # 128 MB
