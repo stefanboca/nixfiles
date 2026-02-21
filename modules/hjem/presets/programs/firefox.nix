@@ -30,6 +30,7 @@ in {
             user_pref("browser.aboutConfig.showWarning", false);
             user_pref("browser.bookmarks.restore_default_bookmarks", false);
             user_pref("browser.contentblocking.category", "strict");
+            user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
             user_pref("browser.download.useDownloadDir", false);
             user_pref("browser.formfill.enable", false);
             user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
