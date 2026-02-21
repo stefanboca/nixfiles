@@ -85,12 +85,12 @@ in {
 
           window-rule {
             clip-to-geometry true
-              geometry-corner-radius 10.0 10.0 10.0 10.0
+            geometry-corner-radius 10
           }
 
           window-rule {
-              match app-id="^firefox" title="^Picture-in-Picture$"
-              open-floating true
+            match app-id="^firefox" title="^Picture-in-Picture$"
+            open-floating true
           }
         '';
 
@@ -106,7 +106,7 @@ in {
           parameters.hotkey-overlay-title = "Open Browser";
         };
         "Mod+Space" = {
-          spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+          spawn = ["vicinae" "toggle"];
           parameters.hotkey-overlay-title = "Application Launcher";
         };
         "Mod+Ctrl+B" = {
@@ -287,6 +287,49 @@ in {
 
         "Mod+Shift+E".action = "quit";
         "Ctrl+Alt+Delete".action = "quit";
+      };
+    };
+
+    rum.programs.vicinae = {
+      enable = true;
+      settings = {
+        "$schema" = "https://vicinae.com/schemas/config.json";
+        close_on_focus_loss = true;
+        pop_to_root_on_close = true;
+        theme.dark = {
+          name = "catppuccin-mocha";
+          icon_theme = "Catppuccin Mocha Teal";
+        };
+        launcher_window = {
+          opacity = 0.8;
+          client_side_decorations.enabled = true;
+          size = {
+            width = 1000;
+            height = 620;
+          };
+        };
+        providers = {
+          # keep-sorted start block=yes
+          "@knoopx/store.vicinae.nix".entrypoints = {
+            flake-packages.enabled = false;
+            home-manager-options.enabled = false;
+            options.alias = "nos";
+            packages.alias = "nps";
+          };
+          applications.preferences.launchPrefix = "niri msg action spawn --";
+          core.entrypoints = {
+            keybind-settings.enabled = false;
+            prune-memory.enabeld = false;
+            settings.enabled = true;
+            sponsor.enabled = false;
+          };
+          developer.enabled = false;
+          raycast.enabled = false;
+          system.entrypoints.browse-apps.enabled = true;
+          theme.enabled = false;
+          wm.enabled = false;
+          # keep-sorted end
+        };
       };
     };
   };
