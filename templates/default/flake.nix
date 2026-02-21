@@ -16,24 +16,24 @@
     inherit (lib.attrsets) genAttrs mapAttrs' nameValuePair;
 
     systems = ["x86_64-linux" "aarch64-linux"];
-    forAllSystems = f: genAttrs systems (system: f (import nixpkgs {inherit system;}));
-
-    treefmt = forAllSystems (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+    forAllSystems = genAttrs systems;
+    nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
+    treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
     packages = forAllSystems (_: {});
 
-    devShells = forAllSystems (pkgs: {
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgsFor.${system};
+    in {
       default = pkgs.mkShellNoCC {};
     });
 
-    formatter = forAllSystems (pkgs: treefmt.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
+    formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
 
-    checks = forAllSystems (pkgs: let
-      inherit (pkgs.stdenv.hostPlatform) system;
-
+    checks = forAllSystems (system: let
       packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
       devShells = mapAttrs' (n: nameValuePair "devShell-${n}") self.devShells.${system};
-      formatting = {formatting = treefmt.${system}.config.build.check self;};
+      formatting = {formatting = treefmtFor.${system}.config.build.check self;};
     in
       packages // devShells // formatting);
   };
