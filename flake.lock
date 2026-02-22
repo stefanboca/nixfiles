@@ -176,11 +176,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771672907,
-        "narHash": "sha256-DilZyapDPyTwiN50doCBSgrYXXJCPKl6Cp8LDxOH28Q=",
+        "lastModified": 1771716172,
+        "narHash": "sha256-jq/qoSkxtNlNMx6z/ZRR4273+QhES6uGVp+sW/b/R38=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "d144ec1f93cb584dd2e3569c31fb1896928a5dc7",
+        "rev": "a9e4bcc5ea283c480d16d9d5541cbdf9d095abc0",
         "type": "github"
       },
       "original": {
@@ -273,11 +273,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1771694308,
-        "narHash": "sha256-jPxFDCVP6M6Pc0d1YfQUil/UTrrbV+Gkakp7O9qdH4A=",
+        "lastModified": 1771716954,
+        "narHash": "sha256-2KWVCw49AS3HDkslLczPDz6qhlemuEv0RTYcMUn4GKQ=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "2e172eeb60b0096f2946eb631b2e8bc294e45c62",
+        "rev": "1e380e8bf132b1993275e8e365aa6d46adb9cd8c",
         "type": "github"
       },
       "original": {
@@ -703,11 +703,11 @@
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1771702581,
-        "narHash": "sha256-E11PNvqygwOlRM7GWmZUc5s9kPFX4UfLUhb87Ka6Y9g=",
+        "lastModified": 1771719892,
+        "narHash": "sha256-nq8AVaIfR8jFpSQGLklrUGl7OeyzI9zNRIu8/9KFaw0=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "e48004dc1fa9a7dc394e066a35a0a1b0b2766b82",
+        "rev": "328e58a3ab8a224cba7b2b0c982b4eabf5fb3507",
         "type": "github"
       },
       "original": {
