@@ -642,22 +642,6 @@
         "url": "https://github.com/stefanboca/nixfiles-secrets"
       }
     },
-    "sigil-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1771138732,
-        "narHash": "sha256-mHbf8z3p46e7bfcc5gwXLZcfm7y3XkjCiwgGFckce2s=",
-        "owner": "Prgebish",
-        "repo": "sigil.nvim",
-        "rev": "62e305ec5cc9f59dcc15e4d5958199d0fd7689a8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Prgebish",
-        "repo": "sigil.nvim",
-        "type": "github"
-      }
-    },
     "smfh": {
       "inputs": {
         "nixpkgs": [
@@ -697,17 +681,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "sigil-nvim": "sigil-nvim",
         "tiny-code-action-nvim": "tiny-code-action-nvim",
         "treefmt-nix": [],
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1771784978,
-        "narHash": "sha256-Oh9UsAU0xQOEPy/skXA0BD4afudtovpPyaDMAkZLXyc=",
+        "lastModified": 1771787701,
+        "narHash": "sha256-QBHZz8p8CGMrBYpV7ZHrSdmQtOVCgl+EHF0LIUmhOCI=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "5549ba8c3e9cd9a4da93a1e997442a1048a8ba1b",
+        "rev": "7ca8097c7bebf6c6007cb7af89c5dff391f17c66",
         "type": "github"
       },
       "original": {
