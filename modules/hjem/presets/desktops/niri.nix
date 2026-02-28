@@ -83,6 +83,26 @@ in {
             }
           }
 
+          layer-rule {
+            match layer="top"
+            match layer="overlay"
+            background-effect {
+              xray false
+            }
+          }
+
+          window-rule {
+            match is-floating=true
+            background-effect {
+              xray false
+            }
+          }
+
+          window-rule {
+            match title="Vicinae Settings"
+            draw-border-with-background false
+          }
+
           window-rule {
             clip-to-geometry true
             geometry-corner-radius 10
