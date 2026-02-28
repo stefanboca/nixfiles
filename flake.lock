@@ -708,11 +708,11 @@
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1772237768,
-        "narHash": "sha256-bMuAzREXuPSvCcYBs3EJ98XEs8Y9Kw8RYh/BINkuI40=",
+        "lastModified": 1772239555,
+        "narHash": "sha256-I7QnheNx1JTGeZB2UOvq0OTwptiwAJz/bJ5LmR/m4bw=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "b2011908282dae3bfa569f11638f295494d7d27e",
+        "rev": "ac7ddd46e29fa21a697c4e02daf84a53b5adf951",
         "type": "github"
       },
       "original": {
