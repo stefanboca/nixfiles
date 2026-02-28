@@ -16,24 +16,28 @@ in {
     enable = true;
 
     settings = {
+      # keep-sorted start
       auto-update = "off";
+      background-blur = true;
+      background-opacity = 0.5;
       config-file = "?dev";
+      font-family = "Lilex";
+      font-feature = "cv09,cv10,cv11,ss01,ss03";
+      font-size = 10;
+      gtk-tabs-location = "bottom";
       palette-generate = true;
       palette-harmonious = true;
       quit-after-last-window-closed = true;
       quit-after-last-window-closed-delay = "5m";
       scrollback-limit = 128 * 1024 * 1024; # 128 MB
       shell-integration-features = true;
-
+      theme = "light:Catppuccin Latte,dark:Catppuccin Mocha";
+      unfocused-split-opacity = 0.85;
       window-inherit-working-directory = true;
-      window-theme = "ghostty";
-      gtk-tabs-location = "bottom";
       window-padding-x = 0;
       window-padding-y = 0;
-
-      font-family = "Lilex";
-      font-size = 10;
-      font-feature = "cv09,cv10,cv11,ss01,ss03";
+      window-theme = "ghostty";
+      # keep-sorted start
 
       keybind = [
         "alt+t=toggle_tab_overview"
