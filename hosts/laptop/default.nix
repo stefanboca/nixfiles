@@ -120,7 +120,6 @@ in {
         rnote
         signal-desktop
         telegram-desktop
-        zed-editor
         # keep-sorted end
         pkgs-cuda.blender
         # musescore
@@ -131,6 +130,24 @@ in {
       rum.misc.dconf = {
         settings."org/gnome/desktop/peripherals/touchscreens/04f3:2f2a".output = ["BOE" "0x0a8d" "0x00000000"];
         locks = ["org/gnome/desktop/peripherals/touchscreens/04f3:2f2a/output"];
+      };
+
+      rum.programs.zed-editor = {
+        enable = true;
+        extraPackages = with pkgs; [
+          # keep-sorted start
+          alejandra
+          harper
+          keep-sorted
+          nil
+          nixd
+          ruff
+          snv.rust-analyzer
+          tinymist
+          ty
+          vscode-langservers-extracted
+          # keep-sorted end
+        ];
       };
 
       rum.desktops.niri = {
