@@ -19,6 +19,7 @@ inputs: {
   firefox-nightly = inputs.firefox-nightly.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
   niri = inputs.niri.overlays.default;
+  noctalia-qs = inputs.noctalia-shell.inputs.noctalia-qs.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   smfh = inputs.hjem.inputs.smfh.overlays.default;
   snv = inputs.snv.overlays.default;
