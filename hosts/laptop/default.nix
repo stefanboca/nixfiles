@@ -59,6 +59,8 @@ in {
     users.stefan.enable = true;
   };
 
+  virtualisation.waydroid.enable = true;
+
   services = {
     displayManager.sddm = {
       enable = true;
