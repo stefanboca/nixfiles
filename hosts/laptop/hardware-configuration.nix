@@ -52,7 +52,6 @@ in {
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
-      primeBatterySaverSpecialisation = true;
 
       # FIXME: https://github.com/NixOS/nixpkgs/pull/490123
       package = let
@@ -74,16 +73,9 @@ in {
     memoryPercent = 50;
   };
 
-  # powerManagement.powertop.enable = true;
   services = {
     power-profiles-daemon.enable = false;
     tuned.enable = true;
     upower.enable = true;
-  };
-
-  specialisation.battery-saver.configuration = {
-    environment.etc."specialisation".text = "battery-saver";
-    hardware.asus.battery.chargeUpto = mkForce 100;
-    boot.kernel.sysfs.devices.system.cpu.intel_pstate.hwp_dynamic_boost = mkForce 0;
   };
 }
