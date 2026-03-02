@@ -106,16 +106,15 @@ in {
         # keep-sorted start
         # beets
         bitwarden-desktop
-        # calibre
         easyeffects
         esphome
         fluent-reader
-        # freecad
+        freecad
         geogebra6
         gnome-decoder
         helvum
         imv
-        libreoffice
+        # libreoffice
         miro
         prusa-slicer
         qpwgraph
@@ -124,6 +123,7 @@ in {
         telegram-desktop
         # keep-sorted end
         pkgs-cuda.blender
+        # calibre
         # musescore
         # xournalpp
         # zotero
