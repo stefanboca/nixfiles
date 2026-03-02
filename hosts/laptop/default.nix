@@ -143,6 +143,7 @@ in {
           keep-sorted
           nil
           nixd
+          nixfmt
           ruff
           snv.rust-analyzer
           tinymist
