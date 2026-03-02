@@ -26,15 +26,12 @@ in {
         experimental-features = ["nix-command" "flakes"];
         keep-outputs = true; # don't garbage-collect build-time dependencies
         trace-import-from-derivation = true;
-        trusted-users = ["root" "@wheel"];
+        trusted-users = ["@wheel"];
         use-xdg-base-directories = true;
         warn-dirty = false;
 
-        substituters = ["https://cache.nixos.org" "https://nix-community.cachix.org"];
-        trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
+        substituters = ["https://nix-community.cachix.org"];
+        trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
       };
 
       registry = {
