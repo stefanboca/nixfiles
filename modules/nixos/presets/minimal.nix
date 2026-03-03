@@ -21,14 +21,18 @@ in {
       channel.enable = false;
       package = pkgs.nixVersions.latest;
       settings = {
+        # keep-sorted start
         allowed-users = ["root" "@wheel"];
+        auto-allocate-uids = true;
         auto-optimise-store = true;
-        experimental-features = ["nix-command" "flakes"];
-        keep-outputs = true; # don't garbage-collect build-time dependencies
+        experimental-features = ["auto-allocate-uids" "blake3-hashes" "ca-derivations" "cgroups" "flakes" "nix-command"];
+        keep-outputs = true;
         trace-import-from-derivation = true;
         trusted-users = ["@wheel"];
+        use-cgroups = true;
         use-xdg-base-directories = true;
         warn-dirty = false;
+        # keep-sorted end
 
         substituters = ["https://nix-community.cachix.org"];
         trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
