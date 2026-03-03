@@ -75,7 +75,10 @@ in {
 
   services = {
     power-profiles-daemon.enable = false;
-    tuned.enable = true;
+    tuned = {
+      enable = true;
+      settings.dynamic_tuning = true;
+    };
     upower.enable = true;
   };
 }
