@@ -67,6 +67,11 @@ in {
       useXkbConfig = true;
     };
 
+    systemd.oomd = {
+      enableSystemSlice = true;
+      enableRootSlice = true;
+    };
+
     services = {
       dbus.implementation = "broker";
       gnome.gnome-keyring.enable = true; # needed for iwd
