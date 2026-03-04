@@ -73,12 +73,22 @@ in {
     };
 
     services = {
+      # keep-sorted start block=yes
       dbus.implementation = "broker";
       gnome.gnome-keyring.enable = true; # needed for iwd
       irqbalance.enable = true;
       openssh.generateHostKeys = true;
+      resolved = {
+        enable = true;
+        settings.Resolve = {
+          DNSOverTLS = "opportunistic";
+          LLMNR = false;
+          MulticastDNS = true;
+        };
+      };
       thermald.enable = true;
       userborn.enable = true;
+      # keep-sorted end
     };
 
     system = {
@@ -90,11 +100,18 @@ in {
     networking = {
       networkmanager = {
         enable = true;
+        dns = "systemd-resolved";
         wifi.backend = "iwd";
+        settings = {
+          connection.mdns = 1; # resolve but don't register hostname
+        };
       };
       modemmanager.enable = false; # enabled by nnetworkmanager
       nftables.enable = true;
-      firewall.enable = true;
+      firewall = {
+        enable = true;
+        allowedUDPPorts = [5353]; # mdns
+      };
     };
 
     users.mutableUsers = false;
