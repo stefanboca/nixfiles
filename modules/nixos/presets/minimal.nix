@@ -75,7 +75,10 @@ in {
     services = {
       # keep-sorted start block=yes
       dbus.implementation = "broker";
-      gnome.gnome-keyring.enable = true; # needed for iwd
+      gnome = {
+        gnome-keyring.enable = true; # needed for iwd
+        gcr-ssh-agent.enable = false; # enabled by gnome-keyring but I use bitwarden
+      };
       irqbalance.enable = true;
       openssh.generateHostKeys = true;
       resolved = {

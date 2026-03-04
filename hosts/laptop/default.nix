@@ -102,6 +102,10 @@ in {
       enable = true;
       presets.users.stefan.enable = true;
 
+      environment.sessionVariables = {
+        SSH_AUTH_SOCK = "/home/stefan/.bitwarden-ssh-agent.sock"; # TODO: use config.directory
+      };
+
       packages = with pkgs; [
         # keep-sorted start
         # beets
