@@ -40,16 +40,48 @@ in {
       # keep-sorted start
 
       keybind = [
-        "alt+t=toggle_tab_overview"
-        "ctrl+shift+k=clear_screen"
-        "ctrl+shift+backslash=new_split:right"
-        "ctrl+shift+minus=new_split:down"
-        "ctrl+shift+x=close_surface"
+        "ctrl+space>r=reload_config"
 
-        "shift+up=goto_split:up"
-        "shift+down=goto_split:down"
-        "shift+left=goto_split:left"
-        "shift+right=goto_split:right"
+        # splits / surfaces
+        "ctrl+space>==equalize_splits"
+        "ctrl+space>ctrl+n=jump_to_prompt:1"
+        "ctrl+space>ctrl+p=jump_to_prompt:-1"
+        "ctrl+space>ctrl+r=clear_screen"
+        "ctrl+space>ctrl+t=prompt_surface_title"
+        "ctrl+space>h=goto_split:left"
+        "ctrl+space>j=goto_split:down"
+        "ctrl+space>k=goto_split:up"
+        "ctrl+space>l=goto_split:right"
+        "ctrl+space>s=new_split:down"
+        "ctrl+space>shift+l=toggle_readonly"
+        "ctrl+space>shift+r=reset"
+        "ctrl+space>v=new_split:right"
+        "ctrl+space>x=close_surface"
+        "ctrl+space>z=toggle_split_zoom"
+
+        # tabs
+        "ctrl+space>1=goto_tab:1"
+        "ctrl+space>2=goto_tab:2"
+        "ctrl+space>3=goto_tab:3"
+        "ctrl+space>4=goto_tab:4"
+        "ctrl+space>5=goto_tab:5"
+        "ctrl+space>6=goto_tab:6"
+        "ctrl+space>7=goto_tab:7"
+        "ctrl+space>8=goto_tab:8"
+        "ctrl+space>9=goto_tab:9"
+        "ctrl+space>[=previous_tab"
+        "ctrl+space>]=next_tab"
+        "ctrl+space>ctrl+[=move_tab:-1"
+        "ctrl+space>ctrl+]=move_tab:1"
+        "ctrl+space>ctrl+x=close_tab"
+        "ctrl+space>n=new_tab"
+
+        # windows
+        "ctrl+space>t=toggle_tab_overview"
+        "ctrl+space>p=toggle_command_palette"
+        "ctrl+space>ctrl+f=toggle_fullscreen"
+        "ctrl+space>f=toggle_maximize"
+        "ctrl+space>shift+n=new_window"
       ];
     };
 
