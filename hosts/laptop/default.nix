@@ -69,6 +69,7 @@ in {
     printing = {
       enable = true;
       drivers = [pkgs.cnijfilter2];
+      webInterface = false; # this enabled prevents prevents exit on idle. use system-config-printer instead.
     };
   };
 
@@ -127,6 +128,7 @@ in {
         qpwgraph
         rnote
         signal-desktop
+        system-config-printer
         telegram-desktop
         # keep-sorted end
         pkgs-cuda.blender
