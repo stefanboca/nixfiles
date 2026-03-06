@@ -4,11 +4,9 @@
   pkgs,
   ...
 }: let
-  inherit (lib.attrsets) genAttrs;
-  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption mkPackageOption;
-  inherit (lib.types) listOf package str;
+  inherit (lib.types) listOf package;
 
   yaml = pkgs.formats.yaml {};
 
@@ -33,19 +31,6 @@ in {
       type = listOf package;
       default = [];
     };
-
-    integrations = {
-      git.credentialHelper = {
-        enable = mkEnableOption "gh integration as git credential helper";
-        hosts = mkOption {
-          type = listOf str;
-          default = [
-            "https://github.com"
-            "https://gist.github.com"
-          ];
-        };
-      };
-    };
   };
 
   config = mkIf cfg.enable {
@@ -68,9 +53,5 @@ in {
         cfg.extensions
       );
     };
-
-    rum.programs.git.settings.credential = mkIf cfg.integrations.git.credentialHelper.enable (
-      genAttrs cfg.integrations.git.credentialHelper.hosts (_: {helper = "${getExe cfg.package} auth git-credential";})
-    );
   };
 }

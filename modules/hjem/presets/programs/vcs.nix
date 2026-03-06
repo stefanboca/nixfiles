@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (builtins) readFile;
+  inherit (lib.meta) getExe getExe';
   inherit (lib.modules) mkIf;
   inherit (lib.strings) trim;
   inherit (lib.options) mkEnableOption mkOption;
@@ -46,13 +47,11 @@ in {
     '';
 
     rum.programs = {
-      gh = {
-        enable = true;
-        integrations.git.credentialHelper.enable = true;
-      };
+      gh.enable = true;
 
       git = {
         enable = true;
+        package = pkgs.gitFull;
         ignore =
           # gitignore
           ''
@@ -76,6 +75,11 @@ in {
           };
           commit.gpgSign = true;
           tag.gpgSign = true;
+
+          credential.helper = [
+            (getExe' config.rum.programs.git.package "git-credential-libsecret")
+            (getExe pkgs.git-credential-oauth)
+          ];
 
           filter.lfs = {
             required = true;

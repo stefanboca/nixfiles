@@ -321,11 +321,11 @@
         "treefmt-nix": []
       },
       "locked": {
-        "lastModified": 1771501078,
-        "narHash": "sha256-Z2bux6QPs4lBzdiw5NdgPqk+BPF1H4lEu3C68ID7bYg=",
-        "owner": "snugnug",
+        "lastModified": 1772778565,
+        "narHash": "sha256-xM7gYCLOUH2fnPgdst7HcPpEn6GlEOf7nelJVxJZ040=",
+        "owner": "stefanboca",
         "repo": "hjem-rum",
-        "rev": "57175e2f6ab7caf212dd985ef810ec1cd9abf755",
+        "rev": "2b92448b10138141bf14db0aaac56b5d7ad7dff8",
         "type": "github"
       },
       "original": {
@@ -653,11 +653,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1772652741,
-        "narHash": "sha256-C7idOCpX+Jjb3bmPRa70V38vXwyT7icEGaRrkS2NvFU=",
+        "lastModified": 1772779203,
+        "narHash": "sha256-hwtajh2L670KpukJqbA7xmXzLJ8s3X5VTpVUx9zeejE=",
         "ref": "refs/heads/main",
-        "rev": "4ea873078cc3d4d4d32a7da36a9bd2f5b5625e3b",
-        "revCount": 23,
+        "rev": "ccccc949352237c4cdff592c9c156d4392e2ff0d",
+        "revCount": 24,
         "type": "git",
         "url": "https://github.com/stefanboca/nixfiles-secrets"
       },
