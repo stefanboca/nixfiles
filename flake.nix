@@ -55,7 +55,9 @@
       inputs.nix-darwin.follows = "";
     };
     hjem-rum = {
-      url = "github:snugnug/hjem-rum";
+      # use my branch until https://github.com/snugnug/hjem-rum/pull/175 is merged
+      # url = "github:snugnug/hjem-rum";
+      url = "github:stefanboca/hjem-rum?ref=sb/push-smpxxzuzxszz";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
