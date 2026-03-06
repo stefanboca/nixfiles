@@ -176,11 +176,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772793278,
-        "narHash": "sha256-A7FPK6+4uIjp7QaxFDlRT5d7kl3Wa9W6qgKb9lNaYVc=",
+        "lastModified": 1772815134,
+        "narHash": "sha256-Rw3+9E5Ycjmtnvk28Z+Q17axfaszzud0CaEYnTRN3uY=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "99f8b5716f92b0d7480acc05a7f67b544377a1a2",
+        "rev": "449c10bd50332e8c681a26727e1b2a9e62670134",
         "type": "github"
       },
       "original": {
@@ -577,11 +577,11 @@
         "noctalia-qs": "noctalia-qs"
       },
       "locked": {
-        "lastModified": 1772804651,
-        "narHash": "sha256-90DfP4v5+DITh2C12HP4v6hMkF0o6WN5TlrcOAQeMHI=",
+        "lastModified": 1772821410,
+        "narHash": "sha256-KE3cnl3eKdfoPwo5aTWmb9j2ROPcdaxWCZ9wSt2VDLc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "6b64fa11fca2f4d80625dfa0e15523ed13808cf4",
+        "rev": "c685b70f10bc59180e515ccad86a80a671ce80a0",
         "type": "github"
       },
       "original": {
@@ -653,11 +653,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1772779203,
-        "narHash": "sha256-hwtajh2L670KpukJqbA7xmXzLJ8s3X5VTpVUx9zeejE=",
+        "lastModified": 1772821717,
+        "narHash": "sha256-MinVGmSDUJlejzqKgmdB7lDOWB8bHrf7GPd7gOg6uUg=",
         "ref": "refs/heads/main",
-        "rev": "ccccc949352237c4cdff592c9c156d4392e2ff0d",
-        "revCount": 24,
+        "rev": "4fd6d9badd57ae4d64a94da600e823e2a1299af5",
+        "revCount": 25,
         "type": "git",
         "url": "https://github.com/stefanboca/nixfiles-secrets"
       },
