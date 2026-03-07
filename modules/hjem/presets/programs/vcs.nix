@@ -97,7 +97,7 @@ in {
           user = {inherit (cfg) name email;};
 
           ui = {
-            default-command = "log";
+            default-command = "status";
             diff-editor = "snv";
             diff-formatter = "difft";
             editor = "snv";
@@ -106,10 +106,8 @@ in {
           };
 
           aliases = {
-            tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
-
-            cm = ["commit"];
             d = ["diff"];
+            l = ["log"];
             n = ["new"];
             rb = ["rebase"];
             s = ["show"];
@@ -119,18 +117,6 @@ in {
             gf = ["git" "fetch"];
             gp = ["git" "push"];
             gr = ["git" "remote"];
-
-            clone = ["git" "clone"];
-            fetch = ["git" "fetch"];
-            push = ["git" "push"];
-
-            c = ["log" "-r" "current_branch()"];
-            a = ["log" "-r" "all()"];
-          };
-
-          revset-aliases = {
-            "current_branch()" = "ancestors(immutable_heads()..@, 2)";
-            "closest_bookmark(to)" = "heads(::to & bookmarks())";
           };
 
           merge-tools = {
@@ -162,7 +148,14 @@ in {
             "diff stat total_removed" = "red";
           };
 
-          templates.git_push_bookmark = ''"sb/push-" ++ change_id.short()'';
+          revsets = {
+            bookmark-advance-to = "@-";
+          };
+
+          templates = {
+            git_push_bookmark = ''"sb/push-" ++ change_id.short()'';
+            draft_commit_description = "builtin_draft_commit_description_with_diff";
+          };
 
           template-aliases = {
             shell_prompt = ''
