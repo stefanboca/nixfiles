@@ -321,16 +321,15 @@
         "treefmt-nix": []
       },
       "locked": {
-        "lastModified": 1772778565,
+        "lastModified": 1772915389,
         "narHash": "sha256-xM7gYCLOUH2fnPgdst7HcPpEn6GlEOf7nelJVxJZ040=",
-        "owner": "stefanboca",
+        "owner": "snugnug",
         "repo": "hjem-rum",
-        "rev": "2b92448b10138141bf14db0aaac56b5d7ad7dff8",
+        "rev": "3506a77b5cbb35640f7dac595f98b10bdbe07b15",
         "type": "github"
       },
       "original": {
-        "owner": "stefanboca",
-        "ref": "sb/push-smpxxzuzxszz",
+        "owner": "snugnug",
         "repo": "hjem-rum",
         "type": "github"
       }
