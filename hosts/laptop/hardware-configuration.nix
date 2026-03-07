@@ -67,6 +67,11 @@ in {
 
   services.hardware.bolt.enable = true;
 
+  boot.kernel.sysctl = {
+    # see www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html
+    "vm.swappiness" = 100;
+    "vm.page-cluster" = 0;
+  };
   zramSwap = {
     enable = true;
     algorithm = "zstd";
