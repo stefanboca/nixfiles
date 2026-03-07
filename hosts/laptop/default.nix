@@ -114,13 +114,13 @@ in {
         # keep-sorted start
         # beets
         bitwarden-desktop
+        crosspipe
         easyeffects
         esphome
         fluent-reader
         freecad
         geogebra6
         gnome-decoder
-        helvum
         imv
         # libreoffice
         miro
