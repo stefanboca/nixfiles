@@ -154,6 +154,7 @@ in {
           ruff
           snv.rust-analyzer
           tinymist
+          tombi
           ty
           vscode-langservers-extracted
           # keep-sorted end
