@@ -95,6 +95,8 @@ in {
     };
   };
 
+  networking.networkmanager.plugins = [pkgs.networkmanager-openconnect];
+
   hjem = {
     specialArgs = {inherit inputs self;};
     extraModules = [self.hjemModules.stefan];
