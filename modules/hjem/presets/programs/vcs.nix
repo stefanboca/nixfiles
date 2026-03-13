@@ -39,7 +39,6 @@ in {
       pkgs.difftastic
       pkgs.mergiraf
       pkgs.meld
-      pkgs.watchman
     ];
 
     files.".ssh/allowed_signers".text = ''
