@@ -112,7 +112,7 @@ in {
 
       packages = with pkgs; [
         # keep-sorted start
-        # beets
+        beets
         bitwarden-desktop
         crosspipe
         easyeffects
@@ -122,8 +122,9 @@ in {
         geogebra6
         gnome-decoder
         imv
-        # libreoffice
+        libreoffice
         miro
+        nicotine-plus
         prusa-slicer
         qpwgraph
         rnote
