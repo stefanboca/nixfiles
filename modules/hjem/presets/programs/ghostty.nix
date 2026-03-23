@@ -43,10 +43,10 @@ in {
         "ctrl+space>r=reload_config"
 
         # splits / surfaces
+        "ctrl+shift+k=clear_screen"
         "ctrl+space>==equalize_splits"
         "ctrl+space>ctrl+n=jump_to_prompt:1"
         "ctrl+space>ctrl+p=jump_to_prompt:-1"
-        "ctrl+space>ctrl+r=clear_screen"
         "ctrl+space>ctrl+t=prompt_surface_title"
         "ctrl+space>h=goto_split:left"
         "ctrl+space>j=goto_split:down"
