@@ -121,6 +121,7 @@ in {
         freecad
         geogebra6
         gnome-decoder
+        gnome-pomodoro
         imv
         libreoffice
         miro
