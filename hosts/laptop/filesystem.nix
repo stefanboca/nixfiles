@@ -1,4 +1,4 @@
-{...}: {
+{
   disko.devices.disk.main = {
     type = "disk";
     device = "/dev/nvme0n1";
@@ -26,17 +26,15 @@
             subvolumes = {
               "/rootfs" = {
                 mountpoint = "/";
+                swap.swapfile.size = "32G";
               };
               "/home" = {
-                mountOptions = ["compress=zstd:1"];
                 mountpoint = "/home";
+                mountOptions = ["compress=zstd:1"];
               };
               "/nix" = {
-                mountOptions = [
-                  "compress=zstd:1"
-                  "noatime"
-                ];
                 mountpoint = "/nix";
+                mountOptions = ["compress=zstd:1" "noatime"];
               };
             };
           };

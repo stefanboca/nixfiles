@@ -1,11 +1,8 @@
 {
   config,
-  lib,
   pkgs,
   ...
-}: let
-  inherit (lib.modules) mkForce;
-in {
+}: {
   boot = {
     loader = {
       limine = {
@@ -17,6 +14,16 @@ in {
 
     initrd.availableKernelModules = ["thunderbolt" "vmd" "nvme" "uas" "rtsx_pci_sdmmc"];
     initrd.kernelModules = [];
+
+    kernelParams = [
+      # keep-sorted start
+      "hibernate.compressor=lz4"
+      "zswap.compressor=zstd"
+      "zswap.enabled=1" # enables zswap
+      "zswap.max_pool_percent=25" # maximum percentage of RAM that zswap is allowed to use
+      "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+      # keep-sorted end
+    ];
 
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = ["kvm-intel"];
@@ -57,25 +64,20 @@ in {
     };
   };
 
-  services.hardware.bolt.enable = true;
+  powerManagement.enable = true;
 
-  boot.kernel.sysctl = {
-    # see www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html
-    "vm.swappiness" = 100;
-    "vm.page-cluster" = 0;
+  systemd.sleep.settings.Sleep = {
+    MemorySleepMode = "deep";
   };
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 100;
-  };
-
   services = {
+    # keep-sorted start block=yes
+    hardware.bolt.enable = true;
     power-profiles-daemon.enable = false;
     tuned = {
       enable = true;
       settings.dynamic_tuning = true;
     };
     upower.enable = true;
+    # keep-sorted end
   };
 }
