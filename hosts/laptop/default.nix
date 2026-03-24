@@ -150,17 +150,23 @@ in {
         extraPackages = with pkgs; [
           # keep-sorted start
           alejandra
+          clang-tools
+          emmylua-ls
           harper
+          jdt-language-server
           keep-sorted
+          lua-language-server
           nil
           nixd
           nixfmt
           ruff
           snv.rust-analyzer
+          tailwindcss-language-server
           tinymist
           tombi
           ty
           vscode-langservers-extracted
+          yaml-language-server
           # keep-sorted end
         ];
       };
