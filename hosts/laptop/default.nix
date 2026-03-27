@@ -166,6 +166,7 @@ in {
           tombi
           ty
           vscode-langservers-extracted
+          wgsl-analyzer
           yaml-language-server
           # keep-sorted end
         ];
