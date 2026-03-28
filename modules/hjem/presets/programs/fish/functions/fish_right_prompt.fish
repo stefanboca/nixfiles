@@ -21,7 +21,7 @@ function fish_right_prompt
         set -l seconds (math -s1 "$CMD_DURATION / 1_000 % 60")
 
         if test $hours != 0
-            set -f command_duration $hours" "$minutes"m "$seconds"s"
+            set -f command_duration $hours"h "$minutes"m "$seconds"s"
         else if test $minutes != 0
             set -f command_duration $minutes"m "$seconds"s"
         else
