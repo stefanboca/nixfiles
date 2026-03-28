@@ -20,7 +20,7 @@
       "hibernate.compressor=lz4"
       "zswap.compressor=zstd"
       "zswap.enabled=1" # enables zswap
-      "zswap.max_pool_percent=25" # maximum percentage of RAM that zswap is allowed to use
+      "zswap.max_pool_percent=50" # maximum percentage of RAM that zswap is allowed to use
       "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
       # keep-sorted end
     ];
