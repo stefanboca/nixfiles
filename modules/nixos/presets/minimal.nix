@@ -83,6 +83,10 @@ in {
         gcr-ssh-agent.enable = false; # enabled by gnome-keyring but I use bitwarden
       };
       irqbalance.enable = true;
+      kmscon = {
+        enable = true;
+        useXkbConfig = true;
+      };
       openssh.generateHostKeys = true;
       resolved = {
         enable = true;
