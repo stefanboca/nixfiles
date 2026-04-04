@@ -41,6 +41,7 @@ in {
       jq
       just # command runner
       kondo # clean build dependencies and artifacts
+      nix-btm
       nix-diff # explain why two nix derivations differ
       nix-fast-build
       nix-inspect # TUI for inspecting nix configs and other expressions
