@@ -71,8 +71,10 @@ in {
     };
 
     systemd.oomd = {
-      enableSystemSlice = true;
       enableRootSlice = true;
+      enableSystemSlice = true;
+      enableUserSlices = true;
+      settings.OOM.DefaultMemoryPressureLimit = "90%";
     };
 
     services = {
