@@ -31,8 +31,13 @@
       (pkgs.asus-nb-wmi-kernel-module.override {inherit (config.boot.kernelPackages) kernel;})
     ];
 
-    kernel.sysfs = {
-      devices.system.cpu.intel_pstate.hwp_dynamic_boost = 1;
+    kernel = {
+      sysctl = {
+        "vm.swappiness" = 60; # 60 is the default, but override tuned
+      };
+      sysfs = {
+        devices.system.cpu.intel_pstate.hwp_dynamic_boost = 1;
+      };
     };
   };
 
