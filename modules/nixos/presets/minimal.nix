@@ -70,11 +70,21 @@ in {
       useXkbConfig = true;
     };
 
-    systemd.oomd = {
-      enableRootSlice = true;
-      enableSystemSlice = true;
-      enableUserSlices = true;
-      settings.OOM.DefaultMemoryPressureLimit = "90%";
+    systemd = {
+      network = {
+        wait-online.enable = false;
+        networks = {
+          "99-ethernet-default-dhcp".networkConfig.MulticastDNS = true;
+          "99-wireless-client-dhcp".networkConfig.MulticastDNS = true;
+        };
+      };
+      oomd = {
+        enableRootSlice = true;
+        enableSystemSlice = true;
+        enableUserSlices = true;
+        settings.OOM.DefaultMemoryPressureLimit = "90%";
+      };
+      services.NetworkManager-wait-online.enable = false;
     };
 
     services = {
@@ -110,6 +120,12 @@ in {
     };
 
     networking = {
+      # keep-sorted start block=yes
+      firewall = {
+        enable = true;
+        allowedUDPPorts = [5353]; # mdns
+      };
+      modemmanager.enable = false; # enabled by nnetworkmanager
       networkmanager = {
         enable = true;
         dns = "systemd-resolved";
@@ -118,12 +134,10 @@ in {
           connection.mdns = 1; # resolve but don't register hostname
         };
       };
-      modemmanager.enable = false; # enabled by nnetworkmanager
       nftables.enable = true;
-      firewall = {
-        enable = true;
-        allowedUDPPorts = [5353]; # mdns
-      };
+      useHostResolvConf = false; # conflicts with systemd-resolved
+      useNetworkd = true; # use networkd instead of the pile of shell scripts
+      # keep-sorted end
     };
 
     users.mutableUsers = false;
