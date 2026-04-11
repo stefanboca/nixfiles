@@ -22,11 +22,10 @@
           content = {
             type = "btrfs";
             mountpoint = "/partition-root";
-            # Subvolume name is different from mountpoint
+            swap.swapfile.size = "32G";
             subvolumes = {
               "/rootfs" = {
                 mountpoint = "/";
-                swap.swapfile.size = "32G";
               };
               "/home" = {
                 mountpoint = "/home";
@@ -39,6 +38,20 @@
             };
           };
         };
+      };
+    };
+  };
+
+  services.btrbk.instances = {
+    main.settings = {
+      timestamp_format = "long";
+      snapshot_preserve_min = "4d";
+      snapshot_preserve = "30d";
+      snapshot_create = "onchange";
+      volume."/partition-root" = {
+        snapshot_dir = "snapshots";
+        subvolume.home = {};
+        subvolume.rootfs = {};
       };
     };
   };
