@@ -136,6 +136,7 @@ in {
           };
 
           git = {
+            sign-on-push = true;
             private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
           };
 
