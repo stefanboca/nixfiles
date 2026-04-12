@@ -17,7 +17,6 @@
 
     kernelParams = [
       # keep-sorted start
-      "hibernate.compressor=lz4"
       "zswap.compressor=zstd"
       "zswap.enabled=1" # enables zswap
       "zswap.max_pool_percent=50" # maximum percentage of RAM that zswap is allowed to use
