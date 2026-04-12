@@ -17,7 +17,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     niri = {
-      url = "github:niri-wm/niri/pull/3483/head";
+      url = "github:niri-wm/niri";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "";
     };
