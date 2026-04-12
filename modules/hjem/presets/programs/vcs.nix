@@ -130,7 +130,7 @@ in {
 
           signing = {
             key = signingKey;
-            behavior = "own";
+            behavior = "drop";
             backend = "ssh";
             backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
           };
