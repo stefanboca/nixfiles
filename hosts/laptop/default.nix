@@ -97,6 +97,10 @@ in {
 
   networking.networkmanager.plugins = [pkgs.networkmanager-openconnect];
 
+  virtualisation.podman = {
+    enable = true;
+  };
+
   hjem = {
     specialArgs = {inherit inputs self;};
     extraModules = [self.hjemModules.stefan];
@@ -126,6 +130,7 @@ in {
         libreoffice
         miro
         nicotine-plus
+        podman-compose
         prusa-slicer
         qpwgraph
         rnote
