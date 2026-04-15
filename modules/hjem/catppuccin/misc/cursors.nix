@@ -99,6 +99,7 @@ in {
         # kdl
         ''
           include "${niriConfigFile}"
+
         '');
     };
   };

@@ -19,15 +19,15 @@ in {
       config =
         # kdl
         ''
-          hotkey-overlay { skip-at-startup; }
+          hotkey-overlay {
+            skip-at-startup
+          }
           prefer-no-csd
           screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
-
           cursor {
             hide-when-typing
             hide-after-inactive-ms 10000
           }
-
           input {
             keyboard {
               xkb {
@@ -42,47 +42,43 @@ in {
             }
             warp-mouse-to-focus
           }
-
           layout {
             always-center-single-column
             center-focused-column "on-overflow"
             empty-workspace-above-first
             gaps 3
-
-            default-column-width { proportion 0.5; }
+            default-column-width {
+              proportion 0.5
+            }
             preset-column-widths {
               proportion 0.333333
               proportion 0.5
               proportion 0.666667
             }
-
-            focus-ring { off; }
+            focus-ring {
+              off
+            }
             border {
               width 3
               active-gradient from="hsl(183deg, 80%, 50%)" to="hsl(183deg, 80%, 50%)" angle=45 relative-to="workspace-view" in="oklch longer hue"
               inactive-gradient from="hsl(183deg, 40%, 30%)" to="hsl(183deg, 40%, 30%)" angle=45 relative-to="workspace-view" in="oklch longer hue"
               urgent-gradient from="hsl(320deg, 80%, 50%)" to="hsl(40deg, 80%, 50%)" angle=45 in="oklch shorter hue"
             }
-
             tab-indicator {
               length total-proportion=0.75
               gaps-between-tabs 2
               place-within-column
             }
-
             shadow {
               on
             }
           }
-
-          // TODO: recent-windows binds
           recent-windows {
             highlight {
               padding 30
               corner-radius 30
             }
           }
-
           layer-rule {
             match layer="top"
             match layer="overlay"
@@ -90,24 +86,20 @@ in {
               xray false
             }
           }
-
+          window-rule {
+            clip-to-geometry true
+            geometry-corner-radius 10
+          }
           window-rule {
             match is-floating=true
             background-effect {
               xray false
             }
           }
-
           window-rule {
             match title="Vicinae Settings"
             draw-border-with-background false
           }
-
-          window-rule {
-            clip-to-geometry true
-            geometry-corner-radius 10
-          }
-
           window-rule {
             match app-id="^firefox" title="^Picture-in-Picture$"
             open-floating true

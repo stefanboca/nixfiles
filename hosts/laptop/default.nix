@@ -18,20 +18,24 @@
     # kdl
     ''
       output "eDP-1" {
-          scale 1.250000
-          focus-at-startup
-          position x=0 y=0
-          mode "2800x1800@120.016000"
+        scale 1.25
+        focus-at-startup
+        position x=0 y=0
+        mode "2800x1800@120.016000"
       }
       output "DP-1" {
-          scale 1.250000
-          position x=0 y=1440
-          mode "2880x864@60.008000"
-          variable-refresh-rate
+        scale 1.25
+        position x=0 y=1440
+        mode "2880x864@60.008000"
+        variable-refresh-rate
       }
       input {
-        tablet { map-to-output "eDP-1"; }
-        touch { map-to-output "eDP-1"; }
+        tablet {
+          map-to-output "eDP-1"
+        }
+        touch {
+          map-to-output "eDP-1"
+        }
       }
     '';
 in {
@@ -184,6 +188,7 @@ in {
           ''
             include "${niriConfigFile}"
             include optional=true "dev.kdl"
+
           '';
         binds = {
           "XF86DisplayToggle" = {
