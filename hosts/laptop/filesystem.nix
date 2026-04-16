@@ -22,7 +22,7 @@
           content = {
             type = "btrfs";
             mountpoint = "/partition-root";
-            swap.swapfile.size = "32G";
+            swap.swapfile.size = "64G";
             subvolumes = {
               "/rootfs" = {
                 mountpoint = "/";
