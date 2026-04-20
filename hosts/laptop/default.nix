@@ -121,7 +121,6 @@ in {
       packages = with pkgs; [
         # keep-sorted start
         beets
-        bitwarden-desktop
         crosspipe
         easyeffects
         esphome
@@ -153,31 +152,34 @@ in {
         locks = ["org/gnome/desktop/peripherals/touchscreens/04f3:2f2a/output"];
       };
 
-      rum.programs.zed-editor = {
-        enable = true;
-        extraPackages = with pkgs; [
-          # keep-sorted start
-          alejandra
-          clang-tools
-          emmylua-ls
-          harper
-          jdt-language-server
-          keep-sorted
-          lua-language-server
-          nil
-          nixd
-          nixfmt
-          ruff
-          snv.rust-analyzer
-          tailwindcss-language-server
-          tinymist
-          tombi
-          ty
-          vscode-langservers-extracted
-          wgsl-analyzer
-          yaml-language-server
-          # keep-sorted end
-        ];
+      rum.programs = {
+        bitwarden.enable = true;
+        zed-editor = {
+          enable = true;
+          extraPackages = with pkgs; [
+            # keep-sorted start
+            alejandra
+            clang-tools
+            emmylua-ls
+            harper
+            jdt-language-server
+            keep-sorted
+            lua-language-server
+            nil
+            nixd
+            nixfmt
+            ruff
+            snv.rust-analyzer
+            tailwindcss-language-server
+            tinymist
+            tombi
+            ty
+            vscode-langservers-extracted
+            wgsl-analyzer
+            yaml-language-server
+            # keep-sorted end
+          ];
+        };
       };
 
       rum.desktops.niri = {
