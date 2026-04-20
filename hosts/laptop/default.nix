@@ -136,7 +136,6 @@ in {
         nicotine-plus
         podman-compose
         prusa-slicer
-        qpwgraph
         rnote
         signal-desktop
         system-config-printer
