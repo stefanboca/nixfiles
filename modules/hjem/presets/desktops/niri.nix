@@ -19,6 +19,7 @@ in {
       config =
         # kdl
         ''
+          spawn-at-startup "noctalia-shell"
           hotkey-overlay {
             skip-at-startup
           }
@@ -144,11 +145,6 @@ in {
         "Mod+Ctrl+Shift+P" = {
           spawn = ["noctalia-shell" "ipc" "call" "powerProfile" "toggleNoctaliaPerformance"];
           parameters.hotkey-overlay-title = "Toggle Noctalia Performance Mode";
-        };
-        "Mod+Ctrl+Shift+R" = {
-          spawn = ["systemctl" "--user" "restart" "noctalia-shell.service"];
-          parameters.hotkey-overlay-title = "Restart Noctalia Shell";
-          parameters.allow-when-locked = true;
         };
 
         XF86AudioRaiseVolume = {

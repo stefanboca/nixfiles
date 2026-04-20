@@ -12,6 +12,7 @@ in {
   options.presets.programs.niri = {
     enable = mkEnableOption "stefan preset";
 
+    noctalia-shell.package = mkPackageOption pkgs "noctalia-shell" {nullable = true;};
     xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite" {nullable = true;};
   };
 
@@ -37,6 +38,7 @@ in {
 
         (pkgs.onlyBin pkgs.networkmanagerapplet)
       ])
+      (mkIf (cfg.noctalia-shell.package != null) [cfg.noctalia-shell.package])
       (mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package])
     ];
 
@@ -51,10 +53,6 @@ in {
       geoclue2.enable = true;
       gnome.sushi.enable = true; # quick previewer for nautilus
       gvfs.enable = true; # userspace virtual filesystem
-      noctalia-shell = {
-        enable = true;
-        package = pkgs.noctalia-shell; # taken from overlay
-      };
       udisks2.enable = true; # dbus service for querying and manipulating storage devices
       # keep-sorted end
     };
