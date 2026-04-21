@@ -1,25 +1,43 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
+  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.options) mkEnableOption mkPackageOption;
 
   cfg = config.presets.desktops.niri;
 in {
   options.presets.desktops.niri = {
     enable = mkEnableOption "niri preset";
+
+    noctalia-shell.package = mkPackageOption pkgs "noctalia-shell" {};
   };
 
   config = mkIf cfg.enable {
+    packages = [cfg.noctalia-shell.package];
+
+    systemd.services.noctalia-shell = {
+      description = "Noctalia Shell";
+      after = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
+      enableDefaultPath = false;
+      serviceConfig = {
+        ExecStart = getExe cfg.noctalia-shell.package;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+
     rum.desktops.niri = {
       enable = true;
 
       config =
         # kdl
         ''
-          spawn-at-startup "noctalia-shell"
           hotkey-overlay {
             skip-at-startup
           }
@@ -145,6 +163,11 @@ in {
         "Mod+Ctrl+Shift+P" = {
           spawn = ["noctalia-shell" "ipc" "call" "powerProfile" "toggleNoctaliaPerformance"];
           parameters.hotkey-overlay-title = "Toggle Noctalia Performance Mode";
+        };
+        "Mod+Ctrl+Shift+R" = {
+          spawn = ["systemctl" "--user" "restart" "noctalia-shell.service"];
+          parameters.hotkey-overlay-title = "Restart Noctalia Shell";
+          parameters.allow-when-locked = true;
         };
 
         XF86AudioRaiseVolume = {

@@ -10,9 +10,8 @@
   cfg = config.presets.programs.niri;
 in {
   options.presets.programs.niri = {
-    enable = mkEnableOption "stefan preset";
+    enable = mkEnableOption "niri preset";
 
-    noctalia-shell.package = mkPackageOption pkgs "noctalia-shell" {nullable = true;};
     xwayland-satellite.package = mkPackageOption pkgs "xwayland-satellite" {nullable = true;};
   };
 
@@ -38,7 +37,6 @@ in {
 
         (pkgs.onlyBin pkgs.networkmanagerapplet)
       ])
-      (mkIf (cfg.noctalia-shell.package != null) [cfg.noctalia-shell.package])
       (mkIf (cfg.xwayland-satellite.package != null) [cfg.xwayland-satellite.package])
     ];
 
