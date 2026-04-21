@@ -7,6 +7,16 @@
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) mkEnableOption mkPackageOption;
 
+  gnome-power-manager-patched = pkgs.symlinkJoin {
+    name = "gnome-power-manager-patched";
+    paths = [pkgs.gnome-power-manager];
+    postBuild = ''
+      rm $out/share/applications/org.gnome.PowerStats.desktop
+      substitute {${pkgs.gnome-power-manager},$out}/share/applications/org.gnome.PowerStats.desktop \
+        --replace-fail 'OnlyShowIn=GNOME;Unity;' ""
+    '';
+  };
+
   cfg = config.presets.programs.niri;
 in {
   options.presets.programs.niri = {
@@ -28,7 +38,7 @@ in {
         file-roller # archive-manager
         gnome-calculator # calculator
         gnome-font-viewer # font viewer
-        gnome-power-manager # view battery and power statistics
+        gnome-power-manager-patched # view battery and power statistics
         loupe # image viewer
         nautilus # file explorer
         playerctl # utility for controlling mpris media players
