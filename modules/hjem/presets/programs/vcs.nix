@@ -47,7 +47,12 @@ in {
     '';
 
     rum.programs = {
-      gh.enable = true;
+      gh = {
+        enable = true;
+        settings = {
+          telemetry = "disabled";
+        };
+      };
 
       git = {
         enable = true;

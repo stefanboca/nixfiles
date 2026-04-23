@@ -36,10 +36,10 @@ in {
   config = mkIf cfg.enable {
     packages = mkIf (cfg.package != null) [cfg.package];
     xdg.config.files = {
-      "gh/config.yaml" = mkIf (cfg.settings != {}) {
+      "gh/config.yml" = mkIf (cfg.settings != {}) {
         source = yaml.generate "gh-config.yaml" ({version = 1;} // cfg.settings);
       };
-      "gh/hosts.yaml" = mkIf (cfg.hosts != {}) {
+      "gh/hosts.yml" = mkIf (cfg.hosts != {}) {
         source = yaml.generate "gh-hosts.yaml" cfg.settings;
       };
     };
