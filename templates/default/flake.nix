@@ -28,6 +28,49 @@
       default = pkgs.mkShellNoCC {};
     });
 
+    nixosConfigurations.vm = lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ({modulesPath, ...}: {imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];})
+        ({pkgs, ...}: {
+          virtualisation = {
+            qemu.options = ["-nographic" "-serial" "mon:stdio"];
+            cores = 4;
+            memorySize = 4 * 1024;
+            forwardPorts = [
+              {
+                from = "host";
+                host.port = 8080;
+                guest.port = 80;
+              }
+              {
+                from = "host";
+                host.port = 8443;
+                guest.port = 443;
+              }
+            ];
+          };
+          system.stateVersion = lib.trivial.release;
+          nix = {
+            settings.trusted-users = ["root" "nixos"];
+            extraOptions = "experimental-features = nix-command flakes";
+          };
+          programs.fish.enable = true;
+          security.sudo.wheelNeedsPassword = false;
+          users.users.nixos = {
+            isNormalUser = true;
+            hashedPassword = "";
+            extraGroups = ["wheel"];
+            shell = pkgs.fish;
+          };
+          services = {
+            qemuGuest.enable = true;
+            spice-vdagentd.enable = true;
+          };
+        })
+      ];
+    };
+
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
 
     checks = forAllSystems (system: let
