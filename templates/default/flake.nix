@@ -37,18 +37,6 @@
             qemu.options = ["-nographic" "-serial" "mon:stdio"];
             cores = 4;
             memorySize = 4 * 1024;
-            forwardPorts = [
-              {
-                from = "host";
-                host.port = 8080;
-                guest.port = 80;
-              }
-              {
-                from = "host";
-                host.port = 8443;
-                guest.port = 443;
-              }
-            ];
           };
           system.stateVersion = lib.trivial.release;
           nix = {
@@ -63,9 +51,9 @@
             extraGroups = ["wheel"];
             shell = pkgs.fish;
           };
-          services = {
-            qemuGuest.enable = true;
-            spice-vdagentd.enable = true;
+          documentation = {
+            nixos.enable = false;
+            enable = false;
           };
         })
       ];
