@@ -21,7 +21,8 @@ in {
       extraGroups =
         ["wheel" "video" "audio"]
         ++ lib.optional config.programs.wireshark.enable "wireshark"
-        ++ lib.optional config.networking.networkmanager.enable "networkmanager";
+        ++ lib.optional config.networking.networkmanager.enable "networkmanager"
+        ++ lib.optional (config.virtualisation.podman.enable && config.virtualisation.podman.dockerSocket.enable) "podman";
       subGidRanges = [
         {
           startGid = 100000;
