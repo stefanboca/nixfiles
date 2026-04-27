@@ -138,11 +138,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1777018861,
-        "narHash": "sha256-l+dfxHtTq1jQM53xgYudV8ciECFmJ72PcRAqRS4ys04=",
+        "lastModified": 1777190237,
+        "narHash": "sha256-XbNSZv/fi6U8r8r8J/rljY91wf2jxyM6AwNLBeeM5SA=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "7b33c6466f781cd699fe250c5b69dc4193da67a7",
+        "rev": "82fcabb6d9819f34170877fb1848b92e9350ec57",
         "type": "github"
       },
       "original": {
@@ -176,11 +176,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777073898,
-        "narHash": "sha256-4GA3oNZHtLHAXreG2J5EoM8hE2U/U5Ce+gO4wW3Tr4g=",
+        "lastModified": 1777246668,
+        "narHash": "sha256-8rTXwn7UkotAYgAFCmiuuiNrx8aiPWF/axxcFM+CmY0=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "00265aa7121623acc654f364e2d71dfd7a66844a",
+        "rev": "f1891685340529653794fc683df195f9dc44ac6a",
         "type": "github"
       },
       "original": {
@@ -255,11 +255,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1777067482,
-        "narHash": "sha256-ULqknhBmzNUHdG54EsaeL/ppbmxmZOWZVMx02VLGEWA=",
+        "lastModified": 1777175394,
+        "narHash": "sha256-O85asIMCDEZotzFUzgQ+6neoIxEgotjOKvmfNg1fkq0=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "4ceeba4851030e75398cf1e5d3f7d8c7ed645e87",
+        "rev": "c74f6d56d1feef473033057bc0ff7e3f00cf6421",
         "type": "github"
       },
       "original": {
@@ -337,11 +337,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1776604187,
-        "narHash": "sha256-rYAdN6wIB+li/dnF45di0ZplEzAbUr//r8T4TgTDMK4=",
+        "lastModified": 1777209276,
+        "narHash": "sha256-P6e4ndStNEohCMmWkPdIrxkSSx0pgYm2R/wiTj0MApA=",
         "owner": "nix-community",
         "repo": "lib-aggregate",
-        "rev": "ca6dd228fe3daf2f4bd08a46717d68aa44490b48",
+        "rev": "e008ca6e656cc04608ef769a0c7589acebe6303c",
         "type": "github"
       },
       "original": {
@@ -419,11 +419,11 @@
         "rust-overlay": []
       },
       "locked": {
-        "lastModified": 1777045529,
-        "narHash": "sha256-EeAwmrvONsovL2qPwKGXF2xGhbo7MySesY3fW2pNLpM=",
+        "lastModified": 1777237919,
+        "narHash": "sha256-bZHBzo4EuW/xLzXnnMKsIMdZYqgY2O0mIMdplwDHB8Y=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "9438f59e2b9d8deb6fcec5922f8aca18162b673c",
+        "rev": "a85b922919815c32a3ae34e0838830fe522d6a1c",
         "type": "github"
       },
       "original": {
@@ -439,11 +439,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776829403,
-        "narHash": "sha256-oHVcvP2Ahhj1KUsEzp+2BQF55/r5VSa3QxdPdwE1p00=",
+        "lastModified": 1777181277,
+        "narHash": "sha256-yVJbd07ortDRAttDFmDV5p220aOLTHgVAx//0nW/xW8=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "c43246d4e9e506178b69baed075d797ec2d873e2",
+        "rev": "b8eb7acee0f7604fe1bf6a5b3dcf5254369180fa",
         "type": "github"
       },
       "original": {
@@ -485,11 +485,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1776564050,
-        "narHash": "sha256-01CvP7g0lwWuB1ruUKUy/xZqorQYKaTd4iPdCAoToFk=",
+        "lastModified": 1777168982,
+        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "927c9af2765fead764f1a6b9557feef2a40201f5",
+        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
         "type": "github"
       },
       "original": {
@@ -612,11 +612,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1775884103,
-        "narHash": "sha256-4eH5ukAGo7kuh8SMMQnHYyZAGmerIEaX3CpypFWrc50=",
+        "lastModified": 1777248869,
+        "narHash": "sha256-qN7OWAE2DVFsLLvyG5aYCTeH1S+8Ki+bcGal9hrcQBc=",
         "ref": "refs/heads/main",
-        "rev": "92904b6255ce32a89d8ed12fb9290355f2903074",
-        "revCount": 27,
+        "rev": "999575594f839b1dec53ae1bd5930077ceff8f19",
+        "revCount": 28,
         "type": "git",
         "url": "https://github.com/stefanboca/nixfiles-secrets"
       },
@@ -687,11 +687,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1777043003,
-        "narHash": "sha256-lEKiNXDssCjM5bM6v1rltaYRsBRrXrozD4ryctlnZo0=",
+        "lastModified": 1777183994,
+        "narHash": "sha256-zahis/vVFOsWv/HeyHbU13jxnrCC+ppIg49xG+viWxg=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "8486e82fd1b2bab54868139ac2263de54c9c85c7",
+        "rev": "501256c3e670ca1679501ce3839ea805df00d8ba",
         "type": "github"
       },
       "original": {
