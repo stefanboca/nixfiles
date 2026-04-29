@@ -30,6 +30,7 @@ in {
       NPM_CONFIG_PREFIX = "${dataDir}/npm";
       PLATFORMIO_CORE_DIR = "${dataDir}/platformio";
       PYTHON_HISTORY = "${stateDir}/python_history";
+      RAD_HOME = "${dataDir}/radicle";
       RUSTUP_HOME = "${dataDir}/rust";
       SQLITE_HISTORY = "${stateDir}/sqlite_history";
       WINEPREFIX = "${dataDir}/wine";

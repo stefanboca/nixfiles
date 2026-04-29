@@ -14,7 +14,10 @@
     paths = [cfg.package];
     preferLocalBuild = true;
     nativeBuildInputs = [pkgs.makeBinaryWrapper];
+    # TODO: figure out a cleaner way to do this
     postBuild = ''
+      wrapProgram $out/bin/zed \
+        --suffix PATH : ${makeBinPath cfg.extraPackages}
       wrapProgram $out/bin/zeditor \
         --suffix PATH : ${makeBinPath cfg.extraPackages}
     '';

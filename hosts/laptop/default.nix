@@ -141,6 +141,9 @@ in {
         nicotine-plus
         podman-compose
         prusa-slicer
+        radicle-desktop
+        radicle-node
+        radicle-tui
         rnote
         signal-desktop
         system-config-printer
