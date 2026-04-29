@@ -23,5 +23,6 @@ inputs: {
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
+  zed-editor = inputs.zed-editor.overlays.default;
   # keep-sorted end
 }

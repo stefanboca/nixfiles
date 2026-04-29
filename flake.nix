@@ -37,6 +37,11 @@
       };
     };
 
+    zed-editor = {
+      url = "github:zed-industries/zed?tag=v1.1.2-pre";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -46,8 +51,13 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-nightly = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "";
+      };
+    };
 
     hjem = {
       url = "github:feel-co/hjem";
