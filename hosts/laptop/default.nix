@@ -64,6 +64,7 @@ in {
   };
 
   services = {
+    arti.enable = true;
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
