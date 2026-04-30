@@ -148,6 +148,7 @@ in {
         signal-desktop
         system-config-printer
         telegram-desktop
+        zulip
         # keep-sorted end
         pkgs-cuda.blender
         # calibre
