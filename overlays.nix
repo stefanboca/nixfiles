@@ -15,6 +15,9 @@ inputs: {
   };
 
   # keep-sorted start
+  blink-cmp = inputs.snv.inputs.blink-cmp.overlays.default;
+  blink-lib = inputs.snv.inputs.blink-lib.overlays.default;
+  blink-pairs = inputs.snv.inputs.blink-pairs.overlays.default;
   fenix = inputs.fenix.overlays.default;
   firefox-nightly = inputs.firefox-nightly.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
