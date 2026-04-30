@@ -25,6 +25,7 @@ in {
       partOf = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       enableDefaultPath = false;
+      restartTriggers = [cfg.noctalia-shell.package];
       serviceConfig = {
         ExecStart = getExe cfg.noctalia-shell.package;
         Restart = "on-failure";
