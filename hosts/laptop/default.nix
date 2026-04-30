@@ -173,6 +173,7 @@ in {
             emmylua-ls
             harper
             jdt-language-server
+            just-lsp
             keep-sorted
             lua-language-server
             nil
