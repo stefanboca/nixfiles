@@ -82,10 +82,10 @@ in {
       enable = true;
       package = pkgs.obs-studio.override {browserSupport = false;}; # browser support is a whole 2GB that I don't use
     };
-    wireshark = {
-      enable = true;
-      package = pkgs.wireshark;
-    };
+    # wireshark = {
+    #   enable = true;
+    #   package = pkgs.wireshark;
+    # };
     dconf = {
       enable = true;
       profiles.user = {
