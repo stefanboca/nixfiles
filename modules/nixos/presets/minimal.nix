@@ -33,6 +33,7 @@ in {
           "dynamic-derivations"
           "flakes"
           "nix-command"
+          "pipe-operators"
           "recursive-nix"
         ];
         keep-outputs = true;
