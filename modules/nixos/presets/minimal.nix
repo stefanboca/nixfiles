@@ -21,27 +21,35 @@ in {
       channel.enable = false;
       package = pkgs.nixVersions.latest;
       settings = {
-        # keep-sorted start
+        # keep-sorted start block=yes
         allowed-users = ["root" "@wheel"];
         auto-allocate-uids = true;
         auto-optimise-store = true;
-        experimental-features = ["auto-allocate-uids" "blake3-hashes" "ca-derivations" "cgroups" "flakes" "nix-command"];
+        experimental-features = [
+          "auto-allocate-uids"
+          "blake3-hashes"
+          "ca-derivations"
+          "cgroups"
+          "dynamic-derivations"
+          "flakes"
+          "nix-command"
+          "recursive-nix"
+        ];
         keep-outputs = true;
+        substituters = [
+          "https://nix-community.cachix.org"
+          "https://cache.flox.dev"
+        ];
         trace-import-from-derivation = true;
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+        ];
         trusted-users = ["@wheel"];
         use-cgroups = true;
         use-xdg-base-directories = true;
         warn-dirty = false;
         # keep-sorted end
-
-        substituters = [
-          "https://nix-community.cachix.org"
-          "https://cache.flox.dev"
-        ];
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
-        ];
       };
 
       registry = {
