@@ -14,12 +14,17 @@ inputs: {
       };
   };
 
+  firefox-nightly = final: prev: let
+    overlay = inputs.firefox-nightly.overlays.default final prev;
+  in {
+    inherit (overlay) firefox-esr-bin firefox-beta-bin firefox-devedition-bin firefox-nightly-bin;
+  };
+
   # keep-sorted start
   blink-cmp = inputs.snv.inputs.blink-cmp.overlays.default;
   blink-lib = inputs.snv.inputs.blink-lib.overlays.default;
   blink-pairs = inputs.snv.inputs.blink-pairs.overlays.default;
   fenix = inputs.fenix.overlays.default;
-  firefox-nightly = inputs.firefox-nightly.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
   niri = inputs.niri.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
