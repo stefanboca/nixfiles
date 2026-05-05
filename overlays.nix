@@ -20,6 +20,15 @@ inputs: {
     inherit (overlay) firefox-esr-bin firefox-beta-bin firefox-devedition-bin firefox-nightly-bin;
   };
 
+  zed-editor = final: prev: {
+    zed-editor = (inputs.zed-editor.overlays.default final prev).zed-editor.overrideAttrs (oldAttrs: {
+      env = (oldAttrs.env or {}) // {LK_CUSTOM_WEBRTC = final.livekit-libwebrtc;};
+      cargoArtifacts = oldAttrs.cargoArtifacts.overrideAttrs (oldAttrs': {
+        env = (oldAttrs'.env or {}) // {LK_CUSTOM_WEBRTC = final.livekit-libwebrtc;};
+      });
+    });
+  };
+
   # keep-sorted start
   blink-cmp = inputs.snv.inputs.blink-cmp.overlays.default;
   blink-lib = inputs.snv.inputs.blink-lib.overlays.default;
@@ -31,6 +40,5 @@ inputs: {
   snv = inputs.snv.overlays.default;
   spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
-  zed-editor = inputs.zed-editor.overlays.default;
   # keep-sorted end
 }

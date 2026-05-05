@@ -14,11 +14,9 @@
     paths = [cfg.package];
     preferLocalBuild = true;
     nativeBuildInputs = [pkgs.makeBinaryWrapper];
-    # TODO: figure out a cleaner way to do this
     postBuild = ''
-      wrapProgram $out/bin/zed \
-        --suffix PATH : ${makeBinPath cfg.extraPackages}
-      wrapProgram $out/bin/zeditor \
+      rm $out/libexec/zed-editor
+      makeWrapper $out/libexec/.zed-editor-wrapped $out/libexec/zed-editor \
         --suffix PATH : ${makeBinPath cfg.extraPackages}
     '';
   };
@@ -27,15 +25,17 @@
 in {
   options.rum.programs.zed-editor = {
     enable = mkEnableOption "zed-editor";
-
     package = mkPackageOption pkgs "zed-editor" {};
 
     extraPackages = mkOption {
       type = listOf package;
+      default = {};
     };
   };
 
   config = mkIf cfg.enable {
     packages = [wrappedPackage];
+
+    rum.programs.zed-editor.extraPackages = [pkgs.nodejs];
   };
 }
