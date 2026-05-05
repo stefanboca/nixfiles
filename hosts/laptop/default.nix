@@ -63,8 +63,16 @@ in {
     users.stefan.enable = true;
   };
 
+  systemd.services.tor.wantedBy = lib.mkForce [];
+
   services = {
-    arti.enable = true;
+    tor = {
+      enable = true;
+      client.enable = true;
+      relay.onionServices.radicle = {
+        map = [8776];
+      };
+    };
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
@@ -149,13 +157,13 @@ in {
         signal-desktop
         system-config-printer
         telegram-desktop
+        zotero
         zulip
         # keep-sorted end
         pkgs-cuda.blender
         # calibre
         # musescore
         # xournalpp
-        # zotero
       ];
 
       rum.misc.dconf = {
