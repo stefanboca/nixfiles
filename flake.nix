@@ -38,7 +38,7 @@
     };
 
     zed-editor = {
-      url = "github:zed-industries/zed?tag=v1.1.2-pre";
+      url = "github:zed-industries/zed?tag=v1.2.x";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
