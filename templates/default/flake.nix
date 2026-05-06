@@ -20,7 +20,8 @@
     nixpkgsFor = forAllSystems (system: import nixpkgs.legacyPackages.${system});
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
-    packages = forAllSystems (_: {});
+    packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
+    overlays.default = final: _: import ./pkgs final;
 
     devShells = forAllSystems (system: let
       pkgs = nixpkgsFor.${system};
@@ -60,7 +61,6 @@
     };
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
-
     checks = forAllSystems (system: let
       packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
       devShells = mapAttrs' (n: nameValuePair "devShell-${n}") self.devShells.${system};
