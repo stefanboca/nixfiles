@@ -101,7 +101,7 @@
         templates = attrValues templates;
         secretsMountPoint = cfg.defaultSecretsMountPoint;
         symlinkPath = cfg.defaultSymlinkPath;
-        keepGenerations = cfg.keepGenerations;
+        inherit (cfg) keepGenerations;
         gnupgHome = null;
         sshKeyPaths = [];
         ageKeyFile = cfg.age.keyFile;

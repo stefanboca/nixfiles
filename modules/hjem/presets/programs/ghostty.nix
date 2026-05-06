@@ -37,7 +37,7 @@ in {
       window-padding-x = 0;
       window-padding-y = 0;
       window-theme = "ghostty";
-      # keep-sorted start
+      # keep-sorted end
 
       keybind = [
         "ctrl+space>r=reload_config"

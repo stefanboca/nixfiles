@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib.modules) mkForce mkIf;
+  inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
 
   cfg = config.presets.gaming;
