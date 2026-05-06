@@ -17,7 +17,7 @@
 
     systems = ["x86_64-linux" "aarch64-linux"];
     forAllSystems = genAttrs systems;
-    nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
+    nixpkgsFor = forAllSystems (system: import nixpkgs.legacyPackages.${system});
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
     packages = forAllSystems (_: {});
@@ -29,19 +29,19 @@
     });
 
     nixosConfigurations.vm = lib.nixosSystem {
-      system = "x86_64-linux";
       modules = [
         ({modulesPath, ...}: {imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];})
         ({pkgs, ...}: {
+          nixpkgs.hostPlatform = "x86_64-linux";
           virtualisation = {
             qemu.options = ["-nographic" "-serial" "mon:stdio"];
             cores = 4;
             memorySize = 4 * 1024;
           };
           system.stateVersion = lib.trivial.release;
-          nix = {
-            settings.trusted-users = ["root" "nixos"];
-            extraOptions = "experimental-features = nix-command flakes";
+          nix.settings = {
+            trusted-users = ["@wheel"];
+            experimental-features = ["flakes" "nix-command"];
           };
           programs.fish.enable = true;
           security.sudo.wheelNeedsPassword = false;

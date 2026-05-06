@@ -89,13 +89,15 @@
     treefmt-nix,
     ...
   } @ inputs: let
+    inherit (builtins) attrValues;
     inherit (nixpkgs) lib;
-    inherit (lib.attrsets) attrValues filterAttrs genAttrs mapAttrs' nameValuePair;
+    inherit (lib.attrsets) filterAttrs genAttrs mapAttrs' nameValuePair;
     inherit (lib.trivial) pipe;
 
     mkPkgs = system:
       import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
         overlays = attrValues self.overlays;
       };
 

@@ -28,12 +28,6 @@
 
   vm = lib.nixosSystem {
     specialArgs = {inherit inputs self;};
-    modules = [
-      ./vm
-      self.nixosModules.catppuccin
-      self.nixosModules.presets
-
-      inputs.hjem.nixosModules.default
-    ];
+    modules = [./vm];
   };
 }
