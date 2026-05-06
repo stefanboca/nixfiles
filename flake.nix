@@ -46,7 +46,7 @@
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.flake = false;
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -92,44 +92,37 @@
     inherit (builtins) attrValues;
     inherit (nixpkgs) lib;
     inherit (lib.attrsets) filterAttrs genAttrs mapAttrs' nameValuePair;
-    inherit (lib.trivial) pipe;
 
-    mkPkgs = system:
+    systems = ["x86_64-linux" "aarch64-linux"];
+    forAllSystems = genAttrs systems;
+    nixpkgsFor = forAllSystems (system:
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = attrValues self.overlays;
-      };
-
-    systems = ["x86_64-linux"];
-    forAllSystems = f: genAttrs systems (system: f (mkPkgs system));
-
-    treefmt = forAllSystems (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+      });
+    treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
     nixosConfigurations = import ./hosts {inherit inputs lib self;};
-
     hjemModules = import ./modules/hjem;
     nixosModules = import ./modules/nixos;
 
+    packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
     overlays = import ./overlays.nix inputs;
-    packages = forAllSystems (pkgs: import ./pkgs pkgs);
 
-    devShells = forAllSystems (pkgs: import ./dev-shells.nix pkgs);
-
+    devShells = forAllSystems (system: import ./dev-shells.nix nixpkgsFor.${system});
     templates = import ./templates;
 
-    formatter = forAllSystems (pkgs: treefmt.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
+    formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
 
-    checks = forAllSystems (pkgs: let
-      inherit (pkgs.stdenv.hostPlatform) system;
-
-      nixosMachines = pipe self.nixosConfigurations [
-        (filterAttrs (_: c: c.pkgs.stdenv.hostPlatform.system == system))
-        (mapAttrs' (n: c: nameValuePair "nixos-${n}" c.config.system.build.toplevel))
-      ];
+    checks = forAllSystems (system: let
+      nixosMachines =
+        self.nixosConfigurations
+        |> filterAttrs (_: c: c.pkgs.stdenv.hostPlatform.system == system)
+        |> mapAttrs' (n: c: nameValuePair "nixos-${n}" c.config.system.build.toplevel);
       packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
       devShells = mapAttrs' (n: nameValuePair "devShell-${n}") self.devShells.${system};
-      formatting = {formatting = treefmt.${system}.config.build.check self;};
+      formatting = {formatting = treefmtFor.${system}.config.build.check self;};
     in
       nixosMachines // packages // devShells // formatting);
   };

@@ -9,16 +9,14 @@
   inherit (lib.options) mkOption;
   inherit (lib.types) submoduleWith;
 
-  spicetify = inputs.spicetify-nix;
-
   cfg = config.rum.programs.spicetify;
 in {
   options.rum.programs.spicetify = mkOption {
     type = submoduleWith {
       specialArgs = {inherit pkgs;};
       modules = [
-        (importApply (spicetify + "/modules/options.nix") spicetify)
-        (spicetify + "/modules/linuxOpts.nix")
+        (importApply (inputs.spicetify-nix + "/modules/options.nix") {packages = pkgs.spicePkgs;})
+        (inputs.spicetify-nix + "/modules/linuxOpts.nix")
       ];
     };
     default = {};

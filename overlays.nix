@@ -1,5 +1,5 @@
 inputs: {
-  default = _final: prev: import ./pkgs prev;
+  default = final: _prev: import ./pkgs final;
 
   catppuccin = _final: prev: let
     upstreamSources = (import inputs.catppuccin {pkgs = prev;}).packages;
@@ -14,10 +14,12 @@ inputs: {
       };
   };
 
-  firefox-nightly = final: prev: let
-    overlay = inputs.firefox-nightly.overlays.default final prev;
-  in {
-    inherit (overlay) firefox-esr-bin firefox-beta-bin firefox-devedition-bin firefox-nightly-bin;
+  firefox-nightly = final: prev: {
+    inherit (inputs.firefox-nightly.overlays.default final prev) firefox-beta-bin firefox-devedition-bin firefox-esr-bin firefox-nightly-bin;
+  };
+
+  spicetify = final: _prev: {
+    spicePkgs = import (inputs.spicetify-nix + "/pkgs") final;
   };
 
   zed-editor = final: prev: {
@@ -38,7 +40,6 @@ inputs: {
   niri = inputs.niri.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;
-  spicetify = final: _prev: {spicePkgs = inputs.spicetify-nix.legacyPackages.${final.stdenv.hostPlatform.system};};
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
   # keep-sorted end
 }
