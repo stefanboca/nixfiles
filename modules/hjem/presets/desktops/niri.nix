@@ -49,12 +49,6 @@ in {
             hide-after-inactive-ms 10000
           }
           input {
-            keyboard {
-              xkb {
-                layout "us"
-                options "caps:ctrl_modifier"
-              }
-            }
             touchpad {
               tap
               natural-scroll

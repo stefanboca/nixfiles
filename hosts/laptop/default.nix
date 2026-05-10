@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   pkgs,
@@ -65,6 +66,16 @@ in {
 
   systemd.services.tor.wantedBy = lib.mkForce [];
 
+  environment = {
+    etc = {
+      # emulate services.xserver.exportConfiguration = true without services.xserver.enable = true
+      "X11/xkb".source = "${config.services.xserver.xkb.dir}";
+    };
+    sessionVariables = {
+      XKB_CONFIG_ROOT = lib.mkForce "/etc/X11/xkb";
+    };
+  };
+
   services = {
     tor = {
       enable = true;
@@ -81,6 +92,35 @@ in {
       enable = true;
       drivers = [pkgs.cnijfilter2];
       webInterface = false; # this enabled prevents prevents exit on idle. use system-config-printer instead.
+    };
+    xserver.xkb = {
+      layout = "us,gallium_rowstag";
+      extraLayouts = {
+        graphite = {
+          description = "Graphite";
+          languages = ["eng"];
+          symbolsFile = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/xedrac/keyboard-layouts/7fc725da98a14aa187c156c06b426195106b05f5/linux/xkb/graphite";
+            hash = "sha256-3BMRivNlOiurD1eGJh7uHbRUW0lTLj1VjP0ujimwm4w=";
+          };
+        };
+        gallium_rowstag = {
+          description = "Gallium v2 (rowstag)";
+          languages = ["eng"];
+          symbolsFile = pkgs.fetchurl {
+            url = "https://github.com/GalileoBlues/Gallium/raw/21a8a7bb64a80acd67e06b5209e30559688121fe/Linux/xkb/gallium_rowstag";
+            hash = "sha256-iUY1wdc+dbuOXp6vWIzUuDQxa31pz8vhCvMfc43o6ng=";
+          };
+        };
+        meteorite = {
+          description = "Meteorite";
+          languages = ["eng"];
+          symbolsFile = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/xedrac/keyboard-layouts/7fc725da98a14aa187c156c06b426195106b05f5/linux/xkb/meteorite";
+            hash = "sha256-YWghWBy65aTvCwNHse13Ff2eNLwir9ugtQQsieMaQ7Q=";
+          };
+        };
+      };
     };
   };
 

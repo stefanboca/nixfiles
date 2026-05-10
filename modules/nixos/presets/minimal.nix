@@ -82,7 +82,8 @@ in {
 
     console = {
       earlySetup = true;
-      useXkbConfig = true;
+      # TODO: fix when XKB_CONFIG_ROOT is out of store (use services.xserver.xkb.dir instead?)
+      # useXkbConfig = true;
     };
 
     systemd = {
@@ -99,7 +100,15 @@ in {
         enableUserSlices = true;
         settings.OOM.DefaultMemoryPressureLimit = "90%";
       };
-      services.NetworkManager-wait-online.enable = false;
+      services = {
+        NetworkManager-wait-online.enable = false;
+        # needed for kmscon to pick up services.xserver.xkb.extraLayouts
+        # TODO: upstream?
+        "kmsconvt@".serviceConfig.Environment =
+          lib.mkIf
+          (config.services.kmscon.useXkbConfig && config.environment.sessionVariables ? XKB_CONFIG_ROOT)
+          ["XKB_CONFIG_ROOT=${config.environment.sessionVariables.XKB_CONFIG_ROOT}"];
+      };
     };
 
     services = {
@@ -112,6 +121,8 @@ in {
       irqbalance.enable = true;
       kmscon = {
         enable = true;
+        hwRender = true; # ideally this would be mkIf hardware.graphics.enable, but that causes infinite recursion.
+        term = "xterm-256color";
         useXkbConfig = true;
       };
       openssh.generateHostKeys = true;

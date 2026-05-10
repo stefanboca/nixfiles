@@ -60,7 +60,7 @@ in {
             RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/bl_power"
         ''
       ];
-      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
+      xserver.xkb.options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier,grp:menu_toggle";
     };
   };
 }
