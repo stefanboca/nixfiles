@@ -16,7 +16,6 @@
     nativeBuildInputs = [pkgs.makeBinaryWrapper];
     postBuild = ''
       path="${makeBinPath cfg.extraPackages}"
-      wrapProgram $out/bin/zed --suffix PATH : $path
       wrapProgram $out/bin/zeditor --suffix PATH : $path
     '';
   };

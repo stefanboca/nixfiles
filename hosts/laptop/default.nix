@@ -126,10 +126,6 @@ in {
 
   programs = {
     nh.flake = "/home/stefan/src/nixfiles";
-    obs-studio = {
-      enable = true;
-      package = pkgs.obs-studio.override {browserSupport = false;}; # browser support is a whole 2GB that I don't use
-    };
     wireshark = {
       enable = true;
       package = pkgs.wireshark;

@@ -6,7 +6,7 @@
   self,
   ...
 }: let
-  inherit (lib.attrsets) attrValues;
+  inherit (builtins) attrValues;
   inherit (lib.modules) mkDefault mkIf;
   inherit (lib.options) mkEnableOption;
 
@@ -60,7 +60,7 @@ in {
     };
 
     nixpkgs = {
-      overlays = attrValues self.overlays;
+      overlays = removeAttrs self.overlays ["ghostty" "zed-editor"] |> attrValues;
       config = {
         allowUnfree = true;
         nvidia.acceptLicense = true;

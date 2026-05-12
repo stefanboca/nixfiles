@@ -5,7 +5,8 @@
   inputs,
   ...
 }: let
-  inherit (lib.attrsets) attrValues mapAttrsToList;
+  inherit (builtins) attrValues;
+  inherit (lib.attrsets) mapAttrsToList;
   inherit (lib.lists) elem;
   inherit (lib.modules) mergeEqualOption mkIf;
   inherit (lib.options) literalExpression mkOption;
