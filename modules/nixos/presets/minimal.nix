@@ -60,7 +60,7 @@ in {
     };
 
     nixpkgs = {
-      overlays = removeAttrs self.overlays ["ghostty" "zed-editor"] |> attrValues;
+      overlays = removeAttrs self.overlays ["zed-editor"] |> attrValues;
       config = {
         allowUnfree = true;
         nvidia.acceptLicense = true;
