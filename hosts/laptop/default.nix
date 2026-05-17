@@ -8,12 +8,6 @@
 }: let
   inherit (lib.modules) mkAfter;
 
-  pkgs-cuda = import pkgs.path {
-    inherit (pkgs) overlays;
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config = pkgs.config // {cudaSupport = true;};
-  };
-
   niriConfigFile =
     pkgs.writeText "niri-laptop.kdl"
     # kdl
@@ -193,7 +187,7 @@ in {
         zotero
         zulip
         # keep-sorted end
-        pkgs-cuda.blender
+        pkgsCuda.blender
         # calibre
         # musescore
         # xournalpp
