@@ -14,10 +14,11 @@
   }: let
     inherit (nixpkgs) lib;
     inherit (lib.attrsets) genAttrs mapAttrs' nameValuePair;
+    inherit (lib.meta) getExe;
 
     systems = ["x86_64-linux" "aarch64-linux"];
     forAllSystems = genAttrs systems;
-    nixpkgsFor = forAllSystems (system: import nixpkgs.legacyPackages.${system});
+    nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
     packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
@@ -29,36 +30,48 @@
       default = pkgs.mkShellNoCC {};
     });
 
-    nixosConfigurations.vm = lib.nixosSystem {
-      modules = [
-        ({modulesPath, ...}: {imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];})
-        ({pkgs, ...}: {
-          nixpkgs.hostPlatform = "x86_64-linux";
-          virtualisation = {
-            qemu.options = ["-nographic" "-serial" "mon:stdio"];
-            cores = 4;
-            memorySize = 4 * 1024;
-          };
-          system.stateVersion = lib.trivial.release;
-          nix.settings = {
-            trusted-users = ["@wheel"];
-            experimental-features = ["flakes" "nix-command"];
-          };
-          programs.fish.enable = true;
-          security.sudo.wheelNeedsPassword = false;
-          users.users.nixos = {
-            isNormalUser = true;
-            hashedPassword = "";
-            extraGroups = ["wheel"];
-            shell = pkgs.fish;
-          };
-          documentation = {
-            nixos.enable = false;
-            enable = false;
-          };
-        })
-      ];
-    };
+    apps = forAllSystems (system: let
+      vm = lib.nixosSystem {
+        inherit system;
+        modules = [
+          (nixpkgs + "/nixos/modules/virtualisation/qemu-vm.nix")
+          ({pkgs, ...}: {
+            system.stateVersion = lib.trivial.release;
+            virtualisation = {
+              qemu.options = ["-nographic" "-serial" "mon:stdio"];
+              cores = 4;
+              memorySize = 4 * 1024;
+            };
+            nixpkgs.overlays = [self.overlays.default];
+            nix.settings = {
+              trusted-users = ["@wheel"];
+              experimental-features = ["flakes" "nix-command"];
+            };
+            programs.fish.enable = true;
+            security.sudo.wheelNeedsPassword = false;
+            users.users.nixos = {
+              isNormalUser = true;
+              hashedPassword = "";
+              extraGroups = ["wheel"];
+              shell = pkgs.fish;
+            };
+            documentation = {
+              nixos.enable = false;
+              enable = false;
+            };
+          })
+        ];
+      };
+    in {
+      vm = {
+        type = "app";
+        program = getExe vm.config.system.build.vm;
+        meta = {
+          description = "start a vm";
+          nixosConfiguration = vm;
+        };
+      };
+    });
 
     formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
     checks = forAllSystems (system: let
