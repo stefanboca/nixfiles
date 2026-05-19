@@ -27,6 +27,10 @@
               "/rootfs" = {
                 mountpoint = "/";
               };
+              "/var" = {
+                mountpoint = "/var";
+                mountOptions = ["compress=zstd:1"];
+              };
               "/home" = {
                 mountpoint = "/home";
                 mountOptions = ["compress=zstd:1"];
@@ -46,12 +50,15 @@
     main.settings = {
       timestamp_format = "long";
       snapshot_preserve_min = "4d";
-      snapshot_preserve = "30d";
+      snapshot_preserve = "14d 4w 3m";
       snapshot_create = "onchange";
       volume."/partition-root" = {
         snapshot_dir = "snapshots";
-        subvolume.home = {};
-        subvolume.rootfs = {};
+        subvolume = {
+          home = {};
+          rootfs = {};
+          var = {};
+        };
       };
     };
   };
