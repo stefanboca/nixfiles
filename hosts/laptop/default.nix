@@ -58,7 +58,10 @@ in {
     users.stefan.enable = true;
   };
 
-  systemd.services.tor.wantedBy = lib.mkForce [];
+  systemd = {
+    services.tor.wantedBy = lib.mkForce [];
+    targets.postgresql.wantedBy = lib.mkForce [];
+  };
 
   environment = {
     etc = {
@@ -71,6 +74,17 @@ in {
   };
 
   services = {
+    postgresql = {
+      enable = true;
+      ensureDatabases = ["stefan"];
+      ensureUsers = [
+        {
+          name = "stefan";
+          ensureClauses = {superuser = true;};
+          ensureDBOwnership = true;
+        }
+      ];
+    };
     tor = {
       enable = true;
       client.enable = true;
