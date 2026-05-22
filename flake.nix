@@ -69,7 +69,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         hjem.follows = "hjem";
-        treefmt-nix.follows = "";
       };
     };
 
