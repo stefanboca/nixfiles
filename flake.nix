@@ -98,7 +98,7 @@
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = attrValues self.overlays;
+        overlays = removeAttrs self.overlays ["default"] |> attrValues;
       });
     treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
   in {
