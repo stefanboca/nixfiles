@@ -13,6 +13,13 @@
 
   signingKey = trim (readFile cfg.signingKeyFile);
 
+  gpa = pkgs.writeShellScript "jj-gpa" ''
+    set -euo pipefail
+    jj --repository "$JJ_WORKSPACE_ROOT" git remote list |
+      awk '{print $1}' |
+      xargs -I {} jj --repository "$JJ_WORKSPACE_ROOT" git push --remote {} $@
+  '';
+
   cfg = config.presets.programs.vcs;
 in {
   options.presets.programs.vcs = {
@@ -122,6 +129,8 @@ in {
             gf = ["git" "fetch"];
             gp = ["git" "push"];
             gr = ["git" "remote"];
+
+            gpa = ["util" "exec" "--" gpa];
           };
 
           merge-tools = {
