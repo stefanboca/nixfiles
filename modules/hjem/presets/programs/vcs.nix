@@ -13,7 +13,7 @@
 
   signingKey = trim (readFile cfg.signingKeyFile);
 
-  gpa = pkgs.writeShellScript "jj-gpa" ''
+  jj-gpa = pkgs.writeShellScript "jj-gpa" ''
     set -euo pipefail
     jj --repository "$JJ_WORKSPACE_ROOT" git remote list |
       awk '{print $1}' |
@@ -130,7 +130,7 @@ in {
             gp = ["git" "push"];
             gr = ["git" "remote"];
 
-            gpa = ["util" "exec" "--" gpa];
+            gpa = ["util" "exec" "--" jj-gpa];
           };
 
           merge-tools = {
