@@ -1,62 +1,48 @@
 {
-  config,
   inputs,
   lib,
   osConfig,
   pkgs,
   ...
 }: let
-  inherit (catppuccinLib) applyToModules;
-  inherit (catppuccinLib.types) accent flavor;
-  inherit (lib.attrsets) optionalAttrs recursiveUpdate;
   inherit (lib.filesystem) listFilesRecursive;
-  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.options) mkOption;
   inherit (lib.trivial) importJSON;
-  inherit (lib.types) lazyAttrsOf raw;
-
-  catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
+  inherit (lib.modules) importApply mkIf mkDefault;
+  inherit (lib.types) freeformType str;
 
   hasOsConfig = osConfig ? catppuccin;
-
   osCfg = osConfig.catppuccin;
 in {
-  # TODO:
-  # - mako
-  # - btop
-  # - starship? (currently requires IFD)
-  imports = applyToModules ((listFilesRecursive ./desktops) ++ (listFilesRecursive ./programs) ++ (listFilesRecursive ./misc));
+  imports = [
+    (importApply (inputs.catppuccin + "/modules/global.nix") {
+      catppuccinModules =
+        (listFilesRecursive ./desktops) ++ (listFilesRecursive ./programs) ++ (listFilesRecursive ./misc);
+    })
+  ];
 
-  options.catppuccin = {
-    enable = (mkEnableOption "Catppuccin globally") // optionalAttrs hasOsConfig {default = osCfg.enable;};
-
-    flavor = mkOption ({
-        type = flavor;
-        default = "mocha";
-        description = "Global Catppuccin flavor";
-      }
-      // optionalAttrs hasOsConfig {default = osCfg.flavor;});
-
-    accent = mkOption ({
-        type = accent;
-        default = "mauve";
-        description = "Global Catppuccin accent";
-      }
-      // optionalAttrs hasOsConfig {default = osCfg.accent;});
-
-    sources = mkOption {
-      type = lazyAttrsOf raw;
-      default = pkgs.catppuccin-sources;
-      defaultText = "{ ... }";
-      # HACK: without this, overriding one source will delete all others. -@getchoo
-      apply = recursiveUpdate pkgs.catppuccin-sources;
-      description = "Port sources used across all options";
-    };
-
-    palette = mkOption {
-      type = lazyAttrsOf raw;
+  options = {
+    catppuccin.palette = mkOption {
+      description = "Global Catppuccin palette";
+      inherit (pkgs.formats.json {}) type;
       readOnly = true;
-      # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = importJSON ../../../res/catppuccin/palette.json;
     };
+
+    # hack to make the global module work
+    nix.settings = mkOption {type = freeformType;};
+    system.nixos.release = mkOption {
+      type = str;
+      readOnly = true;
+      default = osConfig.system.nixos.release;
+    };
+  };
+
+  config.catppuccin = {
+    enable = mkIf hasOsConfig (mkDefault osCfg.enable);
+    autoEnable = mkIf hasOsConfig (mkDefault osCfg.autoEnable);
+    flavor = mkIf hasOsConfig (mkDefault osCfg.flavor);
+    accent = mkIf hasOsConfig (mkDefault osCfg.accent);
+    sources = mkIf hasOsConfig (mkDefault osCfg.sources);
+    palette = importJSON ../../../res/catppuccin/palette.json;
   };
 }

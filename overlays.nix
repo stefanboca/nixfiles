@@ -1,19 +1,6 @@
 inputs: {
   default = final: _prev: import ./pkgs final;
 
-  catppuccin = _final: prev: let
-    upstreamSources = (import inputs.catppuccin {pkgs = prev;}).packages;
-  in {
-    catppuccin-sources =
-      upstreamSources
-      // {
-        firefox = upstreamSources.firefox.overrideAttrs {
-          patches = [./res/catppuccin/firefox-write-themes-to-json.patch];
-          installPhase = ''mkdir -p $out; mv themes/* $out'';
-        };
-      };
-  };
-
   firefox-nightly = final: prev: {
     inherit (inputs.firefox-nightly.overlays.default final prev) firefox-beta-bin firefox-devedition-bin firefox-esr-bin firefox-nightly-bin;
   };

@@ -1,53 +1,32 @@
 {
-  config,
   inputs,
   lib,
+  options,
   pkgs,
   ...
 }: let
-  inherit (catppuccinLib) applyToModules;
-  inherit (catppuccinLib.types) accent flavor;
-  inherit (lib.attrsets) recursiveUpdate;
-  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.options) mkOption;
   inherit (lib.trivial) importJSON;
-  inherit (lib.types) lazyAttrsOf raw;
-
-  catppuccinLib = import (inputs.catppuccin + "/modules/lib") {inherit config lib pkgs;};
+  inherit (lib.modules) importApply;
 in {
-  imports = applyToModules (
-    [./limine.nix ./tty.nix]
-    ++ (map (m: inputs.catppuccin + "/modules/nixos/${m}.nix") ["plymouth" "sddm"])
-  );
+  imports = [
+    (importApply (inputs.catppuccin + "/modules/global.nix") {
+      catppuccinModules =
+        [./limine.nix ./tty.nix] ++ (map (m: inputs.catppuccin + "/modules/nixos/${m}.nix") ["plymouth" "sddm"]);
+    })
+  ];
 
-  options.catppuccin = {
-    enable = mkEnableOption "Catppuccin globally";
+  options.catppuccin.palette = mkOption {
+    description = "Global Catppuccin palette";
+    inherit (pkgs.formats.json {}) type;
+    readOnly = true;
+  };
 
-    flavor = mkOption {
-      type = flavor;
-      default = "mocha";
-      description = "Global Catppuccin flavor";
+  config.catppuccin = {
+    sources.firefox = options.catppuccin.sources.default.firefox.overrideAttrs {
+      patches = [./../../../res/catppuccin/firefox-write-themes-to-json.patch];
+      installPhase = ''mkdir -p $out; mv themes/* $out'';
     };
-
-    accent = mkOption {
-      type = accent;
-      default = "mauve";
-      description = "Global Catppuccin accent";
-    };
-
-    sources = mkOption {
-      type = lazyAttrsOf raw;
-      default = pkgs.catppuccin-sources;
-      defaultText = "{ ... }";
-      # HACK: without this, overriding one source will delete all others. -@getchoo
-      apply = recursiveUpdate pkgs.catppuccin-sources;
-      description = "Port sources used across all options";
-    };
-
-    palette = mkOption {
-      type = lazyAttrsOf raw;
-      readOnly = true;
-      # taken from `sources.palette` to avoid IFD, and minified with `jq -c .` for size
-      default = importJSON ../../../res/catppuccin/palette.json;
-    };
+    palette = importJSON ./../../../res/catppuccin/palette.json;
   };
 }
