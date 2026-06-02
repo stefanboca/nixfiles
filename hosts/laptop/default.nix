@@ -269,7 +269,7 @@ in {
             parameters.allow-when-locked = true;
           };
           "XF86Launch1" = {
-            spawn = ["noctalia-shell" "ipc" "call" "media" "playPause"];
+            spawn = ["noctalia" "media" "toggle"];
             parameters.allow-when-locked = true;
           };
           "Mod+XF86Display".action = "focus-monitor-next";

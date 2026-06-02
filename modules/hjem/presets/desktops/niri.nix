@@ -2,35 +2,29 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }: let
-  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkPackageOption;
 
   cfg = config.presets.desktops.niri;
 in {
+  imports = [self.inputs.noctalia-shell.hjemModules.default];
+
   options.presets.desktops.niri = {
     enable = mkEnableOption "niri preset";
 
-    noctalia-shell.package = mkPackageOption pkgs "noctalia-shell" {};
+    noctalia.package = mkPackageOption pkgs "noctalia" {};
   };
 
   config = mkIf cfg.enable {
-    packages = [cfg.noctalia-shell.package];
+    packages = [cfg.noctalia.package];
 
-    systemd.services.noctalia = {
-      description = "Noctalia Shell";
-      after = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
-      wantedBy = ["graphical-session.target"];
-      enableDefaultPath = false;
-      restartTriggers = [cfg.noctalia-shell.package];
-      serviceConfig = {
-        ExecStart = getExe cfg.noctalia-shell.package;
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
+    programs.noctalia = {
+      enable = true;
+      package = pkgs.noctalia;
+      systemd.enable = true;
     };
 
     rum.desktops.niri = {
@@ -136,74 +130,58 @@ in {
           parameters.hotkey-overlay-title = "Application Launcher";
         };
         "Mod+Ctrl+B" = {
-          spawn = ["noctalia-shell" "ipc" "call" "bar" "toggle"];
+          spawn = ["noctalia" "msg" "bar-toggle"];
           parameters.hotkey-overlay-title = "Toggle Bar";
         };
-        "Mod+Ctrl+W" = {
-          spawn = ["noctalia-shell" "ipc" "call" "desktopWidgets" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle Desktop Widgets";
-        };
-        "Mod+X" = {
-          spawn = ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle Session Menu";
-        };
-        "Mod+N" = {
-          spawn = ["noctalia-shell" "ipc" "call" "nightLight" "toggle"];
-          parameters.hotkey-overlay-title = "Toggle Night Light";
-        };
         "Super+Alt+L" = {
-          spawn = ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
+          spawn = ["noctalia" "msg" "session" "lock"];
           parameters.hotkey-overlay-title = "Lock";
         };
-        "Mod+Ctrl+Shift+P" = {
-          spawn = ["noctalia-shell" "ipc" "call" "powerProfile" "toggleNoctaliaPerformance"];
-          parameters.hotkey-overlay-title = "Toggle Noctalia Performance Mode";
-        };
         "Mod+Ctrl+Shift+R" = {
-          spawn = ["systemctl" "--user" "restart" "noctalia-shell.service"];
+          spawn = ["systemctl" "--user" "restart" "noctalia.service"];
           parameters.hotkey-overlay-title = "Restart Noctalia Shell";
           parameters.allow-when-locked = true;
         };
 
         XF86AudioRaiseVolume = {
-          spawn = ["noctalia-shell" "ipc" "call" "volume" "increase"];
+          spawn = ["noctalia" "msg" "volume-up"];
           parameters.allow-when-locked = true;
         };
         XF86AudioLowerVolume = {
-          spawn = ["noctalia-shell" "ipc" "call" "volume" "decrease"];
+          spawn = ["noctalia" "msg" "volume-down"];
           parameters.allow-when-locked = true;
         };
         XF86AudioMute = {
-          spawn = ["noctalia-shell" "ipc" "call" "volume" "muteOutput"];
+          spawn = ["noctalia" "msg" "volume-mute"];
           parameters.allow-when-locked = true;
         };
         XF86AudioMicMute = {
-          spawn = ["noctalia-shell" "ipc" "call" "volume" "muteInput"];
+          spawn = ["noctalia" "msg" "mic-mute"];
           parameters.allow-when-locked = true;
         };
         XF86AudioPlay = {
-          spawn = ["noctalia-shell" "ipc" "call" "media" "playPause"];
+          spawn = ["noctalia" "msg" "media" "toggle"];
           parameters.allow-when-locked = true;
         };
         XF86AudioStop = {
-          spawn = ["noctalia-shell" "ipc" "call" "media" "stop"];
+          spawn = ["noctalia" "msg" "media" "stop"];
           parameters.allow-when-locked = true;
         };
         XF86AudioNext = {
-          spawn = ["noctalia-shell" "ipc" "call" "media" "next"];
+          spawn = ["noctalia" "msg" "media" "next"];
           parameters.allow-when-locked = true;
         };
         XF86AudioPrev = {
-          spawn = ["noctalia-shell" "ipc" "call" "media" "previous"];
+          spawn = ["noctalia" "msg" "media" "previous"];
           parameters.allow-when-locked = true;
         };
 
         XF86MonBrightnessUp = {
-          spawn = ["noctalia-shell" "ipc" "call" "brightness" "increase"];
+          spawn = ["noctalia" "msg" "brightness-up"];
           parameters.allow-when-locked = true;
         };
         XF86MonBrightnessDown = {
-          spawn = ["noctalia-shell" "ipc" "call" "brightness" "decrease"];
+          spawn = ["noctalia" "msg" "brightness-down"];
           parameters.allow-when-locked = true;
         };
 
