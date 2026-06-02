@@ -165,6 +165,10 @@ in {
     preferStaticEmulators = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+  ];
+
   hjem = {
     specialArgs = {inherit inputs self;};
     extraModules = [self.hjemModules.stefan];
