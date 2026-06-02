@@ -121,8 +121,10 @@ in {
       irqbalance.enable = true;
       kmscon = {
         enable = true;
-        hwRender = true; # ideally this would be mkIf hardware.graphics.enable, but that causes infinite recursion.
-        term = "xterm-256color";
+        config = {
+          hwaccel = true; # ideally this would be mkIf hardware.graphics.enable, but that causes infinite recursion.
+          term = "xterm-256color";
+        };
         useXkbConfig = true;
       };
       openssh.generateHostKeys = true;

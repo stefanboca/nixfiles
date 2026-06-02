@@ -19,7 +19,7 @@ in {
   config = mkIf cfg.enable {
     packages = [cfg.noctalia-shell.package];
 
-    systemd.services.noctalia-shell = {
+    systemd.services.noctalia = {
       description = "Noctalia Shell";
       after = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
