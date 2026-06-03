@@ -25,7 +25,7 @@
       url = "github:Supreeeme/xwayland-satellite";
       inputs.rust-overlay.follows = "";
     };
-    noctalia-shell.url = "github:stefanboca/noctalia-shell/v5";
+    noctalia-shell.url = "github:noctalia-dev/noctalia-shell/v5";
     noctalia-shell.inputs.nixpkgs.follows = "nixpkgs";
 
     ghostty = {
