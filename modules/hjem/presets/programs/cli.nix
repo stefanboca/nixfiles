@@ -22,6 +22,7 @@ in {
     packages = with pkgs; [
       # keep-sorted start
       ast-grep # syntax-aware structural grep
+      bat
       bencher # benchmark isolation tool
       binsider # ELF analysis tool
       bluetui # TUI for managing bluetooth devices

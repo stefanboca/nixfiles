@@ -180,6 +180,8 @@ in {
 
       packages = with pkgs; [
         # keep-sorted start
+        bazel-buildtools
+        bazel_9
         beets
         bitwarden-desktop
         crosspipe
