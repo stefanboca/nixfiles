@@ -169,11 +169,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1780999471,
-        "narHash": "sha256-rY4yNlSzDY3OoYBdgjwlpVKWY/oUeOb65709i/tJbns=",
+        "lastModified": 1781086641,
+        "narHash": "sha256-2oBncBeL671Tf6TnYqk36ebkfPHNYPKwz5at8NcrpvI=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "db976d430cbb6b0d6b300b4e22cbb28462841af2",
+        "rev": "640606300f74b4891bfa1a51f5756450f9fdc7f1",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781050292,
-        "narHash": "sha256-NXOvNa6yJGzmaeklxvuZrIQJJ2zfmdEXN9j+tMFNyC0=",
+        "lastModified": 1781096170,
+        "narHash": "sha256-eMLLzUleCaRL+reZHY1198RTpNSIsdsj/v6CSg/tSE4=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "b967218648ba958823cbf6b42894936549df34e9",
+        "rev": "8afd658c0c84207ec90950e6e42385c9596f762f",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1780925481,
-        "narHash": "sha256-XH2zydfK97HYkW7Ra5I3nrL8hlZRDEMzXW+9OH+ryvU=",
+        "lastModified": 1781100864,
+        "narHash": "sha256-JgixhXDxFdaBcswZ0006cgYTEgsX2PrC8Q65XetO2Bk=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "69095e298ab88bb0eb5ba541f4c505f2c22d07f5",
+        "rev": "5659cef41f4f2f7a478d0800a11836fa17e64d66",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781057172,
-        "narHash": "sha256-x9u7JiNHSCTxN1LuF6MGdNBC1wZ905zj7A0o+aiVIBI=",
+        "lastModified": 1781110470,
+        "narHash": "sha256-qqCct5gh5A9RL8RKGSJiZZtukAvrf1jtx4oy+pv4fiE=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "e39af4986b4f5dc982f2736b18fdfef6fdfb5adb",
+        "rev": "98fb018e8baeca234878ead7111ee8a23ff7e2c9",
         "type": "github"
       },
       "original": {
@@ -623,11 +623,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1780924205,
-        "narHash": "sha256-5s6nPSNU1Mo/Qy90XxCTNj6/rB70zgX8VqleTdLoESA=",
+        "lastModified": 1781005730,
+        "narHash": "sha256-3Bn47a+Vs2/ltQfTU2ApWqy5kYNmF+RaTEJs0A/H2pA=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "4fde9dd9822df453dc6f20149b8e375efbbe66c0",
+        "rev": "587ce15e272b94d4f0a69d695e3718a02c24667e",
         "type": "github"
       },
       "original": {
@@ -694,11 +694,11 @@
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1781057350,
-        "narHash": "sha256-zESY5lzOIv7csSlvi2K8s6IU5zAqBa7KnTeiN851NiI=",
+        "lastModified": 1781111259,
+        "narHash": "sha256-4h5h7HV8kzhVMtJViH0MOvqQBpgwxSrichcPfOhQBGU=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "14b487ca4cccc8e3538f7a074ed3e7b3d8807a34",
+        "rev": "1f386f428877ee1415881818385ea4e1061065da",
         "type": "github"
       },
       "original": {
@@ -730,11 +730,11 @@
     "spicetify-nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1780857688,
-        "narHash": "sha256-e4E6M6erJIus5Cm/A4faaaTuUfof1uvcviAPSh7tmLU=",
+        "lastModified": 1781101834,
+        "narHash": "sha256-gNVY6SYglFe37FpD+NnOjTipsqvVMM2vh/uc22KDEsA=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "aad629e8261f219b0a5b3a2189b09d65216a0983",
+        "rev": "0243dd6707c969fc8440216c811b3f2e4a4cceb7",
         "type": "github"
       },
       "original": {
@@ -855,11 +855,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781049114,
-        "narHash": "sha256-JDK6C664JUcLlwdSWeqdtHp+69i2faKUxw88VfuGZsw=",
+        "lastModified": 1781106624,
+        "narHash": "sha256-Ywf+PK/QG/QJaX5n+TRjzmY541HYcedFSoYzst/cEfM=",
         "owner": "zed-industries",
         "repo": "zed",
-        "rev": "d989c7c5cdd057de2375a55bdc109ff61409801c",
+        "rev": "03872382616421e578d15368594d684929ba8db3",
         "type": "github"
       },
       "original": {
