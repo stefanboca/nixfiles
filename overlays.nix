@@ -24,6 +24,7 @@ inputs: {
   blink-pairs = inputs.snv.inputs.blink-pairs.overlays.default;
   fenix = inputs.fenix.overlays.default;
   ghostty = inputs.ghostty.overlays.default;
+  neovim-nightly-overlay = inputs.snv.inputs.neovim-nightly-overlay.overlays.default;
   niri = inputs.niri.overlays.default;
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;

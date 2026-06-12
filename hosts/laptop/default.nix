@@ -77,12 +77,11 @@ in {
   services = {
     postgresql = {
       enable = true;
-      ensureDatabases = ["stefan"];
+      enableJIT = true;
       ensureUsers = [
         {
           name = "stefan";
-          ensureClauses = {superuser = true;};
-          ensureDBOwnership = true;
+          ensureClauses.superuser = true;
         }
       ];
     };
@@ -243,7 +242,7 @@ in {
             nixd
             nixfmt
             ruff
-            snv.rust-analyzer
+            rust-analyzer-nightly
             tailwindcss-language-server
             tinymist
             tombi
