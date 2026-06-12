@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781217812,
-        "narHash": "sha256-fY9P8i3J09lovCQIHjU9dgvFaMVOHSNgVJAarqjrcjQ=",
+        "lastModified": 1781228354,
+        "narHash": "sha256-hmX11Y/byBxhHc6MDpUOkDrBDHmSh6tSOjkjpwyNV/8=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "20ff813ad9e613d497019167f6539b73b55cae57",
+        "rev": "885b5f12594ae92a97f861897f90549a820ca4e6",
         "type": "github"
       },
       "original": {
@@ -832,11 +832,11 @@
         "rust-overlay": []
       },
       "locked": {
-        "lastModified": 1779745227,
-        "narHash": "sha256-yqY7RtEJGJiENzR0GwL6q69tSAy6xAAmAcLuIhLjPf8=",
+        "lastModified": 1781226823,
+        "narHash": "sha256-28696iIw8uE0ZUyFTtzhEM8xMh85clCYypMxkvUi+sc=",
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "rev": "5d1efbc9dc3ab1c10160b656e0247f3325daf0f2",
+        "rev": "8575d0ef55d70f9b4c46b6bffb3accf912217e1e",
         "type": "github"
       },
       "original": {
@@ -855,11 +855,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781221798,
-        "narHash": "sha256-bTiNX/q6ElNL0xq7OxklpVC+vAWlEsNRwc2wbVoI3bI=",
+        "lastModified": 1781225202,
+        "narHash": "sha256-HqxfYX0ARVVQchxB69xxILCzI8zSseP3teVXRRabdjU=",
         "owner": "zed-industries",
         "repo": "zed",
-        "rev": "49eb6b2de732d460321c189ce4a0e99820fd347e",
+        "rev": "c32c037c6b2b582552edc8c6b9bda513412c3bf4",
         "type": "github"
       },
       "original": {
