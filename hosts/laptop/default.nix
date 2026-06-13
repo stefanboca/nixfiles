@@ -196,6 +196,7 @@ in {
         libreoffice
         miro
         nicotine-plus
+        nix-update
         podman-compose
         prusa-slicer
         radicle-desktop
