@@ -183,6 +183,7 @@ in {
         bazel_9
         beets
         bitwarden-desktop
+        codex
         crosspipe
         easyeffects
         esphome
@@ -232,6 +233,7 @@ in {
             # keep-sorted start
             alejandra
             clang-tools
+            codex-acp
             emmylua-ls
             harper
             jdt-language-server
