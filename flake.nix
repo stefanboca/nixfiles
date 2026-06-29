@@ -19,7 +19,6 @@
     niri = {
       url = "github:niri-wm/niri";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "";
     };
     xwayland-satellite = {
       url = "github:Supreeeme/xwayland-satellite";
@@ -62,7 +61,6 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "";
     };
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
