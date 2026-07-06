@@ -71,6 +71,7 @@ in {
         signal-desktop
         system-config-printer
         telegram-desktop
+        wild
         zotero
         zulip
         # keep-sorted end
