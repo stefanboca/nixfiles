@@ -69,7 +69,10 @@
     };
     printing = {
       enable = true;
-      drivers = [pkgs.cnijfilter2];
+      drivers = with pkgs; [
+        cnijfilter2
+        epson-escpr2
+      ];
       webInterface = false; # this enabled prevents prevents exit on idle. use system-config-printer instead.
     };
     xserver.xkb = {
