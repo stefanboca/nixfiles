@@ -54,8 +54,6 @@ in {
 
     fonts.enableDefaultPackages = true;
 
-    security.soteria.enable = true;
-
     services = {
       # keep-sorted start block=yes
       geoclue2.enable = true;
