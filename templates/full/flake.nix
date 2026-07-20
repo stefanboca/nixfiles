@@ -1,0 +1,84 @@
+{
+  inputs = {
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    treefmt-nix,
+    ...
+  }: let
+    inherit (nixpkgs) lib;
+    inherit (lib.attrsets) genAttrs mapAttrs' nameValuePair;
+    inherit (lib.meta) getExe;
+
+    systems = ["x86_64-linux" "aarch64-linux"];
+    forAllSystems = genAttrs systems;
+    nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
+    treefmtFor = forAllSystems (system: treefmt-nix.lib.evalModule nixpkgsFor.${system} ./treefmt.nix);
+  in {
+    packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
+    overlays.default = final: _: import ./pkgs final;
+
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgsFor.${system};
+    in {
+      default = pkgs.mkShellNoCC {};
+    });
+
+    apps = forAllSystems (system: let
+      vm = lib.nixosSystem {
+        inherit system;
+        modules = [
+          (nixpkgs + "/nixos/modules/virtualisation/qemu-vm.nix")
+          ({pkgs, ...}: {
+            system.stateVersion = lib.trivial.release;
+            virtualisation = {
+              qemu.options = ["-nographic" "-serial" "mon:stdio"];
+              cores = 4;
+              memorySize = 4 * 1024;
+            };
+            nixpkgs.overlays = [self.overlays.default];
+            nix.settings = {
+              trusted-users = ["@wheel"];
+              experimental-features = ["flakes" "nix-command"];
+            };
+            programs.fish.enable = true;
+            security.sudo.wheelNeedsPassword = false;
+            users.users.nixos = {
+              isNormalUser = true;
+              hashedPassword = "";
+              extraGroups = ["wheel"];
+              shell = pkgs.fish;
+            };
+            documentation = {
+              nixos.enable = false;
+              enable = false;
+            };
+          })
+        ];
+      };
+    in {
+      vm = {
+        type = "app";
+        program = getExe vm.config.system.build.vm;
+        meta = {
+          description = "start a vm";
+          nixosConfiguration = vm;
+        };
+      };
+    });
+
+    formatter = forAllSystems (system: treefmtFor.${system}.config.build.wrapper);
+    checks = forAllSystems (system: let
+      packages = mapAttrs' (n: nameValuePair "package-${n}") self.packages.${system};
+      devShells = mapAttrs' (n: nameValuePair "devShell-${n}") self.devShells.${system};
+      formatting = {formatting = treefmtFor.${system}.config.build.check self;};
+    in
+      packages // devShells // formatting);
+  };
+}
