@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  osConfig,
   pkgs,
   self,
   ...
@@ -43,6 +44,11 @@ in {
             hide-after-inactive-ms 10000
           }
           input {
+            keyboard {
+              xkb {
+                options "${osConfig.services.xserver.xkb.options}"
+              }
+            }
             touchpad {
               tap
               natural-scroll
