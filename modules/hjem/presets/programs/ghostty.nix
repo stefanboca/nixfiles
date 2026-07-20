@@ -29,7 +29,7 @@ in {
       palette-harmonious = true;
       quit-after-last-window-closed = true;
       quit-after-last-window-closed-delay = "5m";
-      scrollback-limit = 128 * 1024 * 1024; # 128 MB
+      scrollback-limit = 512 * 1024 * 1024; # 512 MB
       shell-integration-features = true;
       theme = "light:Catppuccin Latte,dark:Catppuccin Mocha";
       unfocused-split-opacity = 0.85;
