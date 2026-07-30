@@ -139,6 +139,10 @@ in {
           spawn = ["noctalia" "msg" "bar-toggle"];
           parameters.hotkey-overlay-title = "Toggle Bar";
         };
+        "Mod+X" = {
+          spawn = ["noctalia" "msg" "panel-toggle" "session"];
+          parameters.hotkey-overlay-title = "Toggle Session Menu";
+        };
         "Super+Alt+L" = {
           spawn = ["noctalia" "msg" "session" "lock"];
           parameters.hotkey-overlay-title = "Lock";
