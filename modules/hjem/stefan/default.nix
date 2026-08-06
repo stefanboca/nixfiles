@@ -18,7 +18,6 @@ in {
       cmakeCurses
       elan # lean4
       emmylua-check
-      gcc
       koto
       ninja
       typst
