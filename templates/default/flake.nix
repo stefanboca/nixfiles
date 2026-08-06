@@ -9,9 +9,6 @@
     forAllSystems = genAttrs systems;
     nixpkgsFor = forAllSystems (system: nixpkgs.legacyPackages.${system});
   in {
-    packages = forAllSystems (system: import ./pkgs nixpkgsFor.${system});
-    overlays.default = final: _: import ./pkgs final;
-
     devShells = forAllSystems (system: let
       pkgs = nixpkgsFor.${system};
     in {
