@@ -78,6 +78,14 @@
         treefmt-nix.follows = "";
       };
     };
+
+    zotero-server-nix = {
+      url = "git+https://forgejo.cauchy.local/stefanboca/zotero-server-nix.git";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
   };
 
   outputs = {

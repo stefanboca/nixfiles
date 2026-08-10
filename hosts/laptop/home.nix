@@ -72,13 +72,16 @@ in {
         system-config-printer
         telegram-desktop
         wild
-        zotero
         zulip
         # keep-sorted end
-        pkgsCuda.blender
+        # (blender.override {
+        #   cudaSupport = true;
+        #   rocmSupport = false;
+        # })
         # calibre
         # musescore
         # xournalpp
+        (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
       ];
 
       rum = {

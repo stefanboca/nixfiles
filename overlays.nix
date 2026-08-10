@@ -29,5 +29,6 @@ inputs: {
   noctalia-shell = inputs.noctalia-shell.overlays.default;
   snv = inputs.snv.overlays.default;
   xwayland-satellite = inputs.xwayland-satellite.overlays.default;
+  zotero-server-nix = inputs.zotero-server-nix.overlays.default;
   # keep-sorted end
 }
