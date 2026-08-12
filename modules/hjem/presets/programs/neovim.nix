@@ -16,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    packages = [pkgs.snv pkgs.snv.neovim-unwrapped];
+    packages = [pkgs.snv pkgs.snv.neovim-nightly-unwrapped];
     environment.sessionVariables = {
       EDITOR = "snv";
       VISUAL = "snv";
