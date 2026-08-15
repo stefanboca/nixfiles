@@ -43,12 +43,23 @@ in {
       nix-ld = {
         enable = true;
         libraries = with pkgs; [
+          dbus
+          fontconfig
+          freetype
           glib
           libGL
+          libx11
           libxcb
+          libxcb-cursor
+          libxcb-image
+          libxcb-keysyms
+          libxcb-render-util
+          libxcb-util
+          libxcb-wm
+          libxkbcommon
           stdenv.cc.cc
+          wayland
           zlib
-          # (pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
         ];
       };
     };
