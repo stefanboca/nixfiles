@@ -21,7 +21,7 @@
           size = "100%";
           content = {
             type = "btrfs";
-            extraArgs = "--label main";
+            extraArgs = ["--label" "main"];
             mountpoint = "/partition-root";
             swap.swapfile.size = "64G";
             subvolumes = {
