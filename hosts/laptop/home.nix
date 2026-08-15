@@ -62,6 +62,7 @@ in {
         miro
         nicotine-plus
         nix-update
+        pkgsCuda.blender
         podman-compose
         prusa-slicer
         radicle-desktop
@@ -74,10 +75,6 @@ in {
         wild
         zulip
         # keep-sorted end
-        # (blender.override {
-        #   cudaSupport = true;
-        #   rocmSupport = false;
-        # })
         # calibre
         # musescore
         # xournalpp
