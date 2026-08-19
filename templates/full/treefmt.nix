@@ -1,4 +1,4 @@
-_: {
+{
   projectRootFile = "flake.nix";
   programs = {
     # keep-sorted start block=yes
