@@ -6,7 +6,7 @@
 }: let
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption mkOption mkPackageOption;
-  inherit (lib.strings) getName getVersion makeBinPath;
+  inherit (lib.strings) getName getVersion makeBinPath makeLibraryPath;
   inherit (lib.types) listOf package;
 
   wrappedPackage = pkgs.symlinkJoin {
@@ -16,7 +16,9 @@
     nativeBuildInputs = [pkgs.makeBinaryWrapper];
     postBuild = ''
       path="${makeBinPath cfg.extraPackages}"
-      wrapProgram $out/bin/zeditor --suffix PATH : $path
+      wrapProgram $out/bin/zeditor \
+        --suffix PATH : $path \
+        --prefix LD_LIBRARY_PATH : "${makeLibraryPath [pkgs.libglvnd]}:/run/opengl-driver/lib"
     '';
   };
 

@@ -48,6 +48,7 @@ in {
           freetype
           glib
           libGL
+          libglvnd
           libx11
           libxcb
           libxcb-cursor
