@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib.modules) mkIf;
+  inherit (lib.modules) mkForce mkIf;
   inherit (lib.options) mkEnableOption;
 
   cfg = config.presets.common;
@@ -19,22 +19,25 @@ in {
       minimal.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      # keep-sorted start
-      evtest
-      fatresize
-      ffmpeg
-      fzf
-      git
-      gnumake
-      imagemagick
-      jq
-      libinput
-      man-pages
-      man-pages-posix
-      wev
-      # keep-sorted end
-    ];
+    environment = {
+      sessionVariables.NIX_LD_LIBRARY_PATH = mkForce "/run/opengl-driver/lib:/run/current-system/sw/share/nix-ld/lib";
+      systemPackages = with pkgs; [
+        # keep-sorted start
+        evtest
+        fatresize
+        ffmpeg
+        fzf
+        git
+        gnumake
+        imagemagick
+        jq
+        libinput
+        man-pages
+        man-pages-posix
+        wev
+        # keep-sorted end
+      ];
+    };
 
     boot.plymouth.enable = true;
 
