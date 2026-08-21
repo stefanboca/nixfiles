@@ -169,11 +169,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1787035861,
-        "narHash": "sha256-u9KuJHihYSunSe+Z6TEhWevA4kDPq5fziV/D9W+Uz1k=",
+        "lastModified": 1787295275,
+        "narHash": "sha256-I/1JRiGmO5/PEAHX6UeaGPsiwHyFy/e6QYlo2eeKIO4=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "97d7b120770c9ce4c55eac6c524a9c82edf71f74",
+        "rev": "b2d5394982978a49df40a075f51e7cfc62c324ca",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787060448,
-        "narHash": "sha256-UR31LvTy7LM4Hr/CoG1m+oWh2f36j0yfM89mN/Az7VM=",
+        "lastModified": 1787329903,
+        "narHash": "sha256-nTDuR+uMJ9Utw7WhrSYQjcBeqqpaDgxwK0vARDudfwo=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "c9cf7435f9af96f0b5e5e1337777c9b9afaa1124",
+        "rev": "3a9d5d7d5e2407f4e7b4d63206b3aa1c7b2603ed",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1787080845,
-        "narHash": "sha256-QT/rITOWDoDvP2tb8qjZOSN2AeBif4OE/1Ii22J0DLw=",
+        "lastModified": 1787332967,
+        "narHash": "sha256-fXWq8EorunlwC444DDKd488JzjLMV9qNMKKl+GFhJf8=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "7f62fe70a288c5d35ebd3097e75c46017950bcc7",
+        "rev": "a88ad03e692c2831f7375f4ac00d54653d2b21af",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785929776,
-        "narHash": "sha256-qwppDYdtxqtDpI1iSp7bs8prOJ0KQSvhJchfROD04f0=",
+        "lastModified": 1787194407,
+        "narHash": "sha256-hMgbN6InoW+S5G/cqGrVwHUmOJcGIT/yUg1Xe6y7t8Q=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "b610953d0c56da6b28fd39c21bd193b88e91341c",
+        "rev": "7cd7f1c567beaf5527781e0b51647a98acde54e6",
         "type": "github"
       },
       "original": {
@@ -333,11 +333,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786806107,
-        "narHash": "sha256-QQecd6eWZj41JaWf2MoTtKj55N9o4OfnQYk7S5SsJWI=",
+        "lastModified": 1787315974,
+        "narHash": "sha256-LLToYudTlFqNY0NsG//CnE2I/zF0cpktX44ZhFJ2alY=",
         "owner": "snugnug",
         "repo": "hjem-rum",
-        "rev": "5b60842e8f76ae5e818b502f874c469a92930d42",
+        "rev": "217c6e1f445b3973ca8f988f070c9b84cceaa1ca",
         "type": "github"
       },
       "original": {
@@ -430,11 +430,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787066149,
-        "narHash": "sha256-uJKImwjqQ6Y+5b1IN93j6rEKGRoR0CsOuC/7vqluhJM=",
+        "lastModified": 1787128307,
+        "narHash": "sha256-dzLsp/FvMerhsjfsWtFK/BTlJ5FZwLWlhsFJRRxpmbU=",
         "owner": "niri-wm",
         "repo": "niri",
-        "rev": "e9b215fef4b11ad36776553fb8bd45118ef03b03",
+        "rev": "b0eb8ad8c80094de34abd88c109aea421461622b",
         "type": "github"
       },
       "original": {
@@ -468,11 +468,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1786867632,
-        "narHash": "sha256-ez+ubZlA1RtdjCB18a6zJ9M4u8qoPDy08EcnsW5M3Xw=",
+        "lastModified": 1787144466,
+        "narHash": "sha256-HHfv2/HkNSKbbSyU9iD/g8lbP6r4tl33sSw1W4rXCk0=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "ff17823245ab9ff7bcae6acf950bd89cba82c38c",
+        "rev": "0471accf8d0a8210b31d947497d179ecc99e0021",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1787001381,
-        "narHash": "sha256-6Qso3az0lZx+zxDQOhEvNUfJMqqq9tcjrLhsCAswAvs=",
-        "rev": "ec2d622de0773551768cf98f3fc50cbcc003b9c5",
+        "lastModified": 1787135253,
+        "narHash": "sha256-M5/r2v++FjVhdsxXYMb4BDJ5YLAdCWFt3aZotcshocA=",
+        "rev": "ffb3c9b700e759be2ef13237c9d8f953b32a1e46",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1057119.ec2d622de077/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1058091.ffb3c9b700e7/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -560,11 +560,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787096959,
-        "narHash": "sha256-ey2WPsJkQkHGuEeTIBnEhe7vFQnQZHcy9mIQZqdSNa4=",
+        "lastModified": 1787311790,
+        "narHash": "sha256-unzdxVphY9aAR+GX8U1hZzgBPYhq5kf+8SGOcRUm/P8=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "b453a37dec9860a03113a5e3ccf5cd8462232317",
+        "rev": "69a90183531de388cab40e84a3a221ba94464501",
         "type": "github"
       },
       "original": {
@@ -600,11 +600,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1786994232,
-        "narHash": "sha256-gx47AkLwlVmZfX0uNsd20Evqg63TZNJofL0iq0itzSo=",
+        "lastModified": 1787269862,
+        "narHash": "sha256-8pvHbL/ARH159+/Tvt1Savv9HOWfjvvvv6TJFOM5Rlg=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "4bd323d51e25015e0d63202f9be9487b8d20030c",
+        "rev": "5f8813d64fff2e293dcc99d54a21f6f4edc88d50",
         "type": "github"
       },
       "original": {
@@ -907,11 +907,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787095734,
-        "narHash": "sha256-k60AsgR3H1P0WtlqZQBsbdh+UaXSTRHZY2v2j4MoqOg=",
+        "lastModified": 1787167612,
+        "narHash": "sha256-RnB/cQYTU6Dao+ZLPBcJQ+aBdDKWnsl7CJ5Q8jBgnVU=",
         "ref": "refs/heads/main",
-        "rev": "accc1d19c0cc2c272684c5c35cbcaec885ce239c",
-        "revCount": 53,
+        "rev": "a44e92321580827c6d75cf8f960cbc50473da96d",
+        "revCount": 59,
         "type": "git",
         "url": "https://forgejo.cauchy.local/stefanboca/zotero-server-nix.git"
       },
