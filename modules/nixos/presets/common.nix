@@ -46,12 +46,15 @@ in {
       nix-ld = {
         enable = true;
         libraries = with pkgs; [
+          # keep-sorted start
           dbus
           fontconfig
           freetype
           glib
           libGL
           libglvnd
+          libice
+          libsm
           libx11
           libxcb
           libxcb-cursor
@@ -60,10 +63,12 @@ in {
           libxcb-render-util
           libxcb-util
           libxcb-wm
+          libxext
           libxkbcommon
           stdenv.cc.cc
           wayland
           zlib
+          # keep-sorted end
         ];
       };
     };
