@@ -18,11 +18,7 @@ in {
       description = "Stefan Boca";
       isNormalUser = true;
       shell = pkgs.fish;
-      extraGroups =
-        ["wheel" "video" "audio" "dialout"]
-        ++ lib.optional config.programs.wireshark.enable "wireshark"
-        ++ lib.optional config.networking.networkmanager.enable "networkmanager"
-        ++ lib.optional (config.virtualisation.podman.enable && config.virtualisation.podman.dockerSocket.enable) "podman";
+      extraGroups = ["audio" "dialout" "docker" "networkmanager" "podman" "video" "wheel" "wireshark"];
       autoSubUidGidRange = true;
     };
   };

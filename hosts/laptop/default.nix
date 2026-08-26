@@ -128,11 +128,9 @@
 
   networking.networkmanager.plugins = [pkgs.networkmanager-openconnect];
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    dockerSocket.enable = true;
-  };
+  virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
+
   boot.binfmt = {
     emulatedSystems = ["aarch64-linux"];
     preferStaticEmulators = true;
