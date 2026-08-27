@@ -907,11 +907,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787440784,
-        "narHash": "sha256-d5NWmDRFrqz3foqZzn4X7ZxBWDRfuVznjVFnu25XbR8=",
+        "lastModified": 1787854165,
+        "narHash": "sha256-vl+rHzGB/bVvmhTuH0KxM+85dLSCAZd7RE/e9xY6Eo0=",
         "ref": "refs/heads/main",
-        "rev": "e588efbbbd271152bab5bfdb069d5e0935510f68",
-        "revCount": 66,
+        "rev": "3ceb242e6a88029f5c8afa2f8cdba130ae7f31ba",
+        "revCount": 69,
         "type": "git",
         "url": "https://forgejo.cauchy.local/stefanboca/zotero-server-nix.git"
       },
