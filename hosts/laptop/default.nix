@@ -128,7 +128,6 @@
 
   networking.networkmanager.plugins = [pkgs.networkmanager-openconnect];
 
-  virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
 
   boot.binfmt = {
