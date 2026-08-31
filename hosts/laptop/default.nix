@@ -130,6 +130,21 @@
 
   virtualisation.podman.enable = true;
 
+  security.pam.loginLimits = [
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
+  ];
+
   boot.binfmt = {
     emulatedSystems = ["aarch64-linux"];
     preferStaticEmulators = true;

@@ -40,6 +40,7 @@ in {
       pipewire = {
         enable = true;
         alsa.enable = true;
+        jack.enable = true;
         pulse.enable = true;
 
         wireplumber.extraConfig.bluetoothEnhancements."monitor.bluez.properties" = {

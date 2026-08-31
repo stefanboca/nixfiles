@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib.modules) mkAfter;
+  inherit (lib.strings) makeSearchPath;
 
   niriConfigFile =
     pkgs.writeText "niri-laptop.kdl"
@@ -44,12 +45,20 @@ in {
 
       packages = with pkgs; [
         # keep-sorted start
+        (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
+        ardour
         bazel-buildtools
         bazel_9
         beets
         bitwarden-desktop
+        calf
+        caps
+        chow-phaser
+        chow-tape-model
         codex
         crosspipe
+        dexed
+        dragonfly-reverb
         easyeffects
         esphome
         fluent-reader
@@ -57,29 +66,48 @@ in {
         geogebra6
         gnome-decoder
         gnome-pomodoro
+        helm
         imv
         libreoffice
+        lsp-plugins
         miro
         nicotine-plus
         nix-update
-        pkgsCuda.blender
+        noise-repellent
+        odin2
         podman-compose
         prusa-slicer
         radicle-desktop
         radicle-node
         radicle-tui
+        rnnoise-plugin
         rnote
         signal-desktop
+        surge-xt
         system-config-printer
         telegram-desktop
+        vital
         wild
         zulip
+        zynaddsubfx
         # keep-sorted end
-        # calibre
-        # musescore
-        # xournalpp
-        (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
+        # pkgsCuda.blender
       ];
+
+      environment.sessionVariables = let
+        makePluginPath = format: (makeSearchPath format [
+          "/run/current-system/sw/lib"
+          "/etc/profiles/per-user/stefan/lib"
+        ]);
+      in {
+        DSSI_PATH = makePluginPath "dssi";
+        LADSPA_PATH = makePluginPath "ladspa";
+        LV2_PATH = makePluginPath "lv2";
+        LXVST_PATH = makePluginPath "lxvst";
+        VST_PATH = makePluginPath "vst";
+        VST3_PATH = makePluginPath "vst3";
+        CLAP_PATH = makePluginPath "clap";
+      };
 
       rum = {
         misc.dconf = {
