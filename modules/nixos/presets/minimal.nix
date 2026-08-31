@@ -71,10 +71,6 @@ in {
     i18n.defaultLocale = "en_US.UTF-8";
 
     boot = {
-      initrd.systemd = {
-        enable = true;
-        dbus.enable = true;
-      };
       loader.timeout = 1;
       supportedFilesystems.btrfs = true;
       tmp.useTmpfs = true;
@@ -113,7 +109,6 @@ in {
 
     services = {
       # keep-sorted start block=yes
-      dbus.implementation = "broker";
       gnome = {
         gnome-keyring.enable = true; # needed for iwd
         gcr-ssh-agent.enable = false; # enabled by gnome-keyring but I use bitwarden
