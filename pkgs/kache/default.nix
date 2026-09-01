@@ -5,16 +5,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kache";
-  version = "0.14.0";
+  version = "0.16.1";
 
   src = fetchFromGitHub {
     owner = "kunobi-ninja";
     repo = "kache";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-FOn/T7XM7lhYFI8saT3Ntnq+uOeqpZzxk3n3MCcR0Bc=";
+    hash = "sha256-OWtSDC6r7TOekyopc3hPbDh75O9V+DU+YgsVV8nCnjg=";
   };
 
-  cargoHash = "sha256-x23BWVvI8Uod/U86EbGXmpFOfgbjtzCR6V1GgrBG+7M=";
+  cargoHash = "sha256-0wY1EQ69AB4tdkVqGhQw3FoKU6qAr9WlW+pcVHKDfT8=";
 
   cargoBuildFlags = ["-p" "kache"];
   doCheck = false;
