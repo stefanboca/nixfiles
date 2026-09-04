@@ -15,16 +15,19 @@ in {
 
   config = mkIf cfg.enable {
     packages = with pkgs; [
+      # keep-sorted start
       cmakeCurses
       elan # lean4
       emmylua-check
       koto
       ninja
+      sqruff
       typst
       typstyle
       uv
       zig
       zizmor # github actions static analysis tool
+      # keep-sorted end
     ];
 
     catppuccin = {

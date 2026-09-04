@@ -143,6 +143,7 @@ in {
               nixfmt
               ruff
               rust-analyzer-nightly
+              sqruff
               tailwindcss-language-server
               tinymist
               tombi
