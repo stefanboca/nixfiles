@@ -44,7 +44,7 @@ in {
       presets.users.stefan.enable = true;
 
       packages = with pkgs; [
-        # keep-sorted start
+        # keep-sorted start block=yes
         (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
         ardour
         bazel-buildtools
@@ -52,6 +52,7 @@ in {
         beets
         bitwarden-desktop
         calf
+        calfnxt
         caps
         chow-phaser
         chow-tape-model
