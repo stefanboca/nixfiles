@@ -128,7 +128,13 @@
 
   networking.networkmanager.plugins = [pkgs.networkmanager-openconnect];
 
-  virtualisation.podman.enable = true;
+  virtualisation = {
+    podman.enable = true;
+    waydroid = {
+      enable = true;
+      package = pkgs.waydroid-nftables;
+    };
+  };
 
   security.pam.loginLimits = [
     {

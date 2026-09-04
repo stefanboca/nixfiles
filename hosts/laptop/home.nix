@@ -88,6 +88,7 @@ in {
         system-config-printer
         telegram-desktop
         vital
+        waydroid-helper
         wild
         zulip
         zynaddsubfx
