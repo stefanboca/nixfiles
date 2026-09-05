@@ -331,9 +331,10 @@ in {
             packages.alias = "nps";
           };
           applications.preferences.launchPrefix = "niri msg action spawn --";
+          calculator.preferences.backend = "numen";
           core.entrypoints = {
             keybind-settings.enabled = false;
-            prune-memory.enabeld = false;
+            prune-memory.enabled = false;
             settings.enabled = true;
             sponsor.enabled = false;
           };
