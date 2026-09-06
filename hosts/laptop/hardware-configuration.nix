@@ -45,10 +45,7 @@
   hardware = {
     enableRedistributableFirmware = true;
 
-    asus.battery = {
-      chargeUpto = 80;
-      enableChargeUptoScript = true;
-    };
+    asus.battery.enableChargeUptoScript = true;
 
     intelgpu.driver = "xe";
 
