@@ -324,17 +324,21 @@ in {
         };
         providers = {
           # keep-sorted start block=yes
-          "@knoopx/store.vicinae.nix".entrypoints = {
-            flake-packages.enabled = false;
-            home-manager-options.enabled = false;
-            options.alias = "nos";
-            packages.alias = "nps";
+          "@knoopx/store.vicinae.nix" = {
+            preferences = {
+              homeManagerOptionsUrl = "https://home-manager-options.extranix.com/data/options-master.json";
+              searchUrl = "https://search.nixos.org/backend/latest-51-nixos-unstable/_search";
+            };
+            entrypoints = {
+              flake-packages.enabled = false;
+              home-manager-options.enabled = false;
+              options.alias = "nos";
+              packages.alias = "nps";
+            };
           };
           applications.preferences.launchPrefix = "niri msg action spawn --";
           calculator.preferences.backend = "numen";
           core.entrypoints = {
-            keybind-settings.enabled = false;
-            prune-memory.enabled = false;
             settings.enabled = true;
             sponsor.enabled = false;
           };
