@@ -310,6 +310,8 @@ in {
         "$schema" = "https://vicinae.com/schemas/config.json";
         close_on_focus_loss = true;
         pop_to_root_on_close = true;
+        encrypt_sensitive_data = true;
+        keybinding = "vim";
         theme.dark = {
           name = "catppuccin-mocha";
           icon_theme = "Catppuccin Mocha Teal";
@@ -343,7 +345,7 @@ in {
             sponsor.enabled = false;
           };
           developer.enabled = false;
-          raycast.enabled = false;
+          raycast-compat.enabled = false;
           system.entrypoints.browse-apps.enabled = true;
           theme.enabled = false;
           wm.enabled = false;
