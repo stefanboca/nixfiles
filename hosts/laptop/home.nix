@@ -62,6 +62,7 @@ in {
         dragonfly-reverb
         easyeffects
         esphome
+        esphome-device-builder
         fluent-reader
         freecad
         geogebra6
