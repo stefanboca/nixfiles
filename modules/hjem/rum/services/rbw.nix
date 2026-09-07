@@ -25,6 +25,7 @@ in {
 
     systemd.services.rbw-agent = {
       description = "rbw-agent";
+      after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
       path = [cfg.pinentry.package];
       serviceConfig = {
