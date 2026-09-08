@@ -75,6 +75,7 @@ in {
         miro
         nicotine-plus
         nix-update
+        nixpkgs-review
         noise-repellent
         odin2
         podman-compose
