@@ -5,16 +5,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "kache";
-  version = "0.16.1";
+  version = "0.18.0";
 
   src = fetchFromGitHub {
     owner = "kunobi-ninja";
     repo = "kache";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-OWtSDC6r7TOekyopc3hPbDh75O9V+DU+YgsVV8nCnjg=";
+    hash = "sha256-M0L0B4/Gom2hT19XAHFclDOPbylN8dpjNXsEsuGgHjU=";
   };
 
-  cargoHash = "sha256-0wY1EQ69AB4tdkVqGhQw3FoKU6qAr9WlW+pcVHKDfT8=";
+  cargoHash = "sha256-M3beojPbL5tOUvhn7jxQ8o/N1lh9e5paaf9T45cI7nw=";
 
   cargoBuildFlags = ["-p" "kache"];
   doCheck = false;
@@ -24,5 +24,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://github.com/kunobi-ninja/kache";
     license = lib.licenses.asl20;
     mainProgram = "kache";
+    maintainers = with lib.maintainers; [stefanboca];
   };
 })
