@@ -132,7 +132,6 @@ in {
             extraPackages = with pkgs; [
               # keep-sorted start
               alejandra
-              bubblewrap
               clang-tools
               codex-acp
               emmylua-ls
