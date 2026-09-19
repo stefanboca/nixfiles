@@ -44,6 +44,7 @@ in {
       nix-btm
       nix-diff # explain why two nix derivations differ
       nix-fast-build
+      nix-graph
       nix-inspect # TUI for inspecting nix configs and other expressions
       nix-output-monitor
       nix-tree # browse dependency graphs of nix derivations
