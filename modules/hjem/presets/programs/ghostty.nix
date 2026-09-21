@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib.modules) mkIf;
@@ -20,6 +21,8 @@ in {
       auto-update = "off";
       background-blur = true;
       background-opacity = 0.5;
+      bell-audio-path = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/bell.oga";
+      bell-features = "audio,attention,title";
       config-file = "?dev";
       font-family = "Lilex";
       font-feature = "cv09,cv10,cv11,ss01,ss03";
