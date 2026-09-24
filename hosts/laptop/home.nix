@@ -56,6 +56,7 @@ in {
         caps
         chow-phaser
         chow-tape-model
+        chromium
         codex
         crosspipe
         dexed
