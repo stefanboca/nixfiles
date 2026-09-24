@@ -15,9 +15,8 @@
     preferLocalBuild = true;
     nativeBuildInputs = [pkgs.makeBinaryWrapper];
     postBuild = ''
-      path="${makeBinPath cfg.extraPackages}"
       wrapProgram $out/bin/zeditor \
-        --suffix PATH : $path \
+        --suffix PATH : "${makeBinPath cfg.extraPackages}" \
         --prefix LD_LIBRARY_PATH : "${makeLibraryPath [pkgs.libglvnd]}:/run/opengl-driver/lib"
     '';
   };

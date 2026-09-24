@@ -131,26 +131,45 @@ in {
           zed-editor = {
             enable = true;
             extraPackages = with pkgs; [
-              # keep-sorted start
+              # keep-sorted start block=yes
+              (pkgs.runCommandNoCCLocal "codelldb" {} ''
+                ln -s "${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb" $out
+              '')
               alejandra
+              bash-language-server
               clang-tools
               codex-acp
+              docker-language-server
+              emmet-language-server
               emmylua-ls
+              eslint
+              gopls
               harper
               jdt-language-server
               just-lsp
               keep-sorted
+              lldb
               lua-language-server
+              mesonlsp
+              muon
+              neocmakelsp
               nil
               nixd
               nixfmt
+              package-version-server
+              phpactor
+              prettier
+              python3Packages.debugpy
               ruff
               rust-analyzer-nightly
               sqruff
+              starpls
               tailwindcss-language-server
               tinymist
               tombi
+              ts_query_ls
               ty
+              typescript-language-server
               vscode-langservers-extracted
               wgsl-analyzer
               yaml-language-server
