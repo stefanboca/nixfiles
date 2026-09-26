@@ -132,7 +132,7 @@ in {
             enable = true;
             extraPackages = with pkgs; [
               # keep-sorted start block=yes
-              (pkgs.runCommandNoCCLocal "codelldb" {} ''
+              (pkgs.runCommand "codelldb" {} ''
                 ln -s "${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb" $out
               '')
               alejandra
