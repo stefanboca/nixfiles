@@ -16,12 +16,12 @@
         scale 1.25
         focus-at-startup
         position x=0 y=0
-        mode "2800x1800@120.016000"
+        mode "2800x1800@120.001"
       }
       output "DP-1" {
         scale 1.25
         position x=0 y=1440
-        mode "2880x864@60.008000"
+        mode "2880x864@60.008"
         variable-refresh-rate
       }
       input {
