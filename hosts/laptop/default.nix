@@ -33,6 +33,15 @@
   systemd = {
     services.tor.wantedBy = lib.mkForce [];
     targets.postgresql.wantedBy = lib.mkForce [];
+
+    user.services."app-com.mitchellh.ghostty" = {
+      overrideStrategy = "asDropin";
+      enableDefaultPath = false;
+      serviceConfig.Environment = [
+        # workaround for ghostty using nvidia graphics instead of integrated
+        "__EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json"
+      ];
+    };
   };
 
   environment = {
