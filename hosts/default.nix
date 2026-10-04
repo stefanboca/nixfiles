@@ -3,11 +3,10 @@
   lib,
   self,
 }: {
-  # TODO: find a better hostname
-  laptop = lib.nixosSystem {
+  frobenius = lib.nixosSystem {
     specialArgs = {inherit inputs self;};
     modules = [
-      ./laptop
+      ./frobenius
       self.nixosModules.catppuccin
       self.nixosModules.extensions
       self.nixosModules.presets
