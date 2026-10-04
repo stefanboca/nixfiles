@@ -54,6 +54,8 @@
     };
   };
 
+  nixpkgs.config.permittedInsecurePackages = ["radicle-node-1.10.3"];
+
   services = {
     postgresql = {
       enable = true;

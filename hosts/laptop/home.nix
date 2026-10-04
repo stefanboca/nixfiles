@@ -45,7 +45,7 @@ in {
 
       packages = with pkgs; [
         # keep-sorted start block=yes
-        (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
+        # (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
         ardour
         bazel-buildtools
         bazel_9

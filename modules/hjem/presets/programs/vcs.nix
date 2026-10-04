@@ -41,12 +41,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    packages = [
-      pkgs.difftastic
-      pkgs.git-lfs
-      pkgs.meld
-      pkgs.mergiraf
-      pkgs.watchman
+    packages = with pkgs; [
+      difftastic
+      git-lfs
+      meld
+      mergiraf
+      watchman
     ];
 
     files.".ssh/allowed_signers".text = ''
