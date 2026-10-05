@@ -11,7 +11,7 @@
     ./screenpad.nix
   ];
 
-  networking.hostName = "laptop";
+  networking.hostName = "frobenius";
   system.stateVersion = "26.05";
 
   catppuccin = {
