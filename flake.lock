@@ -169,11 +169,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1791209331,
-        "narHash": "sha256-yMzFPa+9TxduQTAjAOz44yCnXhzRzEShYEJlzx8J+N8=",
+        "lastModified": 1791378032,
+        "narHash": "sha256-NaMw9W7dWAkYlz7Ej6pEjX8kXUDDO1UBy7AwuPwEuyE=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "329aea43982331f709ab302bbba51b024c5769e2",
+        "rev": "9aadb1d479ad081f67eac50920558e140f26d167",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791222587,
-        "narHash": "sha256-c+CDkxiu1x6PvfEodVqRzyktTmw9g7dBjZhf1YNejVc=",
+        "lastModified": 1791393193,
+        "narHash": "sha256-ZclIyv3gs8qNo1Nf0xKCPQxH4xZHWQXJ9CJC5U3wwdA=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "78c3b41e433c23ff8f33f991be4e284191cf6154",
+        "rev": "66da103ce38407b89163b40af7ad57d46a2338d4",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1791180303,
-        "narHash": "sha256-aL4Vz+HzEqRQwUcO2rybXh+RSBtcJ4NQCHRW479TAds=",
+        "lastModified": 1791343785,
+        "narHash": "sha256-cz/pxtvsnfAXnTZ1x4M9aM73uWVMyM44/SEg6zEhGEM=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "35a81a980bb9fce09a1ea762a68b55f8eb3477ed",
+        "rev": "b699ea79f4b881421b4b3055abc16a0957d76beb",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790081753,
-        "narHash": "sha256-tycoVCB2KSVdy9ERT1lJGHdP9Hf4FHanaEY25hUxylw=",
+        "lastModified": 1791289048,
+        "narHash": "sha256-JdmZVrzGDRRcOAwsYujnE7f/d1YZ9Xtk4z/1MWmQXxM=",
         "owner": "feel-co",
         "repo": "hjem",
-        "rev": "cef02450f2c18a7e2b9297ea8d366f9a597254f7",
+        "rev": "2b155694ce412300f240de06735c93779f9e19a4",
         "type": "github"
       },
       "original": {
@@ -394,11 +394,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791158545,
-        "narHash": "sha256-Tb/+tSw9Kqg7VqZpo0LGJs6t+qHqvWPcPpOdESaPcao=",
+        "lastModified": 1791331368,
+        "narHash": "sha256-2c7pg1LLBK1WIb2yzLQeTwtKBUjgA8ZLs5ydW/FomJI=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "5b3d45c33800e8381169252aa52c3ac363309c48",
+        "rev": "c5c3b7c1d404e636995d72749f7e720f5b47bf39",
         "type": "github"
       },
       "original": {
@@ -410,11 +410,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791130892,
-        "narHash": "sha256-P3RWO45jjBQsMSA36HwVr73Pb9lBg4odBd+JhFU9WiY=",
+        "lastModified": 1791290035,
+        "narHash": "sha256-zesq63JsOA5JVPXXQLZmSqEC1J2dcJPTE7GN2bD0Ugs=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "7c53167b5dd284c769948f76358fadd6ee638c8d",
+        "rev": "cae3a197f74d1f406319ef00a0d2080d98322a00",
         "type": "github"
       },
       "original": {
@@ -468,11 +468,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791128201,
-        "narHash": "sha256-rlsYY/Dg/LhbIj51Aa6TLvRpZeb3KZgUTd7llQ5XcJE=",
+        "lastModified": 1791373788,
+        "narHash": "sha256-c3oMt0QoE+4yiRk6u1m2L9ogjaUw0uTGn9yk808KkgE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "31cc5f4d9b9ba601071e8b8504601b9b176e2756",
+        "rev": "4bc63156b109ee7b4103e3ec30565c8c92bde435",
         "type": "github"
       },
       "original": {
@@ -526,11 +526,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1791179034,
-        "narHash": "sha256-C9upu7DiyqMGzdnVbapqVYx2QvBXubxyrhSKV3C+Ngo=",
-        "rev": "494ce7fd23ff6a5dff39e1fb11e9b6f2ac74bf25",
+        "lastModified": 1791260994,
+        "narHash": "sha256-MFBjw66d4h06MvpW6lIl7RwarLteD0sk859CncGwb1Q=",
+        "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1085777.494ce7fd23ff/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1086391.151fa4e8ddfd/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -560,11 +560,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791048152,
-        "narHash": "sha256-R+cq28uDVDRY//7BjWXh/oKGv+yIrDsuFJJX9H41yEo=",
+        "lastModified": 1791397016,
+        "narHash": "sha256-hIduJJRnQolGcSf/d8OqU68FXYg43XSUPpFendnXyp4=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "e639a87e811ad3268c73f6d5e77669c94184ba15",
+        "rev": "c4f621054f3a4e17fb494c9b9403c3b4ff7f9939",
         "type": "github"
       },
       "original": {
@@ -600,11 +600,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791155090,
-        "narHash": "sha256-KlPoiDKQ7xCoUAaxJzCYctw2acbtunTD3SFjO79MXzE=",
+        "lastModified": 1791303611,
+        "narHash": "sha256-9uKpjZzi0aZBvdbaGUyLmCawYu1eAXfZQOZVOPOGS8A=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "65ac641199d5b0dacb075c4db95f0bfe784d0386",
+        "rev": "021bfc15e24909389bd208d1622b7f4f3942b91a",
         "type": "github"
       },
       "original": {
@@ -671,11 +671,11 @@
         "unnest-nvim": "unnest-nvim"
       },
       "locked": {
-        "lastModified": 1791224166,
-        "narHash": "sha256-Q70IQI+CeRktx+KQmHcy0UaYm8p6WwkGPmiqLsl5Ksg=",
+        "lastModified": 1791397421,
+        "narHash": "sha256-lRc4axJbfUZYTqXdMnhHtjtfpgngVp2vTVl6FvkyL0w=",
         "owner": "stefanboca",
         "repo": "nvim",
-        "rev": "af33e6c885678e54f18f5d1880f315913e5d2aa4",
+        "rev": "ed7222792747db7d48655acc07c5ac3a7469f2f4",
         "type": "github"
       },
       "original": {
