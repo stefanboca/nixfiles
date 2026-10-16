@@ -51,6 +51,7 @@ in {
         bazel_9
         beets
         bitwarden-desktop
+        bubblewrap
         calf
         calfnxt
         caps
