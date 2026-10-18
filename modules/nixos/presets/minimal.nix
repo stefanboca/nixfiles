@@ -45,6 +45,7 @@ in {
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+          "atticd-cache:yn/VQR4uE7j++RUpVSp4LU70gGOUcrw3fgk03pw0xLA="
         ];
         trusted-users = ["@wheel"];
         use-cgroups = true;
