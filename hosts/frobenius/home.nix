@@ -47,6 +47,7 @@ in {
         # keep-sorted start block=yes
         (zotero.withConfig {baseUri = "https://zotero.cauchy.local";})
         ardour
+        attic-client
         bazel-buildtools
         bazel_9
         beets
