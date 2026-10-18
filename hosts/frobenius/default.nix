@@ -54,7 +54,10 @@
     };
   };
 
-  nixpkgs.config.permittedInsecurePackages = ["radicle-node-1.10.3"];
+  nixpkgs.config.permittedInsecurePackages = [
+    "radicle-node-1.10.3"
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
+  ];
 
   services = {
     postgresql = {
