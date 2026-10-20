@@ -73,6 +73,7 @@ in {
         gnome-pomodoro
         helm
         imv
+        kicad
         libreoffice
         lsp-plugins
         miro
