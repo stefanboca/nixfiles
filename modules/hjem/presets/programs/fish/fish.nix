@@ -70,6 +70,7 @@ in {
           ctrl_n_shortcuts = true;
           enter_accept = true;
           sync.records = true;
+          sync_address = "https://atuin.cauchy.local";
           sync_frequency = "1h";
           workspaces = true;
           stats = {
