@@ -126,6 +126,12 @@ in {
         services = {
           rbw = {
             enable = true;
+            settings = {
+              email = "stefan.boca@cauchy.local";
+              base_url = "https://vaultwarden.cauchy.local";
+              lock_timeout = 60 * 60 * 24; # 1 day
+              sync_interval = 60 * 60; # 1 hour
+            };
             integrations.fish.enable = true;
           };
         };
