@@ -329,7 +329,7 @@ in {
           "@knoopx/store.vicinae.nix" = {
             preferences = {
               homeManagerOptionsUrl = "https://home-manager-options.extranix.com/data/options-master.json";
-              searchUrl = "https://search.nixos.org/backend/latest-51-nixos-unstable/_search";
+              searchUrl = "https://search.nixos.org/backend/latest-52-nixos-unstable/_search";
             };
             entrypoints = {
               flake-packages.enabled = false;
