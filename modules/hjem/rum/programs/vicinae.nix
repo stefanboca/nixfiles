@@ -32,7 +32,7 @@ in {
       after = ["graphical-session.target"];
       partOf = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
-      restartTriggers = [cfg.package];
+      restartTriggers = [config.xdg.config.files."vicinae/settings.json".source];
 
       # unset nix-generated path
       environment.PATH = mkForce null;
