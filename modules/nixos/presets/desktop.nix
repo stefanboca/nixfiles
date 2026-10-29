@@ -43,6 +43,10 @@ in {
         jack.enable = true;
         pulse.enable = true;
 
+        extraConfig.pipewire."99-disable-x11-bell" = {
+          # disable the x11-bell module to avoid spawning xwayland-satellite when unnecessary
+          "context.properties"."module.x11.bell" = false;
+        };
         wireplumber.extraConfig.bluetoothEnhancements."monitor.bluez.properties" = {
           "bluez5.enable-sbc-xq" = true;
           "bluez5.enable-msbc" = true;
