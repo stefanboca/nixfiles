@@ -90,6 +90,7 @@ in {
         rnnoise-plugin
         rnote
         signal-desktop
+        simple-scan
         surge-xt
         system-config-printer
         telegram-desktop

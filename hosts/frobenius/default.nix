@@ -44,6 +44,8 @@
     };
   };
 
+  hardware.sane.enable = true;
+
   environment = {
     etc = {
       # emulate services.xserver.exportConfiguration = true without services.xserver.enable = true
@@ -60,6 +62,7 @@
   ];
 
   services = {
+    avahi.enable = true;
     postgresql = {
       enable = true;
       enableJIT = true;
