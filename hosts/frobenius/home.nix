@@ -52,6 +52,7 @@ in {
         bazel_9
         beets
         bitwarden-desktop
+        blender
         bubblewrap
         calf
         calfnxt
@@ -82,6 +83,7 @@ in {
         nixpkgs-review
         noise-repellent
         odin2
+        pi-coding-agent
         podman-compose
         prusa-slicer
         radicle-desktop
@@ -100,7 +102,6 @@ in {
         zulip
         zynaddsubfx
         # keep-sorted end
-        # pkgsCuda.blender
       ];
 
       environment.sessionVariables = let
