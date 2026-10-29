@@ -37,15 +37,14 @@ in {
         enable = true;
 
         abbrs = {
-          sc = "systemctl --system";
+          jc = "journalctl";
+          sc = "systemctl";
           scu = "systemctl --user";
 
           nd = "nix develop -c fish";
           nf = "nix flake";
           nfu = "nix flake update";
           nrs = "nh os switch";
-          ns = "nix shell";
-          nsh = "nix shell";
 
           ls = "eza";
           ll = "eza -l";
