@@ -38,9 +38,20 @@ in {
     };
 
     packages = with pkgs; [
-      (fenix.complete.withComponents ["cargo" "clippy" "miri" "rust-analysis" "rust-src" "rustc" "rustfmt"])
-      bugstalker # cli debugger
+      (fenix.complete.withComponents [
+        # keep-sorted start
+        "cargo"
+        "clippy"
+        "miri"
+        "rust-analysis"
+        "rust-src"
+        "rustc"
+        "rustc-codegen-cranelift-preview"
+        "rustfmt"
+        # keep-sorted end
+      ])
       # keep-sorted start
+      bugstalker # cli debugger
       cargo-auditable # make production Rust binaries auditable
       cargo-cache # rust cache cli
       cargo-clean-recursive # cleans all projects under specified directory
