@@ -18,7 +18,21 @@ in {
       description = "Stefan Boca";
       isNormalUser = true;
       shell = pkgs.fish;
-      extraGroups = ["audio" "dialout" "docker" "networkmanager" "podman" "video" "wheel" "wireshark" "scanner" "lp"];
+      extraGroups = [
+        # keep-sorted start
+        "audio"
+        "dialout"
+        "docker"
+        "lp"
+        "networkmanager"
+        "podman"
+        "scanner"
+        "video"
+        "virtualbox"
+        "wheel"
+        "wireshark"
+        # keep-sorted end
+      ];
       autoSubUidGidRange = true;
     };
   };

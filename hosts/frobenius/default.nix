@@ -151,6 +151,11 @@
       enable = true;
       package = pkgs.waydroid-nftables;
     };
+    virtualbox.host = {
+      enable = true;
+      enableKvm = true;
+      addNetworkInterface = false;
+    };
   };
 
   security.pam.loginLimits = [
