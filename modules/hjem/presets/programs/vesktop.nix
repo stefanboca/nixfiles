@@ -17,7 +17,7 @@ in {
     enable = true;
     package = pkgs.vesktop.override {
       withMiddleClickScroll = true;
-      withSystemVencord = true;
+      withSystemVencord = false;
     };
   };
 }
