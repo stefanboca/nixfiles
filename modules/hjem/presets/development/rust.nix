@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkEnableOption;
 
@@ -17,22 +16,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.config.files."kache/config.toml" = {
-      generator = toml.generate "kache-config.toml";
-      value = {
-        cache = {
-          local_max_size = "200GiB";
-          local_only = true;
-        };
-      };
-    };
-
     xdg.data.files."cargo/config.toml" = {
       generator = toml.generate "cargo-config.toml";
       value = {
-        build.rustc-wrapper = getExe pkgs.kache;
-        target.x86_64-unknown-linux-gnu = {
-          rustflags = ["-Clink-arg=-fuse-ld=wild"];
+        target = {
+          x86_64-unknown-linux-gnu.rustflags = ["-Clink-arg=-fuse-ld=wild"];
+          # wasm32-unknown-unknown = {
+          #   linker = getExe pkgs.wild-unwrapped;
+          #   rustflags = ["-Clinker-flavor=wasm-ld"];
+          # };
         };
       };
     };
@@ -62,7 +54,6 @@ in {
       cargo-watch # run cargo commands on project changes
       cargo-wizard # configure cargo projects for best performance
       clang # for cc
-      kache # build cache
       wild # linker
       # keep-sorted end
     ];
