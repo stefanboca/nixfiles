@@ -63,6 +63,7 @@ in {
         codex
         crosspipe
         dexed
+        discord
         dragonfly-reverb
         easyeffects
         esphome
