@@ -36,6 +36,7 @@ in {
         baobab # disk usage analyzer
         decibels # audio player
         file-roller # archive-manager
+        gnome-control-center # for niri global shortcuts
         gnome-calculator # calculator
         gnome-font-viewer # font viewer
         gnome-power-manager-patched # view battery and power statistics
@@ -56,6 +57,7 @@ in {
 
     services = {
       # keep-sorted start block=yes
+      dbus.packages = with pkgs; [gnome-control-center];
       geoclue2.enable = true;
       gnome.sushi.enable = true; # quick previewer for nautilus
       gvfs.enable = true; # userspace virtual filesystem
