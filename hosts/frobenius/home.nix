@@ -74,6 +74,7 @@ in {
         gnome-decoder
         gnome-pomodoro
         helm
+        hydra-check
         imv
         kicad
         libreoffice
