@@ -149,10 +149,7 @@ in {
             backends.ssh.allowed-signers = "~/.ssh/allowed_signers";
           };
 
-          git = {
-            sign-on-push = true;
-            private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
-          };
+          git.private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'priv:*')";
 
           colors = {
             description = "cyan";
@@ -165,6 +162,7 @@ in {
 
           revsets = {
             bookmark-advance-to = "@-";
+            git-sign-on-push = "~signed() & mine()";
           };
 
           templates = {

@@ -88,9 +88,9 @@ in {
         pi-coding-agent
         podman-compose
         prusa-slicer
-        radicle-desktop
+        # radicle-desktop
         radicle-node
-        radicle-tui
+        # radicle-tui
         rnnoise-plugin
         rnote
         signal-desktop

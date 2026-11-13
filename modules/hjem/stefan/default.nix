@@ -57,7 +57,7 @@ in {
         ghostty.enable = true;
         neovim = {
           enable = true;
-          neovide.enable = true;
+          # neovide.enable = true;
         };
         spicetify.enable = true;
         ssh.enable = true;
