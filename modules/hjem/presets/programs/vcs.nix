@@ -99,6 +99,13 @@ in {
             process = "git-lfs filter-process";
             smudge = "git-lfs smudge -- %f";
           };
+
+          sendemail = {
+            smptServer = "smtp.gmail.com";
+            smtpServerPort = 587;
+            smptEncryption = "tls";
+            smptUser = cfg.email;
+          };
         };
       };
 
